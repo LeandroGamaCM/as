@@ -1,0 +1,62 @@
+/*Código CSS para template*/
+.layout-wrapper .layout-main .layout-footer {
+    padding: 16px 24px;
+    border: 1px solid #dbdbdb;
+    background: #ffffff;
+}
+
+
+/*Código CSS para componente*/
+body a {
+    color: #607D8B;
+    text-decoration: none;
+}
+.layout-wrapper .layout-main .layout-footer img {
+    margin-top: 5px;
+    width: 100px;
+}
+.layout-wrapper .layout-main .layout-footer .footer-text-right {
+    float: right;
+    margin-top: 10px;
+}
+.layout-wrapper .layout-main .layout-footer .footer-text-right {
+    vertical-align: middle;
+}
+body .ui-icon {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    text-indent: 0;
+    overflow: visible;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+.layout-wrapper .layout-main .layout-footer .footer-text-right span {
+    vertical-align: middle;
+}
+.ui-icon-copyright:before {
+    content: "";
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+}

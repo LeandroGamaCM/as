@@ -1,0 +1,78 @@
+/*Código CSS para template*/
+.layout-wrapper .layout-main .layout-breadcrumb {
+    background-color: #ffffff;
+    -webkit-box-shadow: inset 0 -2px 4px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: inset 0 -2px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: inset 0 -2px 4px 0 rgba(0, 0, 0, 0.14);
+    min-height: 42px;
+    padding-top: 64px;
+}
+
+
+/*Código CSS para componentes*/
+.layout-wrapper .layout-main .layout-breadcrumb ul {
+    margin: 8px 0 0 0;
+    padding: 0 0 0 20px;
+    list-style: none;
+    color: #757575;
+    display: inline-block;
+}
+.layout-wrapper .layout-main .layout-breadcrumb ul li {
+    display: inline-block;
+    vertical-align: middle;
+    color: #757575;
+}
+.layout-wrapper .layout-main .layout-breadcrumb ul li a {
+    color: #757575;
+}
+.layout-wrapper .layout-main .layout-breadcrumb ul li:nth-child(even) {
+    font-size: 20px;
+}
+body .ui-widget, body .ui-widget .ui-widget {
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+    text-decoration: none;
+}
+body .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+
+.layout-wrapper .layout-main .layout-breadcrumb .layout-breadcrumb-options {
+    float: right;
+    padding: 0px 5px 0 0;
+    height: 100%;
+}
+.layout-wrapper .layout-main .layout-breadcrumb .layout-breadcrumb-options a {
+    color: #757575;
+    display: inline-block;
+    width: 100px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    -moz-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+.layout-wrapper .layout-main .layout-breadcrumb .layout-breadcrumb-options a i {
+    line-height: inherit;
+}
+body a {
+    color: #607D8B;
+    text-decoration: none;
+}

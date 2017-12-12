@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="css/estiloComponentes.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estiloCabecalho.css" rel="stylesheet" type="text/css"/> 
+        <link href="css/estiloNavegacao.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estiloLogotipo.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estiloMenu.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estiloConteudo.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estiloRodape.css" rel="stylesheet" type="text/css"/>
+        <link href="css/temaPrimefaces.css" rel="stylesheet" type="text/css"/>
+        <title><ui:insert name="titulo">Titulo</ui:insert></title>
+    </h:head>
+    <h:body class="hidden-overflow">
+        <div class="layout-wrapper layout-wrapper-static layout-wrapper-active">
+            <div class="layout-sidebar layout-sidebar-active">
+                <div class="sidebar-logo">
+                    <ui:insert name="logotipo">
+                        <ui:include src="componenteLogotipo.xhtml"/>
+                    </ui:insert>
+                </div>
+                <div class="nano has-scrollbar">
+                    <ui:insert name="menu">
+                        <ui:include src="componenteMenu.xhtml"/>
+                    </ui:insert>
+                </div>
+            </div>
+            <div class="layout-main">
+                <div class="layout-topbar">                    
+                    <ui:insert name="cabecalho">
+                        <ui:include src="componenteCabecalho.xhtml"/>
+                    </ui:insert>                    
+                </div>
+                <div class="layout-breadcrumb">
+                    <ui:insert name="navegacao">
+                        <ui:include src="componenteNavegacao.xhtml"/>
+                    </ui:insert>
+                </div>
+                <div class="layout-content">
+                    <ui:insert name="conteudo">
+                        Area de Conteudo
+                    </ui:insert> 
+                </div>
+                <div class="layout-footer clearfix">
+                    <ui:insert name="rodape">
+                        <ui:include src="componenteRodape.xhtml"/>
+                    </ui:insert>             
+                </div>
+            </div>
+        </div>          
+    </h:body>
+</html>
+

@@ -20,7 +20,7 @@ public class Renda implements Serializable {
     @Column(name = "nome_renda")
     private String nomeRenda;
     @Column(name = "valor_renda")
-    private Double valorAluguel;
+    private Double valorRenda;
 
     public Integer getRenda() {
         return renda;
@@ -46,12 +46,12 @@ public class Renda implements Serializable {
         this.nomeRenda = nomeRenda;
     }
 
-    public Double getValorAluguel() {
-        return valorAluguel;
+    public Double getValorRenda() {
+        return valorRenda;
     }
 
-    public void setValorAluguel(Double valorAluguel) {
-        this.valorAluguel = valorAluguel;
+    public void setValorRenda(Double valorRenda) {
+        this.valorRenda = valorRenda;
     }
 
     

@@ -4,6 +4,7 @@ package br.edu.ifba.as.entidades.formulario;
 
 import br.edu.ifba.as.entidades.enums.Trabalho;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -65,6 +66,14 @@ public class Ocupacao implements Serializable {
         this.aluno = aluno;
     }
 
+    public Trabalho getTrabalho() {
+        return trabalho;
+    }
+
+    public void setTrabalho(Trabalho trabalho) {
+        this.trabalho = trabalho;
+    }
+
     public Integer getTelefoneEmpregador() {
         return telefoneEmpregador;
     }
@@ -73,11 +82,11 @@ public class Ocupacao implements Serializable {
         this.telefoneEmpregador = telefoneEmpregador;
     }
 
-    public boolean isPossuiTrabalho() {
+    public Boolean getPossuiTrabalho() {
         return possuiTrabalho;
     }
 
-    public void setPossuiTrabalho(boolean possuiTrabalho) {
+    public void setPossuiTrabalho(Boolean possuiTrabalho) {
         this.possuiTrabalho = possuiTrabalho;
     }
 
@@ -129,5 +138,71 @@ public class Ocupacao implements Serializable {
         this.tempoServico = tempoServico;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.ocupacao);
+        hash = 67 * hash + Objects.hashCode(this.aluno);
+        hash = 67 * hash + Objects.hashCode(this.trabalho);
+        hash = 67 * hash + Objects.hashCode(this.telefoneEmpregador);
+        hash = 67 * hash + Objects.hashCode(this.possuiTrabalho);
+        hash = 67 * hash + Objects.hashCode(this.profissao);
+        hash = 67 * hash + Objects.hashCode(this.nomeEmpregador);
+        hash = 67 * hash + (this.possuiEstagio ? 1 : 0);
+        hash = 67 * hash + Objects.hashCode(this.instiruicaoEstagio);
+        hash = 67 * hash + Objects.hashCode(this.salarioMensal);
+        hash = 67 * hash + Objects.hashCode(this.tempoServico);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ocupacao other = (Ocupacao) obj;
+        if (this.possuiEstagio != other.possuiEstagio) {
+            return false;
+        }
+        if (!Objects.equals(this.profissao, other.profissao)) {
+            return false;
+        }
+        if (!Objects.equals(this.nomeEmpregador, other.nomeEmpregador)) {
+            return false;
+        }
+        if (!Objects.equals(this.instiruicaoEstagio, other.instiruicaoEstagio)) {
+            return false;
+        }
+        if (!Objects.equals(this.ocupacao, other.ocupacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        if (this.trabalho != other.trabalho) {
+            return false;
+        }
+        if (!Objects.equals(this.telefoneEmpregador, other.telefoneEmpregador)) {
+            return false;
+        }
+        if (!Objects.equals(this.possuiTrabalho, other.possuiTrabalho)) {
+            return false;
+        }
+        if (!Objects.equals(this.salarioMensal, other.salarioMensal)) {
+            return false;
+        }
+        if (!Objects.equals(this.tempoServico, other.tempoServico)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 
 }

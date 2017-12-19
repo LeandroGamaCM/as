@@ -7,6 +7,7 @@ import br.edu.ifba.as.entidades.enums.OndeEstudou;
 import br.edu.ifba.as.entidades.enums.Turno;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.*;
 import org.hibernate.annotations.Parameter;
 
@@ -58,7 +59,13 @@ public class InformacoesCurriculares implements Serializable {
     @Column(name = "tempo_interrupcao")
     private float tempoInterrupcao;
 
+    public Integer getInformacoesCurriculares() {
+        return informacoesCurriculares;
+    }
 
+    public void setInformacoesCurriculares(Integer informacoesCurriculares) {
+        this.informacoesCurriculares = informacoesCurriculares;
+    }
 
     public Aluno getAluno() {
         return aluno;
@@ -68,19 +75,43 @@ public class InformacoesCurriculares implements Serializable {
         this.aluno = aluno;
     }
 
-    public boolean isCursoPreparatorio() {
+    public OndeEstudou getOndeEstudou() {
+        return ondeEstudou;
+    }
+
+    public void setOndeEstudou(OndeEstudou ondeEstudou) {
+        this.ondeEstudou = ondeEstudou;
+    }
+
+    public Turno getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Turno turno) {
+        this.turno = turno;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public Boolean getCursoPreparatorio() {
         return cursoPreparatorio;
     }
 
-    public void setCursoPreparatorio(boolean cursoPreparatorio) {
+    public void setCursoPreparatorio(Boolean cursoPreparatorio) {
         this.cursoPreparatorio = cursoPreparatorio;
     }
 
-    public boolean isInterrupcaoEstudos() {
+    public Boolean getInterrupcaoEstudos() {
         return interrupcaoEstudos;
     }
 
-    public void setInterrupcaoEstudos(boolean interrupcaoEstudos) {
+    public void setInterrupcaoEstudos(Boolean interrupcaoEstudos) {
         this.interrupcaoEstudos = interrupcaoEstudos;
     }
 
@@ -116,5 +147,71 @@ public class InformacoesCurriculares implements Serializable {
         this.tempoInterrupcao = tempoInterrupcao;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.informacoesCurriculares);
+        hash = 59 * hash + Objects.hashCode(this.aluno);
+        hash = 59 * hash + Objects.hashCode(this.ondeEstudou);
+        hash = 59 * hash + Objects.hashCode(this.turno);
+        hash = 59 * hash + Objects.hashCode(this.curso);
+        hash = 59 * hash + Objects.hashCode(this.cursoPreparatorio);
+        hash = 59 * hash + Objects.hashCode(this.interrupcaoEstudos);
+        hash = 59 * hash + Objects.hashCode(this.nomeCursoPreparatorio);
+        hash = 59 * hash + Objects.hashCode(this.motivoInterrupcao);
+        hash = 59 * hash + Objects.hashCode(this.dataInterrupcao);
+        hash = 59 * hash + Float.floatToIntBits(this.tempoInterrupcao);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final InformacoesCurriculares other = (InformacoesCurriculares) obj;
+        if (Float.floatToIntBits(this.tempoInterrupcao) != Float.floatToIntBits(other.tempoInterrupcao)) {
+            return false;
+        }
+        if (!Objects.equals(this.nomeCursoPreparatorio, other.nomeCursoPreparatorio)) {
+            return false;
+        }
+        if (!Objects.equals(this.motivoInterrupcao, other.motivoInterrupcao)) {
+            return false;
+        }
+        if (!Objects.equals(this.informacoesCurriculares, other.informacoesCurriculares)) {
+            return false;
+        }
+        if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        if (this.ondeEstudou != other.ondeEstudou) {
+            return false;
+        }
+        if (this.turno != other.turno) {
+            return false;
+        }
+        if (this.curso != other.curso) {
+            return false;
+        }
+        if (!Objects.equals(this.cursoPreparatorio, other.cursoPreparatorio)) {
+            return false;
+        }
+        if (!Objects.equals(this.interrupcaoEstudos, other.interrupcaoEstudos)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInterrupcao, other.dataInterrupcao)) {
+            return false;
+        }
+        return true;
+    }
+
+
+
 }

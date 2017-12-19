@@ -1,5 +1,6 @@
 package br.edu.ifba.as.entidades.formulario;
 
+import br.edu.ifba.as.entidades.enums.AcessoInternet;
 import br.edu.ifba.as.entidades.enums.ComQuemMora;
 import br.edu.ifba.as.entidades.enums.SituacaoCasa;
 import java.io.Serializable;
@@ -48,6 +49,10 @@ public class SituacaoResidencial implements Serializable {
     @Enumerated
     @Column(columnDefinition = "smallint")
     private SituacaoCasa situacaoCasa;
+
+    @Enumerated
+    @Column(columnDefinition = "smallint")
+    private AcessoInternet acessoInternet;
     
     public Integer getSituacaoResidencial() {
         return situacaoResidencial;
@@ -55,6 +60,30 @@ public class SituacaoResidencial implements Serializable {
 
     public void setSituacaoResidencial(Integer situacaoResidencial) {
         this.situacaoResidencial = situacaoResidencial;
+    }
+
+    public ComQuemMora getComQuemMora() {
+        return comQuemMora;
+    }
+
+    public void setComQuemMora(ComQuemMora comQuemMora) {
+        this.comQuemMora = comQuemMora;
+    }
+
+    public SituacaoCasa getSituacaoCasa() {
+        return situacaoCasa;
+    }
+
+    public void setSituacaoCasa(SituacaoCasa situacaoCasa) {
+        this.situacaoCasa = situacaoCasa;
+    }
+
+    public AcessoInternet getAcessoInternet() {
+        return acessoInternet;
+    }
+
+    public void setAcessoInternet(AcessoInternet acessoInternet) {
+        this.acessoInternet = acessoInternet;
     }
 
     public Aluno getAluno() {

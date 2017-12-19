@@ -35,55 +35,64 @@ public class BolsasAuxilio implements Serializable {
         this.bolsaAuxilio = bolsaAuxilio;
     }
 
-    public boolean isProgramaExtensao() {
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Boolean getProgramaExtensao() {
         return programaExtensao;
     }
 
-    public void setProgramaExtensao(boolean programaExtensao) {
+    public void setProgramaExtensao(Boolean programaExtensao) {
         this.programaExtensao = programaExtensao;
     }
 
-    public boolean isPibid() {
+    public Boolean getPibid() {
         return pibid;
     }
 
-    public void setPibid(boolean pibid) {
+    public void setPibid(Boolean pibid) {
         this.pibid = pibid;
     }
 
-    public boolean isMonitoria() {
+    public Boolean getMonitoria() {
         return monitoria;
     }
 
-    public void setMonitoria(boolean monitoria) {
+    public void setMonitoria(Boolean monitoria) {
         this.monitoria = monitoria;
     }
 
-    public boolean isPibic() {
+    public Boolean getPibic() {
         return pibic;
     }
 
-    public void setPibic(boolean pibic) {
+    public void setPibic(Boolean pibic) {
         this.pibic = pibic;
     }
 
-    public boolean isPibicjr() {
+    public Boolean getPibicjr() {
         return pibicjr;
     }
 
-    public void setPibicjr(boolean pibicjr) {
+    public void setPibicjr(Boolean pibicjr) {
         this.pibicjr = pibicjr;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.bolsaAuxilio);
-        hash = 97 * hash + (this.programaExtensao ? 1 : 0);
-        hash = 97 * hash + (this.pibid ? 1 : 0);
-        hash = 97 * hash + (this.monitoria ? 1 : 0);
-        hash = 97 * hash + (this.pibic ? 1 : 0);
-        hash = 97 * hash + (this.pibicjr ? 1 : 0);
+        hash = 79 * hash + Objects.hashCode(this.bolsaAuxilio);
+        hash = 79 * hash + Objects.hashCode(this.aluno);
+        hash = 79 * hash + Objects.hashCode(this.programaExtensao);
+        hash = 79 * hash + Objects.hashCode(this.pibid);
+        hash = 79 * hash + Objects.hashCode(this.monitoria);
+        hash = 79 * hash + Objects.hashCode(this.pibic);
+        hash = 79 * hash + Objects.hashCode(this.pibicjr);
         return hash;
     }
 
@@ -99,25 +108,29 @@ public class BolsasAuxilio implements Serializable {
             return false;
         }
         final BolsasAuxilio other = (BolsasAuxilio) obj;
-        if (this.programaExtensao != other.programaExtensao) {
-            return false;
-        }
-        if (this.pibid != other.pibid) {
-            return false;
-        }
-        if (this.monitoria != other.monitoria) {
-            return false;
-        }
-        if (this.pibic != other.pibic) {
-            return false;
-        }
-        if (this.pibicjr != other.pibicjr) {
-            return false;
-        }
         if (!Objects.equals(this.bolsaAuxilio, other.bolsaAuxilio)) {
+            return false;
+        }
+        if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        if (!Objects.equals(this.programaExtensao, other.programaExtensao)) {
+            return false;
+        }
+        if (!Objects.equals(this.pibid, other.pibid)) {
+            return false;
+        }
+        if (!Objects.equals(this.monitoria, other.monitoria)) {
+            return false;
+        }
+        if (!Objects.equals(this.pibic, other.pibic)) {
+            return false;
+        }
+        if (!Objects.equals(this.pibicjr, other.pibicjr)) {
             return false;
         }
         return true;
     }
+
     
 }

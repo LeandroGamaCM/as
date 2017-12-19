@@ -1,7 +1,7 @@
 package br.edu.ifba.as.rn;
 
 import br.edu.ifba.as.dao.DAOFactory;
-import br.edu.ifba.as.dao.formulario.AlunoDAO;
+import br.edu.ifba.as.dao.AlunoDAO;
 import br.edu.ifba.as.entidades.formulario.Aluno;
 import java.util.List;
 

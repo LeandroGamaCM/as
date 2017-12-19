@@ -1,5 +1,5 @@
 package br.edu.ifba.as.entidades.enums;
 
 public enum SituacaoCasa {
-    Propria, Alugada, Cedida, OutraSituacao;
+    Propria, Alugada, Cedida, Outro;
 }

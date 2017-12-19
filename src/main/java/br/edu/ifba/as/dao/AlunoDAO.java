@@ -1,4 +1,4 @@
-package br.edu.ifba.as.dao.formulario;
+package br.edu.ifba.as.dao;
 
 import br.edu.ifba.as.entidades.formulario.Aluno;
 import java.util.List;

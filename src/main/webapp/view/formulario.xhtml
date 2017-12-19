@@ -1,28 +1,14 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <ui:composition>
-        <h:form>
-            <p:growl id="growl" sticky="true" showDetail="true"/>               
-            <div class="card card-w-title">
-                <h1>Formulário de Inscrição</h1>
-                <p:wizard nextLabel="Próximo" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
 <!-- FEITO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                     <p:tab id="parte1" title="Parte 1">
                         <p:panel header="Dados Pessoais">
                             <p:messages />                              
                             <h:panelGrid columns="4" columnClasses="label, value">
                                 <p:outputLabel value="Nome Completo: " for="nome" />
-                                <p:inputText id="nome" value="#{alunoBean.aluno.nome}" label="name"/>
+                                <p:inputText id="nome" value="#{alunoBean.aluno.nome}" required="true" label="name"/>
 
                                 <p:outputLabel value="Sexo:" />
-                                <p:selectOneRadio value="#{alunoBean.aluno.sexo}">
-                                    <f:selectItem itemLabel="Feminino" itemValue="FEMININO" />                                   
-                                    <f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />                                   
+                                <p:selectOneRadio required="true" value="#{alunoBean.aluno.sexo}">
+                                    <f:selectItems value="#{alunoBean.sexos}" />                                   
                                 </p:selectOneRadio>           
                             </h:panelGrid>
 
@@ -31,20 +17,16 @@
                                 <p:inputText  id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
 <!-- Corrigir a Data -->
                                <p:outputLabel value="Data de Nascimento: " for="date" />                                    
-                                <p:inputMask id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
+                                <p:inputMask required="true" id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
                                     <f:convertDateTime dateStyle="medium"/>
                                 </p:inputMask>
                                
                             </h:panelGrid>
-
+<!-- O EstadoCivil aparece colado -->
                             <h:panelGrid  columnClasses="label, value">
                                 <p:outputLabel value="Estado Civil: "/>
-                                <p:selectOneRadio value="#{alunoBean.aluno.estadoCivil}">
-                                    <f:selectItem itemLabel="Solteiro(a)" itemValue="SOLTEIRO" />                                   
-                                    <f:selectItem itemLabel="Casado(a)" itemValue="CASADO" />                                   
-                                    <f:selectItem itemLabel="Uniao Estável" itemValue="UNIAO" />                                   
-                                    <f:selectItem itemLabel="Separado(a)" itemValue="SEPARADO" />                                   
-                                    <f:selectItem itemLabel="Viuvo(a)" itemValue="VIUVO" />                                  
+                                <p:selectOneRadio required="true" value="#{alunoBean.aluno.estadoCivil}">
+                                    <f:selectItems value="#{alunoBean.estadoCivils}" />                                   
                                 </p:selectOneRadio>           
                             </h:panelGrid>
 
@@ -76,20 +58,16 @@
                             <p:messages />                              
                             <h:panelGrid columns="4" columnClasses="label, value" >
                                 <p:outputLabel value="Curso: " for="curso" />
-                                <p:selectOneMenu id="curso" value="#{alunoBean.informacoesCurriculares.curso}">
-                                    <f:selectItem itemLabel="Biocombustíveis" itemValue="Biocombustiveis" />                                   
-                                    <f:selectItem itemLabel="Eletromecanica" itemValue="Eletromecanica" />                                   
-                                    <f:selectItem itemLabel="Informática" itemValue="Informatica" />                                   
+                                <p:selectOneMenu id="curso" required="true" value="#{alunoBean.informacoesCurriculares.curso}">
+                                    <f:selectItems value="#{alunoBean.cursos}" />                                   
                                 </p:selectOneMenu>  
                                 <p:outputLabel value="Turno: " for="turno" />
-                                <p:selectOneMenu id="turno" value="#{alunoBean.informacoesCurriculares.turno}">
-                                    <f:selectItem itemLabel="Matutino" itemValue="Matutino"/>                                   
-                                    <f:selectItem itemLabel="Vespertino" itemValue="Vespertino"/>                                   
-                                    <f:selectItem itemLabel="Noturno" itemValue="Noturno"/>                                   
+                                <p:selectOneMenu id="turno" required="true" value="#{alunoBean.informacoesCurriculares.turno}">
+                                    <f:selectItems value="#{alunoBean.turnos}" />                                   
                                 </p:selectOneMenu>  
 <!-- Resolver o problema de como seram dadas as opcoes de turmas -->
                                 <p:outputLabel value="Turma: " for="turma" />
-                                <p:inputText  id="turma" value="Decidir" label="Turma"/>
+                                <p:inputText  id="turma" value="Decidir" required="true" label="Turma"/>
                             </h:panelGrid>                             
                         </p:panel> 
 
@@ -135,11 +113,7 @@
                         <p:panel header="Onde você estudou?">
                             <p:messages />                                                           
                             <p:selectOneRadio value="#{alunoBean.informacoesCurriculares.ondeEstudou}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Escola pública" itemValue="Publica" />  
-                                <f:selectItem itemLabel="Escola particular COM bolsa" itemValue="ParticularComBolsa" />  
-                                <f:selectItem itemLabel="Escola particular SEM bolsa" itemValue="ParticularSemBolsa" />  
-                                <f:selectItem itemLabel="Parte em escola pública e parte em escola particular COM bolsa" itemValue="PubliaEParticularComBolsa" />  
-                                <f:selectItem itemLabel="Parte em escola pública e parte em escola particular SEM bolsa" itemValue="PublicaEParticularSemBolsa" />  
+                                <f:selectItems value="#{alunoBean.ondeEstudous}" />  
                             </p:selectOneRadio>                                                                  
                         </p:panel> 
 
@@ -159,7 +133,7 @@
 
                             <h:panelGrid columns="4" columnClasses="label, value">                              
                                 <p:outputLabel value="Quando aconteceu? " />
-                                <p:inputMask  value="#{alunoBean.informacoesCurriculares.dataInterrupcao}" mask="99/99/9999">
+                                <p:inputMask required="true" id="date" value="#{alunoBean.informacoesCurriculares.dataInterrupcao}" mask="99/99/9999">
                                     <f:convertDateTime dateStyle="medium"/>
                                 </p:inputMask>
 
@@ -172,13 +146,7 @@
                         <p:panel header="Onde você tem acesso a internet?">
                             <p:messages />                              
                             <p:selectOneRadio value="#{alunoBean.situacaoResidencial.acessoInternet}" layout="responsive" columns="5" >
-                                <f:selectItems itemLabel="Em casa" itemValue="Casa"/>
-                                <f:selectItems itemLabel="Na lan house" itemValue="LanHouse"/>
-                                <f:selectItems itemLabel="No Infocentro" itemValue="Infocentro"/>
-                                <f:selectItems itemLabel="Na escola" itemValue="Escola"/>
-                                <f:selectItems itemLabel="Na casa de parentes" itemValue="CasaParente"/>
-                                <f:selectItems itemLabel="Outro local" itemValue="Outro"/>
-                                <f:selectItems itemLabel="NAO acessa a internet" itemValue="NaoAcessa"/>
+                                <f:selectItems value="#{alunoBean.acessoInternets}"/>
                             </p:selectOneRadio>      
                         </p:panel> 
 
@@ -198,11 +166,7 @@
 
                             <p:outputLabel value="Tipo profissão: "/>
                             <p:selectOneRadio value="#{alunoBean.ocupacao.trabalho}" layout="responsive" columns="1">
-                                <f:selectItem itemLabel="Carteira assinada" itemValue="CarteiraAssinada"/>
-                                <f:selectItem itemLabel="Trabalho informal" itemValue="Informal"/>
-                                <f:selectItem itemLabel="Trabalho rural" itemValue="Rural"/>
-                                <f:selectItem itemLabel="Autônomo" itemValue="Autonomo"/>
-                                <f:selectItem itemLabel="Servidor publico" itemValue="ServidorPublico"/>
+                                <f:selectItems value="#{alunoBean.trabalhos}"/>
                             </p:selectOneRadio>    
 
                             <h4>Dados complementares da atividade laboral</h4>
@@ -269,15 +233,7 @@
                         <p:panel header="No momento, com quem você mora?">
                             <p:messages /> 
                             <p:selectOneRadio value="#{alunoBean.situacaoResidencial.comQuemMora}" layout="responsive" columns="3">
-                                <f:selectItem itemLabel="Sozinho" itemValue="Sozinho"/>
-                                <f:selectItem itemLabel="Com os pais" itemValue="Pais"/>
-                                <f:selectItem itemLabel="Com o pai" itemValue="Pai"/>
-                                <f:selectItem itemLabel="Com a mãe" itemValue="Mae"/>
-                                <f:selectItem itemLabel="Com os avós" itemValue="Avos"/>
-                                <f:selectItem itemLabel="Outro Familiar" itemValue="OutroFamiliar"/>
-                                <f:selectItem itemLabel="Em república" itemValue="Republica"/>
-                                <f:selectItem itemLabel="Em pensao" itemValue="Pensao"/>
-                                <f:selectItem itemLabel="Outra Situação" itemValue="Outro"/>
+                                <f:selectItems value="#{alunoBean.comQuemMora}" />
                             </p:selectOneRadio> 
 
                             <p:outputLabel value="Qual? " for="outro" />
@@ -293,10 +249,7 @@
                             <h:panelGrid columns="2" columnClasses="label, value">
                                 <h:panelGrid columns="1" columnClasses="label, value">
                                     <p:selectOneRadio value="#{alunoBean.situacaoResidencial.situacaoCasa}" layout="responsive" columns="1">
-                                        <f:selectItem itemLabel="Casa própria" itemValue="Propria"/>    
-                                        <f:selectItem itemLabel="Casa alugada" itemValue="Alugada"/>    
-                                        <f:selectItem itemLabel="Casa cedida" itemValue="Cedida"/>    
-                                        <f:selectItem itemLabel="Outra situação" itemValue="Outro"/>    
+                                        <f:selectItems value="#{alunoBean.situacaoCasa}" />    
                                     </p:selectOneRadio> 
                                 </h:panelGrid>
 
@@ -367,9 +320,7 @@
                             
                             <h:panelGrid columns="4" columnClasses="label, value">
                                 <p:selectOneRadio value="#{alunoBean.familia.programaSocial}" columns="3" >
-                                    <f:selectItem itemLabel="Bolsa Família" itemValue="BolsaFamilia"/>
-                                    <f:selectItem itemLabel="BCP - ..." itemValue="BCP"/>
-                                    <f:selectItem itemLabel="Outro" itemValue="Outro"/>
+                                    <f:selectItems value="#{alunoBean.programasSociais}"/>
                                 </p:selectOneRadio>
 
                                 <p:outputLabel value="Qual? " for="ProgramaSocial" />
@@ -392,10 +343,7 @@
                         <p:panel header="Em se tratando de atendimento de saúde, a qual serviço você recorre?">
                             <p:messages /> 
                             <p:selectOneRadio value="#{alunoBean.familia.servicoSaude}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="SUS" itemValue="SUS"/>
-                                <f:selectItem itemLabel="Serviços Particulares" itemValue="ServicosParticulares"/>
-                                <f:selectItem itemLabel="Plano de saude de Empresa/Grupo" itemValue="PlanoSaudeEmpresaGrupo"/>
-                                <f:selectItem itemLabel="Plano de saude individual" itemValue="PlanoSaudeFamiliarIndividual"/>
+                                <f:selectItems value="#{alunoBean.servicoSaude}"/>
                             </p:selectOneRadio> 
                         </p:panel>
 <!-- Esses valores precisam ser inseridos, ou faz a conta?
@@ -473,7 +421,7 @@
 
                             <h:panelGrid columns="2" columnClasses="label, value">
                                 <p:outputLabel value="Número de cômodos: " for="comodos" />
-                                <p:inputText id="comodos"  value="#{alunoBean.residencia.qtdeComodos}" label="Lastname"/>
+                                <p:inputText id="comodos"  value="#{alunoBean.residencia.qtdeComodos}" required="true" label="Lastname"/>
                             </h:panelGrid>
                         </p:panel>
 
@@ -481,7 +429,7 @@
                         <p:panel header="A família possui outros imóveis além do que habita?">
                             <p:messages /> 
 
-                            <p:selectOneRadio layout="responsive" columns="1">
+                            <p:selectOneRadio value="#{radioView.city2}" layout="responsive" columns="1">
                                 <f:selectItem itemLabel="Não" itemValue="NÃO" />  
                                 <f:selectItem itemLabel="Sim" itemValue="SIM" />   
                             </p:selectOneRadio> 
@@ -511,25 +459,25 @@
                             <p:messages /> 
                             <h:panelGrid columns="6" columnClasses="label, value">
                                 <p:outputLabel value="Quartos" for="tex1" />
-                                <p:inputText id="tex1"  value="#{alunoBean.residenciaFamilia.qtdeQuartos}" label="Quartos"/>
+                                <p:inputText id="tex1"  value="#{alunoBean.residenciaFamilia.qtdeQuartos}" required="true" label="Quartos"/>
 
                                 <p:outputLabel value="Geladeiras" for="tex2" />
-                                <p:inputText id="tex2"  value="#{alunoBean.residenciaFamilia.qtdeGeladeiras}" label="Geladeiras"/>
+                                <p:inputText id="tex2"  value="#{alunoBean.residenciaFamilia.qtdeGeladeiras}" required="true" label="Geladeiras"/>
 
                                 <p:outputLabel value="Automóveis" for="tex3" />
-                                <p:inputText id="tex3"  value="#{alunoBean.residenciaFamilia.qtdeAutomoveis}" label="Automóveis"/>
+                                <p:inputText id="tex3"  value="#{alunoBean.residenciaFamilia.qtdeAutomoveis}" required="true" label="Automóveis"/>
 
                                 <p:outputLabel value="Banheiros" for="tex4" />
-                                <p:inputText id="tex4"  value="#{alunoBean.residenciaFamilia.qtdeBanheiros}" label="Banheiros"/>
+                                <p:inputText id="tex4"  value="#{alunoBean.residenciaFamilia.qtdeBanheiros}" required="true" label="Banheiros"/>
 
                                 <p:outputLabel value="Computadores" for="tex5" />
-                                <p:inputText id="tex5"  value="#{alunoBean.residenciaFamilia.qtdeComputadores}" label="Computadores"/>
+                                <p:inputText id="tex5"  value="#{alunoBean.residenciaFamilia.qtdeComputadores}" required="true" label="Computadores"/>
 
                                 <p:outputLabel value="Televisões" for="tex6" />
-                                <p:inputText id="tex6"  value="#{alunoBean.residenciaFamilia.qtdeTelevisores}" label="Televisores"/>
+                                <p:inputText id="tex6"  value="#{alunoBean.residenciaFamilia.qtdeTelevisores}" required="true" label="Televisores"/>
 
                                 <p:outputLabel value="Máquinas de lavar" for="tex7" />
-                                <p:inputText id="tex7"  value="#{alunoBean.residenciaFamilia.qtdeMaquinaLavar}" label="Maquina de Lavar"/>
+                                <p:inputText id="tex7"  value="#{alunoBean.residenciaFamilia.qtdeMaquinaLavar}" required="true" label="Maquina de Lavar"/>
                             </h:panelGrid>
                         </p:panel>
 
@@ -589,18 +537,3 @@
 
 
                     </p:tab>  
-
-
-                    
-                    <p:tab id="confirmar" title="Confirmar">
-                        <p:panel>
-                            <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
-                        </p:panel>
-                    </p:tab>
-
-                </p:wizard>                     
-            </div>
-        </h:form>
-    </ui:composition>
-</html>
-

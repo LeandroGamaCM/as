@@ -1,5 +1,5 @@
 package br.edu.ifba.as.entidades.enums;
 
 public enum ComQuemMora {
-    Sozinho, ComPais, ComUmPai, ComAvos, ComOutroFamiliar, Republica, Pensao, ComOutro;
+    Sozinho, Pais, Pai, Mae, Avos, OutroFamiliar, Republica, Pensao, Outro;
 }

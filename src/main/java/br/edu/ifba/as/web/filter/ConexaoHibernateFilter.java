@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 @WebFilter(urlPatterns = "*.jsf")
-public class ConexaoHibernateFilter {
+public class ConexaoHibernateFilter implements Filter{
     private SessionFactory sf;
     
     public void init(FilterConfig config) throws ServletException{

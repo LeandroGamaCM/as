@@ -1,6 +1,5 @@
-package br.edu.ifba.as.dao.analise;
+package br.edu.ifba.as.dao;
 
-import br.edu.ifba.as.dao.CrudDAO;
 import br.edu.ifba.as.entidades.analise.Bolsa;
 
 public class BolsaDAO extends CrudDAO<Bolsa>{

@@ -4,6 +4,7 @@ package br.edu.ifba.as.entidades.formulario;
 import br.edu.ifba.as.entidades.enums.Cobertura;
 import br.edu.ifba.as.entidades.enums.Piso;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -117,9 +118,93 @@ public class Residencia implements Serializable {
     public void setQtdeComodos(Integer qtdeComodos) {
         this.qtdeComodos = qtdeComodos;
     }
-    
 
-    
+    public Piso getPiso() {
+        return piso;
+    }
+
+    public void setPiso(Piso piso) {
+        this.piso = piso;
+    }
+
+    public Cobertura getCobertura() {
+        return cobertura;
+    }
+
+    public void setCobertura(Cobertura cobertura) {
+        this.cobertura = cobertura;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.residencia);
+        hash = 67 * hash + Objects.hashCode(this.aluno);
+        hash = 67 * hash + Objects.hashCode(this.acabamento);
+        hash = 67 * hash + Objects.hashCode(this.redeEsgoto);
+        hash = 67 * hash + Objects.hashCode(this.fossa);
+        hash = 67 * hash + Objects.hashCode(this.banheiro);
+        hash = 67 * hash + Objects.hashCode(this.chuveiro);
+        hash = 67 * hash + Objects.hashCode(this.agua);
+        hash = 67 * hash + Objects.hashCode(this.luz);
+        hash = 67 * hash + Objects.hashCode(this.qtdeComodos);
+        hash = 67 * hash + Objects.hashCode(this.piso);
+        hash = 67 * hash + Objects.hashCode(this.cobertura);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Residencia other = (Residencia) obj;
+        if (!Objects.equals(this.residencia, other.residencia)) {
+            return false;
+        }
+        if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        if (!Objects.equals(this.acabamento, other.acabamento)) {
+            return false;
+        }
+        if (!Objects.equals(this.redeEsgoto, other.redeEsgoto)) {
+            return false;
+        }
+        if (!Objects.equals(this.fossa, other.fossa)) {
+            return false;
+        }
+        if (!Objects.equals(this.banheiro, other.banheiro)) {
+            return false;
+        }
+        if (!Objects.equals(this.chuveiro, other.chuveiro)) {
+            return false;
+        }
+        if (!Objects.equals(this.agua, other.agua)) {
+            return false;
+        }
+        if (!Objects.equals(this.luz, other.luz)) {
+            return false;
+        }
+        if (!Objects.equals(this.qtdeComodos, other.qtdeComodos)) {
+            return false;
+        }
+        if (this.piso != other.piso) {
+            return false;
+        }
+        if (this.cobertura != other.cobertura) {
+            return false;
+        }
+        return true;
+    }
+
+
 
     
 }

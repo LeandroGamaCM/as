@@ -8,7 +8,7 @@ import br.edu.ifba.as.entidades.analise.Bolsa;
 import br.edu.ifba.as.entidades.enums.EstadoCivil;
 import br.edu.ifba.as.entidades.enums.Sexo;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.*;
 

@@ -57,43 +57,43 @@ public class CondicaoManutencao implements Serializable {
         this.aluno = aluno;
     }
 
-    public boolean isAmbosPais() {
+    public Boolean getAmbosPais() {
         return ambosPais;
     }
 
-    public void setAmbosPais(boolean ambosPais) {
+    public void setAmbosPais(Boolean ambosPais) {
         this.ambosPais = ambosPais;
     }
 
-    public boolean isApenasMae() {
+    public Boolean getApenasMae() {
         return apenasMae;
     }
 
-    public void setApenasMae(boolean apenasMae) {
+    public void setApenasMae(Boolean apenasMae) {
         this.apenasMae = apenasMae;
     }
 
-    public boolean isApenasPai() {
+    public Boolean getApenasPai() {
         return apenasPai;
     }
 
-    public void setApenasPai(boolean apenasPai) {
+    public void setApenasPai(Boolean apenasPai) {
         this.apenasPai = apenasPai;
     }
 
-    public boolean isAvos() {
+    public Boolean getAvos() {
         return avos;
     }
 
-    public void setAvos(boolean avos) {
+    public void setAvos(Boolean avos) {
         this.avos = avos;
     }
 
-    public boolean isOutrosParentes() {
+    public Boolean getOutrosParentes() {
         return outrosParentes;
     }
 
-    public void setOutrosParentes(boolean outrosParentes) {
+    public void setOutrosParentes(Boolean outrosParentes) {
         this.outrosParentes = outrosParentes;
     }
 
@@ -105,11 +105,11 @@ public class CondicaoManutencao implements Serializable {
         this.parentesco = parentesco;
     }
 
-    public boolean isOutrosMeios() {
+    public Boolean getOutrosMeios() {
         return outrosMeios;
     }
 
-    public void setOutrosMeios(boolean outrosMeios) {
+    public void setOutrosMeios(Boolean outrosMeios) {
         this.outrosMeios = outrosMeios;
     }
 
@@ -121,18 +121,18 @@ public class CondicaoManutencao implements Serializable {
         this.nomeOutrosMeios = nomeOutrosMeios;
     }
 
-
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 23 * hash + Objects.hashCode(this.condicaoManutencao);
         hash = 23 * hash + Objects.hashCode(this.aluno);
-        hash = 23 * hash + (this.ambosPais ? 1 : 0);
-        hash = 23 * hash + (this.apenasMae ? 1 : 0);
-        hash = 23 * hash + (this.apenasPai ? 1 : 0);
-        hash = 23 * hash + (this.avos ? 1 : 0);
-        hash = 23 * hash + (this.outrosParentes ? 1 : 0);
+        hash = 23 * hash + Objects.hashCode(this.ambosPais);
+        hash = 23 * hash + Objects.hashCode(this.apenasMae);
+        hash = 23 * hash + Objects.hashCode(this.apenasPai);
+        hash = 23 * hash + Objects.hashCode(this.avos);
+        hash = 23 * hash + Objects.hashCode(this.outrosParentes);
         hash = 23 * hash + Objects.hashCode(this.parentesco);
+        hash = 23 * hash + Objects.hashCode(this.outrosMeios);
         hash = 23 * hash + Objects.hashCode(this.nomeOutrosMeios);
         return hash;
     }
@@ -149,21 +149,6 @@ public class CondicaoManutencao implements Serializable {
             return false;
         }
         final CondicaoManutencao other = (CondicaoManutencao) obj;
-        if (this.ambosPais != other.ambosPais) {
-            return false;
-        }
-        if (this.apenasMae != other.apenasMae) {
-            return false;
-        }
-        if (this.apenasPai != other.apenasPai) {
-            return false;
-        }
-        if (this.avos != other.avos) {
-            return false;
-        }
-        if (this.outrosParentes != other.outrosParentes) {
-            return false;
-        }
         if (!Objects.equals(this.parentesco, other.parentesco)) {
             return false;
         }
@@ -176,8 +161,26 @@ public class CondicaoManutencao implements Serializable {
         if (!Objects.equals(this.aluno, other.aluno)) {
             return false;
         }
+        if (!Objects.equals(this.ambosPais, other.ambosPais)) {
+            return false;
+        }
+        if (!Objects.equals(this.apenasMae, other.apenasMae)) {
+            return false;
+        }
+        if (!Objects.equals(this.apenasPai, other.apenasPai)) {
+            return false;
+        }
+        if (!Objects.equals(this.avos, other.avos)) {
+            return false;
+        }
+        if (!Objects.equals(this.outrosParentes, other.outrosParentes)) {
+            return false;
+        }
+        if (!Objects.equals(this.outrosMeios, other.outrosMeios)) {
+            return false;
+        }
         return true;
     }
-    
 
+    
 }

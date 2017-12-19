@@ -1,5 +1,5 @@
 package br.edu.ifba.as.entidades.enums;
 
 public enum Cobertura {
-    Laje, Telha, Outro;
+    LAJE, TELHA, OUTRO;
 }

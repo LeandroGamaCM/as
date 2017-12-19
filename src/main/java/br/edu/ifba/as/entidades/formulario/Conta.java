@@ -33,7 +33,7 @@ public class Conta implements Serializable {
     private String operacao;
     private String agencia;
 // -----------------------------------------------------------------------------
-    
+
     public Integer getConta() {
         return conta;
     }
@@ -58,11 +58,11 @@ public class Conta implements Serializable {
         this.contaCorrente = contaCorrente;
     }
 
-    public boolean isPossuiConta() {
+    public Boolean getPossuiConta() {
         return PossuiConta;
     }
 
-    public void setPossuiConta(boolean PossuiConta) {
+    public void setPossuiConta(Boolean PossuiConta) {
         this.PossuiConta = PossuiConta;
     }
 
@@ -92,14 +92,14 @@ public class Conta implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.conta);
-        hash = 31 * hash + Objects.hashCode(this.aluno);
-        hash = 31 * hash + Objects.hashCode(this.contaCorrente);
-        hash = 31 * hash + (this.PossuiConta ? 1 : 0);
-        hash = 31 * hash + Objects.hashCode(this.nomeBanco);
-        hash = 31 * hash + Objects.hashCode(this.operacao);
-        hash = 31 * hash + Objects.hashCode(this.agencia);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.conta);
+        hash = 89 * hash + Objects.hashCode(this.aluno);
+        hash = 89 * hash + Objects.hashCode(this.contaCorrente);
+        hash = 89 * hash + Objects.hashCode(this.PossuiConta);
+        hash = 89 * hash + Objects.hashCode(this.nomeBanco);
+        hash = 89 * hash + Objects.hashCode(this.operacao);
+        hash = 89 * hash + Objects.hashCode(this.agencia);
         return hash;
     }
 
@@ -115,9 +115,6 @@ public class Conta implements Serializable {
             return false;
         }
         final Conta other = (Conta) obj;
-        if (this.PossuiConta != other.PossuiConta) {
-            return false;
-        }
         if (!Objects.equals(this.nomeBanco, other.nomeBanco)) {
             return false;
         }
@@ -136,9 +133,12 @@ public class Conta implements Serializable {
         if (!Objects.equals(this.contaCorrente, other.contaCorrente)) {
             return false;
         }
+        if (!Objects.equals(this.PossuiConta, other.PossuiConta)) {
+            return false;
+        }
         return true;
     }
-
     
+
     
 }

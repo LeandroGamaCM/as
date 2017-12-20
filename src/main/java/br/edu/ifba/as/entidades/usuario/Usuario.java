@@ -18,11 +18,11 @@ public class Usuario implements Serializable{
     @Column(length = 45)
     private String nome;
     
-    @Column(length = 45)
-    private String login;
-    
     @Column(length = 45, unique = true)
     private String email;
+    
+    private Integer cpf;
+    private String senha;
 
     public Integer getUsuario() {
         return usuario;
@@ -40,14 +40,6 @@ public class Usuario implements Serializable{
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -56,13 +48,30 @@ public class Usuario implements Serializable{
         this.email = email;
     }
 
+    public Integer getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Integer cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.usuario);
-        hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + Objects.hashCode(this.login);
-        hash = 89 * hash + Objects.hashCode(this.email);
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.usuario);
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + Objects.hashCode(this.email);
+        hash = 71 * hash + Objects.hashCode(this.cpf);
+        hash = 71 * hash + Objects.hashCode(this.senha);
         return hash;
     }
 
@@ -81,17 +90,20 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.login, other.login)) {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-        if (!Objects.equals(this.email, other.email)) {
+        if (!Objects.equals(this.senha, other.senha)) {
             return false;
         }
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
         return true;
     }
-    
+
     
 }

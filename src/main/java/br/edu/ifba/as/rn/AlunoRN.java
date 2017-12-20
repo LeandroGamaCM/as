@@ -9,7 +9,7 @@ public class AlunoRN {
     private AlunoDAO alunoDAO;
 
     public AlunoRN() {
-        this.alunoDAO = DAOFactory.criarAlunoDao();
+        this.alunoDAO = DAOFactory.criarAlunoDAO();
     }
     
     public Aluno carregar(Integer codigo){

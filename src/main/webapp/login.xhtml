@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>PAAE - Logar</title>
+        <link rel="stylesheet" href="css/estiloLogin.css" type="text/css"/>
+    </h:head>
+
+    <h:body id="ground">
+        <div class="container center">
+            <div id="content">
+                <h1><img id="logo" src="imagens/logoIFBA150px.png" alt="Login" usemap="#mapa_figuras" border="0"/></h1>
+                <h:form class="form-signin">
+                    <h2 class="form-signin-heading">PAAE</h2>
+                    <h:form id="formLogin">
+                        <div class="form-row">
+                            <p:inputMask id="id_username" placeholder="CPF" value="#{maskView.CPF}" mask="999.999.999-99"/>
+                        </div>
+                        <div class="form-row">
+                            <p:password id="id_password" placeholder="Senha" value="#{passwordView.senha}"/>
+<!--                            <input type="hidden" name="this_is_the_login_form" value="1" />
+                            <input type="hidden" name="next" value="/" />-->
+                        </div>
+                        <div class="submit-row">                            
+                            <input type="submit" value="Acessar"/>
+<!--                            <p:growl id="growl" life="2000" />-->
+<!--                            <p:commandButton type="submit" value="Acessar" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />-->
+                        </div>
+                    </h:form>
+                </h:form>
+
+                <p id="aviso">Informe os 11 números do CPF, sem traço, e a senha.</p>
+
+                <div class="row clearfix" id="rodapeLogin">
+                    <div class="col-md-12 column">
+                        <p style="text-align: center;" id="aviso2"><strong><a href="">Primeiro acesso?</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="">Esqueceu a senha</a></strong><br/></p>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </h:body>
+</html>
+

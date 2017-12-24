@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="view/templateInterno.xhtml">
+        <ui:define name="titulo">
+            PAAE - Fichas de Inscrição
+        </ui:define>
+        <ui:define name="conteudo">
+            <div class="card card-w-title">
+
+                <h1>Fichas de Inscrição</h1>
+
+                <h:panelGrid id="margem" columns="2" columnClasses="label, value" >
+                    <h5>Filtrar por Curso:</h5>                   
+                    <p:selectOneRadio id="filtroCurso" value="">
+                        <f:selectItem itemLabel="Todos" itemValue="Todos" />
+                        <f:selectItem itemLabel="Biocombustíveis" itemValue="Biocombustiveis" />                                   
+                        <f:selectItem itemLabel="Eletromecânica" itemValue="Eletromecanica" />                                   
+                        <f:selectItem itemLabel="Informática" itemValue="Informatica" />                                   
+                    </p:selectOneRadio> 
+
+                    <h5>Filtrar por Ano:</h5>
+                    <p:selectOneRadio id="filtroTurma" value="">
+                        <f:selectItem itemLabel="Todos" itemValue="Ano1" /> 
+                        <f:selectItem itemLabel="1º Ano" itemValue="Ano1" />                                   
+                        <f:selectItem itemLabel="2º Ano" itemValue="Ano2" />                                   
+                        <f:selectItem itemLabel="3º Ano" itemValue="Ano3" />                                   
+                        <f:selectItem itemLabel="4º Ano" itemValue="Ano4" />  
+                    </p:selectOneRadio> 
+                </h:panelGrid>
+
+                <p:fieldset/>
+
+                <div class="ui-g-12 ui-md-4">
+                    <div class="ui-inputgroup">
+                        <p:inputText placeholder="Nome, CPF, Turma..." />        
+                        <p:commandButton value="Pesquisar"/> 
+                    </div>
+                </div>
+
+                <p:fieldset/>
+                <p:separator/>
+                <p:fieldset/>
+
+                <p:dataTable var="car" value="#{dtBasicView.cars}">
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{car.nome}" />                        
+                    </p:column>
+                     
+                    <p:column headerText="CPF">
+                        <h:outputText value="#{car.cpf}" />
+                    </p:column>
+                     
+                    <p:column headerText="Curso">
+                        <h:outputText value="#{car.curso}" />                        
+                    </p:column>
+                     
+                    <p:column headerText="Ano">
+                        <h:outputText value="#{car.ano}" />
+                    </p:column>
+
+                    <p:column headerText="Bolsa Escolhida">
+                        <h:outputText value="#{car.bolsa}" />
+                    </p:column>
+
+                    <p:column headerText="Ver Ficha">
+                        <a href="ficha.jsf">
+                            <span>Expandir</span>
+                        </a>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

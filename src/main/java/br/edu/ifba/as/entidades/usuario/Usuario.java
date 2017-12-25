@@ -1,7 +1,9 @@
 package br.edu.ifba.as.entidades.usuario;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,23 @@ public class Usuario implements Serializable{
     private String senha;
     private Boolean ativo;
 
+    @ElementCollection(targetClass = String.class)
+    @JoinTable(
+        name="usuario_permissao",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario", "permissao"})},
+        joinColumns = @JoinColumn(name = "usuario"))
+    @Column(name = "permissao")
+    private Set<String> permissao = new HashSet<String>();
+
+    public Set<String> getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(Set<String> permissao) {
+        this.permissao = permissao;
+    }
+    
+    
     public Integer getUsuario() {
         return usuario;
     }
@@ -67,11 +86,12 @@ public class Usuario implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.usuario);
-        hash = 47 * hash + Objects.hashCode(this.nome);
-        hash = 47 * hash + Objects.hashCode(this.login);
-        hash = 47 * hash + Objects.hashCode(this.senha);
-        hash = 47 * hash + Objects.hashCode(this.ativo);
+        hash = 37 * hash + Objects.hashCode(this.usuario);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.login);
+        hash = 37 * hash + Objects.hashCode(this.senha);
+        hash = 37 * hash + Objects.hashCode(this.ativo);
+        hash = 37 * hash + Objects.hashCode(this.permissao);
         return hash;
     }
 
@@ -102,8 +122,11 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.ativo, other.ativo)) {
             return false;
         }
+        if (!Objects.equals(this.permissao, other.permissao)) {
+            return false;
+        }
         return true;
     }
-    
+
     
 }

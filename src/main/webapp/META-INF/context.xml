@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/as"/>
+<Context path="/as" reloadable="true">
+  <Resource 
+      auth="Container" 
+      driverClassName="com.mysql.jdbc.Driver" 
+      maxActive="100" 
+      maxIdle="30" 
+      maxWait="10000" 
+      name="jdbc/asbd" 
+      type="javax.sql.DataSource" 
+      url="jdbc:mysql://localhost/asbd?autoReconnect=true" 
+      username="root"
+      password="banco" 
+  />
+</Context>

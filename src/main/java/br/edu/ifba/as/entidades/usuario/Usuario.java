@@ -19,10 +19,10 @@ public class Usuario implements Serializable{
     private String nome;
     
     @Column(length = 45, unique = true)
-    private String email;
+    private String login;
     
-    private Integer cpf;
     private String senha;
+    private Boolean ativo;
 
     public Integer getUsuario() {
         return usuario;
@@ -40,20 +40,12 @@ public class Usuario implements Serializable{
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(Integer cpf) {
-        this.cpf = cpf;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSenha() {
@@ -64,14 +56,22 @@ public class Usuario implements Serializable{
         this.senha = senha;
     }
 
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.usuario);
-        hash = 71 * hash + Objects.hashCode(this.nome);
-        hash = 71 * hash + Objects.hashCode(this.email);
-        hash = 71 * hash + Objects.hashCode(this.cpf);
-        hash = 71 * hash + Objects.hashCode(this.senha);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.usuario);
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.login);
+        hash = 47 * hash + Objects.hashCode(this.senha);
+        hash = 47 * hash + Objects.hashCode(this.ativo);
         return hash;
     }
 
@@ -90,7 +90,7 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.email, other.email)) {
+        if (!Objects.equals(this.login, other.login)) {
             return false;
         }
         if (!Objects.equals(this.senha, other.senha)) {
@@ -99,11 +99,11 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
-        if (!Objects.equals(this.cpf, other.cpf)) {
+        if (!Objects.equals(this.ativo, other.ativo)) {
             return false;
         }
         return true;
     }
-
+    
     
 }

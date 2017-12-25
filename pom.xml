@@ -16,14 +16,34 @@
     
     <dependencies>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.3.11.Final</version>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>2.2.7</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.44</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>3.2.10.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>3.2.10.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+<!--        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>facelets-taglib</artifactId>
+            <version>0.2_jsf-2.0-spring-3</version>
+        </dependency>-->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
@@ -36,6 +56,30 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.11.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.44</version>
+            <scope>provided</scope>
+        </dependency>        
+<!-- Local dependencies-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>facelets-taglib-jsf20-spring-3</artifactId>
+            <version>0.5</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/facelets-taglib-jsf20-spring-3.jar</systemPath>
+        </dependency>
     </dependencies>
     
     <repositories>
@@ -45,6 +89,10 @@
             <url>http://repository.primefaces.org</url>
             <layout>default</layout>
         </repository>
+<!--        <repository>
+            <id>org.springframework.security.taglibs.facelets</id>
+            <url>http://spring-security-facelets-taglib.googlecode.com/svn/repo/</url>
+        </repository>-->
     </repositories> 
 
     <build>

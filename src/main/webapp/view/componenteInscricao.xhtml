@@ -26,12 +26,12 @@
                                 </p:selectOneRadio>           
                             </h:panelGrid>
 
-                            <h:panelGrid columns="6" columnClasses="label, value">
-                                <p:outputLabel value="Apelido: " for="apelido" />
-                                <p:inputText  id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
-<!-- Corrigir a Data -->
-                               <p:outputLabel value="Data de Nascimento: " for="date" />                                    
-                                <p:inputMask id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
+                            <h:panelGrid width="100%" columns="4" columnClasses="label3, value3, label4, value4">
+                                <p:outputLabel style="width: 100%" value="Apelido: " for="apelido" />
+                                <p:inputText style="width: 100%" id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
+
+                               <p:outputLabel style="float: right; margin-left: 20px" value="Data de Nascimento: " for="date" />                                    
+                                <p:inputMask style="width: 100%" id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
                                     <f:convertDateTime dateStyle="medium"/>
                                 </p:inputMask>                               
                             </h:panelGrid>

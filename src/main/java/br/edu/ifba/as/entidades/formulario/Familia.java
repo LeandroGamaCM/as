@@ -31,22 +31,22 @@ public class Familia implements Serializable {
     
     @Column(name = "outro_programa_social")
     private String outroProgramaSocial;
-
-    @OneToOne
+    
+    @OneToOne(cascade = CascadeType.REMOVE)
     @PrimaryKeyJoinColumn(name = "cod_aluno")
     private Imovel imovel;
     
-    @OneToMany(mappedBy = "familia", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "familia", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<MembroFamiliar> membrosFamiliares;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @PrimaryKeyJoinColumn(name = "cod_aluno")
     private ResidenciaFamilia residencia_familia;
     
-    @OneToMany(mappedBy = "familia", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "familia", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Renda> rendas;
 
-    @OneToMany(mappedBy = "familia", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "familia", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Despesa> despesas;
   
     @Enumerated
@@ -97,14 +97,6 @@ public class Familia implements Serializable {
         this.outroProgramaSocial = outroProgramaSocial;
     }
 
-    public List<Despesa> getDespesas() {
-        return despesas;
-    }
-
-    public void setDespesas(List<Despesa> despesas) {
-        this.despesas = despesas;
-    }
-
     public Imovel getImovel() {
         return imovel;
     }
@@ -137,6 +129,14 @@ public class Familia implements Serializable {
         this.rendas = rendas;
     }
 
+    public List<Despesa> getDespesas() {
+        return despesas;
+    }
+
+    public void setDespesas(List<Despesa> despesas) {
+        this.despesas = despesas;
+    }
+
     public ServicoSaude getServicoSaude() {
         return servicoSaude;
     }
@@ -155,19 +155,19 @@ public class Familia implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.rendaFamiliarTotal) ^ (Double.doubleToLongBits(this.rendaFamiliarTotal) >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.familia);
-        hash = 97 * hash + Objects.hashCode(this.aluno);
-        hash = 97 * hash + Objects.hashCode(this.possuiProgramaSocial);
-        hash = 97 * hash + Objects.hashCode(this.outroProgramaSocial);
-        hash = 97 * hash + Objects.hashCode(this.despesas);
-        hash = 97 * hash + Objects.hashCode(this.imovel);
-        hash = 97 * hash + Objects.hashCode(this.membrosFamiliares);
-        hash = 97 * hash + Objects.hashCode(this.residencia_familia);
-        hash = 97 * hash + Objects.hashCode(this.rendas);
-        hash = 97 * hash + Objects.hashCode(this.servicoSaude);
-        hash = 97 * hash + Objects.hashCode(this.programaSocial);
+        int hash = 5;
+        hash = 71 * hash + (int) (Double.doubleToLongBits(this.rendaFamiliarTotal) ^ (Double.doubleToLongBits(this.rendaFamiliarTotal) >>> 32));
+        hash = 71 * hash + Objects.hashCode(this.familia);
+        hash = 71 * hash + Objects.hashCode(this.aluno);
+        hash = 71 * hash + Objects.hashCode(this.possuiProgramaSocial);
+        hash = 71 * hash + Objects.hashCode(this.outroProgramaSocial);
+        hash = 71 * hash + Objects.hashCode(this.imovel);
+        hash = 71 * hash + Objects.hashCode(this.membrosFamiliares);
+        hash = 71 * hash + Objects.hashCode(this.residencia_familia);
+        hash = 71 * hash + Objects.hashCode(this.rendas);
+        hash = 71 * hash + Objects.hashCode(this.despesas);
+        hash = 71 * hash + Objects.hashCode(this.servicoSaude);
+        hash = 71 * hash + Objects.hashCode(this.programaSocial);
         return hash;
     }
 
@@ -198,9 +198,6 @@ public class Familia implements Serializable {
         if (!Objects.equals(this.possuiProgramaSocial, other.possuiProgramaSocial)) {
             return false;
         }
-        if (!Objects.equals(this.despesas, other.despesas)) {
-            return false;
-        }
         if (!Objects.equals(this.imovel, other.imovel)) {
             return false;
         }
@@ -213,6 +210,9 @@ public class Familia implements Serializable {
         if (!Objects.equals(this.rendas, other.rendas)) {
             return false;
         }
+        if (!Objects.equals(this.despesas, other.despesas)) {
+            return false;
+        }
         if (this.servicoSaude != other.servicoSaude) {
             return false;
         }
@@ -221,6 +221,5 @@ public class Familia implements Serializable {
         }
         return true;
     }
-
-
+    
 }

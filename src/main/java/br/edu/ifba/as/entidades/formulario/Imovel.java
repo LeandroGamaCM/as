@@ -2,6 +2,7 @@
 package br.edu.ifba.as.entidades.formulario;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -36,6 +37,8 @@ public class Imovel implements Serializable {
     private Boolean salasComerciais;
 
     
+// Getters e Setters
+
     public Integer getImovel() {
         return imovel;
     }
@@ -68,69 +71,137 @@ public class Imovel implements Serializable {
         this.nomeOutroImovel = nomeOutroImovel;
     }
 
-    public boolean isTerras() {
+    public Boolean getTerras() {
         return terras;
     }
 
-    public void setTerras(boolean terras) {
+    public void setTerras(Boolean terras) {
         this.terras = terras;
     }
 
-    public boolean isLotes() {
+    public Boolean getLotes() {
         return lotes;
     }
 
-    public void setLotes(boolean lotes) {
+    public void setLotes(Boolean lotes) {
         this.lotes = lotes;
     }
 
-    public boolean isFazendas() {
+    public Boolean getFazendas() {
         return fazendas;
     }
 
-    public void setFazendas(boolean fazendas) {
+    public void setFazendas(Boolean fazendas) {
         this.fazendas = fazendas;
     }
 
-    public boolean isSitios() {
+    public Boolean getSitios() {
         return sitios;
     }
 
-    public void setSitios(boolean sitios) {
+    public void setSitios(Boolean sitios) {
         this.sitios = sitios;
     }
 
-    public boolean isApartamentos() {
+    public Boolean getApartamentos() {
         return apartamentos;
     }
 
-    public void setApartamentos(boolean apartamentos) {
+    public void setApartamentos(Boolean apartamentos) {
         this.apartamentos = apartamentos;
     }
 
-    public boolean isOutroImovel() {
+    public Boolean getOutroImovel() {
         return outroImovel;
     }
 
-    public void setOutroImovel(boolean outroImovel) {
+    public void setOutroImovel(Boolean outroImovel) {
         this.outroImovel = outroImovel;
     }
 
-    public boolean isCasaPraia() {
+    public Boolean getCasaPraia() {
         return casaPraia;
     }
 
-    public void setCasaPraia(boolean casaPraia) {
+    public void setCasaPraia(Boolean casaPraia) {
         this.casaPraia = casaPraia;
     }
 
-    public boolean isSalasComerciais() {
+    public Boolean getSalasComerciais() {
         return salasComerciais;
     }
 
-    public void setSalasComerciais(boolean salasComerciais) {
+    public void setSalasComerciais(Boolean salasComerciais) {
         this.salasComerciais = salasComerciais;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.imovel);
+        hash = 11 * hash + Objects.hashCode(this.familia);
+        hash = 11 * hash + Objects.hashCode(this.hectares);
+        hash = 11 * hash + Objects.hashCode(this.nomeOutroImovel);
+        hash = 11 * hash + Objects.hashCode(this.terras);
+        hash = 11 * hash + Objects.hashCode(this.lotes);
+        hash = 11 * hash + Objects.hashCode(this.fazendas);
+        hash = 11 * hash + Objects.hashCode(this.sitios);
+        hash = 11 * hash + Objects.hashCode(this.apartamentos);
+        hash = 11 * hash + Objects.hashCode(this.outroImovel);
+        hash = 11 * hash + Objects.hashCode(this.casaPraia);
+        hash = 11 * hash + Objects.hashCode(this.salasComerciais);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Imovel other = (Imovel) obj;
+        if (!Objects.equals(this.nomeOutroImovel, other.nomeOutroImovel)) {
+            return false;
+        }
+        if (!Objects.equals(this.imovel, other.imovel)) {
+            return false;
+        }
+        if (!Objects.equals(this.familia, other.familia)) {
+            return false;
+        }
+        if (!Objects.equals(this.hectares, other.hectares)) {
+            return false;
+        }
+        if (!Objects.equals(this.terras, other.terras)) {
+            return false;
+        }
+        if (!Objects.equals(this.lotes, other.lotes)) {
+            return false;
+        }
+        if (!Objects.equals(this.fazendas, other.fazendas)) {
+            return false;
+        }
+        if (!Objects.equals(this.sitios, other.sitios)) {
+            return false;
+        }
+        if (!Objects.equals(this.apartamentos, other.apartamentos)) {
+            return false;
+        }
+        if (!Objects.equals(this.outroImovel, other.outroImovel)) {
+            return false;
+        }
+        if (!Objects.equals(this.casaPraia, other.casaPraia)) {
+            return false;
+        }
+        if (!Objects.equals(this.salasComerciais, other.salasComerciais)) {
+            return false;
+        }
+        return true;
+    }
     
 }

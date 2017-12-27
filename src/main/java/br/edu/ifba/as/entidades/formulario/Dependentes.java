@@ -32,14 +32,6 @@ public class Dependentes implements Serializable {
     private Boolean outro;
     private Integer quantos;
 
-    public Integer getQuantos() {
-        return quantos;
-    }
-
-    public void setQuantos(Integer quantos) {
-        this.quantos = quantos;
-    }
-
     public Integer getDependentes() {
         return dependentes;
     }
@@ -104,18 +96,26 @@ public class Dependentes implements Serializable {
         this.outro = outro;
     }
 
+    public Integer getQuantos() {
+        return quantos;
+    }
+
+    public void setQuantos(Integer quantos) {
+        this.quantos = quantos;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.dependentes);
-        hash = 71 * hash + Objects.hashCode(this.aluno);
-        hash = 71 * hash + Objects.hashCode(this.possuiDependente);
-        hash = 71 * hash + Objects.hashCode(this.outroDependente);
-        hash = 71 * hash + Objects.hashCode(this.filho);
-        hash = 71 * hash + Objects.hashCode(this.companheiro);
-        hash = 71 * hash + Objects.hashCode(this.idoso);
-        hash = 71 * hash + Objects.hashCode(this.outro);
-        hash = 71 * hash + Objects.hashCode(this.quantos);
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.dependentes);
+        hash = 41 * hash + Objects.hashCode(this.aluno);
+        hash = 41 * hash + Objects.hashCode(this.possuiDependente);
+        hash = 41 * hash + Objects.hashCode(this.outroDependente);
+        hash = 41 * hash + Objects.hashCode(this.filho);
+        hash = 41 * hash + Objects.hashCode(this.companheiro);
+        hash = 41 * hash + Objects.hashCode(this.idoso);
+        hash = 41 * hash + Objects.hashCode(this.outro);
+        hash = 41 * hash + Objects.hashCode(this.quantos);
         return hash;
     }
 

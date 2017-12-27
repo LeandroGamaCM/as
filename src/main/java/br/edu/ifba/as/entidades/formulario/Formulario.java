@@ -2,6 +2,7 @@ package br.edu.ifba.as.entidades.formulario;
 
 import br.edu.ifba.as.entidades.enums.Preferencia;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -21,13 +22,20 @@ public class Formulario implements Serializable {
     private Aluno aluno;
     
     private String esclarecimentos;
+
+    @Column(name = "primeira_preferencia")
+    private Preferencia primeiraPreferencia;
+
+    @Column(name = "segunda_preferencia")
+    private Preferencia segundaPreferencia;
     
-    private Preferencia preferencia;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_inscricao", updatable = false)
+    private Date dataInscricao;
     
-// Pendentes -------------------------------------------------------------------
-// Ano pega o ano atual no automatico
-    private int ano;
     
+// Getters e Setters
+
     public Integer getFormulario() {
         return formulario;
     }
@@ -52,18 +60,39 @@ public class Formulario implements Serializable {
         this.esclarecimentos = esclarecimentos;
     }
 
-    public int getAno() {
-        return ano;
+    public Preferencia getPrimeiraPreferencia() {
+        return primeiraPreferencia;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
+    public void setPrimeiraPreferencia(Preferencia primeiraPreferencia) {
+        this.primeiraPreferencia = primeiraPreferencia;
+    }
+
+    public Preferencia getSegundaPreferencia() {
+        return segundaPreferencia;
+    }
+
+    public void setSegundaPreferencia(Preferencia segundaPreferencia) {
+        this.segundaPreferencia = segundaPreferencia;
+    }
+
+    public Date getDataInscricao() {
+        return dataInscricao;
+    }
+
+    public void setDataInscricao(Date dataInscricao) {
+        this.dataInscricao = dataInscricao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.formulario);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.formulario);
+        hash = 47 * hash + Objects.hashCode(this.aluno);
+        hash = 47 * hash + Objects.hashCode(this.esclarecimentos);
+        hash = 47 * hash + Objects.hashCode(this.primeiraPreferencia);
+        hash = 47 * hash + Objects.hashCode(this.segundaPreferencia);
+        hash = 47 * hash + Objects.hashCode(this.dataInscricao);
         return hash;
     }
 
@@ -79,11 +108,25 @@ public class Formulario implements Serializable {
             return false;
         }
         final Formulario other = (Formulario) obj;
+        if (!Objects.equals(this.esclarecimentos, other.esclarecimentos)) {
+            return false;
+        }
         if (!Objects.equals(this.formulario, other.formulario)) {
+            return false;
+        }
+        if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        if (this.primeiraPreferencia != other.primeiraPreferencia) {
+            return false;
+        }
+        if (this.segundaPreferencia != other.segundaPreferencia) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInscricao, other.dataInscricao)) {
             return false;
         }
         return true;
     }
 
-    
 }

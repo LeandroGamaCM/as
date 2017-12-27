@@ -2,6 +2,7 @@ package br.edu.ifba.as.dao;
 
 import br.edu.ifba.as.entidades.formulario.Aluno;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class AlunoDAO{
@@ -12,10 +13,7 @@ public class AlunoDAO{
     }
     
     public void salvar(Aluno a){
-        sessao.save(a);
-    }
-    public void atualizar(Aluno a){
-        sessao.update(a);
+        sessao.saveOrUpdate(a);
     }
     public void excluir(Aluno a){
         sessao.delete(a);
@@ -27,8 +25,19 @@ public class AlunoDAO{
     public List<Aluno> listar(){
         return this.sessao.createCriteria(Aluno.class).list();
     }
-    public Aluno buscar(Integer valor){
-        // VER ESSE 'PARÂMETRO'. O 'codigo' deve ser a chave primária para todas as entidades
-        return new Aluno(); // APAGAR
+
+    public List<Aluno> buscarPorNome(String nome){
+        String hql = "select u from Aluno u where u.nome = :nome";
+        Query c = this.sessao.createQuery(hql);
+        c.setString("nome", nome.toString());
+        return c.list();        
+    }
+    
+    public Aluno buscarPorCPF(Integer cpf){
+        String hql = "select u from Aluno u where u.cpf = :cpf";
+        Query c = this.sessao.createQuery(hql);
+        c.setString("cpf", cpf.toString());
+        return (Aluno) c.uniqueResult();
     }    
+    
 }

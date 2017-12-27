@@ -1,0 +1,19 @@
+-Como que as turmas serão definidas?
+    Por exemplo, como que vão ser inseridas turmas a, b, c... (1º Info a, 1º Bio b...)
+
+-Colocar os xhtmls em pastas específicas para ativar o SpringSecurity
+
+-Colocar o Ajax
+
+-Ao clicar no botão salvar a pagina deve ser recarregada ou redirecionar pra outro lugar senão, ao clicar novamente
+    haverá um conflito de objetos.
+
+-Alguns campos devem ser definidos como inputNumer como quantQuartos, telefoneEmpregador
+
+-Faltam algumas propriedades como Endereco, rg, modalidade(Integrado, superior...)...
+
+- Tem que definir limites para as variaveis no banco
+    Por exemplo, Apelido não tem valor definido então haverá desperdicio de memória
+
+- Fazer as tabelas introduzirem elementos
+

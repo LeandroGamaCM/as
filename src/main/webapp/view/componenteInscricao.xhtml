@@ -19,26 +19,63 @@
                                 <p:outputLabel style="width: 100%" value="Nome Completo: " for="nome" />
                                 <p:inputText style="width: 100%" id="nome" value="#{alunoBean.aluno.nome}" label="name"/>
 
-                                <p:outputLabel style="float: right; margin-left: 20px" value="Sexo:" />
-                                <p:selectOneRadio style="width: 100%" value="#{alunoBean.aluno.sexo}">
+                                <p:outputLabel style="margin-left: 20px" value="Sexo:" />
+                                <p:selectOneRadio value="#{alunoBean.aluno.sexo}">
                                     <f:selectItem itemLabel="Feminino" itemValue="FEMININO" />                                   
                                     <f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />                                   
                                 </p:selectOneRadio>           
                             </h:panelGrid>
 
-                            <h:panelGrid style="margin-top: 7px" width="100%" columns="4" columnClasses="label3, value3, label4, value4">
+                            
+                            <h:panelGrid style="margin-top: 7px" width="100%" columns="6" columnClasses="col10, col11, col12, col13, col14, col15">
                                 <p:outputLabel style="width: 100%" value="Apelido: " for="apelido" />
                                 <p:inputText style="width: 100%" id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
 
-                                <p:outputLabel style="float: right; margin-left: 20px" value="Data de Nascimento: " for="date" />                                    
+                                <p:outputLabel style="width: 100%; margin-left: 20px;" for="cpf" value="CPF: "/>
+                                <p:inputText style="width: 100%" id="cpf" value="#{alunoBean.aluno.cpf}" label="CPF"/>
+
+                                <p:outputLabel style="width: 100%; margin-left: 20px;" value="Data de Nascimento: " for="date" />                                    
                                 <p:inputMask style="width: 100%" id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
                                     <f:convertDateTime dateStyle="medium"/>
                                 </p:inputMask>                               
                             </h:panelGrid>
+                            
 
-                            <h:panelGrid style="margin-top: 15px" width="100%" columns="2"  columnClasses="label, value">
+                            <h:panelGrid style="margin-top: 7px" width="100%" columns="4" columnClasses="coluna10, coluna20, coluna30, coluna40">                               
+                                <p:outputLabel style="width: 100%" for="tele" value="Telefone: "/>
+                                <p:inputText style="width: 100%" id="tele" label="Ltelefone: "/>
+                                
+                                <p:outputLabel style="width: 100%; margin-left: 20px" for="Lemail" value="Email: "/>
+                                <p:inputText style="width: 100%" id="Lemail" label="Lemail"/>
+                            </h:panelGrid>
+
+                            
+                            <h5>Informações de endereço</h5>                            
+                            <h:panelGrid style="margin-top: 7px" width="100%" columns="8" columnClasses="col155, col16, col21, col22, col17, col18, col19, col20">
+                                <p:outputLabel style="width: 100%" for="cidad" value="Cidade: "/>
+                                <p:inputText style="width: 100%" id="cidad" label="Cidade"/>   
+
+                                <p:outputLabel style="width: 100%; margin-left: 20px;" for="bairro" value="Bairro: "/>
+                                <p:inputText style="width: 100%" id="bairro" label="Bairro"/>
+
+                                <p:outputLabel style="width: 100%; margin-left: 20px;" for="rua" value="Rua: "/>
+                                <p:inputText style="width: 100%" value="#{alunoBean.endereco.rua}" id="rua" label="Rua"/>
+
+                                <p:outputLabel style="width: 100%; margin-left: 20px;" for="numb" value="Número: "/>
+                                <p:inputText style="width: 100%" id="numb" label="Numero"/>                                   
+                            </h:panelGrid>
+
+
+                            <!--                            <h:panelGrid columns="4">
+                                                            <p:outputLabel value="Nome Despesa: "/>
+                                                            <p:inputText value="#{alunoBean.despesa.nomeDespesa}"/>
+                                                            <p:outputLabel value="Programa social Familia: "/>
+                                                            <p:inputText value="#{alunoBean.familia.outroProgramaSocial}"/>
+                                                        </h:panelGrid>-->
+
+                            <h:panelGrid style="margin-top: 20px" width="100%" columns="2"  columnClasses="label, value">
                                 <p:outputLabel value="Estado Civil: "/>
-                                <p:selectOneRadio  value="#{alunoBean.aluno.estadoCivil}">
+                                <p:selectOneRadio style="width:100%" value="#{alunoBean.aluno.estadoCivil}">
                                     <f:selectItem itemLabel="Solteiro(a)" itemValue="SOLTEIRO" />                                   
                                     <f:selectItem itemLabel="Casado(a)" itemValue="CASADO" />                                   
                                     <f:selectItem itemLabel="Uniao Estável" itemValue="UNIAO" />                                   
@@ -174,10 +211,10 @@
                             </h:panelGrid>                             
                         </p:panel> 
 
+
                         <p:panel header="Onde você tem acesso a internet?">
-                            <p:messages />  
-                            <!--value="#{alunoBean.situacaoResidencial.acessoInternet} Tem um problema com esse value-->
-                            <p:selectManyCheckbox id="itensInt"  layout="responsive" columns="4" >
+                            <p:messages />                              
+                            <p:selectOneRadio id="itensInt"  layout="responsive" value="#{alunoBean.situacaoResidencial.acessoInternet}" columns="4" >
                                 <f:selectItem itemLabel="Em Casa" itemValue="Casa"/>
                                 <f:selectItem itemLabel="Na Lan house" itemValue="LanHouse"/>
                                 <f:selectItem itemLabel="No Infocentro" itemValue="Infocentro"/>
@@ -185,11 +222,8 @@
                                 <f:selectItem itemLabel="Na Casa de Parentes" itemValue="CasaParente"/>
                                 <f:selectItem itemLabel="Outro Local" itemValue="Outro"/>
                                 <f:selectItem itemLabel="Não Acessa a Internet" itemValue="NaoAcessa"/>
-                            </p:selectManyCheckbox>                              
+                            </p:selectOneRadio>                              
                         </p:panel> 
-
-
-
 
 
                         <p:panel header="Atualmente, você trabalha?">
@@ -648,6 +682,7 @@
                     <p:tab id="confirmar" title="Confirmar">
                         <p:panel>
                             <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
+                            <p:commandButton value="Deletar" actionListener="#{alunoBean.excluir()}"/>
                         </p:panel>
                     </p:tab>
 

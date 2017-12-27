@@ -51,13 +51,14 @@ public class InformacoesCurriculares implements Serializable {
     @Column(name = "motivo_interrupcao")
     private String motivoInterrupcao;
 
-// DATA ------------------------------------------------------------------------    
     @Column(name = "data_interrupcao")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataInterrupcao;
     
     @Column(name = "tempo_interrupcao")
     private float tempoInterrupcao;
+
+// Getters e Setters
 
     public Integer getInformacoesCurriculares() {
         return informacoesCurriculares;
@@ -149,7 +150,7 @@ public class InformacoesCurriculares implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 3;
         hash = 59 * hash + Objects.hashCode(this.informacoesCurriculares);
         hash = 59 * hash + Objects.hashCode(this.aluno);
         hash = 59 * hash + Objects.hashCode(this.ondeEstudou);
@@ -211,7 +212,5 @@ public class InformacoesCurriculares implements Serializable {
         }
         return true;
     }
-
-
-
+    
 }

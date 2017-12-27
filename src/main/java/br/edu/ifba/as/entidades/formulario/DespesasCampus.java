@@ -66,8 +66,12 @@ public class DespesasCampus implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.despesasCampus);
+        int hash = 3;
+        hash = 13 * hash + Objects.hashCode(this.despesasCampus);
+        hash = 13 * hash + Objects.hashCode(this.aluno);
+        hash = 13 * hash + Objects.hashCode(this.alimentacao);
+        hash = 13 * hash + Objects.hashCode(this.trabalhos);
+        hash = 13 * hash + Objects.hashCode(this.materiaisEscolares);
         return hash;
     }
 
@@ -86,8 +90,19 @@ public class DespesasCampus implements Serializable {
         if (!Objects.equals(this.despesasCampus, other.despesasCampus)) {
             return false;
         }
+        if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        if (!Objects.equals(this.alimentacao, other.alimentacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.trabalhos, other.trabalhos)) {
+            return false;
+        }
+        if (!Objects.equals(this.materiaisEscolares, other.materiaisEscolares)) {
+            return false;
+        }
         return true;
     }
-
 
 }

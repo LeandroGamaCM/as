@@ -11,7 +11,35 @@
             Teste
         </ui:define>
         <ui:define name="conteudo">
-          
+            <h:form>
+                <h:panelGrid columns="4">
+
+                    <p:outputLabel value="CPF: "/>
+                    <p:inputText value="#{alunoBean.aluno.cpf}" label="CPF"/>
+                    
+                </h:panelGrid>
+
+                        <p:panel header="Você possui alguma das bolsas abaixo?">
+                            <p:messages />   
+                            <p:selectManyCheckbox id="auxilio" value="#{alunoBean.selectedBolsasAuxilio}">
+                                <f:selectItem itemLabel="Bolsa de Programa de Extensão" itemValue="e" />
+                                <f:selectItem itemLabel="Bolsa PIBIC/Jr." itemValue="j" />
+                                <f:selectItem itemLabel="Bolsa PIBID" itemValue="d" />
+                                <f:selectItem itemLabel="Bolsa PIBIC" itemValue="c" />
+                                <f:selectItem itemLabel="Bolsa de Monitoria" itemValue="m" />
+                            </p:selectManyCheckbox> 
+                        </p:panel>
+                                <p:selectManyCheckbox id="basic2" value="#{alunoBean.selectedDependentes}">
+                                   <f:selectItem itemLabel="Companheiro" itemValue="c"/>
+                                   <f:selectItem itemLabel="Filho" itemValue="f" />
+                                   <f:selectItem itemLabel="Idoso" itemValue="i" />
+                                   <f:selectItem itemLabel="Outro:" itemValue="o" />
+                                </p:selectManyCheckbox>                
+                
+                <p:commandButton action="#{alunoBean.salvar()}" value="Salvar"></p:commandButton>
+                <p:commandButton value="Deletar" actionListener="#{alunoBean.excluir()}"/>
+            </h:form>
+            
         </ui:define>
     </ui:composition>
 </html>

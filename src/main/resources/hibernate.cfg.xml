@@ -42,10 +42,7 @@ Contributor(s):
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost/asbd</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">banco</property>
+    <property name="connection.datasource">java:/comp/env/jdbc/asbd</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <!--Configuration debug-->
@@ -75,6 +72,7 @@ Contributor(s):
     <mapping class="br.edu.ifba.as.entidades.formulario.Residencia"></mapping>
     <mapping class="br.edu.ifba.as.entidades.formulario.ResidenciaFamilia"></mapping>
     <mapping class="br.edu.ifba.as.entidades.formulario.SituacaoResidencial"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.usuario.Usuario"></mapping>
 
 
     

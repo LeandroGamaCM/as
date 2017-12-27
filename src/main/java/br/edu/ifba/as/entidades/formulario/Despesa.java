@@ -5,7 +5,6 @@ package br.edu.ifba.as.entidades.formulario;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "despesa")
@@ -79,8 +78,6 @@ public class Despesa implements Serializable {
 //    @Column(name = "valor_outros")
 //    private Double valorOutros;
 
-
-    
     public Integer getDespesa() {
         return despesa;
     }
@@ -108,17 +105,18 @@ public class Despesa implements Serializable {
     public Double getValorDespesa() {
         return valorDespesa;
     }
+
     public void setValorDespesa(Double valorDespesa) {
         this.valorDespesa = valorDespesa;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.despesa);
-        hash = 23 * hash + Objects.hashCode(this.familia);
-        hash = 23 * hash + Objects.hashCode(this.nomeDespesa);
-        hash = 23 * hash + Objects.hashCode(this.valorDespesa);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.despesa);
+        hash = 79 * hash + Objects.hashCode(this.familia);
+        hash = 79 * hash + Objects.hashCode(this.nomeDespesa);
+        hash = 79 * hash + Objects.hashCode(this.valorDespesa);
         return hash;
     }
 
@@ -148,7 +146,5 @@ public class Despesa implements Serializable {
         }
         return true;
     }
-
-
 
 }

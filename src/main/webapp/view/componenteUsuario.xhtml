@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <h1>Cadastro de Usuários</h1>
+        <form>            
+            <p:panel>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="CPF: "/>
+                    <p:inputMask mask="999.999.999-99" value="#{usuarioBean.usuario.cpf}"/>
+                    <p:outputLabel value="Nome: "/>
+                    <p:inputText label="Nome" value="#{usuarioBean.usuario.nome}"/>
+                    <p:outputLabel value="Email: "/>
+                    <p:inputText label="Email" value="#{usuarioBean.usuario.email}"/>
+                    <p:outputLabel value="Senha: "/>
+                    <p:inputText label="Senha" value="#{usuarioBean.usuario.senha}"/>
+                    <p:commandButton value="Salvar" action="#{usuarioBean.salvar()}"/>                  
+                </p:panelGrid>
+            </p:panel>
+        </form>        
+    </ui:composition>
+</html>

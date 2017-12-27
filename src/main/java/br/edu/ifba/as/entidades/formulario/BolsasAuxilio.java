@@ -86,13 +86,13 @@ public class BolsasAuxilio implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.bolsaAuxilio);
-        hash = 79 * hash + Objects.hashCode(this.aluno);
-        hash = 79 * hash + Objects.hashCode(this.programaExtensao);
-        hash = 79 * hash + Objects.hashCode(this.pibid);
-        hash = 79 * hash + Objects.hashCode(this.monitoria);
-        hash = 79 * hash + Objects.hashCode(this.pibic);
-        hash = 79 * hash + Objects.hashCode(this.pibicjr);
+        hash = 17 * hash + Objects.hashCode(this.bolsaAuxilio);
+        hash = 17 * hash + Objects.hashCode(this.aluno);
+        hash = 17 * hash + Objects.hashCode(this.programaExtensao);
+        hash = 17 * hash + Objects.hashCode(this.pibid);
+        hash = 17 * hash + Objects.hashCode(this.monitoria);
+        hash = 17 * hash + Objects.hashCode(this.pibic);
+        hash = 17 * hash + Objects.hashCode(this.pibicjr);
         return hash;
     }
 
@@ -132,5 +132,4 @@ public class BolsasAuxilio implements Serializable {
         return true;
     }
 
-    
 }

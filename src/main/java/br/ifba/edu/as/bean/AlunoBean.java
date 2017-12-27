@@ -1,18 +1,17 @@
 package br.ifba.edu.as.bean;
 
-import br.edu.ifba.as.entidades.enums.*;
 import br.edu.ifba.as.entidades.formulario.*;
-import br.edu.ifba.as.rn.AlunoRN;
+import br.edu.ifba.as.rn.*;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.*;
 import org.primefaces.event.FlowEvent;
 
 @ManagedBean(name = "alunoBean")
-@ViewScoped // Ver diferença do RequestScoped ----------------------------------
+@ViewScoped 
 public class AlunoBean implements Serializable{
     private Aluno aluno = new Aluno();
-    private BolsasAuxilio bolsasAuxilio;
+    private BolsasAuxilio bolsasAuxilio = new BolsasAuxilio();
     private CondicaoManutencao condicaoManutencao = new CondicaoManutencao();
     private Conta conta = new Conta();
     private Dependentes dependentes = new Dependentes();
@@ -39,74 +38,101 @@ public class AlunoBean implements Serializable{
     private List<Renda> rendas;
     private List<Despesa> despesas;
 
+    public String onFlowProcess(FlowEvent event) {
+        return event.getNewStep();
+    } 
+
     public void salvar(){
-       setDependentesProperties();
-       setCondicaoManutencaoProperties();
-//        AlunoRN alunoRN = new AlunoRN();
-//        alunoRN.salvar(this.aluno);
-        System.out.println(
-//                "\nNome: " + aluno.getNome() + 
-//                "\nSexo: " + aluno.getSexo() + 
-//                "\nApelido: " + aluno.getApelido() + 
-//                "\nDataNasc: " + aluno.getDataNascimento().toString() + 
-//                "\nEstado Civil: " + aluno.getEstadoCivil() + 
-//                "\nTem dependentes: " + dependentes.getPossuiDependente() +
-//                "\nQuantos dependentes: " + dependentes.getQuantos() + 
-//                "\nCompanheiro: " + dependentes.getCompanheiro() + 
-//                "\nFilho: " + dependentes.getFilho() + 
-//                "\nIdoso: " + dependentes.getIdoso() +
-//                "\nOutro: " + dependentes.getOutro() +
-//                "\tNome Outro: " + dependentes.getOutroDependente() +
-//                "\nTurno: " + informacoesCurriculares.getTurno()+
-//                "\nCurso: " + informacoesCurriculares.getCurso()+
-//                "\nConta: " + conta.getPossuiConta()+
-//                "\nBanco: " + conta.getNomeBanco()+
-//                "\nCC: " + conta.getContaCorrente()+
-//                "\nAgencia: " + conta.getAgencia()+
-//                "\nOperacao: " + conta.getOperacao()+
-                
-//                "\nCurso Preparatorio: " + informacoesCurriculares.getCursoPreparatorio()+
-//                "\nnome CP: " + informacoesCurriculares.getNomeCursoPreparatorio()+
-//                "\nOnde Estudou" + informacoesCurriculares.getOndeEstudou()+
-//                "\nInterrupcao Estudos: " + informacoesCurriculares.getInterrupcaoEstudos()+
-//                "\nMotivo Int: " + informacoesCurriculares.getMotivoInterrupcao()+
-//                "\nTempo Int: "+ informacoesCurriculares.getTempoInterrupcao()+
-//                "\nQuando aconteceu: " + informacoesCurriculares.getDataInterrupcao().toString()+
-//                "\nAceeso internet: " + situacaoResidencial.getAcessoInternet()+
-//                "\nTrabalha: " + ocupacao.getPossuiTrabalho()+
-//                "\nTipo Trabalho: " + ocupacao.getTrabalho()+
-//                "\nProfissao: "+ ocupacao.getProfissao()+
-//                "\nNome Empr: " + ocupacao.getNomeEmpregador()+
-//                "\nTelefone Emp: " + ocupacao.getTelefoneEmpregador()+
-//                "\nTempo Servico: "+ ocupacao.getTempoServico()+
-//                "\nsalario: " + ocupacao.getSalarioMensal()
-                
-//                "\nSustentado por pais : " + condicaoManutencao.getAmbosPais() +
-//                "\nSustentado por pai : " + condicaoManutencao.getApenasPai()+
-//                "\nSustentado por mae : " + condicaoManutencao.getApenasMae()+
-//                "\nSustentado por avo : " + condicaoManutencao.getAvos() +
-//                "\nSustentado por otroParente : " + condicaoManutencao.getOutrosParentes() +
-//                "\nSustentado por outro jeito : " + condicaoManutencao.getOutrosMeios() +
-//                "\nParentesco: " + condicaoManutencao.getParentesco()+
-//                "\noutro Meio: " + condicaoManutencao.getNomeOutrosMeios() +
-//                "\n despesa alime: " + despesasCampus.getAlimentacao() +
-//                "\n despesa trabs: " + despesasCampus.getTrabalhos() +
-//                "\n despesa materisas: " + despesasCampus.getMateriaisEscolares() +
-//                "\nCom quem mora: " + situacaoResidencial.getComQuemMora()+
-//                "\nOutro parente: "+situacaoResidencial.getMoraComQuemOutro()+
-//                "\ndespesas extrars: "+ situacaoResidencial.getDespesasExtra()+
-//                "\nOnde reside: " + situacaoResidencial.getSituacaoCasa()+
-//                "\nAluguel: "+ situacaoResidencial.getValorAluguel()+
-//                "\nquem Emprestou: "+ situacaoResidencial.getCasaQuemEmprestou()
-                residenciaFamilia.getZona()
-        );
+        AlunoRN alunoRN = new AlunoRN();
+                     
+        alunoRN.salvar(this.aluno);
+
+        salvarDependenciasAluno(aluno);
+        
+        System.out.println("salvou!");
+    }
+
+    public void salvarDependenciasAluno(Aluno aluno){
+        // ATENÇÂO: A ordem dessas operações deve ser realizada exatamente do jeito que está! 
+        BolsasAuxilioRN bolsasAuxilioRN = new BolsasAuxilioRN();
+        CondicaoManutencaoRN condicaoManutencaoRN = new CondicaoManutencaoRN();
+        ContaRN contaRN = new ContaRN();
+        DependentesRN dependentesRN = new DependentesRN();
+        DespesasCampusRN despesasCampusRN = new DespesasCampusRN();
+        EnderecoRN enderecoRN = new EnderecoRN();
+        FamiliaRN familiaRN = new FamiliaRN();
+            ImovelRN imovelRN = new ImovelRN();
+            DespesaRN despesaRN = new DespesaRN();
+            MembroFamiliarRN membroFamiliarRN = new MembroFamiliarRN();
+                DoencaRN doencaRN = new DoencaRN();
+            RendaRN rendaRN = new RendaRN();
+            ResidenciaFamiliaRN residenciaFamiliaRN = new ResidenciaFamiliaRN();
+        FormularioRN formularioRN = new FormularioRN();
+        InformacoesCurricularesRN informacoesCurricularesRN = new InformacoesCurricularesRN();
+        OcupacaoRN ocupacaoRN = new OcupacaoRN();
+        ResidenciaRN residenciaRN = new ResidenciaRN();
+        SituacaoResidencialRN situacaoResidencialRN = new SituacaoResidencialRN();        
+
+        familia.setAluno(aluno);
+        familiaRN.salvar(familia);
+        
+        membroFamiliar.setFamilia(familia);
+        membroFamiliarRN.salvar(membroFamiliar);
+        
+        setProperties();
+
+        bolsasAuxilioRN.salvar(bolsasAuxilio);
+        contaRN.salvar(conta);
+        condicaoManutencaoRN.salvar(condicaoManutencao);
+        dependentesRN.salvar(dependentes);
+        despesasCampusRN.salvar(despesasCampus);
+        enderecoRN.salvar(endereco);
+        formularioRN.salvar(formulario);
+        informacoesCurricularesRN.salvar(informacoesCurriculares);
+        ocupacaoRN.salvar(ocupacao);
+        residenciaRN.salvar(residencia);
+        situacaoResidencialRN.salvar(situacaoResidencial);  
+
+        imovelRN.salvar(imovel);
+        despesaRN.salvar(despesa);
+        doencaRN.salvar(doenca);
+        rendaRN.salvar(renda);
+        residenciaFamiliaRN.salvar(residenciaFamilia);
 
     }
     
-    public String onFlowProcess(FlowEvent event) {
-        return event.getNewStep();
-      } 
-
+    public void excluir(){
+        // Não é necessário apagar as dependências porque elas se apagam automaticamente por meio do cascate.delete
+        AlunoRN alunoRN = new AlunoRN();
+        alunoRN.excluir(alunoRN.buscarPorCPF(1111));
+        System.out.println("Apagado!");
+    }
+    
+    
+    public void setProperties(){
+        setCondicaoManutencaoProperties();
+        setBolsasAuxilioProperties();
+        setResidenciaFamilaProperties();
+        setDependentesProperties();
+        
+            bolsasAuxilio.setAluno(aluno);
+            condicaoManutencao.setAluno(aluno);
+            conta.setAluno(aluno);
+            dependentes.setAluno(aluno);
+            despesasCampus.setAluno(aluno);
+            endereco.setAluno(aluno);
+                imovel.setFamilia(familia);
+                despesa.setFamilia(familia);
+                renda.setFamilia(familia);
+                residenciaFamilia.setFamilia(familia);
+                    doenca.setMembro_familiar(membroFamiliar);
+            formulario.setAluno(aluno);
+            informacoesCurriculares.setAluno(aluno);
+            ocupacao.setAluno(aluno);
+            residencia.setAluno(aluno);
+            situacaoResidencial.setAluno(aluno);        
+    }
+    
     public void setCondicaoManutencaoProperties(){
         int i;
         if(selectedSustentadores != null){
@@ -130,6 +156,7 @@ public class AlunoBean implements Serializable{
     public void setBolsasAuxilioProperties(){
         int i;
         if(selectedBolsasAuxilio != null){
+            System.out.println("length: " + selectedBolsasAuxilio.length);
             for(i=0;i<selectedBolsasAuxilio.length;i++){
                 if("m".equals(selectedBolsasAuxilio[i]))
                     bolsasAuxilio.setMonitoria(Boolean.TRUE);
@@ -165,7 +192,6 @@ public class AlunoBean implements Serializable{
         
     }
     
-    
     public void setDependentesProperties(){
         int i;
         if(selectedDependentes != null){
@@ -181,8 +207,7 @@ public class AlunoBean implements Serializable{
             }            
         }
     }
-    
-    
+
     
 // Getters e Setters
 
@@ -395,7 +420,4 @@ public class AlunoBean implements Serializable{
     }
 
 
-
-
-    
 }

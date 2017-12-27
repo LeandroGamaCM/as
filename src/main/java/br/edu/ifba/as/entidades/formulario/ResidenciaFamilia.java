@@ -139,17 +139,17 @@ public class ResidenciaFamilia implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.residenciaFamilia);
-        hash = 97 * hash + Objects.hashCode(this.familia);
-        hash = 97 * hash + Objects.hashCode(this.qtdeQuartos);
-        hash = 97 * hash + Objects.hashCode(this.qtdeBanheiros);
-        hash = 97 * hash + Objects.hashCode(this.qtdeTelevisores);
-        hash = 97 * hash + Objects.hashCode(this.qtdeGeladeiras);
-        hash = 97 * hash + Objects.hashCode(this.qtdeComputadores);
-        hash = 97 * hash + Objects.hashCode(this.qtdeMaquinaLavar);
-        hash = 97 * hash + Objects.hashCode(this.qtdeAutomoveis);
-        hash = 97 * hash + Objects.hashCode(this.distanciaCampus);
-        hash = 97 * hash + Objects.hashCode(this.zona);
+        hash = 67 * hash + Objects.hashCode(this.residenciaFamilia);
+        hash = 67 * hash + Objects.hashCode(this.familia);
+        hash = 67 * hash + Objects.hashCode(this.qtdeQuartos);
+        hash = 67 * hash + Objects.hashCode(this.qtdeBanheiros);
+        hash = 67 * hash + Objects.hashCode(this.qtdeTelevisores);
+        hash = 67 * hash + Objects.hashCode(this.qtdeGeladeiras);
+        hash = 67 * hash + Objects.hashCode(this.qtdeComputadores);
+        hash = 67 * hash + Objects.hashCode(this.qtdeMaquinaLavar);
+        hash = 67 * hash + Objects.hashCode(this.qtdeAutomoveis);
+        hash = 67 * hash + Objects.hashCode(this.distanciaCampus);
+        hash = 67 * hash + Objects.hashCode(this.zona);
         return hash;
     }
 
@@ -200,7 +200,5 @@ public class ResidenciaFamilia implements Serializable {
         }
         return true;
     }
-            
-
     
 }

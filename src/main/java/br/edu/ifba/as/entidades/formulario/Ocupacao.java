@@ -50,6 +50,8 @@ public class Ocupacao implements Serializable {
     @Column(name = "tempo_servico")
     private Float tempoServico;
 
+// Getters e Setters
+
     public Integer getOcupacao() {
         return ocupacao;
     }
@@ -140,18 +142,18 @@ public class Ocupacao implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 67 * hash + Objects.hashCode(this.ocupacao);
-        hash = 67 * hash + Objects.hashCode(this.aluno);
-        hash = 67 * hash + Objects.hashCode(this.trabalho);
-        hash = 67 * hash + Objects.hashCode(this.telefoneEmpregador);
-        hash = 67 * hash + Objects.hashCode(this.possuiTrabalho);
-        hash = 67 * hash + Objects.hashCode(this.profissao);
-        hash = 67 * hash + Objects.hashCode(this.nomeEmpregador);
-        hash = 67 * hash + (this.possuiEstagio ? 1 : 0);
-        hash = 67 * hash + Objects.hashCode(this.instiruicaoEstagio);
-        hash = 67 * hash + Objects.hashCode(this.salarioMensal);
-        hash = 67 * hash + Objects.hashCode(this.tempoServico);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.ocupacao);
+        hash = 53 * hash + Objects.hashCode(this.aluno);
+        hash = 53 * hash + Objects.hashCode(this.trabalho);
+        hash = 53 * hash + Objects.hashCode(this.telefoneEmpregador);
+        hash = 53 * hash + Objects.hashCode(this.possuiTrabalho);
+        hash = 53 * hash + Objects.hashCode(this.profissao);
+        hash = 53 * hash + Objects.hashCode(this.nomeEmpregador);
+        hash = 53 * hash + (this.possuiEstagio ? 1 : 0);
+        hash = 53 * hash + Objects.hashCode(this.instiruicaoEstagio);
+        hash = 53 * hash + Objects.hashCode(this.salarioMensal);
+        hash = 53 * hash + Objects.hashCode(this.tempoServico);
         return hash;
     }
 
@@ -202,7 +204,5 @@ public class Ocupacao implements Serializable {
         }
         return true;
     }
-
-    
 
 }

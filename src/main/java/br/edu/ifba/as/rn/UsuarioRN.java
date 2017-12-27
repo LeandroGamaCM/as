@@ -12,12 +12,7 @@ public class UsuarioRN {
         this.usuarioDAO = DAOFactory.criarUsuarioDAO();
     }
     public void salvar(Usuario usuario){
-        Integer cod = usuario.getUsuario();
-        if(cod == null || cod == 0){
-            this.usuarioDAO.salvar(usuario);
-        }else{
-            this.usuarioDAO.atualizar(usuario);
-        }
+        this.usuarioDAO.salvar(usuario);
     }
     public void excluir(Usuario usuario){
         this.usuarioDAO.excluir(usuario);

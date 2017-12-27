@@ -16,7 +16,7 @@ public class Endereco implements Serializable {
             strategy = "foreign", parameters = @Parameter(name = "property", value = "aluno"))
     @Column(name = "cod_aluno")
     private Integer endereco;
-    
+
     @OneToOne(mappedBy = "endereco")
     private Aluno aluno;
     
@@ -97,14 +97,14 @@ public class Endereco implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.endereco);
-        hash = 89 * hash + Objects.hashCode(this.aluno);
-        hash = 89 * hash + Objects.hashCode(this.rua);
-        hash = 89 * hash + Objects.hashCode(this.numero);
-        hash = 89 * hash + Objects.hashCode(this.cep);
-        hash = 89 * hash + Objects.hashCode(this.bairro);
-        hash = 89 * hash + Objects.hashCode(this.cidade);
-        hash = 89 * hash + Objects.hashCode(this.estado);
+        hash = 53 * hash + Objects.hashCode(this.endereco);
+        hash = 53 * hash + Objects.hashCode(this.aluno);
+        hash = 53 * hash + Objects.hashCode(this.rua);
+        hash = 53 * hash + Objects.hashCode(this.numero);
+        hash = 53 * hash + Objects.hashCode(this.cep);
+        hash = 53 * hash + Objects.hashCode(this.bairro);
+        hash = 53 * hash + Objects.hashCode(this.cidade);
+        hash = 53 * hash + Objects.hashCode(this.estado);
         return hash;
     }
 
@@ -146,6 +146,5 @@ public class Endereco implements Serializable {
         }
         return true;
     }
-    
-    
+
 }

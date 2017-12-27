@@ -47,30 +47,30 @@
                 <p:separator/>
                 <p:fieldset/>
 
-                <p:dataTable var="car" value="#{dtBasicView.cars}">
+                <p:dataTable var="car" value="">
                     <p:column headerText="Nome">
-                        <h:outputText value="#{car.nome}" />                        
+                        <h:outputText value="Ricardo Medeiros da Silva" />                        
                     </p:column>
                      
                     <p:column headerText="CPF">
-                        <h:outputText value="#{car.cpf}" />
+                        <h:outputText value="075.598.145-68" />
                     </p:column>
                      
                     <p:column headerText="Curso">
-                        <h:outputText value="#{car.curso}" />                        
+                        <h:outputText value="Eletromecânica" />                        
                     </p:column>
                      
                     <p:column headerText="Ano">
-                        <h:outputText value="#{car.ano}" />
+                        <h:outputText value="3º" />
                     </p:column>
 
                     <p:column headerText="Bolsa Escolhida">
-                        <h:outputText value="#{car.bolsa}" />
+                        <h:outputText value="Bolsa Alimentação" />
                     </p:column>
 
                     <p:column headerText="Ver Ficha">
                         <a href="ficha.jsf">
-                            <span>Expandir</span>
+                            <span><strong>Expandir</strong></span>
                         </a>
                     </p:column>
                 </p:dataTable>

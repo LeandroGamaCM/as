@@ -34,6 +34,7 @@ public class Conta implements Serializable {
     private String agencia;
 // -----------------------------------------------------------------------------
 
+// Getters e Setters    
     public Integer getConta() {
         return conta;
     }
@@ -92,7 +93,7 @@ public class Conta implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         hash = 89 * hash + Objects.hashCode(this.conta);
         hash = 89 * hash + Objects.hashCode(this.aluno);
         hash = 89 * hash + Objects.hashCode(this.contaCorrente);
@@ -138,7 +139,5 @@ public class Conta implements Serializable {
         }
         return true;
     }
-    
-
     
 }

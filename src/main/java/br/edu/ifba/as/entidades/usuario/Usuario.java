@@ -1,5 +1,6 @@
 package br.edu.ifba.as.entidades.usuario;
 
+import br.edu.ifba.as.entidades.formulario.Aluno;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -10,12 +11,15 @@ import javax.persistence.*;
 @Table(name = "usuario")
 public class Usuario implements Serializable{
     private static final long serialVersionUID = -8730937239625352335L;
-//    private String login, nome, senha, -EMAIL ?- ;
 
     @Id
     @GeneratedValue
     @Column(name = "cod_usuario")
     private Integer usuario;
+    
+    @OneToOne
+    @JoinColumn(name = "cod_usuario")
+    private Aluno aluno;
     
     @Column(length = 45)
     private String nome;

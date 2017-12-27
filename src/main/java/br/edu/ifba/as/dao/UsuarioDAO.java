@@ -24,10 +24,7 @@ public class UsuarioDAO{
         return this.sessao.createCriteria(Usuario.class).list();
     }
     public void salvar(Usuario usuario){
-        sessao.save(usuario);
-    }
-    public void atualizar(Usuario usuario){
-        sessao.update(usuario);
+        sessao.saveOrUpdate(usuario);
     }
     public void excluir(Usuario usuario){
         sessao.delete(usuario);

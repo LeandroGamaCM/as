@@ -137,7 +137,7 @@ public class Residencia implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
         hash = 67 * hash + Objects.hashCode(this.residencia);
         hash = 67 * hash + Objects.hashCode(this.aluno);
         hash = 67 * hash + Objects.hashCode(this.acabamento);
@@ -203,8 +203,5 @@ public class Residencia implements Serializable {
         }
         return true;
     }
-
-
-
     
 }

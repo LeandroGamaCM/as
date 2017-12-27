@@ -124,16 +124,16 @@ public class CondicaoManutencao implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.condicaoManutencao);
-        hash = 23 * hash + Objects.hashCode(this.aluno);
-        hash = 23 * hash + Objects.hashCode(this.ambosPais);
-        hash = 23 * hash + Objects.hashCode(this.apenasMae);
-        hash = 23 * hash + Objects.hashCode(this.apenasPai);
-        hash = 23 * hash + Objects.hashCode(this.avos);
-        hash = 23 * hash + Objects.hashCode(this.outrosParentes);
-        hash = 23 * hash + Objects.hashCode(this.parentesco);
-        hash = 23 * hash + Objects.hashCode(this.outrosMeios);
-        hash = 23 * hash + Objects.hashCode(this.nomeOutrosMeios);
+        hash = 17 * hash + Objects.hashCode(this.condicaoManutencao);
+        hash = 17 * hash + Objects.hashCode(this.aluno);
+        hash = 17 * hash + Objects.hashCode(this.ambosPais);
+        hash = 17 * hash + Objects.hashCode(this.apenasMae);
+        hash = 17 * hash + Objects.hashCode(this.apenasPai);
+        hash = 17 * hash + Objects.hashCode(this.avos);
+        hash = 17 * hash + Objects.hashCode(this.outrosParentes);
+        hash = 17 * hash + Objects.hashCode(this.parentesco);
+        hash = 17 * hash + Objects.hashCode(this.outrosMeios);
+        hash = 17 * hash + Objects.hashCode(this.nomeOutrosMeios);
         return hash;
     }
 
@@ -181,6 +181,5 @@ public class CondicaoManutencao implements Serializable {
         }
         return true;
     }
-
     
 }

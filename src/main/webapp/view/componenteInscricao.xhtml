@@ -26,14 +26,26 @@
                                 </p:selectOneRadio>           
                             </h:panelGrid>
 
-                            <h:panelGrid columns="6" columnClasses="label, value">
-                                <p:outputLabel value="Apelido: " for="apelido" />
-                                <p:inputText  id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
-<!-- Corrigir a Data -->
-                               <p:outputLabel value="Data de Nascimento: " for="date" />                                    
-                                <p:inputMask id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
+                            <h:panelGrid width="100%" columns="4" columnClasses="label3, value3, label4, value4">
+                                <p:outputLabel style="width: 100%" value="Apelido: " for="apelido" />
+                                <p:inputText style="width: 100%" id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
+
+                               <p:outputLabel style="float: right; margin-left: 20px" value="Data de Nascimento: " for="date" />                                    
+                                <p:inputMask style="width: 100%" id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
                                     <f:convertDateTime dateStyle="medium"/>
                                 </p:inputMask>                               
+                            </h:panelGrid>
+                            <h:panelGrid columns="4">
+                                <p:outputLabel value="Endereço: "/>
+                                <p:inputText value="#{alunoBean.endereco.rua}" label="Endereço"/>
+                                <p:outputLabel value="CPF: "/>
+                                <p:inputText value="#{alunoBean.aluno.cpf}" label="CPF"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="4">
+                                <p:outputLabel value="Nome Despesa: "/>
+                                <p:inputText value="#{alunoBean.despesa.nomeDespesa}"/>
+                                <p:outputLabel value="Programa social Familia: "/>
+                                <p:inputText value="#{alunoBean.familia.outroProgramaSocial}"/>
                             </h:panelGrid>
 
                             <h:panelGrid  columnClasses="label, value">
@@ -170,7 +182,7 @@
 <!-- Deve ser um ManyCheckBox -->
                         <p:panel header="Onde você tem acesso a internet?">
                             <p:messages />                              
-                            <p:selectManyCheckbox value="#{alunoBean.situacaoResidencial.acessoInternet}" layout="responsive" columns="5" >
+                            <p:selectOneRadio value="#{alunoBean.situacaoResidencial.acessoInternet}" layout="responsive" columns="5" >
                                 <f:selectItems itemLabel="Em casa" itemValue="Casa"/>
                                 <f:selectItems itemLabel="Na lan house" itemValue="LanHouse"/>
                                 <f:selectItems itemLabel="No Infocentro" itemValue="Infocentro"/>
@@ -178,7 +190,7 @@
                                 <f:selectItems itemLabel="Na casa de parentes" itemValue="CasaParente"/>
                                 <f:selectItems itemLabel="Outro local" itemValue="Outro"/>
                                 <f:selectItems itemLabel="NAO acessa a internet" itemValue="NaoAcessa"/>
-                            </p:selectManyCheckbox>>      
+                            </p:selectOneRadio>      
                         </p:panel> 
 
 
@@ -600,6 +612,7 @@
                     <p:tab id="confirmar" title="Confirmar">
                         <p:panel>
                             <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
+                            <p:commandButton value="Deletar" actionListener="#{alunoBean.excluir()}"/>
                         </p:panel>
                     </p:tab>
 

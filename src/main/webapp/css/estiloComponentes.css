@@ -75,7 +75,7 @@ body .ui-widget, body .ui-widget .ui-widget {
 }
 body .ui-widget-content {
     background-color: #ffffff;
-/*    border: 1px solid #d8d8d8;*/
+    /*    border: 1px solid #d8d8d8;*/
     padding: 8px 14px;
 }
 .ui-grid {
@@ -165,4 +165,177 @@ body .ui-panelgrid .ui-panelgrid-cell {
 }
 .value4{
     width: 100px;
+}
+.value6{
+    width: 50px;
+}
+.label5{
+    width: 177px;
+}
+.label6{
+    width: 69px;
+}
+.value6{
+    width: 80px;
+}
+.label7{
+    float: right;
+    margin-left: 20px;
+    margin-top: 9px;
+    width: 394px;
+}
+.value7{
+    width: 219px;
+}
+.label8{
+    width: 1px;
+}
+.value8{
+    width: 235px;
+}
+.label9{
+    margin-left: 55px;
+    float: left;
+    margin-top: 6px;
+}
+.value9{
+    float: left;
+    width: 235px;
+}
+.label10{
+    float: left;
+    margin-left: 55px;
+    margin-top: 6px;
+}
+.value10{
+    float: left;
+    width: 234px;
+}
+.label13{
+   width: 130px;
+}
+.col3{
+    width: 123px;
+}
+.value15{
+    width: 150px;
+}
+.label16{
+    float: left;
+    margin-top: 6px;
+    margin-right: 4px;
+}
+.value16{
+    float: left;
+    width: 770px;
+}
+.label17{
+    width: 142px;
+}
+.label18{
+    width: 142px;
+}
+.label19{
+    margin-left: 20px;
+    margin-top: 5px;
+    width: 155px;
+}
+.label20{
+    width: 72px;
+}
+.label21{
+    width: 280px;
+}
+.label22{
+    width: 167px;
+}
+.label23{
+    width: 280px;
+}
+.label24{
+    width: 172px;
+}
+.label25{
+    width: 340px;
+}
+.value21{
+    width: 351px;
+}
+.label27{
+    width: 138px;
+}
+.label29{
+    width: 117px;
+}
+.label30{
+    width: 143px;
+}
+.label31{
+    width: 166px;
+}
+.label32{
+    width: 700px;
+}
+.label33{
+    width: 45px;
+}
+.label34{
+    width: 610px;
+}
+.label35{
+    width: 170px;
+}
+.label36{
+    width: 1px;
+}
+.label37{
+    width: 80px;
+}
+.label38{
+    width: 80px;
+}
+.label39{
+    width: 80px;
+}
+.label40{
+    width: 67px;
+}
+.label41{
+    width: 94px;
+}
+.label44{
+    width: 310px;
+}
+.label45{
+    width: 45px;
+}
+.label49{
+    width: 95px;
+}
+.label50{
+    width: 247px;
+}
+.label52{
+    width: 150px;
+}
+.label53{
+    width: 75px;
+}
+.label56{
+    width: 75px;
+}
+.label59{
+    width: 152px;
+}
+.label54{
+    width: 100px;
+}
+.label55{
+    width: 100px;
+}
+.label60{
+    width: 150px;
+}
+.label61{
+    width: 132px;
 }

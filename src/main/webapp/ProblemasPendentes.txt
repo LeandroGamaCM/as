@@ -17,3 +17,4 @@
 
 - Fazer as tabelas introduzirem elementos
 
+- Validar data

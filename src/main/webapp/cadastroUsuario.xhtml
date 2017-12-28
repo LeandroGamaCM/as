@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>PAAE - Logar</title>
+        <link rel="stylesheet" href="css/estiloLogin.css" type="text/css"/>
+        <link rel="stylesheet" href="css/temaPrimefaces.css" type="text/css"/>
+    </h:head>
+
+    <h:body id="ground">
+        <div class="container center">
+            <div id="content">
+                <h1><img id="logo" src="imagens/logoIFBA150px.png" alt="Login" usemap="#mapa_figuras" border="0"/></h1>
+                <h:form class="form-signin">
+
+                    <p:messages id="messages" showDetail="true"  autoUpdate="true" />
+
+                    <h2 class="form-signin-heading">PAAE</h2>
+                    
+                    <h:form id="formLogin">
+                        <div class="form-row">
+                            <p:inputText placeholder="Nome Completo" requiredMessage="teste" validatorMessage="Ex. André Medeiros dos Santos"/>
+                        </div>
+                        <div class="form-row">
+                            <p:inputText placeholder="Email" validatorMessage="Ex. "/>
+                        </div>
+                        <div class="form-row">
+                            <p:inputText placeholder="CPF"/>
+                        </div>
+                        <div class="form-row">
+                            <p:inputText placeholder="Telefone"/>
+                        </div>
+                        <div class="form-row">
+                           
+                            <p:password match="id_password2" id="id_password" validatorMessage="As senhas não conferem!" placeholder="Senha" feedback="true" promptLabel="Digite uma senha segura" goodLabel="Boa" weakLabel="Razoável" strongLabel="Excelente" />
+                            <p:password match="id_password2" id="id_password2" placeholder="Confirmar Senha" />
+                           
+                        </div>
+
+
+                        <div class="submit-row"> 
+                            <p:growl id="growl" life="2000" />
+                            <p:commandButton icon="ui-icon-check" type="submit" value="Acessar" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                        </div>
+                    </h:form>
+                </h:form>
+
+
+                
+
+                <div class="row clearfix" id="rodapeLogin">
+                    <div class="col-md-12 column">
+                        <p style="text-align: center;" id="aviso2"><strong><a href="loginPage.jsf">Voltar</a></strong><br/></p>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </h:body>
+</html>
+

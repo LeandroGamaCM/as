@@ -16,22 +16,24 @@
                 <h1><img id="logo" src="imagens/logoIFBA150px.png" alt="Login" usemap="#mapa_figuras" border="0"/></h1>
                 <h:form class="form-signin">
                     <h2 class="form-signin-heading">PAAE</h2>
-                    <h:form id="formLogin">
+                    <form id="login" method="post" action="#{request.contextPath}/j_spring_security_check">
                         <div class="form-row">
-                            <p:inputMask id="id_username" placeholder="CPF"  mask="999.999.999-99"/>
+<!--Colocar Mascara. Pros adms, o login não deveria ser uma String?-->
+                        <input type="text" name="j_username"/>
                         </div>
                         <div class="form-row">
-                            <p:password id="id_password" placeholder="Senha" />
+                            <input type="password" name="j_password"/>
                             <!--                            <input type="hidden" name="this_is_the_login_form" value="1" />
                                                         <input type="hidden" name="next" value="/" />-->
                         </div>
                         <div class="submit-row">                            
                             <div class="submit-row"> 
                                 <p:growl id="growl" life="2000" />
-                                <p:commandButton type="submit" value="Acessar" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                                <input type="submit" value="Acessar"/>
+<!--                                <p:commandButton type="submit" value="Acessar" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />-->
                             </div>
                         </div>
-                    </h:form>
+                    </form>
                 </h:form>
 
                 <p id="aviso">Informe os 11 números do CPF, sem traço, e a senha.</p>

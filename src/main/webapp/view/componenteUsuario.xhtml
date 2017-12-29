@@ -7,17 +7,7 @@
         <h1>Cadastro de Usuários</h1>
         <form>            
             <p:panel>
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="CPF: "/>
-                    <p:inputMask mask="999.999.999-99" value="#{usuarioBean.usuario.cpf}"/>
-                    <p:outputLabel value="Nome: "/>
-                    <p:inputText label="Nome" value="#{usuarioBean.usuario.nome}"/>
-                    <p:outputLabel value="Email: "/>
-                    <p:inputText label="Email" value="#{usuarioBean.usuario.email}"/>
-                    <p:outputLabel value="Senha: "/>
-                    <p:inputText label="Senha" value="#{usuarioBean.usuario.senha}"/>
-                    <p:commandButton value="Salvar" action="#{usuarioBean.salvar()}"/>                  
-                </p:panelGrid>
+
             </p:panel>
         </form>        
     </ui:composition>

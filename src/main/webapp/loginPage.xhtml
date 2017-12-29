@@ -7,6 +7,7 @@
     <h:head>
         <title>PAAE - Logar</title>
         <link rel="stylesheet" href="css/estiloLogin.css" type="text/css"/>
+        <link rel="stylesheet" href="css/temaPrimefaces.css" type="text/css"/>
     </h:head>
 
     <h:body id="ground">
@@ -17,17 +18,18 @@
                     <h2 class="form-signin-heading">PAAE</h2>
                     <h:form id="formLogin">
                         <div class="form-row">
-                            <p:inputMask id="id_username" placeholder="CPF" value="" mask="999.999.999-99"/>
+                            <p:inputMask id="id_username" placeholder="CPF"  mask="999.999.999-99"/>
                         </div>
                         <div class="form-row">
-                            <p:password id="id_password" placeholder="Senha" value=""/>
-<!--                            <input type="hidden" name="this_is_the_login_form" value="1" />
-                            <input type="hidden" name="next" value="/" />-->
+                            <p:password id="id_password" placeholder="Senha" />
+                            <!--                            <input type="hidden" name="this_is_the_login_form" value="1" />
+                                                        <input type="hidden" name="next" value="/" />-->
                         </div>
                         <div class="submit-row">                            
-                            <input type="submit" value="Acessar"/>
-<!--                            <p:growl id="growl" life="2000" />-->
-<!--                            <p:commandButton type="submit" value="Acessar" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />-->
+                            <div class="submit-row"> 
+                                <p:growl id="growl" life="2000" />
+                                <p:commandButton type="submit" value="Acessar" id="ajax" update="growl" actionListener="#{buttonView.buttonAction}" styleClass="ui-priority-primary" />
+                            </div>
                         </div>
                     </h:form>
                 </h:form>
@@ -36,7 +38,7 @@
 
                 <div class="row clearfix" id="rodapeLogin">
                     <div class="col-md-12 column">
-                        <p style="text-align: center;" id="aviso2"><strong><a href="">Primeiro acesso?</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="">Esqueceu a senha</a></strong><br/></p>
+                        <p style="text-align: center;" id="aviso2"><strong><a href="cadastroUsuario.jsf">Primeiro acesso?</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="">Esqueceu a senha</a></strong><br/></p>
                     </div>
                 </div>
             </div> 

@@ -21,9 +21,6 @@ public class Usuario implements Serializable{
     @JoinColumn(name = "cod_usuario")
     private Aluno aluno;
     
-    @Column(length = 45)
-    private String nome;
-    
     @Column(length = 45, unique = true)
     private String login;
     
@@ -38,15 +35,6 @@ public class Usuario implements Serializable{
     @Column(name = "permissao")
     private Set<String> permissao = new HashSet<String>();
 
-    public Set<String> getPermissao() {
-        return permissao;
-    }
-
-    public void setPermissao(Set<String> permissao) {
-        this.permissao = permissao;
-    }
-    
-    
     public Integer getUsuario() {
         return usuario;
     }
@@ -55,12 +43,12 @@ public class Usuario implements Serializable{
         this.usuario = usuario;
     }
 
-    public String getNome() {
-        return nome;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
     public String getLogin() {
@@ -87,15 +75,23 @@ public class Usuario implements Serializable{
         this.ativo = ativo;
     }
 
+    public Set<String> getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(Set<String> permissao) {
+        this.permissao = permissao;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.usuario);
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        hash = 37 * hash + Objects.hashCode(this.login);
-        hash = 37 * hash + Objects.hashCode(this.senha);
-        hash = 37 * hash + Objects.hashCode(this.ativo);
-        hash = 37 * hash + Objects.hashCode(this.permissao);
+        hash = 29 * hash + Objects.hashCode(this.usuario);
+        hash = 29 * hash + Objects.hashCode(this.aluno);
+        hash = 29 * hash + Objects.hashCode(this.login);
+        hash = 29 * hash + Objects.hashCode(this.senha);
+        hash = 29 * hash + Objects.hashCode(this.ativo);
+        hash = 29 * hash + Objects.hashCode(this.permissao);
         return hash;
     }
 
@@ -111,9 +107,6 @@ public class Usuario implements Serializable{
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
         if (!Objects.equals(this.login, other.login)) {
             return false;
         }
@@ -121,6 +114,9 @@ public class Usuario implements Serializable{
             return false;
         }
         if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        if (!Objects.equals(this.aluno, other.aluno)) {
             return false;
         }
         if (!Objects.equals(this.ativo, other.ativo)) {

@@ -16,9 +16,10 @@ public class Usuario implements Serializable{
     @GeneratedValue
     @Column(name = "cod_usuario")
     private Integer usuario;
-
-    @OneToOne(mappedBy = "usuario")
-    private Aluno aluno;    
+    
+    @OneToOne
+    @JoinColumn(name = "cod_usuario")
+    private Aluno aluno;
     
     @Column(length = 45, unique = true)
     private String login;
@@ -84,13 +85,13 @@ public class Usuario implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.usuario);
-        hash = 97 * hash + Objects.hashCode(this.aluno);
-        hash = 97 * hash + Objects.hashCode(this.login);
-        hash = 97 * hash + Objects.hashCode(this.senha);
-        hash = 97 * hash + Objects.hashCode(this.ativo);
-        hash = 97 * hash + Objects.hashCode(this.permissao);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.usuario);
+        hash = 29 * hash + Objects.hashCode(this.aluno);
+        hash = 29 * hash + Objects.hashCode(this.login);
+        hash = 29 * hash + Objects.hashCode(this.senha);
+        hash = 29 * hash + Objects.hashCode(this.ativo);
+        hash = 29 * hash + Objects.hashCode(this.permissao);
         return hash;
     }
 
@@ -126,7 +127,6 @@ public class Usuario implements Serializable{
         }
         return true;
     }
-
 
     
 }

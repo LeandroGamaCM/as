@@ -3,7 +3,6 @@ package br.ifba.edu.as.bean;
 import br.edu.ifba.as.entidades.enums.ComQuemMora;
 import br.edu.ifba.as.entidades.enums.SituacaoCasa;
 import br.edu.ifba.as.entidades.formulario.*;
-import br.edu.ifba.as.entidades.usuario.Usuario;
 import br.edu.ifba.as.rn.*;
 import java.io.Serializable;
 import java.util.List;
@@ -55,18 +54,6 @@ public class AlunoBean implements Serializable{
         System.out.println("salvou!");
     }
 
-    public void preCadastro(){
-        Usuario usuario = new Usuario();
-        AlunoRN alunoRN = new AlunoRN();
-        UsuarioRN usuarioRN = new UsuarioRN();
-        
-        usuario.setAtivo(Boolean.FALSE);
-        usuarioRN.salvar(usuario);
-        aluno.setUsuario(usuario);
-        alunoRN.salvar(aluno);
-        System.out.println("Aluno pre cadastrado");
-    }
-    
     public void salvarDependenciasAluno(Aluno aluno){
         // ATENÇÂO: A ordem dessas operações deve ser realizada exatamente do jeito que está! 
         BolsasAuxilioRN bolsasAuxilioRN = new BolsasAuxilioRN();

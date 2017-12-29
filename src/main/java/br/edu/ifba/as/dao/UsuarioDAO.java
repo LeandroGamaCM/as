@@ -12,10 +12,16 @@ public class UsuarioDAO{
     public void setSessao(Session sessao) {
         this.sessao = sessao;
     }
-
+    // select u from Usuario u, Aluno a where u.usuario = a.usuario AND a.aluno = :codAluno
+    // SELECT * FROM Employee e INNER JOIN Team t ON e.Id_team=t.Id_team
+    // select e from Employee e inner join e.team
+    // SELECT * FROM Employee e, Team t WHERE e.Id_team=t.Id_team
     public Usuario buscarPorAluno(Integer codAluno){
-        String hql = "select u from Usuario u, Aluno a where u.usuario = a.usuario AND a.aluno = :codAluno";
+        System.out.println("Executa antes da Query");
+        String hql = "select u from Usuario u inner join u.Aluno";
+        System.out.println("Executa depois da Query");
         Query c = this.sessao.createQuery(hql);
+        System.out.println("Lista size: " + c.list().size());
         c.setString("codAluno", codAluno.toString());
         return (Usuario) c.uniqueResult();
     }
@@ -32,17 +38,10 @@ public class UsuarioDAO{
         return this.sessao.createCriteria(Usuario.class).list();
     }
     public void salvar(Usuario usuario){
-        sessao.save(usuario);
-    }
-    public void atualizar(Usuario usuario){
-        if(usuario.getPermissao() == null || usuario.getPermissao().size() == 0){
-            Usuario usuarioPermissao = this.carregar(usuario.getUsuario());
-            usuario.setPermissao(usuarioPermissao.getPermissao());
-            this.sessao.evict(usuarioPermissao);
-        }
-        this.sessao.update(usuario);
+        sessao.saveOrUpdate(usuario);
     }
     public void excluir(Usuario usuario){
         sessao.delete(usuario);
-    }    
+    }
+    
 }

@@ -11,6 +11,7 @@
 <!-- Mudar as configurações de acordo do o que for necessário -->
     <http auto-config="true">
         <intercept-url pattern="/adm/**" access="ROLE_ADMINISTRADOR"/>
+        <intercept-url pattern="/aluno/**" access="ROLE_USUARIO"/>
         <form-login login-page="/loginsemcss.jsf"
         />
         <logout/>
@@ -24,7 +25,7 @@
             <jdbc-user-service data-source-ref="asbdDataSource"
             authorities-by-username-query="SELECT u.login, p.permissao
                                         FROM Usuario u, usuario_permissao p
-                                        WHERE u.codigo = p.usuario AND u.login = ?"
+                                        WHERE u.cod_usuario = p.usuario AND u.login = ?"
             users-by-username-query="SELECT login, senha, ativo FROM Usuario WHERE login = ?" />
         </authentication-provider>
     </authentication-manager>

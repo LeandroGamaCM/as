@@ -13,7 +13,16 @@ public class UsuarioRN {
         this.usuarioDAO = DAOFactory.criarUsuarioDAO();
     }
     public void salvar(Usuario usuario){
-        this.usuarioDAO.salvar(usuario);
+        Integer codigo = usuario.getUsuario();
+        if(codigo == null || codigo == 0){
+            usuario.getPermissao().add("ROLE_USUARIO");
+            this.usuarioDAO.salvar(usuario);
+        }else{
+            this.usuarioDAO.salvar(usuario);
+        }
+    }
+    public void atualizar(Usuario usuario){
+        this.usuarioDAO.atualizar(usuario);
     }
     public void excluir(Usuario usuario){
         this.usuarioDAO.excluir(usuario);

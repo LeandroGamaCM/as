@@ -19,7 +19,6 @@
 
                     <h2 class="form-signin-heading">PAAE</h2>
                     
-                    <h:form id="formLogin">
                         <p:panelGrid rendered="#{loginBean.preCadastro}">
                             <div class="form-row">
 <!-- Colocar o validador-->
@@ -29,16 +28,15 @@
                                 <p:inputText placeholder="CPF" value="#{loginBean.cpfPagina}"/>
                             </div>
 
-
 <!--                                <p:growl id="growl" life="2000" /> Ver o que isso faz-->
-<p:commandButton value="Verificar dados" update="@form" actionListener="#{loginBean.verificaExistencia()}" styleClass="ui-priority-primary" />
+                            <p:commandButton value="Verificar dados" update="@form" action="#{loginBean.verificaExistencia()}" styleClass="ui-priority-primary" />
                         </p:panelGrid>
                         
                         <p:panelGrid rendered="#{loginBean.cadastro}">
                             <h1>Cadastro</h1>
                             <div class="form-row">
 <!-- Colocar o validador-->
-                                <p:inputText placeholder="#{loginBean.nomePagina}" value="Nome Completo" requiredMessage="teste" validatorMessage="Ex. André Medeiros dos Santos"/>
+<p:inputText placeholder="Nome completo" value="#{loginBean.nomePagina}" requiredMessage="teste" validatorMessage="Ex. André Medeiros dos Santos"/>
                             </div>
                             <div class="form-row">
                                 <p:inputText placeholder="CPF" value="#{loginBean.cpfPagina}"/>
@@ -49,17 +47,15 @@
                             </div>
 
                             <div class="form-row">
+<!--Validar senha. Deve ser feito em tempo real-->
                                 <p:password match="id_password2" id="id_password" value="#{loginBean.senhaPagina}" validatorMessage="As senhas não conferem!" placeholder="Senha" feedback="true" promptLabel="Digite uma senha segura" goodLabel="Boa" weakLabel="Razoável" strongLabel="Excelente" />
                                 <p:password match="id_password2" id="id_password2" value="#{loginBean.verificaSenhaPagina}" placeholder="Confirmar Senha" />
-                            </div>                            
-                                <p:commandButton icon="ui-icon-check" type="submit" value="Verificar dados" id="salvar" update="@form" actionListener="#{loginBean.salvar()}" styleClass="ui-priority-primary" />
+                            </div>  
+<!--Voltar pra tela de Login e mostrar mensagem (Confirmar email?)-->
+                                <p:commandButton icon="ui-icon-check" type="submit" value="Cadastrar-se" id="salvar" update="@form" actionListener="#{loginBean.salvar()}" styleClass="ui-priority-primary" />
                         </p:panelGrid>
-                    </h:form>
 
                 </h:form>
-
-
-                
 
                 <div class="row clearfix" id="rodapeLogin">
                     <div class="col-md-12 column">

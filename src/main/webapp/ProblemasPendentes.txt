@@ -18,3 +18,6 @@
 - Fazer as tabelas introduzirem elementos
 
 - Validar data
+
+- VER ESSA LINHA E PARECEIDAS NOS TEMPLATES
+     <a href="index.jsf"><img id="j_idt219" src="imagens/logoRodape.png" alt="" /></a>

@@ -1,5 +1,7 @@
 package br.ifba.edu.as.bean;
 
+import br.edu.ifba.as.entidades.enums.ComQuemMora;
+import br.edu.ifba.as.entidades.enums.SituacaoCasa;
 import br.edu.ifba.as.entidades.formulario.*;
 import br.edu.ifba.as.rn.*;
 import java.io.Serializable;
@@ -207,7 +209,110 @@ public class AlunoBean implements Serializable{
             }            
         }
     }
+    
+    public boolean verificaSelectedSustentadoresPM(){
+        int i;
+        if(selectedSustentadores != null){
+            for(i=0;i<selectedSustentadores.length;i++){
+                if("pm".equals(selectedSustentadores[i]))
+                    return true;
+            }
+        }
+            return false;
+    }
+    
+    public boolean verificaSelectedSustentadoresP(){
+        int i;
+        if(selectedSustentadores != null){
+            for(i=0;i<selectedSustentadores.length;i++){
+                if("p".equals(selectedSustentadores[i]))
+                    return true;
+            }
+        }
+        return false;
+    }
+    public boolean verificaSelectedSustentadoresM(){
+        int i;
+        if(selectedSustentadores != null){
+            for(i=0;i<selectedSustentadores.length;i++){
+                if("m".equals(selectedSustentadores[i]))
+                    return true;
+            }
+        }
+        return false;
+    }
+    public boolean verificaSelectedSustentadoresN(){
+        int i;
+        if(selectedSustentadores != null){
+            for(i=0;i<selectedSustentadores.length;i++){
+                if("n".equals(selectedSustentadores[i]))
+                    return true;
+            }
+        }
+        return false;        
+    }
 
+    public boolean verificaSelectedSustentadoresOP(){
+        int i;
+        if(selectedSustentadores != null){
+            for(i=0;i<selectedSustentadores.length;i++){
+                if("op".equals(selectedSustentadores[i]))
+                    return true;
+            }
+        }
+        return false;        
+    }
+
+    public boolean verificaSelectedSustentadoresOM(){
+        int i;
+        if(selectedSustentadores != null){
+            for(i=0;i<selectedSustentadores.length;i++){
+                if("om".equals(selectedSustentadores[i]))
+                    return true;
+            }
+        }
+        return false;        
+    }
+    public boolean verificaMoraComOutro(){
+        if(situacaoResidencial.getComQuemMora() == null){
+            return false;
+        }else{
+            if(situacaoResidencial.getComQuemMora().equals(ComQuemMora.Outro))
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean verificaCasaAlugada(){
+        if(situacaoResidencial.getComQuemMora() == null){
+            return false;
+        }else{
+            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Alugada))
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean verificaCasaCedida(){
+        if(situacaoResidencial.getComQuemMora() == null){
+            return false;
+        }else{
+            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Cedida))
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean verificaCasaOutro(){
+        if(situacaoResidencial.getComQuemMora() == null){
+            return false;
+        }else{
+            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Outro))
+                return true;
+        }
+        return false;
+    }
+    
     
 // Getters e Setters
 

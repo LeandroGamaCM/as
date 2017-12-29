@@ -34,6 +34,7 @@ public class Aluno implements Serializable {
     private String nome;
     private String apelido;
     private Integer telefone;
+    private Integer celular;
     
     @Column(name = "data_nascimento", updatable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -157,6 +158,14 @@ public class Aluno implements Serializable {
 
     public void setTelefone(Integer telefone) {
         this.telefone = telefone;
+    }
+
+    public Integer getCelular() {
+        return celular;
+    }
+
+    public void setCelular(Integer celular) {
+        this.celular = celular;
     }
 
     public Date getDataNascimento() {
@@ -298,30 +307,31 @@ public class Aluno implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.aluno);
-        hash = 37 * hash + Objects.hashCode(this.cpf);
-        hash = 37 * hash + Objects.hashCode(this.rg);
-        hash = 37 * hash + Objects.hashCode(this.email);
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        hash = 37 * hash + Objects.hashCode(this.apelido);
-        hash = 37 * hash + Objects.hashCode(this.telefone);
-        hash = 37 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 37 * hash + Objects.hashCode(this.sexo);
-        hash = 37 * hash + Objects.hashCode(this.estadoCivil);
-        hash = 37 * hash + Objects.hashCode(this.usuario);
-        hash = 37 * hash + Objects.hashCode(this.bolsas_auxilio);
-        hash = 37 * hash + Objects.hashCode(this.despesas_campus);
-        hash = 37 * hash + Objects.hashCode(this.informacoes_curriculares);
-        hash = 37 * hash + Objects.hashCode(this.condicao_manutencao);
-        hash = 37 * hash + Objects.hashCode(this.situacao_residencial);
-        hash = 37 * hash + Objects.hashCode(this.endereco);
-        hash = 37 * hash + Objects.hashCode(this.ocupacao);
-        hash = 37 * hash + Objects.hashCode(this.dependentes);
-        hash = 37 * hash + Objects.hashCode(this.conta);
-        hash = 37 * hash + Objects.hashCode(this.residencia);
-        hash = 37 * hash + Objects.hashCode(this.familia);
-        hash = 37 * hash + Objects.hashCode(this.formulario);
-        hash = 37 * hash + Objects.hashCode(this.bolsa);
+        hash = 83 * hash + Objects.hashCode(this.aluno);
+        hash = 83 * hash + Objects.hashCode(this.cpf);
+        hash = 83 * hash + Objects.hashCode(this.rg);
+        hash = 83 * hash + Objects.hashCode(this.email);
+        hash = 83 * hash + Objects.hashCode(this.nome);
+        hash = 83 * hash + Objects.hashCode(this.apelido);
+        hash = 83 * hash + Objects.hashCode(this.telefone);
+        hash = 83 * hash + Objects.hashCode(this.celular);
+        hash = 83 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 83 * hash + Objects.hashCode(this.sexo);
+        hash = 83 * hash + Objects.hashCode(this.estadoCivil);
+        hash = 83 * hash + Objects.hashCode(this.usuario);
+        hash = 83 * hash + Objects.hashCode(this.bolsas_auxilio);
+        hash = 83 * hash + Objects.hashCode(this.despesas_campus);
+        hash = 83 * hash + Objects.hashCode(this.informacoes_curriculares);
+        hash = 83 * hash + Objects.hashCode(this.condicao_manutencao);
+        hash = 83 * hash + Objects.hashCode(this.situacao_residencial);
+        hash = 83 * hash + Objects.hashCode(this.endereco);
+        hash = 83 * hash + Objects.hashCode(this.ocupacao);
+        hash = 83 * hash + Objects.hashCode(this.dependentes);
+        hash = 83 * hash + Objects.hashCode(this.conta);
+        hash = 83 * hash + Objects.hashCode(this.residencia);
+        hash = 83 * hash + Objects.hashCode(this.familia);
+        hash = 83 * hash + Objects.hashCode(this.formulario);
+        hash = 83 * hash + Objects.hashCode(this.bolsa);
         return hash;
     }
 
@@ -356,6 +366,9 @@ public class Aluno implements Serializable {
             return false;
         }
         if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.celular, other.celular)) {
             return false;
         }
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
@@ -411,5 +424,6 @@ public class Aluno implements Serializable {
         }
         return true;
     }
+
 
 }

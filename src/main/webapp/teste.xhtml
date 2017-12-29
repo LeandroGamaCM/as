@@ -39,7 +39,7 @@
                             </h:panelGrid>
 
                             <h:panelGrid width="100%" columns="4" columnClasses="label3, value3, label4, value4">
-                                <p:outputLabel style="width: 100%" value="Apelido: " for="apelido" />
+                                <p:outputLabel value="Apelido: " for="apelido" />
                                 <p:inputText style="width: 100%" id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
 
                                <p:outputLabel style="float: right; margin-left: 20px" value="Data de Nascimento: " for="date" />                                    
@@ -81,7 +81,7 @@
                                        <f:selectItem itemLabel="Outro:" itemValue="o" />
                                     </p:selectManyCheckbox>
                                     <p:inputText value="#{alunoBean.dependentes.outroDependente}" label="outro"/>
-                                    <p:effect event="load" type="pulsate" />
+<!--                                    <p:effect event="load" type="pulsate" />-->
                                 </p:panel>
                                 </p:outputPanel>
                         </p:panel>  

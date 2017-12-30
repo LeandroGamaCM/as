@@ -6,14 +6,14 @@
 
     <h:head>
         <title>PAAE - Cadastro</title>
-        <link rel="stylesheet" href="css/estiloLogin.css" type="text/css"/>
-        <link rel="stylesheet" href="css/temaPrimefaces.css" type="text/css"/>
+        <h:outputStylesheet library="css" name="estiloLogin.css" />
+        <h:outputStylesheet library="css" name="temaPrimefaces.css" />
     </h:head>
 
     <h:body id="ground">
         <div class="container center">
             <div id="content">
-                <h1><img id="logo" src="imagens/logoIFBA150px.png" alt="Login" usemap="#mapa_figuras" border="0"/></h1>
+                <h1><h:graphicImage library="imagens" name="logoIFBA150px.png"/></h1>
                 <h:form class="form-signin">
                     <p:messages id="messages" showDetail="true"  autoUpdate="true" />
 

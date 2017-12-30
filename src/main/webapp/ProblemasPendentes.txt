@@ -22,5 +22,6 @@
 
 -Fazer a função do Esqueci a senha
 
-O SSL foi desabilitado (Connecting Securely Using SSL). Perguntar quando for implementar o programa no servidor do IFBA se é pra colocar
+-O SSL foi desabilitado (Connecting Securely Using SSL). Perguntar quando for implementar o programa no servidor do IFBA se é pra colocar
 
+-Adicionar restricoes de acesso pra pastas de arquivos de template e resources

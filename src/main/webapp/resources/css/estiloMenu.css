@@ -2,6 +2,15 @@
 .layout-wrapper .layout-sidebar.layout-sidebar-active {
     left: 0;
 }
+.toggleMenu {
+    left: -180px !important;
+}
+.toggleMenu2{
+    margin-left: 60px !important;
+}
+.toggleMenu3{
+    width: calc(100% - 60px) !important;
+}
 .layout-wrapper .layout-sidebar {
     width: 240px;
     height: 100%;
@@ -128,27 +137,49 @@ li {
     top: 50%;
     margin-top: -10px;
 }
-body .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: 'liga';
-}
 .layout-wrapper .layout-sidebar .layout-menu li > a > .menuitem-text {
     display: inline-block;
     max-width: 145px;
     word-break: break-all;
 }
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li.profile-item > a:hover .profile-image-wrapper {
+    border-color: limegreen; 
+}
+.layout-wrapper .layout-sidebar .layout-menu li > a:hover {
+    background-color: #E0E0E0;
+    color: #28BF41;
+}
+.layout-wrapper .layout-sidebar .layout-menu li > a:hover i {
+    color: #28BF41; 
+}
+.layout-wrapper .layout-sidebar .layout-menu > li > a {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px; 
+}
+
+/*.layout-wrapper .layout-sidebar .layout-menu > li.active-menuitem > a {
+    color: #ffffff;
+    background-color: #43A047;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+    -webkit-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(60, 72, 88, 0.3), 0 7px 10px -5px rgba(60, 72, 88, 0.1);
+    -moz-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(60, 72, 88, 0.3), 0 7px 10px -5px rgba(60, 72, 88, 0.1);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(60, 72, 88, 0.3), 0 7px 10px -5px rgba(60, 72, 88, 0.1);
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li.active-menuitem > a {
+    color: #43A047;
+}
+.layout-wrapper .layout-sidebar .layout-menu > li > a {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}*/

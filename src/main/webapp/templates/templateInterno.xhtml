@@ -13,11 +13,26 @@
         <h:outputStylesheet library="css" name="estiloConteudo.css" />
         <h:outputStylesheet library="css" name="estiloRodape.css" />
         <h:outputStylesheet library="css" name="temaPrimefaces.css" />
-        <title><ui:insert name="titulo">Titulo</ui:insert></title>
+        <title><ui:insert name="titulo">Título</ui:insert></title>        
+        <script>
+            function resp() {
+                var clique = document.getElementById("btn-menu");
+                var menuLateral = document.getElementById("menu-lateral");
+                var menuLateral2 = document.getElementById("menu-lateral2");
+                var menuLateral3 = document.getElementById("menu-lateral3");
+
+                clique.onclick = function (e) {
+                    e.preventDefault();
+                    menuLateral.classList.toggle('toggleMenu');
+                    menuLateral2.classList.toggle('toggleMenu2');
+                    menuLateral3.classList.toggle('toggleMenu3');
+                };
+            }
+        </script>  
     </h:head>
-    <h:body class="hidden-overflow">
+    <h:body class="hidden-overflow">        
         <div class="layout-wrapper layout-wrapper-static layout-wrapper-active">
-            <div class="layout-sidebar layout-sidebar-active">
+            <div class="layout-sidebar layout-sidebar-active" id="menu-lateral">                
                 <div class="sidebar-logo">
                     <ui:insert name="logotipo">
                         <ui:include src="componenteLogotipo.xhtml"/>
@@ -29,8 +44,8 @@
                     </ui:insert>
                 </div>
             </div>
-            <div class="layout-main">
-                <div class="layout-topbar">                    
+            <div class="layout-main" id="menu-lateral2">
+                <div class="layout-topbar" id="menu-lateral3">                    
                     <ui:insert name="cabecalho">
                         <ui:include src="componenteCabecalho.xhtml"/>
                     </ui:insert>                    

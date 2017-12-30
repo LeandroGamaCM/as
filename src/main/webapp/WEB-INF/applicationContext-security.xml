@@ -10,9 +10,9 @@
    
 <!-- Mudar as configurações de acordo do o que for necessário -->
     <http auto-config="true">
-        <intercept-url pattern="/adm/**" access="ROLE_ADMINISTRADOR"/>
-        <intercept-url pattern="/aluno/**" access="ROLE_USUARIO"/>
-        <form-login login-page="/loginsemcss.jsf"
+        <intercept-url pattern="/paginas/adm/**" access="ROLE_ADMINISTRADOR"/>
+        <intercept-url pattern="/paginas/aluno/**" access="ROLE_USUARIO"/>
+        <form-login login-page="/paginas/publico/loginPage.jsf"
         />
         <logout/>
     </http>

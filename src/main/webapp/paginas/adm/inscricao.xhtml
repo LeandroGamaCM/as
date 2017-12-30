@@ -4,12 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     
-    <ui:composition template="view/templateInterno.xhtml">
+    <ui:composition template="/templates/templateInterno.xhtml">
         <ui:define name="titulo">
-            PAAE - Usuários
+            PAAE - Inscrição
         </ui:define>
         <ui:define name="conteudo">
-            <ui:include src="view/componenteUsuario.xhtml"/>
+            <ui:include src="/templates/componenteInscricao.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>
+

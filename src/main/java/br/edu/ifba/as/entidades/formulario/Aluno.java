@@ -105,6 +105,10 @@ public class Aluno implements Serializable {
     @JoinColumn(name = "cod_bolsa")
     private Bolsa bolsa;
 
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "cod_turma")
+    private Turma turma;
+
     public Integer getAluno() {
         return aluno;
     }
@@ -305,34 +309,43 @@ public class Aluno implements Serializable {
         this.bolsa = bolsa;
     }
 
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.aluno);
-        hash = 67 * hash + Objects.hashCode(this.cpf);
-        hash = 67 * hash + Objects.hashCode(this.rg);
-        hash = 67 * hash + Objects.hashCode(this.email);
-        hash = 67 * hash + Objects.hashCode(this.nome);
-        hash = 67 * hash + Objects.hashCode(this.apelido);
-        hash = 67 * hash + Objects.hashCode(this.telefone);
-        hash = 67 * hash + Objects.hashCode(this.celular);
-        hash = 67 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 67 * hash + Objects.hashCode(this.sexo);
-        hash = 67 * hash + Objects.hashCode(this.estadoCivil);
-        hash = 67 * hash + Objects.hashCode(this.usuario);
-        hash = 67 * hash + Objects.hashCode(this.bolsas_auxilio);
-        hash = 67 * hash + Objects.hashCode(this.despesas_campus);
-        hash = 67 * hash + Objects.hashCode(this.informacoes_curriculares);
-        hash = 67 * hash + Objects.hashCode(this.condicao_manutencao);
-        hash = 67 * hash + Objects.hashCode(this.situacao_residencial);
-        hash = 67 * hash + Objects.hashCode(this.endereco);
-        hash = 67 * hash + Objects.hashCode(this.ocupacao);
-        hash = 67 * hash + Objects.hashCode(this.dependentes);
-        hash = 67 * hash + Objects.hashCode(this.conta);
-        hash = 67 * hash + Objects.hashCode(this.residencia);
-        hash = 67 * hash + Objects.hashCode(this.familia);
-        hash = 67 * hash + Objects.hashCode(this.formulario);
-        hash = 67 * hash + Objects.hashCode(this.bolsa);
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.aluno);
+        hash = 53 * hash + Objects.hashCode(this.cpf);
+        hash = 53 * hash + Objects.hashCode(this.rg);
+        hash = 53 * hash + Objects.hashCode(this.email);
+        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + Objects.hashCode(this.apelido);
+        hash = 53 * hash + Objects.hashCode(this.telefone);
+        hash = 53 * hash + Objects.hashCode(this.celular);
+        hash = 53 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 53 * hash + Objects.hashCode(this.sexo);
+        hash = 53 * hash + Objects.hashCode(this.estadoCivil);
+        hash = 53 * hash + Objects.hashCode(this.usuario);
+        hash = 53 * hash + Objects.hashCode(this.bolsas_auxilio);
+        hash = 53 * hash + Objects.hashCode(this.despesas_campus);
+        hash = 53 * hash + Objects.hashCode(this.informacoes_curriculares);
+        hash = 53 * hash + Objects.hashCode(this.condicao_manutencao);
+        hash = 53 * hash + Objects.hashCode(this.situacao_residencial);
+        hash = 53 * hash + Objects.hashCode(this.endereco);
+        hash = 53 * hash + Objects.hashCode(this.ocupacao);
+        hash = 53 * hash + Objects.hashCode(this.dependentes);
+        hash = 53 * hash + Objects.hashCode(this.conta);
+        hash = 53 * hash + Objects.hashCode(this.residencia);
+        hash = 53 * hash + Objects.hashCode(this.familia);
+        hash = 53 * hash + Objects.hashCode(this.formulario);
+        hash = 53 * hash + Objects.hashCode(this.bolsa);
+        hash = 53 * hash + Objects.hashCode(this.turma);
         return hash;
     }
 
@@ -423,8 +436,11 @@ public class Aluno implements Serializable {
         if (!Objects.equals(this.bolsa, other.bolsa)) {
             return false;
         }
+        if (!Objects.equals(this.turma, other.turma)) {
+            return false;
+        }
         return true;
     }
 
-
+    
 }

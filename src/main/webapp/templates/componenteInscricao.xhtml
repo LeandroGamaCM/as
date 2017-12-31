@@ -24,7 +24,6 @@
                                 <p:outputLabel style="width: 100%; margin-left: 20px;" for="cpf" value="CPF: "/>
                                 <p:inputText style="width: 100%" id="cpf" value="#{alunoBean.aluno.cpf}" label="CPF"/>
                             </h:panelGrid>
-
                             
                             <h:panelGrid style="margin-top: 7px" width="100%" columns="6" columnClasses="col10, col11, col12, col13, col14, col15">
                                 <p:outputLabel style="width: 100%" value="Apelido: " for="apelido" />
@@ -56,34 +55,30 @@
                                     <f:selectItem itemLabel="Viúvo(a)" itemValue="VIUVO" />                                  
                                 </p:selectOneMenu>                                
                             </h:panelGrid>  
-<!-- PERGUTAR PRA MIRELA SE DEVE COLOCAR ISSO. Com isso, precisa de turno?-->
-<!--                                <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Modalidade: " for="modalidade" />
-                                <p:selectOneMenu style="width: 100%" id="modalidade">COLOCAR O VALUE 
-                                    <f:selectItem itemLabel="Selecione..." />COLOCAR O ITEMVALUE 
-                                    <f:selectItem itemLabel="Integrado"/>                                   
-                                    <f:selectItem itemLabel="Superior"/>                                   
-                                    <f:selectItem itemLabel="Subsequente" />                                   
-                                </p:selectOneMenu>  -->                            
                             <h:panelGrid width="100%" style="margin-top: 7px" columns="6" columnClasses="label8, value8, label9, value9, label10, value10" >
-                                <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Curso: " for="curso" />
-                                <p:selectOneMenu style="width: 100%" id="curso" value="#{alunoBean.informacoesCurriculares.curso}">
-                                    <f:selectItem itemLabel="Selecione..." />
-                                    <f:selectItem itemLabel="Biocombustíveis" itemValue="Biocombustiveis" />                                   
-                                    <f:selectItem itemLabel="Eletromecânica" itemValue="Eletromecanica" />                                   
-                                    <f:selectItem itemLabel="Informática" itemValue="Informatica" />                                   
-                                </p:selectOneMenu>  
-
-                                <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Turno: " for="turno" />
-                                <p:selectOneMenu style="width: 100%"  id="turno" value="#{alunoBean.informacoesCurriculares.turno}">
-                                    <f:selectItem itemLabel="Selecione..." />
-                                    <f:selectItem itemLabel="Matutino" itemValue="Matutino"/>                                   
-                                    <f:selectItem itemLabel="Vespertino" itemValue="Vespertino"/>                                   
-                                    <f:selectItem itemLabel="Noturno" itemValue="Noturno"/>                                   
-                                </p:selectOneMenu>  
-
-                                <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Turma: " for="turma" />
-                                <p:inputText style="width: 100%"  id="turma" value="Decidir" label="Turma"/>
-                                <!-- Resolver o problema de como seram dadas as opcoes de turmas -->
+                                <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Modalidade: " for="modalidade" />
+                                <p:selectOneMenu style="width: 100%" id="modalidade" value="#{alunoBean.turma.modalidade}">
+                                    <f:selectItem itemLabel="Selecione..."/>
+                                    <f:selectItems value="#{alunoBean.modalidades}"/>                                  
+                                    <p:ajax update="curAjax" event="change" listener="#{alunoBean.selecaoModalidade()}"/>
+                                </p:selectOneMenu> 
+                                
+                                <p:outputPanel id="curAjax" >
+                                    <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Curso: " for="curso" />
+                                    <p:selectOneMenu style="width: 100%" id="curso" value="#{alunoBean.turma.curso}" disabled="#{!alunoBean.selectedModalidade}">
+                                        <f:selectItem itemLabel="Selecione..." />
+                                        <f:selectItems value="#{alunoBean.cursos}"/>                                  
+                                        <p:ajax update="turAjax" event="change" listener="#{alunoBean.selecaoCurso()}"/>
+                                    </p:selectOneMenu>
+                                </p:outputPanel>
+                                
+                                <p:outputPanel id="turAjax">
+                                    <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Turma: " for="turma" />
+                                    <p:selectOneMenu style="width: 100%" id="turma" value="#{alunoBean.turma.nome}" disabled="#{!alunoBean.selectedCurso}">
+                                        <f:selectItem itemLabel="Selecione..."/>
+                                        <f:selectItems value="#{alunoBean.turmas}"/>                                   
+                                    </p:selectOneMenu>  
+                                </p:outputPanel>
                             </h:panelGrid>
                         </p:panel>
 <!--Validar os campos de telefone e email. Tem tag jsf pra validar campos (f:validate)-->
@@ -126,7 +121,7 @@
                             </h:panelGrid>
                         </p:panel>
 
-                        <!--Colocar Mascaras nos inputs-->
+<!--Colocar Mascaras nos inputs-->
                         <p:panel header="Dados Bancários">
                             <p:messages />                              
                             <h:panelGrid width="100%" columns="2" columnClasses="col1, col2">
@@ -164,13 +159,13 @@
                                     <f:selectItem itemLabel="Sim:" itemValue="true" />  
                                     <p:ajax update="cursoAjax" event="change"/>
                                 </p:selectOneRadio>
-                            </h:panelGrid>                             
+                            </h:panelGrid>
+                            
                             <p:outputPanel id="cursoAjax">
-<!--Criou uma borda!!!-->
-                                <p:panelGrid columns="2" rendered="#{alunoBean.informacoesCurriculares.cursoPreparatorio}">
+                                <h:panelGrid columns="2" rendered="#{alunoBean.informacoesCurriculares.cursoPreparatorio}">
                                     <p:outputLabel style="width: 100%" value="Qual? " for="curPre" />
                                     <p:inputText style="width: 100%" id="curPre" value="#{alunoBean.informacoesCurriculares.nomeCursoPreparatorio}" label="Lastname"/>
-                                </p:panelGrid>
+                                </h:panelGrid>
                             </p:outputPanel>
                         </p:panel> 
 
@@ -213,7 +208,7 @@
                                 </p:panelGrid>
                             </p:outputPanel>
                         </p:panel> 
-<!--É melhor colocar em uma colona só-->
+
                         <p:panel header="Você possui alguma das bolsas abaixo?">
                             <p:messages />   
                             <h:panelGrid columns="1">
@@ -628,7 +623,7 @@
                             
                         </p:panel>                        
 
-                        <!-- Não seria melhor colocar pra escolher: 0, 1 ou 2, mais de 2... -->
+<!-- Não seria melhor colocar pra escolher: 0, 1 ou 2, mais de 2... -->
                         <p:panel header="Em relação à casa de sua família, especificar a quantidade de: ">
                             <p:messages /> 
                             <h:panelGrid width="100%" style="margin-top: 7px" columns="6" columnClasses="label53, value53, label54, value54, label55, value55">

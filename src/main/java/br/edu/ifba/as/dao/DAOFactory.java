@@ -103,4 +103,9 @@ public class DAOFactory {
         doencaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return doencaDAO;
     }
+    public static TurmaDAO criarTurmaDAO(){
+        TurmaDAO turmaDAO = new TurmaDAO();
+        turmaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return turmaDAO;
+    }
 }

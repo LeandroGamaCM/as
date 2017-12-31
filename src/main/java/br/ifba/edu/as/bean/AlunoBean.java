@@ -3,10 +3,11 @@ package br.ifba.edu.as.bean;
 import br.edu.ifba.as.entidades.enums.ComQuemMora;
 import br.edu.ifba.as.entidades.enums.SituacaoCasa;
 import br.edu.ifba.as.entidades.formulario.*;
-import br.edu.ifba.as.entidades.usuario.Usuario;
 import br.edu.ifba.as.rn.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.*;
 import org.primefaces.event.FlowEvent;
 
@@ -32,6 +33,7 @@ public class AlunoBean implements Serializable{
     private Residencia residencia = new Residencia();
     private ResidenciaFamilia residenciaFamilia = new ResidenciaFamilia();
     private SituacaoResidencial situacaoResidencial = new SituacaoResidencial();
+    private Turma turma = new Turma();
     
     private String[] selectedDependentes;
     private String[] selectedSustentadores;
@@ -40,31 +42,34 @@ public class AlunoBean implements Serializable{
     private List<MembroFamiliar> membrosFamiliares;
     private List<Renda> rendas;
     private List<Despesa> despesas;
+    private Set<String> turmas;
+    private Set<String> cursos;
+    private Set<String> modalidades;
+    private boolean selectedModalidade = false;
+    private boolean selectedCurso = false;
 
     public String onFlowProcess(FlowEvent event) {
         return event.getNewStep();
     } 
+    @PostConstruct
+    public void init(){
+        TurmaRN turmaRN = new TurmaRN();
+        modalidades = turmaRN.listarModalidades();
+    }
 
     public void salvar(){
         AlunoRN alunoRN = new AlunoRN();
+        TurmaRN turmaRN = new TurmaRN();
+        
+        System.out.println("turma.getNome: "+ turma.getNome());
+        turma = turmaRN.buscarPorNome(turma.getNome());
+        aluno.setTurma(turma);
                      
         alunoRN.salvar(this.aluno);
 
         salvarDependenciasAluno(aluno);
         
         System.out.println("salvou!");
-    }
-
-    public void preCadastro(){
-        Usuario usuario = new Usuario();
-        AlunoRN alunoRN = new AlunoRN();
-        UsuarioRN usuarioRN = new UsuarioRN();
-        
-        usuario.setAtivo(Boolean.FALSE);
-        usuarioRN.salvar(usuario);
-        aluno.setUsuario(usuario);
-        alunoRN.salvar(aluno);
-        System.out.println("Aluno pre cadastrado");
     }
     
     public void salvarDependenciasAluno(Aluno aluno){
@@ -123,6 +128,16 @@ public class AlunoBean implements Serializable{
         System.out.println("Apagado!");
     }
     
+    public void selecaoModalidade(){
+        TurmaRN turmaRN = new TurmaRN();
+        cursos = turmaRN.listarCursos(turma.getModalidade());
+        selectedModalidade = true;
+    }
+    public void selecaoCurso(){
+        TurmaRN turmaRN = new TurmaRN();
+        turmas = turmaRN.listarTurmas(turma.getCurso());
+        selectedCurso = true;        
+    }
     
     public void setProperties(){
         setCondicaoManutencaoProperties();
@@ -481,6 +496,14 @@ public class AlunoBean implements Serializable{
         this.situacaoResidencial = situacaoResidencial;
     }
 
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
     public String[] getSelectedDependentes() {
         return selectedDependentes;
     }
@@ -535,6 +558,46 @@ public class AlunoBean implements Serializable{
 
     public void setDespesas(List<Despesa> despesas) {
         this.despesas = despesas;
+    }
+
+    public Set<String> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(Set<String> turmas) {
+        this.turmas = turmas;
+    }
+
+    public Set<String> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(Set<String> cursos) {
+        this.cursos = cursos;
+    }
+
+    public Set<String> getModalidades() {
+        return modalidades;
+    }
+
+    public void setModalidades(Set<String> modalidades) {
+        this.modalidades = modalidades;
+    }
+
+    public boolean isSelectedModalidade() {
+        return selectedModalidade;
+    }
+
+    public void setSelectedModalidade(boolean selectedModalidade) {
+        this.selectedModalidade = selectedModalidade;
+    }
+
+    public boolean isSelectedCurso() {
+        return selectedCurso;
+    }
+
+    public void setSelectedCurso(boolean selectedCurso) {
+        this.selectedCurso = selectedCurso;
     }
 
 

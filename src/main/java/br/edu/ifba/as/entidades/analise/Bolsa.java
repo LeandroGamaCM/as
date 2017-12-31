@@ -10,9 +10,6 @@ import javax.persistence.*;
 @Table(name = "bolsa")
 public class Bolsa implements Serializable {
     private static final long serialVersionUID = 7002438588384815278L;
-//    private int id;
-//    private String nome;
-//    private double valor;
 
     @Id
     @GeneratedValue

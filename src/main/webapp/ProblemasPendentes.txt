@@ -1,6 +1,3 @@
--Como que as turmas serão definidas?
-    Por exemplo, como que vão ser inseridas turmas a, b, c... (1º Info a, 1º Bio b...)
-
 -Ao clicar no botão salvar a pagina deve ser recarregada ou redirecionar pra outro lugar senão, ao clicar novamente
     haverá um conflito de objetos.
 
@@ -24,4 +21,14 @@
 
 -O SSL foi desabilitado (Connecting Securely Using SSL). Perguntar quando for implementar o programa no servidor do IFBA se é pra colocar
 
--Adicionar restricoes de acesso pra pastas de arquivos de template e resources
+-(Feito)Adicionar restricoes de acesso pra pastas de arquivos de template e resources
+    Seria melhor que elas nem fosse pra restricao do Spring. Ver se tem como colocar restricoes no web.xml
+
+-Tem que dar um jeito no status dos alunos. 
+    Por exemplo quando iniciar o periodo de inscricao todos os alunos devem estar como inativos
+
+-quando a sessao inspirar tem que recarregar a pagina automaticamente
+
+-colocar o dialog na pagina aluno
+
+-É melhor criar uma tabela pra cada turma em aluno

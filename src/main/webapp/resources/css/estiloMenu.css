@@ -2,6 +2,9 @@
 .layout-wrapper .layout-sidebar.layout-sidebar-active {
     left: 0;
 }
+.layout-wrapper .layout-sidebar.layout-sidebar-active:hover {
+    left: 0 !important;
+}
 .toggleMenu {
     left: -180px !important;
 }
@@ -10,6 +13,27 @@
 }
 .toggleMenu3{
     width: calc(100% - 60px) !important;
+}
+.btn-menu2{
+    margin-left: 240px;  
+}
+/*Responsividade do menu lateral para mobiles*/
+@media screen and (max-width: 768px) {
+    .toggleMenu {
+        left: -240px !important;
+    }
+    .toggleMenu1 {
+        left: 0px !important;
+    }
+    .toggleMenu2{
+        margin-left: 0px !important;
+    }
+    .toggleMenu3{
+        width: calc(100%) !important;
+    }   
+    .layout-wrapper .layout-sidebar.layout-sidebar-active {
+        left: -240px;
+    }
 }
 .layout-wrapper .layout-sidebar {
     width: 240px;

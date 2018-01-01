@@ -4,27 +4,39 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"> 
     <ui:composition>      
-        <a href="#" style="font-size: 24px; margin-top: 3px" onclick="resp()" class="menu-btn" id="btn-menu">
+        <a href="#" style="font-size: 24px; margin-top: 3px" class="menu-btn" onClick="obj.acionar()">
             <i class="fa fa-bars"></i>
-        </a>      
+        </a>
+        <a href="#" style="font-size: 24px; margin-top: 3px" class="menu-btn2" id="btn-menu2" onClick="obj2.acionar()">
+            <i class="fa fa-bars"></i>
+        </a> 
+        <a href="#" style="margin-top: 3px" class="topbar-menu-btn" onclick="obj4.acionar()">
+            <i class="fa fa-user-circle"></i>
+        </a>
         <div class="layout-topbar-menu-wrapper">
-            <ul class="topbar-menu animated">
-                <li class="profile-item">
-                    <a href="#">       
+            <ul class="topbar-menu animated" id="respAnimado">
+                <li class="profile-item" id="respAnimado2">
+                    <a href="#"  onclick="obj3.acionar()">       
                         <span class="profile-image-wrapper"><h:graphicImage library="imagens" name="usuario.png" />
                         </span>                     
                         <span class="topbar-item-name profile-name">Amanda Oliveira</span>
                     </a>                    
-                    <ul class="animated">
+                    <ul class="animated" id="animado">
                         <li role="menuitem">
                             <a href="#">
-                                <i class="material-icons">O</i>
-                                <span>Perfil</span>
+                                <i class="fa fa-user" style="font-size: 20px"></i>
+                                <span>Minha Conta</span>
                             </a>
                         </li>
                         <li role="menuitem">
                             <a href="#">
-                                <i class="material-icons">O</i>
+                                <i class="fa fa-users" style="font-size: 15px"></i>
+                                <span>Usuários</span>
+                            </a>
+                        </li>                        
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-power-off" style="font-size: 19px"></i>
                                 <span>Sair</span>
                             </a>
                         </li>

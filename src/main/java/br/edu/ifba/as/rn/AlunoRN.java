@@ -30,5 +30,8 @@ public class AlunoRN {
     public List<Aluno> buscarPorNome(String nome){
         return this.alunoDAO.buscarPorNome(nome);
     }
+    public List<Aluno> buscarPorTurma(Integer codTurma){
+        return this.alunoDAO.buscarPorTurma(codTurma);
+    }
 
 }

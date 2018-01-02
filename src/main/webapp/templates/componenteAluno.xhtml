@@ -66,19 +66,19 @@
                         </p:selectOneRadio> 
                     </h:panelGrid>
 
-                    <p:dataTable var="aluno" value="#{telaAlunosBean.alunos}" resizableColumns="true">
+                    <p:dataTable var="aluno" value="#{telaAlunosBean.alunos}">
                         <f:facet name="header">
                                 <h:outputText value="Alunos" />
                         </f:facet>
+<!--                        <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}" update=":form:msgs" />
+                        <p:ajax event="rowUnselect" listener="#{dtSelectionView.onRowUnselect}" update=":form:msgs" />-->
+<!--                        <p:subTable var="aluno" value="">
+                            <f:facet name="header">
+                                <h:outputText value="" />
+                            </f:facet>-->
                             <p:column headerText="Nome">
                                 <h:outputText value="#{aluno.nome}" />                        
                             </p:column>
-<!--                        <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}" update=":form:msgs" />
-                        <p:ajax event="rowUnselect" listener="#{dtSelectionView.onRowUnselect}" update=":form:msgs" />-->
-                        <p:subTable var="turma" value="#{aluno.turma}">
-                            <f:facet name="header">
-                                <h:outputText value="Turma" />
-                            </f:facet>
                              
                             <p:column headerText="CPF">
                                 <h:outputText value="#{aluno.cpf}" />
@@ -92,10 +92,10 @@
                                 <h:outputText value="#{aluno}º ano" />
                             </p:column>-->
 
-                            <p:column headerText="Bolsa Escolhida">
-                                <h:outputText value="#{aluno.formulario.primeiraPreferencia}" />
+<!--                            <p:column headerText="Bolsa Escolhida">
+                                <h:outputText value="" />
                             </p:column>
-                        </p:subTable>
+                        </p:subTable>-->
                     </p:dataTable>
 
                 </p:panel>

@@ -53,17 +53,17 @@ public class AlunoBean implements Serializable{
     } 
     @PostConstruct
     public void init(){
-        TurmaRN turmaRN = new TurmaRN();
-        modalidades = turmaRN.listarModalidades();
+//        TurmaRN turmaRN = new TurmaRN();
+//        modalidades = turmaRN.listarModalidades();
     }
 
     public void salvar(){
         AlunoRN alunoRN = new AlunoRN();
-        TurmaRN turmaRN = new TurmaRN();
-        
-        System.out.println("turma.getNome: "+ turma.getNome());
-        turma = turmaRN.buscarPorNome(turma.getNome());
-        aluno.setTurma(turma);
+//        TurmaRN turmaRN = new TurmaRN();
+//        
+//        System.out.println("turma.getNome: "+ turma.getNome());
+//        turma = turmaRN.buscarPorNome(turma.getNome());
+//        aluno.setTurma(turma);
                      
         alunoRN.salvar(this.aluno);
 
@@ -130,12 +130,12 @@ public class AlunoBean implements Serializable{
     
     public void selecaoModalidade(){
         TurmaRN turmaRN = new TurmaRN();
-        cursos = turmaRN.listarCursos(turma.getModalidade());
+//        cursos = turmaRN.listarCursos(turma.getModalidade());
         selectedModalidade = true;
     }
     public void selecaoCurso(){
         TurmaRN turmaRN = new TurmaRN();
-        turmas = turmaRN.listarTurmas(turma.getCurso());
+//        turmas = turmaRN.listarTurmas(turma.getCurso());
         selectedCurso = true;        
     }
     

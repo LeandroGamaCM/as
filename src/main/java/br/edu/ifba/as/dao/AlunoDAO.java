@@ -4,6 +4,7 @@ import br.edu.ifba.as.entidades.formulario.Aluno;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class AlunoDAO{
     private Session sessao;
@@ -29,7 +30,7 @@ public class AlunoDAO{
     public List<Aluno> buscarPorNome(String nome){
         String hql = "select u from Aluno u where u.nome = :nome";
         Query c = this.sessao.createQuery(hql);
-        c.setString("nome", nome.toString());
+        c.setString("nome", nome);
         return c.list();        
     }
     
@@ -39,5 +40,10 @@ public class AlunoDAO{
         c.setString("cpf", cpf.toString());
         return (Aluno) c.uniqueResult();
     }    
+
+// cod_turma ou codTurma?
+    public List<Aluno> buscarPorTurma(Integer codTurma){
+        return this.sessao.createCriteria(Aluno.class).add(Restrictions.eq("cod_turma", codTurma)).list();
+    }
     
 }

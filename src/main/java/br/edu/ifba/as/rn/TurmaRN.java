@@ -4,9 +4,7 @@ import br.edu.ifba.as.dao.TurmaDAO;
 import br.edu.ifba.as.dao.DAOFactory;
 import br.edu.ifba.as.entidades.formulario.Turma;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class TurmaRN {
     private TurmaDAO turmaDAO;
@@ -21,19 +19,16 @@ public class TurmaRN {
     public void excluir(Turma turma){
         this.turmaDAO.excluir(turma);
     }
-    public Turma buscarPorNome(String turma){
-        return this.turmaDAO.buscarPorNome(turma);
-    }
     public Turma carregar(Integer codigo){
         return this.turmaDAO.carregar(codigo);
     }
     public List<Turma> listar(){
         return this.turmaDAO.listar();
     }
-    public Set<String> listarTurmas(String curso){
-        List<Turma> turmas = this.turmaDAO.buscarPorCurso(curso);
+    public List<String> listarTurmas(String modalidade, String curso){
+        List<Turma> turmas = this.turmaDAO.listarTurmas(modalidade, curso);
         int i;
-        Set<String> nomes = new HashSet<>();
+        List<String> nomes = new ArrayList<>();
         
         if(turmas == null || turmas.isEmpty()){
             return null;
@@ -44,10 +39,10 @@ public class TurmaRN {
         }    
         return nomes;
     }
-    public Set<String> listarCursos(String modalidade){
-        List<Turma> turmas = this.turmaDAO.buscarPorModalidade(modalidade);
+    public List<String> listarCursos(String modalidade){
+        List<Turma> turmas = this.turmaDAO.listarCursos(modalidade);
         int i;
-        Set<String> cursos = new HashSet<>();
+        List<String> cursos = new ArrayList<>();
         
         if(turmas == null || turmas.isEmpty()){
             return null;
@@ -59,10 +54,10 @@ public class TurmaRN {
         return cursos;
 
     }
-    public Set<String> listarModalidades(){
+    public List<String> listarModalidades(){
         List<Turma> turmas = listar();
         int i;
-        Set<String> modalidades = new HashSet<>();
+        List<String> modalidades = new ArrayList<>();
         
         if(turmas == null || turmas.isEmpty()){
             return null;
@@ -73,4 +68,8 @@ public class TurmaRN {
         }    
         return modalidades;
     }
+    public Turma buscarTurma(String modalidade, String curso, String turma){
+        return this.turmaDAO.buscarTurma(modalidade, curso, turma);
+    }
+    
 }

@@ -1,13 +1,14 @@
 package br.ifba.edu.as.bean;
 
-import br.edu.ifba.as.entidades.formulario.*;
+import br.edu.ifba.as.entidades.formulario.Aluno;
+import br.edu.ifba.as.entidades.formulario.Turma;
 import br.edu.ifba.as.entidades.usuario.Usuario;
 import br.edu.ifba.as.rn.AlunoRN;
 import br.edu.ifba.as.rn.TurmaRN;
 import br.edu.ifba.as.rn.UsuarioRN;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -19,17 +20,77 @@ public class TelaAlunosBean implements Serializable{
     private Aluno novoAluno = new Aluno();
     private Turma turma = new Turma();
     private Turma novaTurma = new Turma();
+    private List<Aluno> alunos;
+    private Set<Turma> turmas;
     
     private String estadoTela = "listarPorBolsa";
     private String pesquisa;
     private String filtroCurso;
     private String filtroAno;
-    private List<Aluno> alunos;
+    int i;
+//    private ListaModalidades modalidades;
+//    private List<ListaCursos> cursos = new ArrayList<>();
+//    private List<List<ListaTurmas>> turmas = new ArrayList<>();
+//    private List<List<List<ListaAlunos>>> alunos = new ArrayList<>();  // ??? Isso não deve ser bom
     
     @PostConstruct
     public void init(){
         AlunoRN alunoRN = new AlunoRN();
         alunos = alunoRN.listar();
+        
+        for(i=0;i<alunos.size();i++){
+            TurmaRN turmaRN = new TurmaRN();
+            turmas.add(alunos.get(i).getTurma());
+        }
+// Codigo para listar todos os alunos separados por modalidade/curso/turma
+//        int i, j, k;
+//        modalidades = new ListaModalidades();
+//        
+//        if(modalidades.getModalidades() == null || modalidades.getModalidades().isEmpty()){
+//            
+//        }else{
+//            for(i=0; i<modalidades.getModalidades().size();i++){
+//                ListaCursos listaCursos = new ListaCursos(modalidades.getModalidades().get(i));
+//                cursos.add(listaCursos);
+//            }
+//            if(cursos == null || cursos.isEmpty()){
+//                
+////            }else{
+////                for(i=0;i<cursos.size(); i++){
+////                    List<ListaTurmas> listaListaTurmas = new ArrayList<>();
+////                    for(j=0;j<cursos.get(i).getCursos().size();j++){
+////                        ListaTurmas listaTurmas = new ListaTurmas(modalidades.getModalidades().get(j), cursos.get(i).getCursos().get(j));
+////                        listaListaTurmas.add(listaTurmas);
+////                    }
+////                    turmas.add(listaListaTurmas);
+////                }
+////                if(turmas == null || turmas.isEmpty()){
+////                    
+////                }else{
+////                    for(i=0; i<turmas.size(); i++){
+////                        List<List<ListaAlunos>> listaListaListaAlunos = new ArrayList<>();
+////                        
+////                        for(j=0; j<turmas.get(i).size(); j++){
+////                            List<ListaAlunos> listaListaAlunos = new ArrayList<>();
+////                            String auxModalidade = turmas.get(i).get(j).getModalidade();
+////                            String auxCurso = turmas.get(i).get(j).getCurso();
+////                            
+////                            for(k=0;k<turmas.get(i).get(j).getTurmas().size();k++){
+////                                String auxTurma = turmas.get(i).get(j).getTurmas().get(k);
+////                                TurmaRN turmaRN = new TurmaRN();
+////                                Integer auxCodTurma = turmaRN.buscarTurma(auxModalidade, auxCurso, auxTurma).getTurma();
+////
+////                                ListaAlunos listaAlunos = new ListaAlunos(auxCodTurma);
+////                                listaListaAlunos.add(listaAlunos);
+////                            }
+////                            listaListaListaAlunos.add(listaListaAlunos);
+////                        }
+////                        alunos.add(listaListaListaAlunos);
+////                    }
+////                }
+//            }
+//            
+//        }
     }    
     
     public void preCadastro(){
@@ -163,6 +224,56 @@ public class TelaAlunosBean implements Serializable{
         this.aluno = aluno;
     }
 
+    public Aluno getNovoAluno() {
+        return novoAluno;
+    }
+
+    public void setNovoAluno(Aluno novoAluno) {
+        this.novoAluno = novoAluno;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
+    public Turma getNovaTurma() {
+        return novaTurma;
+    }
+
+    public void setNovaTurma(Turma novaTurma) {
+        this.novaTurma = novaTurma;
+    }
+
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
+    public Set<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(Set<Turma> turmas) {
+        this.turmas = turmas;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+
+
     public String getEstadoTela() {
         return estadoTela;
     }
@@ -195,37 +306,6 @@ public class TelaAlunosBean implements Serializable{
         this.filtroAno = filtroAno;
     }
 
-    public Turma getTurma() {
-        return turma;
-    }
-
-    public void setTurma(Turma turma) {
-        this.turma = turma;
-    }
-
-    public List<Aluno> getAlunos() {
-        return alunos;
-    }
-
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
-    }
-
-    public Aluno getNovoAluno() {
-        return novoAluno;
-    }
-
-    public void setNovoAluno(Aluno novoAluno) {
-        this.novoAluno = novoAluno;
-    }
-
-    public Turma getNovaTurma() {
-        return novaTurma;
-    }
-
-    public void setNovaTurma(Turma novaTurma) {
-        this.novaTurma = novaTurma;
-    }
 
 
 }

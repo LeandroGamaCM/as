@@ -43,7 +43,10 @@ public class AlunoDAO{
 
 // cod_turma ou codTurma?
     public List<Aluno> buscarPorTurma(Integer codTurma){
-        return this.sessao.createCriteria(Aluno.class).add(Restrictions.eq("cod_turma", codTurma)).list();
+        String hql = "select a from Aluno a, Turma t where t.turma = a.turma AND t.turma = :codTurma";
+        Query c = this.sessao.createQuery(hql);
+        c.setString("codTurma", codTurma.toString());
+        return c.list();
     }
     
 }

@@ -6,6 +6,7 @@ import br.edu.ifba.as.entidades.enums.Turno;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -26,7 +27,7 @@ public class Turma implements Serializable{
     @Column(name = "cod_turma")
     private Integer turma;
 
-    @OneToMany(mappedBy = "turma", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "turma", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private List<Aluno> alunos;
     
     private String modalidade;

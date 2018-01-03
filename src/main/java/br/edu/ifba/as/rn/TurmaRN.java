@@ -71,5 +71,8 @@ public class TurmaRN {
     public Turma buscarTurma(String modalidade, String curso, String turma){
         return this.turmaDAO.buscarTurma(modalidade, curso, turma);
     }
+    public Turma buscarPorAluno(Integer codAluno){
+        return this.turmaDAO.buscarPorAluno(codAluno);
+    }
     
 }

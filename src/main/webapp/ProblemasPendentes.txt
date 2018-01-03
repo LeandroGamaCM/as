@@ -31,4 +31,4 @@
 
 -colocar o dialog na pagina aluno
 
--É melhor criar uma tabela pra cada turma em aluno
+- criar classes pras tabelas

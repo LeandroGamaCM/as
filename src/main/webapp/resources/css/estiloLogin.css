@@ -72,13 +72,6 @@ input {
   outline: none;
   outline-color:#28BF41;
 }
-label{
-  color: #222;
-  float: left;
-  font-size: 100%;
-  margin: 5px 0;
-  padding: 0;
-}
 form .submit-row {
   background: none transparent;
   border: 0 none;
@@ -121,11 +114,11 @@ p{
 }
 #aviso{
   text-align: center;
-  color: #347B3E;
+  color: #607D8B;
   font-family: Verdana, Tahoma;
   font-size: 11px;
   line-height: 1.45;
-  padding-bottom: 30px;
+  padding-bottom: 15px;
   margin-bottom: 0px;
 }
 #rodapeLogin, #aviso2{
@@ -152,9 +145,11 @@ strong{
 }
 .h2, h2{
   color: #5E5E5E;
-  margin-bottom: 40px;
-  margin-top: 40px;
-  font-size: 30px;
+  font-size: 25px;
+  text-align: center;
+}
+a:hover{
+    text-decoration: underline;
 }
 .h1, h1{
   margin-top: 15px;

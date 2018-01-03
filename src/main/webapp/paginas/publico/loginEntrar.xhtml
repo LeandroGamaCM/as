@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>PAAE - Cadastro</title>
+        <title>PAAE - Logar</title>
         <h:outputStylesheet library="css" name="estiloCadastroUser.css" />
         <h:outputStylesheet library="css" name="temaPrimefaces.css" />
         <h:outputStylesheet library="css" name="estiloLogin.css" />
@@ -14,42 +14,37 @@
             <div class="login-panel-header">
                 <h:graphicImage library="imagens" name="logotipoLogin.png"/>
             </div>
-            <div class="login-panel-content" style="padding: 40px 30px">
+            <div class="login-panel-content">
                 <h:form prependId="false">
                     <div class="ui-g">
                         <div class="ui-g-12">
-                            <h2 class="form-signin-heading">Cadastre-se</h2>
-                        </div>
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
-                                <p:inputText autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
-                                <p:outputLabel>Nome Completo</p:outputLabel>
-                            </span>
-                        </div>
+                            <h2 class="form-signin-heading">PAAE</h2>
+                        </div>                        
                         <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <p:inputText autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>CPF</p:outputLabel>
                             </span>
                         </div>
-                        <div class="ui-g-6">
+                        <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <p:password autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>Senha</p:outputLabel>
                             </span>
-                        </div>
-                        <div class="ui-g-6">
-                            <span class="md-inputfield">
-                                <p:password autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
-                                <p:outputLabel>Confirmar Senha</p:outputLabel>
-                            </span>
-                        </div>
+                        </div>                        
                         <div class="ui-g-12">
-                            <p:commandButton icon="fa fa-check" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                            <p:commandButton icon="fa fa-user" value="Acessar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
                         </div>
                     </div>
                 </h:form>
+                <p id="aviso">Informe os 11 números do CPF e a senha.</p>
+
+                <div class="row clearfix" id="rodapeLogin">
+                    <div class="col-md-12 column">
+                        <p style="text-align: center;" id="aviso2"><strong><a href="loginCadastro.jsf" class="acender">Primeiro acesso?</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="#" class="acender">Esqueceu a senha?</a></strong><br/></p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div> 
     </h:body>
 </html>

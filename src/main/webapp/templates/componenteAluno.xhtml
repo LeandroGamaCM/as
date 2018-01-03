@@ -68,12 +68,28 @@
                         </p:column>
                     </p:dataTable>
                 </p:panel>
+<!--_________________________________________________________________________________________________________-->
 
                 <p:panel rendered="#{telaAlunosBean.listarPorBolsa}" header="Lista de alunos">
+                        <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}">
+                            <f:facet name="header">
+                                    <h:outputText value="Alunos" />
+                            </f:facet>  
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{aluno.aluno.nome}"/>
+                            </p:column>
+                            <p:column headerText="Cpf">
+                                <h:outputText value="#{aluno.aluno.cpf}"/>
+                            </p:column>
+                            <p:column headerText="Bolsa Recebida">
+                                <h:outputText value=""/>
+                            </p:column>
 
+                        </p:dataTable>                    
+                    
                 </p:panel>
 
-
+<!--_________________________________________________________________________________________________________-->
                 <p:panel rendered="#{telaAlunosBean.listarFichas}" header="Fichas de Inscrição">
                     <h:panelGrid id="margem" columns="2" columnClasses="label, value" >
                         <h5>Filtrar por modalidade:</h5>                   

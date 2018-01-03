@@ -27,8 +27,8 @@ public class TelaAlunosBean implements Serializable{
     
     private String estadoTela = "listarFichas";
     private String pesquisa;
-    private String filtroCurso;
-    private String filtroModalidade;
+    private String filtroCurso = "todos";
+    private String filtroModalidade = "todos";
     
     private List<Turma> turmas;
 
@@ -86,11 +86,12 @@ public class TelaAlunosBean implements Serializable{
         modalidades = new HashSet<>(turmaRN.listarModalidades());
         cursos = new HashSet<>(turmaRN.listarCursos());
         alunosTabela = new ArrayList<>();
+        alunos = new ArrayList<>();
         int i;
 
         
-        if("todos".equals(filtroModalidade) || filtroModalidade == null){
-            if("tods".equals(filtroCurso) || filtroCurso == null){
+        if(filtroModalidade == null || "todos".equals(filtroModalidade)){
+            if(filtroCurso == null || "todos".equals(filtroCurso)){
                 alunos = alunoRN.listar();
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
@@ -131,6 +132,16 @@ public class TelaAlunosBean implements Serializable{
     }
 
     public void listarAlunosBolsa(){
+        AlunoRN alunoRN = new AlunoRN();
+        int i;
+        alunosTabela = new ArrayList<>();
+        alunos = alunoRN.listar();
+        if(alunos != null || !alunos.isEmpty()){
+            for(i = 0; i < alunos.size(); i++){
+                AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                alunosTabela.add(alunoTabela);
+            }
+        }        
         changeToListarPorBolsa();
         
     }

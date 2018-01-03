@@ -26,7 +26,7 @@ public class TelaAlunosBean implements Serializable{
 
     
     private String estadoTela = "listarFichas";
-    private String pesquisa;
+    private String pesquisa = "";
     private String filtroCurso = "todos";
     private String filtroModalidade = "todos";
     
@@ -145,9 +145,20 @@ public class TelaAlunosBean implements Serializable{
         changeToListarPorBolsa();
         
     }
+
     public void buscar(){
+        AlunoRN alunoRN = new AlunoRN();
+        int i;
+        alunosTabela = new ArrayList<>();
+        alunos = alunoRN.buscarCPFNomeRG(pesquisa);
+        if(alunos != null || !alunos.isEmpty()){
+            for(i = 0; i < alunos.size(); i++){
+                AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                alunosTabela.add(alunoTabela);
+            }
+        }           
+        pesquisa = "";
         changeToPesquisar();
-        
     }
     
 // Controle de Tela

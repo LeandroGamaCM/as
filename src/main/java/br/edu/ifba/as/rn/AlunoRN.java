@@ -42,4 +42,7 @@ public class AlunoRN {
     public List<Aluno> listarPorModalidadeCurso(String modalidade, String curso){
         return this.alunoDAO.listarPorModalidadeCurso(modalidade, curso);
     }
+    public List<Aluno> buscarCPFNomeRG(String valor){
+        return  this.alunoDAO.buscarCPFNomeRG(valor);
+    }    
 }

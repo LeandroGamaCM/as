@@ -166,8 +166,21 @@
 
                 </p:panel>
 
-                <p:panel rendered="#{telaAlunosBean.pesquisar}" header="Resultados da busca">                        
-                
+<!--OBS.:Só pesquisa o cpf se digitar o numero completo-->
+                <p:panel rendered="#{telaAlunosBean.pesquisar}" header="Resultados da busca">
+                        <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}">
+                            <f:facet name="header">
+                                    <h:outputText value="Alunos" />
+                            </f:facet>  
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{aluno.aluno.nome}"/>
+                            </p:column>
+                            <p:column headerText="Cpf">
+                                <h:outputText value="#{aluno.aluno.cpf}"/>
+                            </p:column>
+
+                        </p:dataTable>                    
+                    
                 </p:panel>
 
             </p:outputPanel>

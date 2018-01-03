@@ -68,4 +68,12 @@ public class AlunoDAO{
         c.setString("curso", curso);
         return c.list();        
     }
+    public List<Aluno> buscarCPFNomeRG(String valor){
+        String hql = "select a from Aluno a where a.cpf = :valor OR a.rg = :valor OR a.nome like :valor";
+        Query c = this.sessao.createQuery(hql);
+        c.setString("valor", valor);
+        c.setString("valor", valor);
+        c.setString("valor", valor+"%");
+        return c.list();        
+    }
 }

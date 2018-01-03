@@ -19,3 +19,8 @@
     display: -webkit-flex;
     display: flex;
 }
+@media screen and (max-width: 768px) {
+    .layout-wrapper-static .layout-main {
+        margin-left: 0px !important;
+    }
+}

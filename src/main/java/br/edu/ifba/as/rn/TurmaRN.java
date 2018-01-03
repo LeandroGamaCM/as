@@ -3,7 +3,9 @@ package br.edu.ifba.as.rn;
 import br.edu.ifba.as.dao.TurmaDAO;
 import br.edu.ifba.as.dao.DAOFactory;
 import br.edu.ifba.as.entidades.formulario.Turma;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TurmaRN {
@@ -37,6 +39,7 @@ public class TurmaRN {
                 nomes.add(turmas.get(i).getNome());
             }            
         }    
+        Collections.sort(nomes, Collator.getInstance());  
         return nomes;
     }
     public List<String> listarCursos(String modalidade){
@@ -51,8 +54,24 @@ public class TurmaRN {
                 cursos.add(turmas.get(i).getCurso());
             }            
         }    
+        Collections.sort(cursos, Collator.getInstance());        
         return cursos;
 
+    }
+    public List<String> listarCursos(){
+        List<Turma> turmas = listar();
+        int i;
+        List<String> cursos = new ArrayList<>();
+        
+        if(turmas == null || turmas.isEmpty()){
+            return null;
+        }else{
+            for(i=0;i<turmas.size();i++){
+                cursos.add(turmas.get(i).getCurso());
+            }            
+        }    
+        Collections.sort(cursos, Collator.getInstance());
+        return cursos;        
     }
     public List<String> listarModalidades(){
         List<Turma> turmas = listar();
@@ -66,6 +85,7 @@ public class TurmaRN {
                 modalidades.add(turmas.get(i).getModalidade());
             }            
         }    
+        Collections.sort(modalidades, Collator.getInstance());
         return modalidades;
     }
     public Turma buscarTurma(String modalidade, String curso, String turma){

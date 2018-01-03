@@ -28,7 +28,7 @@ public class TelaAlunosBean implements Serializable{
     private String estadoTela = "listarFichas";
     private String pesquisa;
     private String filtroCurso;
-    private String filtroAno;
+    private String filtroModalidade;
     
     private List<Turma> turmas;
 
@@ -37,19 +37,13 @@ public class TelaAlunosBean implements Serializable{
     private Set<String> modalidades;
     private Set<String> cursos;
     
-    private boolean selectedModalidade = false;
-    
     @PostConstruct
     public void init(){
+        TurmaRN turmaRN = new TurmaRN();
         listarFichas();
+        turmas = turmaRN.listar();
     }    
     
-    public void selecaoModalidade(){
-        TurmaRN turmaRN = new TurmaRN();
-        cursos = new HashSet<>(turmaRN.listarCursos(turma.getModalidade()));
-        selectedModalidade = true;
-    }
-
     public void preCadastro(){
         System.out.println("PreCadastro");
         System.out.println("Alno.cpf: " + novoAluno.getCpf());
@@ -90,16 +84,48 @@ public class TelaAlunosBean implements Serializable{
         AlunoRN alunoRN = new AlunoRN();
         TurmaRN turmaRN = new TurmaRN();
         modalidades = new HashSet<>(turmaRN.listarModalidades());
-        alunos = alunoRN.listar();
+        cursos = new HashSet<>(turmaRN.listarCursos());
+        alunosTabela = new ArrayList<>();
         int i;
+
         
-        if(alunos != null || !alunos.isEmpty()){
-            for(i = 0; i < alunos.size(); i++){
-                AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                alunosTabela.add(alunoTabela);
+        if("todos".equals(filtroModalidade) || filtroModalidade == null){
+            if("tods".equals(filtroCurso) || filtroCurso == null){
+                alunos = alunoRN.listar();
+                if(alunos != null || !alunos.isEmpty()){
+                    for(i = 0; i < alunos.size(); i++){
+                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                        alunosTabela.add(alunoTabela);
+                    }
+                }
+            }else{
+                alunos = alunoRN.listarPorCurso(filtroCurso);
+                if(alunos != null || !alunos.isEmpty()){
+                    for(i = 0; i < alunos.size(); i++){
+                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                        alunosTabela.add(alunoTabela);
+                    }
+                }                
             }
+        }else{
+            if(filtroCurso == null || "todos".equals(filtroCurso)){
+                alunos = alunoRN.listarPorModalidade(filtroModalidade);
+                if(alunos != null || !alunos.isEmpty()){
+                    for(i = 0; i < alunos.size(); i++){
+                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                        alunosTabela.add(alunoTabela);
+                    }
+                }
+            }else{
+                alunos = alunoRN.listarPorModalidadeCurso(filtroModalidade, filtroCurso);
+                if(alunos != null || !alunos.isEmpty()){
+                    for(i = 0; i < alunos.size(); i++){
+                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                        alunosTabela.add(alunoTabela);
+                    }
+                }
+            }            
         }
-        turmas = turmaRN.listar();
 
         changeToListarFichas();
     }
@@ -201,12 +227,20 @@ public class TelaAlunosBean implements Serializable{
         this.filtroCurso = filtroCurso;
     }
 
-    public String getFiltroAno() {
-        return filtroAno;
+    public String getFiltroModalidade() {
+        return filtroModalidade;
     }
 
-    public void setFiltroAno(String filtroAno) {
-        this.filtroAno = filtroAno;
+    public void setFiltroModalidade(String filtroModalidade) {
+        this.filtroModalidade = filtroModalidade;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
     }
 
     public List<Aluno> getAlunos() {
@@ -241,21 +275,6 @@ public class TelaAlunosBean implements Serializable{
         this.cursos = cursos;
     }
 
-    public boolean isSelectedModalidade() {
-        return selectedModalidade;
-    }
-
-    public void setSelectedModalidade(boolean selectedModalidade) {
-        this.selectedModalidade = selectedModalidade;
-    }
-
-    public List<Turma> getTurmas() {
-        return turmas;
-    }
-
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
-    }
 
 
 }

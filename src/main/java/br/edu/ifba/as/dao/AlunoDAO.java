@@ -48,5 +48,24 @@ public class AlunoDAO{
         c.setString("codTurma", codTurma.toString());
         return c.list();
     }
-    
+    public List<Aluno> listarPorModalidade(String modalidade){
+        String hql = "select a from Aluno a, Turma t where t.turma = a.turma AND t.modalidade = :modalidade";
+        Query c = this.sessao.createQuery(hql);
+        c.setString("modalidade", modalidade);
+        return c.list();
+        
+    }
+    public List<Aluno> listarPorCurso(String curso){
+        String hql = "select a from Aluno a, Turma t where t.turma = a.turma AND t.curso = :curso";
+        Query c = this.sessao.createQuery(hql);
+        c.setString("curso", curso);
+        return c.list();        
+    }
+    public List<Aluno> listarPorModalidadeCurso(String modalidade, String curso){
+        String hql = "select a from Aluno a, Turma t where t.turma = a.turma AND t.modalidade = :modalidade AND t.curso = :curso";
+        Query c = this.sessao.createQuery(hql);
+        c.setString("modalidade", modalidade);
+        c.setString("curso", curso);
+        return c.list();        
+    }
 }

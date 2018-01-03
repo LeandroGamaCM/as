@@ -33,5 +33,13 @@ public class AlunoRN {
     public List<Aluno> buscarPorTurma(Integer codTurma){
         return this.alunoDAO.buscarPorTurma(codTurma);
     }
-
+    public List<Aluno> listarPorModalidade(String modalidade){
+        return this.alunoDAO.listarPorModalidade(modalidade);
+    }
+    public List<Aluno> listarPorCurso(String curso){
+        return this.alunoDAO.listarPorCurso(curso);
+    }
+    public List<Aluno> listarPorModalidadeCurso(String modalidade, String curso){
+        return this.alunoDAO.listarPorModalidadeCurso(modalidade, curso);
+    }
 }

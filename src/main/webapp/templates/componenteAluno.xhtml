@@ -76,42 +76,42 @@
 
                 <p:panel rendered="#{telaAlunosBean.listarFichas}" header="Fichas de Inscrição">
                     <h:panelGrid id="margem" columns="2" columnClasses="label, value" >
-                        <h5>Filtrar por Curso:</h5>                   
-                        <p:selectOneRadio id="filtroCurso" value="#{telaAlunosBean.filtroCurso}">
-                            <f:selectItem itemLabel="Todos" itemValue="todos" />
-                            <f:selectItem itemLabel="Biocombustíveis" itemValue="biocombustiveis" />                                   
-                            <f:selectItem itemLabel="Eletromecânica" itemValue="eletromecanica" />                                   
-                            <f:selectItem itemLabel="Informática" itemValue="informatica" />                                   
+                        <h5>Filtrar por modalidade:</h5>                   
+                        <p:selectOneRadio id="filtroCurso" value="#{telaAlunosBean.filtroModalidade}">
+                            <f:selectItem itemLabel="Todos" itemValue="todos"/> 
+                            <f:selectItems value="#{telaAlunosBean.modalidades}"/>
+                            <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
                         </p:selectOneRadio> 
 
-                        <h5>Filtrar por Ano:</h5>
-                        <p:selectOneRadio id="filtroTurma" value="#{telaAlunosBean.filtroAno}">
+                        <h5>Filtrar por curso:</h5>
+                        <p:selectOneRadio id="filtroTurma" value="#{telaAlunosBean.filtroCurso}">
                             <f:selectItem itemLabel="Todos" itemValue="todos" /> 
-                            <f:selectItem itemLabel="1º Ano" itemValue="1ano" />                                   
-                            <f:selectItem itemLabel="2º Ano" itemValue="2ano" />                                   
-                            <f:selectItem itemLabel="3º Ano" itemValue="3ano" />                                   
-                            <f:selectItem itemLabel="4º Ano" itemValue="4ano" />  
+                            <f:selectItems value="#{telaAlunosBean.cursos}"/>
+                            <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
                             </p:selectOneRadio> 
                     </h:panelGrid>
 <!--Ver Expansion  (primefaces datatable)-->
-                    <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}" sortBy="#{aluno.turma.nome}">
-                        <f:facet name="header">
-                                <h:outputText value="Alunos" />
-                        </f:facet>
-                        <p:headerRow>
-                            <p:column colspan="2">
-                                <h:outputText value="#{aluno.turma.nome}" />
+                    <p:outputPanel id="tabela">
+
+                        <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}" sortBy="#{aluno.turma.nome}">
+                            <f:facet name="header">
+                                    <h:outputText value="Alunos" />
+                            </f:facet>
+                            <p:headerRow>
+                                <p:column colspan="2">
+                                    <h:outputText value="#{aluno.turma.nome}" />
+                                </p:column>
+                            </p:headerRow>    
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{aluno.aluno.nome}"/>
                             </p:column>
-                        </p:headerRow>    
-                        
-                        <p:column headerText="Nome">
-                            <h:outputText value="#{aluno.aluno.nome}"/>
-                        </p:column>
-                        <p:column headerText="Cpf">
-                            <h:outputText value="#{aluno.aluno.cpf}"/>
-                        </p:column>
-                        
-                    </p:dataTable>
+                            <p:column headerText="Cpf">
+                                <h:outputText value="#{aluno.aluno.cpf}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:outputPanel>
 
 <!--                    <p:dataTable var="modalidade" value="#{telaAlunosBean.modalidades}">
                         <f:facet name="header">

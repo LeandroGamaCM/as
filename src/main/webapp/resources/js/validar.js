@@ -9,21 +9,31 @@ function validar() {
         alert('Por favor, preencha todos os campos!');
         return false;
     } else if (senha.value !== confirmar.value) {
-        alert('Ops! A senha não confere.');
+        alert('Ops! As senhas não conferem.');
         confirmar.focus();
         return false;
     }
 
-    alert("Ok! Seu formulário esta válido! (:");
     return true;
 }
 
-function valida(){
+//valida formulário de inscrição
+function onnext(){
     var nome = document.getElementById('nome');
+    var cpf = document.getElementById('cpf');
     
-    if(nome.value === ''){
-        alert('Deu erro');
-        return false;
-    }
-    return true;
+
+//    
+//    if(nome.value === ''){
+//        alert('Por favor, preencha o campo Nome!');
+//        nome.focus;
+//        return false;
+//    }
+//    else if(cpf.value === ''){
+//        alert('Por favor, preencha o campo CPF!');
+//        cpf.focus;
+//        return false;
+//    }
+//    
+//    return true;
 }

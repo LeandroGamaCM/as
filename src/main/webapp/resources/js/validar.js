@@ -17,3 +17,13 @@ function validar() {
     alert("Ok! Seu formulário esta válido! (:");
     return true;
 }
+
+function valida(){
+    var nome = document.getElementById('nome');
+    
+    if(nome.value === ''){
+        alert('Deu erro');
+        return false;
+    }
+    return true;
+}

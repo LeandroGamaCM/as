@@ -50,7 +50,8 @@ public class AlunoBean implements Serializable{
     private Set<String> modalidades;
     
     private boolean selectedModalidade = false;
-    private boolean selectedCurso = false;    
+    private boolean selectedCurso = false;        
+    private boolean dependenteOutro = false;
     
     public String onFlowProcess(FlowEvent event) {
         return event.getNewStep();
@@ -66,7 +67,7 @@ public class AlunoBean implements Serializable{
         AlunoRN alunoRN = new AlunoRN();
         TurmaRN turmaRN = new TurmaRN();
         
-        System.out.println("turma.getNome: "+ turma.getNome());
+        System.out.println("turma.getNome: " + turma.getNome());
         turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
         aluno.setTurma(turma);
                      
@@ -227,6 +228,18 @@ public class AlunoBean implements Serializable{
         
     }
     
+    public boolean selectedDependenteOutro(){
+        int i;
+        if(selectedDependentes != null){
+            for(i=0;i<selectedDependentes.length;i++){
+                if("o".equals(selectedDependentes[i]))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    
     public void setDependentesProperties(){
         int i;
         if(selectedDependentes != null){
@@ -317,17 +330,18 @@ public class AlunoBean implements Serializable{
     }
     
     public boolean verificaCasaAlugada(){
-        if(situacaoResidencial.getComQuemMora() == null){
+        if(situacaoResidencial.getSituacaoCasa() == null){
             return false;
         }else{
-            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Alugada))
+            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Alugada)){
                 return true;
+            }
         }
         return false;
     }
     
     public boolean verificaCasaCedida(){
-        if(situacaoResidencial.getComQuemMora() == null){
+        if(situacaoResidencial.getSituacaoCasa() == null){
             return false;
         }else{
             if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Cedida))
@@ -337,7 +351,7 @@ public class AlunoBean implements Serializable{
     }
     
     public boolean verificaCasaOutro(){
-        if(situacaoResidencial.getComQuemMora() == null){
+        if(situacaoResidencial.getSituacaoCasa() == null){
             return false;
         }else{
             if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Outro))
@@ -603,6 +617,14 @@ public class AlunoBean implements Serializable{
 
     public void setSelectedCurso(boolean selectedCurso) {
         this.selectedCurso = selectedCurso;
+    }
+
+    public boolean isDependenteOutro() {
+        return dependenteOutro;
+    }
+
+    public void setDependenteOutro(boolean dependenteOutro) {
+        this.dependenteOutro = dependenteOutro;
     }
 
 

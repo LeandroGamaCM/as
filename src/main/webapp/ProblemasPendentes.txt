@@ -32,3 +32,38 @@
 -colocar o dialog na pagina aluno
 
 - criar classes pras tabelas
+
+
+    public void verificaSituacaoCasa(){
+        verificaCasaAlugada();
+        verificaCasaCedida();
+        verificaCasaOutro();
+    }
+    
+    public void verificaCasaAlugada(){
+        if(situacaoResidencial.getComQuemMora() != null){
+            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Alugada))
+                casaAlugada = true;
+            return;
+        }
+        casaAlugada = false;
+    }
+    
+    public void verificaCasaCedida(){
+        if(situacaoResidencial.getComQuemMora() != null){
+            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Cedida))
+                casaCedida = true;
+                return;
+        }
+        casaCedida = false;
+    }
+    
+    public void verificaCasaOutro(){
+        if(situacaoResidencial.getComQuemMora() != null){
+            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Outro))
+                casaOutro = true;
+                return;
+        }
+        casaOutro = false;
+    }
+    

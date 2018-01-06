@@ -4,8 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition>
         <h:form>
             <p:growl id="growl" sticky="true" showDetail="true"/>               
@@ -714,14 +713,20 @@
 
                     <p:tab id="confirmar" title="Confirmar">
                         <p:panel>
+<!-- Tirar esses botoes-->
                             <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
                             <p:commandButton value="Deletar" actionListener="#{alunoBean.excluir()}"/>
+<!--Chamar o dialog-->
+                            <p:commandButton value="Enviar Dados" action=""/>
                         </p:panel>
                     </p:tab>
 
-                </p:wizard>                     
+                </p:wizard>
             </div>
         </h:form>    
     </ui:composition>
+    <ui:include src="componenteDadosInscricao">
+        
+    </ui:include>
 </html>
 

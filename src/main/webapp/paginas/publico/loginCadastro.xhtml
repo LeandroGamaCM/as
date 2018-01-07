@@ -23,19 +23,19 @@
                         </div>
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <p:inputText id="inputNome" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                <p:inputText value="#{loginBean.nomePagina}" id="inputNome" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>Nome Completo</p:outputLabel>
                             </span>
                         </div>
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <p:inputText id="inputCPF" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                <p:inputText value="#{loginBean.cpfPagina}" id="inputCPF" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>CPF</p:outputLabel>
                             </span>
                         </div>
                         <div class="ui-g-6">
                             <span class="md-inputfield">
-                                <p:password id="inputSenha" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                <p:password value="#{loginBean.senhaPagina}" id="inputSenha" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>Senha</p:outputLabel>
                             </span>
                         </div>
@@ -46,7 +46,8 @@
                             </span>
                         </div>
                         <div class="ui-g-12">
-                            <p:commandButton icon="fa fa-check" onclick="return validar();" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                            <!--Mostrar Mensagem-->
+                            <p:commandButton icon="fa fa-check" onclick="return validar();" action="#{loginBean.verificaExistencia()}" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
                         </div>
                     </div>
                 </h:form>

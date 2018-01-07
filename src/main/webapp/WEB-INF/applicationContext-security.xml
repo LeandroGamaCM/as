@@ -10,15 +10,18 @@
    
 <!-- Mudar as configurações de acordo do o que for necessário -->
     <http auto-config="true">
-<!--        <intercept-url pattern="/paginas/adm/**" access="ROLE_ADMINISTRADOR"/>
-        <intercept-url pattern="/paginas/aluno/**" access="ROLE_USUARIO"/>-->
+        <intercept-url pattern="/paginas/adm/**" access="ROLE_ADMINISTRADOR"/>
+        <intercept-url pattern="/paginas/aluno/**" access="ROLE_USUARIO"/>
         <intercept-url pattern="/templates/**" access="ROLE_NINGUEM"/>
         <intercept-url pattern="/resources/**" access="ROLE_NINGUEM"/>
-        <form-login login-page="/paginas/publico/loginPage.jsf"
+        <form-login login-page="/paginas/publico/loginEntrar.jsf"
+                authentication-success-handler-ref="redirectRoleStrategy"
         />
+<!--                default-target-url="/login_success"-->
+        
         <logout/>
     </http>
-    
+
     <authentication-manager>
         <authentication-provider>
 <!--            <user-service>
@@ -31,4 +34,30 @@
             users-by-username-query="SELECT login, senha, ativo FROM Usuario WHERE login = ?" />
         </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="redirectRoleStrategy" class="br.edu.ifba.as.spring.UrlAuthenticationSuccessHandler">
+        <beans:property name="roleUrlMap">
+            <beans:map>
+                <beans:entry key="ROLE_USUARIO" value="/inscricao.jsf"/>
+                <beans:entry key="ROLE_ADMINISTRADOR" value="/inscricao.jsf"/>
+            </beans:map>
+        </beans:property>
+    </beans:bean>
+<!--    <urlrewrite>
+        <rule>
+            <condition type="user-in-role">ROLE_USUARIO</condition>
+            <from>/login_success</from>
+            <to type="redirect">paginas/aluno/inscricao.jsf</to>
+        </rule>
+        <rule>
+            <condition type="user-in-role">ROLE_ADMINISTRADOR</condition>
+            <from>/login_success</from>
+            <to type="redirect">/index.jsf</to>
+        </rule>
+        <rule>
+            <from>/login_success</from>
+            <to type="redirect">index.jsf</to>
+        </rule>
+    </urlrewrite>-->
+
 </beans:beans>

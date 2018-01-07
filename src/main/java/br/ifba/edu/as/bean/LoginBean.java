@@ -15,15 +15,14 @@ public class LoginBean implements Serializable{
     private Aluno aluno = new Aluno();
     private Integer cpfPagina;
     private String nomePagina;
-    private String emailPagina;
+//    private String emailPagina;
     private String senhaPagina;
-    private String verificaSenhaPagina;
-    private String estadoTela = "preCadastro";
 
-    public void verificaExistencia(){
+    public String verificaExistencia(){
         UsuarioRN usuarioRN = new UsuarioRN();
         AlunoRN alunoRN = new AlunoRN();
         aluno = alunoRN.buscarPorCPF(cpfPagina);
+        System.out.println("\nCPF: " + aluno.getCpf() + "\nID: " + aluno.getAluno());
         if(aluno == null){
 // Exibir mensagem
             System.out.println("\n\tAluno Nulo\n");
@@ -36,10 +35,11 @@ public class LoginBean implements Serializable{
                 if(usuario.getAtivo()){
                     System.out.println("\n\tEste usuario já está cadastrado!\n");
                 }else{
-                    changeToCadastro();
+                    salvar();
                 }
             }
         }
+        return "loginEntrar.jsf";
     }
     public void salvar(){
 // Exibir mensagem e voltar pra tela de Login
@@ -54,42 +54,22 @@ public class LoginBean implements Serializable{
 
         alunoRN.salvar(aluno);
         System.out.println("\n\tSalvo com Sucesso!\n");
+        System.out.println("\nCPF: " + aluno.getCpf() + "\nID: " + aluno.getAluno());
+        
     }
     
     public void atribuirProperties(){
         this.usuario.setAtivo(Boolean.TRUE);
-// O aluno entra com CPF sempre? O CPF deve ser o login?
         this.usuario.setLogin(cpfPagina.toString());
         this.usuario.setSenha(senhaPagina);
         
         this.aluno.setNome(nomePagina);
 // Esse email deve ser uma variavel diferente do formulario? Porque ele é pra recuperação e lá pra contato
-        aluno.setEmail(emailPagina);
+//        aluno.setEmail(emailPagina);
     }
 
-    public boolean isPreCadastro(){
-        return "preCadastro".equals(this.estadoTela);
-    }
-    public void changeToPreCadastro(){
-        this.estadoTela = "preCadastro";
-    }
-    public boolean isCadastro(){
-        return "cadastro".equals(this.estadoTela);
-    }
-    public void changeToCadastro(){
-        this.estadoTela = "cadastro";
-    }
-    
 
 // Getters e Setters
-    public String getEstadoTela() {
-        return estadoTela;
-    }
-
-    public void setEstadoTela(String estadoTela) {
-        this.estadoTela = estadoTela;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -122,14 +102,6 @@ public class LoginBean implements Serializable{
         this.nomePagina = nomePagina;
     }
 
-    public String getEmailPagina() {
-        return emailPagina;
-    }
-
-    public void setEmailPagina(String emailPagina) {
-        this.emailPagina = emailPagina;
-    }
-
     public String getSenhaPagina() {
         return senhaPagina;
     }
@@ -137,14 +109,5 @@ public class LoginBean implements Serializable{
     public void setSenhaPagina(String senhaPagina) {
         this.senhaPagina = senhaPagina;
     }
-
-    public String getVerificaSenhaPagina() {
-        return verificaSenhaPagina;
-    }
-
-    public void setVerificaSenhaPagina(String verificaSenhaPagina) {
-        this.verificaSenhaPagina = verificaSenhaPagina;
-    }
-    
     
 }

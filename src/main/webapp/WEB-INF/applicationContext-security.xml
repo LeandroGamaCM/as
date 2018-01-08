@@ -39,7 +39,7 @@
         <beans:property name="roleUrlMap">
             <beans:map>
                 <beans:entry key="ROLE_USUARIO" value="/inscricao.jsf"/>
-                <beans:entry key="ROLE_ADMINISTRADOR" value="/inscricao.jsf"/>
+                <beans:entry key="ROLE_ADMINISTRADOR" value="/index.jsf"/>
             </beans:map>
         </beans:property>
     </beans:bean>

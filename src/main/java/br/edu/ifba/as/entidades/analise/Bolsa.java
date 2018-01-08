@@ -18,6 +18,7 @@ public class Bolsa implements Serializable {
     
     private String nome;
     private Double valor;
+    private Integer qtddDistribuida;
     
     @OneToMany(mappedBy = "bolsa", fetch = FetchType.LAZY)
     private List<Aluno> alunos;
@@ -46,6 +47,14 @@ public class Bolsa implements Serializable {
         this.valor = valor;
     }
 
+    public Integer getQtddDistribuida() {
+        return qtddDistribuida;
+    }
+
+    public void setQtddDistribuida(Integer qtddDistribuida) {
+        this.qtddDistribuida = qtddDistribuida;
+    }
+
     public List<Aluno> getAlunos() {
         return alunos;
     }
@@ -57,10 +66,11 @@ public class Bolsa implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + Objects.hashCode(this.bolsa);
-        hash = 41 * hash + Objects.hashCode(this.nome);
-        hash = 41 * hash + Objects.hashCode(this.valor);
-        hash = 41 * hash + Objects.hashCode(this.alunos);
+        hash = 97 * hash + Objects.hashCode(this.bolsa);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.valor);
+        hash = 97 * hash + Objects.hashCode(this.qtddDistribuida);
+        hash = 97 * hash + Objects.hashCode(this.alunos);
         return hash;
     }
 
@@ -83,6 +93,9 @@ public class Bolsa implements Serializable {
             return false;
         }
         if (!Objects.equals(this.valor, other.valor)) {
+            return false;
+        }
+        if (!Objects.equals(this.qtddDistribuida, other.qtddDistribuida)) {
             return false;
         }
         if (!Objects.equals(this.alunos, other.alunos)) {

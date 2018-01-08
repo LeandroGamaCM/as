@@ -27,7 +27,7 @@
                 <p:panel rendered="#{telaAlunosBean.preCadastro}" header="Pré-cadastrar Alunos">
                     <p:outputLabel value="CPF do Aluno"/>
                     <p:inputText value="#{telaAlunosBean.novoAluno.cpf}"/>
-                    <p:commandButton value="Salvar aluno" action="#{telaAlunosBean.preCadastro()}"/>
+                    <p:commandButton update="panel" value="Salvar aluno" action="#{telaAlunosBean.preCadastro()}"/>
                 </p:panel>
                 <p:panel rendered="#{telaAlunosBean.preCadastro}" header="Cadastrar turmas">
                     <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Modalidade: " for="modalidade" />
@@ -37,7 +37,7 @@
                     
                     <p:outputLabel value="Turma"/>
                     <p:inputText placeholder="1º ano b, 3º ano..." value="#{telaAlunosBean.novaTurma.nome}"/>
-                    <p:commandButton value="Salvar turma" action="#{telaAlunosBean.cadastrarTurma()}"/>
+                    <p:commandButton value="Salvar turma" update="panel" action="#{telaAlunosBean.cadastrarTurma()}"/>
                     
                 </p:panel>
                 <p:panel rendered="#{telaAlunosBean.preCadastro}">

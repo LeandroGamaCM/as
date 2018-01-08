@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "telaAlunosBean")
-@ViewScoped
+@SessionScoped
 public class TelaAlunosBean implements Serializable{
     private Aluno aluno = new Aluno();
     private Aluno novoAluno = new Aluno();
@@ -52,17 +52,22 @@ public class TelaAlunosBean implements Serializable{
         UsuarioRN usuarioRN = new UsuarioRN();
         
         usuario.setAtivo(Boolean.FALSE);
+//        usuario.getPermissao().add("ROLE_ADMINISTRADOR");
         usuarioRN.salvar(usuario);
         System.out.println("Salvou usuario");
         novoAluno.setUsuario(usuario);
         alunoRN.salvar(novoAluno);
         System.out.println("Aluno pré-cadastrado");
+// Mostrar mensagem        
+        novoAluno = new Aluno();
     }
     
     public void cadastrarTurma(){
         TurmaRN turmaRN = new TurmaRN();
         turmaRN.salvar(novaTurma);
-        System.out.println("Turma cadastrada");        
+        System.out.println("Turma cadastrada"); 
+        novaTurma = new Turma();
+// Mostrar mensagem        
     }
 
     public void excluirTurma(Turma turma){

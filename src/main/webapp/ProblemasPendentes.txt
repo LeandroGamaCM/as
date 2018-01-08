@@ -1,69 +1,9 @@
--Ao clicar no botão salvar a pagina deve ser recarregada ou redirecionar pra outro lugar senão, ao clicar novamente
-    haverá um conflito de objetos.
+- Fazer as tabelas introduzirem elementos
+- Fazer a função do Esqueci a senha
+- Quando a sessao inspirar tem que recarregar a pagina automaticamente ou 
+    mostrar mensagem e forcar o recarregamento (Javascript?)
 
--Alguns campos devem ser definidos como inputNumer como quantQuartos, telefoneEmpregador
-
-- Tem que definir limites para as variaveis no banco
+- (Opcional) Definir limites para as variaveis no banco
     Por exemplo, Apelido não tem valor definido então haverá desperdicio de memória
 
-- Fazer as tabelas introduzirem elementos
-
-- Validar data
-
-- VER ESSA LINHA E PARECEIDAS NOS TEMPLATES
-     <a href="index.jsf"><img id="j_idt219" src="imagens/logoRodape.png" alt="" /></a>
-
-- Os documentos anexados podem ser fotos? especificar os formatos (.pdf, .jpg, ...)
-
--Criar paginas personalizadas pra erros (404, 403)
-
--Fazer a função do Esqueci a senha
-
--O SSL foi desabilitado (Connecting Securely Using SSL). Perguntar quando for implementar o programa no servidor do IFBA se é pra colocar
-
--(Feito)Adicionar restricoes de acesso pra pastas de arquivos de template e resources
-    Seria melhor que elas nem fosse pra restricao do Spring. Ver se tem como colocar restricoes no web.xml
-
--Tem que dar um jeito no status dos alunos. 
-    Por exemplo quando iniciar o periodo de inscricao todos os alunos devem estar como inativos
-
--quando a sessao inspirar tem que recarregar a pagina automaticamente
-
--colocar o dialog na pagina aluno
-
-- criar classes pras tabelas
-
-
-    public void verificaSituacaoCasa(){
-        verificaCasaAlugada();
-        verificaCasaCedida();
-        verificaCasaOutro();
-    }
-    
-    public void verificaCasaAlugada(){
-        if(situacaoResidencial.getComQuemMora() != null){
-            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Alugada))
-                casaAlugada = true;
-            return;
-        }
-        casaAlugada = false;
-    }
-    
-    public void verificaCasaCedida(){
-        if(situacaoResidencial.getComQuemMora() != null){
-            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Cedida))
-                casaCedida = true;
-                return;
-        }
-        casaCedida = false;
-    }
-    
-    public void verificaCasaOutro(){
-        if(situacaoResidencial.getComQuemMora() != null){
-            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Outro))
-                casaOutro = true;
-                return;
-        }
-        casaOutro = false;
-    }
-    
+- Criar classe para setar valores no banco (bolsa, cidades...)

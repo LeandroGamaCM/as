@@ -2,10 +2,118 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    
+
     <ui:composition>
-        <div class="card card-w-title">
-            
+        <div class="ui-g dashboard">
+            <div class="ui-g-12 ui-lg-4">
+                <div class="task-box task-box-1">
+                    <div class="task-box-header">
+                        <i class="fa fa-pie-chart"></i>
+                    </div>
+                    <div class="task-box-content">
+                        <h3>Relatórios</h3>
+                        <p>Acesse os relatórios gerados</p>
+                    </div>
+                    <div class="task-box-footer">
+                        <a href="index.jsf"><span class="task-status">Acessar</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-lg-4">
+                <div class="task-box task-box-2">
+                    <div class="task-box-header">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <div class="task-box-content">
+                        <h3>Agenda</h3>
+                        <p>Adicione um evento</p>
+                    </div>
+                    <div class="task-box-footer">
+                        <a href="index.jsf"><span class="task-status">Adicionar</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-lg-4">
+                <div class="task-box task-box-3">
+                    <div class="task-box-header">
+                        <i class="fa fa-comments-o"></i>
+                    </div>
+                    <div class="task-box-content">
+                        <h3>Entrevistas</h3>
+                        <p>Realize um entrevista</p>
+                    </div>
+                    <div class="task-box-footer">
+                        <a href="index.jsf"><span class="task-status">Realizar</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-1">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-user"></i></div>
+                        <div class="overview-box-title"><a href="index.jsf">Alunos Cadastrados</a></div>
+                        <div class="overview-box-count">326</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-2">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-comments-o"></i></div>
+                        <div class="overview-box-title"><a href="index.jsf">Entrevistas Realizadas</a></div>
+                        <div class="overview-box-count">28</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-3">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-tags" style="font-size: 24px"></i></div>
+                        <div class="overview-box-title"><a href="index.jsf">Próximos Eventos</a></div>
+                        <div class="overview-box-count">8</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-4">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-address-card" style="font-size: 22px"></i></div>
+                        <div class="overview-box-title"><a href="index.jsf">Número de Inscrições</a></div>
+                        <div class="overview-box-count">129</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 schedule">
+                <h:panelGrid columnClasses="value">
+                    
+                   
+                </h:panelGrid>
+            </div>
         </div>
     </ui:composition>        
 </html>
+
+<!--<div class="ui-g-12 schedule">
+                <div id="j_idt214" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt214">
+                    <div id="j_idt214_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                        <span class="ui-panel-title">Calendar</span>
+                    </div>
+                    <div id="j_idt214_content" class="ui-panel-content ui-widget-content">
+                        <div id="j_idt215">
+                            <div id="j_idt215_container"></div>
+                            <input type="hidden" id="j_idt215_view" name="j_idt215_view" autocomplete="off" value="month" />
+                        </div>
+                        <script id="j_idt215_s" type="text/javascript">$(function () {
+                                PrimeFaces.cw("Schedule", "widget_j_idt215", {id: "j_idt215", defaultView: "month", locale: "en_US", lazyFetching: false, header: {left: 'prev,next today', center: "title", right: "month,agendaWeek,agendaDay"}});
+                            });</script>
+                    </div>
+                </div>
+                <script id="j_idt214_s" type="text/javascript">
+                    PrimeFaces.cw("Panel", "widget_j_idt214", {id: "j_idt214"});
+                </script>
+            </div>-->

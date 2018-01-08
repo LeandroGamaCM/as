@@ -32,26 +32,9 @@ body .ui-widget, body .ui-widget .ui-widget {
     font-family: "Roboto", "Helvetica Neue", sans-serif;
     text-decoration: none;
 }
-body .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: 'liga';
+.layout-wrapper .layout-main .layout-breadcrumb .layout-breadcrumb-options a:hover{
+    font-weight: bold;
 }
-
 .layout-wrapper .layout-main .layout-breadcrumb .layout-breadcrumb-options {
     float: right;
     padding: 0px 5px 0 0;

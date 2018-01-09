@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Etinia implements Serializable {
+public class Etnia implements Serializable {
     
     private static final long serialVersionUID = 7267587698198734844L;
  
@@ -51,7 +51,7 @@ public class Etinia implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Etinia other = (Etinia) obj;
+        final Etnia other = (Etnia) obj;
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }

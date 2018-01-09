@@ -1,0 +1,31 @@
+package br.edu.ifba.as.rn.analise;
+
+import br.edu.ifba.as.dao.DAOFactory;
+import br.edu.ifba.as.dao.analise.LocalResidenciaFamiliaDAO;
+import br.edu.ifba.as.entidades.analise.LocalResidenciaFamilia;
+import java.util.List;
+
+public class LocalResidenciaFamiliaRN {
+    private LocalResidenciaFamiliaDAO localResidenciaFamiliaDAO;
+
+    public LocalResidenciaFamiliaRN() {
+        this.localResidenciaFamiliaDAO = DAOFactory.criarLocalResidenciaFamiliaDAO();
+    }
+    
+    public void salvar(LocalResidenciaFamilia localResidenciaFamilia){
+        this.localResidenciaFamiliaDAO.salvar(localResidenciaFamilia);
+    }
+    public void excluir(LocalResidenciaFamilia localResidenciaFamilia){
+        this.localResidenciaFamiliaDAO.excluir(localResidenciaFamilia);
+    }
+    public LocalResidenciaFamilia carregar(Integer codigo){
+        return this.localResidenciaFamiliaDAO.carregar(codigo);
+    }
+    public List<LocalResidenciaFamilia> listar(){
+        return this.localResidenciaFamiliaDAO.listar();
+    }    
+    public void definirPadroes(){
+// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+    }
+    
+}

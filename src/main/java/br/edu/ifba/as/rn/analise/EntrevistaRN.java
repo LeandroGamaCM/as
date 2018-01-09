@@ -1,7 +1,7 @@
-package br.edu.ifba.as.rn;
+package br.edu.ifba.as.rn.analise;
 
 import br.edu.ifba.as.dao.DAOFactory;
-import br.edu.ifba.as.dao.EntrevistaDAO;
+import br.edu.ifba.as.dao.analise.EntrevistaDAO;
 import br.edu.ifba.as.entidades.analise.Entrevista;
 import java.util.List;
 

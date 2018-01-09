@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class RendaPrinciapalOrigem implements Serializable {
+public class RendaPrincipalOrigem implements Serializable {
 
     private static final long serialVersionUID = 2748737362286642735L;
     
@@ -62,7 +62,7 @@ public class RendaPrinciapalOrigem implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final RendaPrinciapalOrigem other = (RendaPrinciapalOrigem) obj;
+        final RendaPrincipalOrigem other = (RendaPrincipalOrigem) obj;
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }

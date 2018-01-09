@@ -1,27 +1,39 @@
 package br.edu.ifba.as.dao;
 
+import br.edu.ifba.as.dao.analise.EntrevistaDAO;
+import br.edu.ifba.as.dao.analise.BolsaDAO;
+import br.edu.ifba.as.dao.analise.CondicaoEconomicaEstudanteDAO;
+import br.edu.ifba.as.dao.analise.DespesaAnaliseDAO;
+import br.edu.ifba.as.dao.analise.EscolaOrigemDAO;
+import br.edu.ifba.as.dao.analise.EtniaDAO;
+import br.edu.ifba.as.dao.analise.GeneroDAO;
+import br.edu.ifba.as.dao.analise.LocalResidenciaFamiliaDAO;
+import br.edu.ifba.as.dao.analise.MoradiaEstudanteDAO;
+import br.edu.ifba.as.dao.analise.MoradiaFamiliaDAO;
+import br.edu.ifba.as.dao.analise.ProgramaSocialDAO;
+import br.edu.ifba.as.dao.analise.RendaPerCapitaDAO;
+import br.edu.ifba.as.dao.analise.RendaPrincipalOrigemDAO;
+import br.edu.ifba.as.dao.analise.SaudeDAO;
+import br.edu.ifba.as.dao.analise.SituacaoOcupacionalDAO;
+import br.edu.ifba.as.entidades.analise.CondicaoEconomicaEstudante;
 import br.edu.ifba.as.util.HibernateUtil;
 
 public class DAOFactory {
-    public static AlunoDAO criarAlunoDAO(){
-        AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
-        return alunoDAO;
-    }
     public static UsuarioDAO criarUsuarioDAO(){
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return usuarioDAO;
     }
+// Formulário    
+    public static AlunoDAO criarAlunoDAO(){
+        AlunoDAO alunoDAO = new AlunoDAO();
+        alunoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return alunoDAO;
+    }
     public static EnderecoDAO criarEnderecoDAO(){
         EnderecoDAO enderecoDAO = new EnderecoDAO();
         enderecoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return enderecoDAO;
-    }
-    public static EntrevistaDAO criarEntrevistaDAO(){
-        EntrevistaDAO entrevistaDAO = new EntrevistaDAO();
-        entrevistaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
-        return entrevistaDAO;
     }
     public static BolsasAuxilioDAO criarBolsasAuxilioDAO(){
         BolsasAuxilioDAO bolsasAuxilioDAO = new BolsasAuxilioDAO();
@@ -113,4 +125,80 @@ public class DAOFactory {
         turmaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return turmaDAO;
     }
+// Analise
+    public static BolsaDAO criarBolsaDAO(){
+        BolsaDAO bolsaDAO = new BolsaDAO();
+        bolsaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return bolsaDAO;
+    }    
+    public static CondicaoEconomicaEstudanteDAO criarCondicaoEconomicaEstudanteDAO(){
+        CondicaoEconomicaEstudanteDAO condicaoEconomicaEstudanteDAO = new CondicaoEconomicaEstudanteDAO();
+        condicaoEconomicaEstudanteDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return condicaoEconomicaEstudanteDAO;
+    }    
+    public static DespesaAnaliseDAO criarDespesaAnaliseDAO(){
+        DespesaAnaliseDAO despesaAnaliseDAO = new DespesaAnaliseDAO();
+        despesaAnaliseDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return despesaAnaliseDAO;
+    }    
+    public static EscolaOrigemDAO criarEscolaOrigemDAO(){
+        EscolaOrigemDAO escolaOrigemDAO = new EscolaOrigemDAO();
+        escolaOrigemDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return escolaOrigemDAO;
+    }    
+    public static EtniaDAO criarEtniaDAO(){
+        EtniaDAO etniaDAO = new EtniaDAO();
+        etniaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return etniaDAO;
+    }    
+    public static GeneroDAO criarGeneroDAO(){
+        GeneroDAO generoDAO = new GeneroDAO();
+        generoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return generoDAO;
+    }    
+    public static LocalResidenciaFamiliaDAO criarLocalResidenciaFamiliaDAO(){
+        LocalResidenciaFamiliaDAO localResidenciaFamiliaDAO = new LocalResidenciaFamiliaDAO();
+        localResidenciaFamiliaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return localResidenciaFamiliaDAO;
+    }    
+    public static MoradiaEstudanteDAO criarMoradiaEstudanteDAO(){
+        MoradiaEstudanteDAO moradiaEstudanteDAO = new MoradiaEstudanteDAO();
+        moradiaEstudanteDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return moradiaEstudanteDAO;
+    }    
+    public static MoradiaFamiliaDAO criarMoradiaFamiliaDAO(){
+        MoradiaFamiliaDAO moradiaFamiliaDAO = new MoradiaFamiliaDAO();
+        moradiaFamiliaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return moradiaFamiliaDAO;
+    }    
+    public static ProgramaSocialDAO criarProgramaSocialDAO(){
+        ProgramaSocialDAO programaSocialDAO = new ProgramaSocialDAO();
+        programaSocialDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return programaSocialDAO;
+    }    
+    public static RendaPerCapitaDAO criarRendaPerCapitaDAO(){
+        RendaPerCapitaDAO rendaPerCapitaDAO = new RendaPerCapitaDAO();
+        rendaPerCapitaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return rendaPerCapitaDAO;
+    }    
+    public static RendaPrincipalOrigemDAO criarRendaPrincipalOrigemDAO(){
+        RendaPrincipalOrigemDAO rendaPrincipalOrigemDAO = new RendaPrincipalOrigemDAO();
+        rendaPrincipalOrigemDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return rendaPrincipalOrigemDAO;
+    }    
+    public static SaudeDAO criarSaudeDAO(){
+        SaudeDAO saudeDAO = new SaudeDAO();
+        saudeDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return saudeDAO;
+    }    
+    public static SituacaoOcupacionalDAO criarSituacaoOcupacionalDAO(){
+        SituacaoOcupacionalDAO situacaoOcupacionalDAO = new SituacaoOcupacionalDAO();
+        situacaoOcupacionalDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return situacaoOcupacionalDAO;
+    }    
+    public static EntrevistaDAO criarEntrevistaDAO(){
+        EntrevistaDAO entrevistaDAO = new EntrevistaDAO();
+        entrevistaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return entrevistaDAO;
+    }    
 }

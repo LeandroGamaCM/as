@@ -13,6 +13,8 @@ public class MoradiaEstudante implements Serializable {
  
     @Id
     @GeneratedValue
+    private Integer id;
+
     private String tipo;
     private Integer pontuacao;
 

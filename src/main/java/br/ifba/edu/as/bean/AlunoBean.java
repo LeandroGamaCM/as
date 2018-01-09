@@ -4,6 +4,7 @@ import br.edu.ifba.as.entidades.enums.ComQuemMora;
 import br.edu.ifba.as.entidades.enums.SituacaoCasa;
 import br.edu.ifba.as.entidades.formulario.*;
 import br.edu.ifba.as.rn.*;
+import br.edu.ifba.as.rn.analise.BolsaRN;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -60,22 +61,33 @@ public class AlunoBean implements Serializable{
     @PostConstruct
     public void init(){
         TurmaRN turmaRN = new TurmaRN();
-        modalidades = new HashSet<>(turmaRN.listarModalidades());
+        List<String> aux = turmaRN.listarModalidades();
+        if(aux != null){
+            modalidades = new HashSet<>(aux);        
+        }
+    }
+    
+    public void descartavel(){
+        System.out.println("Entroy aqui!");
+        BolsaRN bolsaRN = new BolsaRN();
+        bolsaRN.definirPadroes();
+        System.out.println("\n\tDefiniu tudo!\n");
     }
 
     public void salvar(){
-        AlunoRN alunoRN = new AlunoRN();
-        TurmaRN turmaRN = new TurmaRN();
-        
-        System.out.println("turma.getNome: " + turma.getNome());
-        turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
-        aluno.setTurma(turma);
-                     
-        alunoRN.salvar(this.aluno);
-
-        salvarDependenciasAluno(aluno);
-        
-        System.out.println("salvou!");
+        descartavel();
+//        AlunoRN alunoRN = new AlunoRN();
+//        TurmaRN turmaRN = new TurmaRN();
+//        
+//        System.out.println("turma.getNome: " + turma.getNome());
+//        turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
+//        aluno.setTurma(turma);
+//                     
+//        alunoRN.salvar(this.aluno);
+//
+//        salvarDependenciasAluno(aluno);
+//        
+//        System.out.println("salvou!");
     }
     
     public void salvarDependenciasAluno(Aluno aluno){
@@ -136,13 +148,19 @@ public class AlunoBean implements Serializable{
     
     public void selecaoModalidade(){
         TurmaRN turmaRN = new TurmaRN();
-        cursos = new HashSet<>(turmaRN.listarCursos(turma.getModalidade()));
-        selectedModalidade = true;
+        List<String> aux = turmaRN.listarCursos(turma.getModalidade());
+        if(aux != null){
+            cursos = new HashSet<>(aux);
+            selectedModalidade = true;
+        }
     }
     public void selecaoCurso(){
         TurmaRN turmaRN = new TurmaRN();
-        turmas = new HashSet<>(turmaRN.listarTurmas(turma.getModalidade(), turma.getCurso()));
-        selectedCurso = true;        
+        List<String> aux = turmaRN.listarTurmas(turma.getModalidade(), turma.getCurso());
+        if(aux != null){
+            turmas = new HashSet<>(aux);
+            selectedCurso = true;
+        }
     }
     
     public void setProperties(){

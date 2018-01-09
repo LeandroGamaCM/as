@@ -3,6 +3,7 @@ package br.edu.ifba.as.rn.analise;
 import br.edu.ifba.as.dao.DAOFactory;
 import br.edu.ifba.as.dao.analise.BolsaDAO;
 import br.edu.ifba.as.entidades.analise.Bolsa;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BolsaRN {
@@ -25,6 +26,34 @@ public class BolsaRN {
         return this.bolsaDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos
+        System.out.println("\n\tDefinindo os padroes\n");
+        Bolsa bolsaEstudo = new Bolsa();
+        Bolsa auxilioMoradia = new Bolsa();
+        Bolsa auxilioTransporte = new Bolsa();
+        Bolsa auxilioAlimentacao = new Bolsa();
+        Bolsa auxilioCopiaImpressao = new Bolsa();
+        Bolsa auxilioAquisicoesViagens = new Bolsa();
+        Bolsa bolsaPina = new Bolsa();
+        Bolsa bolsaMonitoria = new Bolsa();
+        
+        bolsaEstudo.setNome("Bolsa de Estudos");
+        auxilioMoradia.setNome("Auxílio Moradia");
+        auxilioTransporte.setNome("Auxílio Transporte");
+        auxilioAlimentacao.setNome("Auxílio Alimentação");
+        auxilioCopiaImpressao.setNome("Auxílio Cópia e Impressão");
+        auxilioAquisicoesViagens.setNome("Auxílio Aquisições e Viagens");
+        bolsaPina.setNome("Bolsa PINA");
+        bolsaMonitoria.setNome("Bolsa Monitoria");
+                
+        this.bolsaDAO.salvar(bolsaEstudo);
+        this.bolsaDAO.salvar(auxilioMoradia);
+        this.bolsaDAO.salvar(auxilioTransporte);
+        this.bolsaDAO.salvar(auxilioAlimentacao);
+        this.bolsaDAO.salvar(auxilioCopiaImpressao);
+        this.bolsaDAO.salvar(auxilioAquisicoesViagens);
+        this.bolsaDAO.salvar(bolsaPina);
+        this.bolsaDAO.salvar(bolsaMonitoria);
+        
     }
 }

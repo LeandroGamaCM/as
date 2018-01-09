@@ -88,8 +88,14 @@ public class TelaAlunosBean implements Serializable{
     public void listarFichas(){
         AlunoRN alunoRN = new AlunoRN();
         TurmaRN turmaRN = new TurmaRN();
-        modalidades = new HashSet<>(turmaRN.listarModalidades());
-        cursos = new HashSet<>(turmaRN.listarCursos());
+        List<String> auxMod = turmaRN.listarModalidades();
+        List<String> auxCur = turmaRN.listarCursos();
+        if(auxMod != null){
+            modalidades = new HashSet<>(auxMod);        
+        }
+        if(auxCur != null){
+            cursos = new HashSet<>(auxCur);
+        }
         alunosTabela = new ArrayList<>();
         alunos = new ArrayList<>();
         int i;

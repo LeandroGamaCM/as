@@ -9,3 +9,5 @@
 - Criar classe para setar valores no banco (bolsa, cidades...)
 
 - O aluno não pode digitar qualquer coisa em despesa, renda... Tem que ser campos definidos mesmo
+
+- Revisar todas as chaves primárias e estrangeiras de todas as classes

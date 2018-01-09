@@ -10,8 +10,8 @@
    
 <!-- Mudar as configurações de acordo do o que for necessário -->
     <http auto-config="true">
-        <intercept-url pattern="/paginas/adm/**" access="ROLE_ADMINISTRADOR"/>
-        <intercept-url pattern="/paginas/aluno/**" access="ROLE_USUARIO"/>
+<!--        <intercept-url pattern="/paginas/adm/**" access="ROLE_ADMINISTRADOR"/>
+        <intercept-url pattern="/paginas/aluno/**" access="ROLE_USUARIO"/>-->
         <intercept-url pattern="/templates/**" access="ROLE_NINGUEM"/>
         <intercept-url pattern="/resources/**" access="ROLE_NINGUEM"/>
         <form-login login-page="/paginas/publico/loginEntrar.jsf"

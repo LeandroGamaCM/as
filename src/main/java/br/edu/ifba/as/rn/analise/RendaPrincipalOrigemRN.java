@@ -25,7 +25,37 @@ public class RendaPrincipalOrigemRN {
         return this.rendaPrincipalOrigemDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos  
+        RendaPrincipalOrigem ajuda = new RendaPrincipalOrigem();
+        RendaPrincipalOrigem beneficios = new RendaPrincipalOrigem();
+        RendaPrincipalOrigem trabalhoInformalProvedor = new RendaPrincipalOrigem();
+        RendaPrincipalOrigem trabalhoRural = new RendaPrincipalOrigem();
+        RendaPrincipalOrigem avisoPrevioSeguroDesemprego = new RendaPrincipalOrigem();
+        RendaPrincipalOrigem beneficiosPrevidenciarios = new RendaPrincipalOrigem();
+        RendaPrincipalOrigem trabalhoAutonomo = new RendaPrincipalOrigem();
+        RendaPrincipalOrigem rendaLocacaoImoveis = new RendaPrincipalOrigem();
+        RendaPrincipalOrigem trabalhoFormalProvedor = new RendaPrincipalOrigem();
+
+        ajuda.setTipo("Apenas ajuda da família e outros");
+        beneficios.setTipo("Apenas ajuda da família e outros");
+        trabalhoInformalProvedor.setTipo("Trabalho informal do(s) provedor(es)");
+        trabalhoRural.setTipo("Trabalhador rural/agricultura familiar");
+        avisoPrevioSeguroDesemprego.setTipo("Aviso Prévio/Seguro desemprego/Estágio remunerado");
+        beneficiosPrevidenciarios.setTipo("Benefício(s) previdenciário(s)");
+        trabalhoAutonomo.setTipo("Trabalho autônomo do(s) provedor(es)");
+        rendaLocacaoImoveis.setTipo("Trabalho autônomo do(s) provedor(es)");
+        trabalhoFormalProvedor.setTipo("Trabalho formal do(s) provedore(s)");
+
+        this.rendaPrincipalOrigemDAO.salvar(ajuda);
+        this.rendaPrincipalOrigemDAO.salvar(beneficios);
+        this.rendaPrincipalOrigemDAO.salvar(trabalhoInformalProvedor);
+        this.rendaPrincipalOrigemDAO.salvar(trabalhoRural);
+        this.rendaPrincipalOrigemDAO.salvar(avisoPrevioSeguroDesemprego);
+        this.rendaPrincipalOrigemDAO.salvar(beneficiosPrevidenciarios);
+        this.rendaPrincipalOrigemDAO.salvar(trabalhoAutonomo);
+        this.rendaPrincipalOrigemDAO.salvar(rendaLocacaoImoveis);
+        this.rendaPrincipalOrigemDAO.salvar(trabalhoFormalProvedor);
+    
     }
     
 }

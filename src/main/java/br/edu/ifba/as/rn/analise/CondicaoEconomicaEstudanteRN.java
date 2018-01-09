@@ -25,7 +25,18 @@ public class CondicaoEconomicaEstudanteRN {
         return this.condicaoEconomicaEstudanteDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos
+        CondicaoEconomicaEstudante provedor = new CondicaoEconomicaEstudante();
+        CondicaoEconomicaEstudante dependente = new CondicaoEconomicaEstudante();
+        CondicaoEconomicaEstudante colaborador = new CondicaoEconomicaEstudante();
+        
+        provedor.setTipo("Provedor(a)");
+        dependente.setTipo("Dependente");
+        colaborador.setTipo("Colaborador(a)");
+        
+        this.condicaoEconomicaEstudanteDAO.salvar(provedor);
+        this.condicaoEconomicaEstudanteDAO.salvar(dependente);
+        this.condicaoEconomicaEstudanteDAO.salvar(colaborador);
     }
     
 }

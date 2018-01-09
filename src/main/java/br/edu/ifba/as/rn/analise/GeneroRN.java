@@ -25,7 +25,15 @@ public class GeneroRN {
         return this.generoDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos 
+        Genero mulherSolteira = new Genero();
+        Genero mulherCasada = new Genero();
+        
+        mulherSolteira.setTipo("Mulher chefe de família, mãe solteira ou viúva");
+        mulherCasada.setTipo("Mulher chefe de família com companheiro");
+        
+        this.generoDAO.salvar(mulherSolteira);
+        this.generoDAO.salvar(mulherCasada);
     }
     
 }

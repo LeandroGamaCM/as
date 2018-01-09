@@ -53,7 +53,21 @@ Contributor(s):
 -->
     <!-- Mapeando Classes -->
     <mapping class="br.edu.ifba.as.entidades.analise.Bolsa"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.CondicaoEconomicaEstudante"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.DespesaAnalise"></mapping>
     <mapping class="br.edu.ifba.as.entidades.analise.Entrevista"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.EscolaOrigem"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.Etnia"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.Genero"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.LocalResidenciaFamilia"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.MoradiaEstudante"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.MoradiaFamilia"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.ProgramaSocial"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.RendaPerCapita"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.RendaPrincipalOrigem"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.Saude"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.SituacaoOcupacional"></mapping>
+    
     <mapping class="br.edu.ifba.as.entidades.formulario.Aluno"></mapping>
     <mapping class="br.edu.ifba.as.entidades.formulario.BolsasAuxilio"></mapping>
     <mapping class="br.edu.ifba.as.entidades.formulario.CondicaoManutencao"></mapping>

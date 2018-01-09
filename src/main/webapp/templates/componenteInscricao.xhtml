@@ -707,6 +707,7 @@
                                 <p:inputTextarea value="#{alunoBean.formulario.esclarecimentos}" placeholder="Esclarecimentos..." rows="5" counter="display" maxlength="800" counterTemplate="{0} caracteres restantes." autoResize="true" />
                                 <h:outputText id="display" />
                             </div>
+                            <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
                             <p:commandButton value="Enviar Dados" />
                         </p:panel>
 
@@ -721,7 +722,6 @@
 <!--                    <p:tab id="confirmar" title="Confirmar">
                         <p:panel>
  Tirar esses botoes
-                            <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
                             <p:commandButton value="Deletar" actionListener="#{alunoBean.excluir()}"/>
                         </p:panel>
                     </p:tab>-->

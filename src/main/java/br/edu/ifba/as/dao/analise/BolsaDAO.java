@@ -1,6 +1,7 @@
 package br.edu.ifba.as.dao.analise;
 
 import br.edu.ifba.as.entidades.analise.Bolsa;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -24,8 +25,4 @@ public class BolsaDAO{
         sessao.delete(bolsa);
     }    
     
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }
-
 }

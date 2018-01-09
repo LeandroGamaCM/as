@@ -7,16 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class RendaAnalise implements Serializable {
+public class RendaPrinciapalOrigem implements Serializable {
 
-    private static final long serialVersionUID = -6433321397718064935L;
+    private static final long serialVersionUID = 2748737362286642735L;
     
     @Id
     @GeneratedValue
     private Integer id;
-    
-    private Double valorMinimo;
-    private Double valorMaximo;
+ 
+    private String tipo;
     private Integer pontuacao;
 
     public Integer getId() {
@@ -27,20 +26,12 @@ public class RendaAnalise implements Serializable {
         this.id = id;
     }
 
-    public Double getValorMinimo() {
-        return valorMinimo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setValorMinimo(Double valorMinimo) {
-        this.valorMinimo = valorMinimo;
-    }
-
-    public Double getValorMaximo() {
-        return valorMaximo;
-    }
-
-    public void setValorMaximo(Double valorMaximo) {
-        this.valorMaximo = valorMaximo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Integer getPontuacao() {
@@ -53,11 +44,10 @@ public class RendaAnalise implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.id);
-        hash = 47 * hash + Objects.hashCode(this.valorMinimo);
-        hash = 47 * hash + Objects.hashCode(this.valorMaximo);
-        hash = 47 * hash + Objects.hashCode(this.pontuacao);
+        int hash = 5;
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.tipo);
+        hash = 31 * hash + Objects.hashCode(this.pontuacao);
         return hash;
     }
 
@@ -72,14 +62,11 @@ public class RendaAnalise implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final RendaAnalise other = (RendaAnalise) obj;
+        final RendaPrinciapalOrigem other = (RendaPrinciapalOrigem) obj;
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.valorMinimo, other.valorMinimo)) {
-            return false;
-        }
-        if (!Objects.equals(this.valorMaximo, other.valorMaximo)) {
             return false;
         }
         if (!Objects.equals(this.pontuacao, other.pontuacao)) {
@@ -87,5 +74,6 @@ public class RendaAnalise implements Serializable {
         }
         return true;
     }
+    
     
 }

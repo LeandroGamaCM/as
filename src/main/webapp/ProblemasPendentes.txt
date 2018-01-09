@@ -7,3 +7,5 @@
     Por exemplo, Apelido não tem valor definido então haverá desperdicio de memória
 
 - Criar classe para setar valores no banco (bolsa, cidades...)
+
+- O aluno não pode digitar qualquer coisa em despesa, renda... Tem que ser campos definidos mesmo

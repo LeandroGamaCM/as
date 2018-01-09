@@ -7,24 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class RendaOrigem implements Serializable {
+public class LocalResidenciaFamilia implements Serializable {
 
-    private static final long serialVersionUID = 2748737362286642735L;
-    
+    private static final long serialVersionUID = -1722436705711441652L;
+
     @Id
     @GeneratedValue
-    private Integer id;
- 
     private String tipo;
     private Integer pontuacao;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getTipo() {
         return tipo;
@@ -45,9 +35,8 @@ public class RendaOrigem implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.id);
-        hash = 31 * hash + Objects.hashCode(this.tipo);
-        hash = 31 * hash + Objects.hashCode(this.pontuacao);
+        hash = 41 * hash + Objects.hashCode(this.tipo);
+        hash = 41 * hash + Objects.hashCode(this.pontuacao);
         return hash;
     }
 
@@ -62,11 +51,8 @@ public class RendaOrigem implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final RendaOrigem other = (RendaOrigem) obj;
+        final LocalResidenciaFamilia other = (LocalResidenciaFamilia) obj;
         if (!Objects.equals(this.tipo, other.tipo)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.pontuacao, other.pontuacao)) {
@@ -74,6 +60,5 @@ public class RendaOrigem implements Serializable {
         }
         return true;
     }
-    
     
 }

@@ -25,7 +25,36 @@ public class SituacaoOcupacionalRN {
         return this.situacaoOcupacionalDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos  
+        SituacaoOcupacional desempregado = new SituacaoOcupacional();
+        SituacaoOcupacional avisoPrevio = new SituacaoOcupacional();
+        SituacaoOcupacional trabalhadorInformal = new SituacaoOcupacional();
+        SituacaoOcupacional bpc = new SituacaoOcupacional();
+        SituacaoOcupacional aposentadoPensionista = new SituacaoOcupacional();
+        SituacaoOcupacional autonomo = new SituacaoOcupacional();
+        SituacaoOcupacional estagiario = new SituacaoOcupacional();
+        SituacaoOcupacional estudante = new SituacaoOcupacional();
+        SituacaoOcupacional trabalhadorFormal = new SituacaoOcupacional();
+        
+        desempregado.setTipo("Desempregado(a)");
+        avisoPrevio.setTipo("Aviso Prévio/Seguro desemprego");
+        trabalhadorInformal.setTipo("Trabalhador(a) informal");
+        bpc.setTipo("Beneficiário do BPC");
+        aposentadoPensionista.setTipo("Aposentado(a)/Pensionista");
+        autonomo.setTipo("Autônomo(a)");
+        estagiario.setTipo("Estagiário remunerado");
+        estudante.setTipo("Apenas estudando");
+        trabalhadorFormal.setTipo("Trabalhador(a) formal");
+        
+        this.situacaoOcupacionalDAO.salvar(desempregado);
+        this.situacaoOcupacionalDAO.salvar(avisoPrevio);
+        this.situacaoOcupacionalDAO.salvar(trabalhadorInformal);
+        this.situacaoOcupacionalDAO.salvar(bpc);
+        this.situacaoOcupacionalDAO.salvar(aposentadoPensionista);
+        this.situacaoOcupacionalDAO.salvar(autonomo);
+        this.situacaoOcupacionalDAO.salvar(estagiario);
+        this.situacaoOcupacionalDAO.salvar(estudante);
+        this.situacaoOcupacionalDAO.salvar(trabalhadorFormal);
     }
     
 }

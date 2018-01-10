@@ -16,7 +16,7 @@ public class Genero implements Serializable {
     private Integer id;
     
     private String tipo;
-    private Integer pontuacao;
+    private Float pontuacao;
 
     public Integer getId() {
         return id;
@@ -34,20 +34,20 @@ public class Genero implements Serializable {
         this.tipo = tipo;
     }
 
-    public Integer getPontuacao() {
+    public Float getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(Integer pontuacao) {
+    public void setPontuacao(Float pontuacao) {
         this.pontuacao = pontuacao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 61 * hash + Objects.hashCode(this.id);
-        hash = 61 * hash + Objects.hashCode(this.tipo);
-        hash = 61 * hash + Objects.hashCode(this.pontuacao);
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + Objects.hashCode(this.tipo);
+        hash = 73 * hash + Objects.hashCode(this.pontuacao);
         return hash;
     }
 
@@ -74,5 +74,5 @@ public class Genero implements Serializable {
         }
         return true;
     }
-    
+
 }

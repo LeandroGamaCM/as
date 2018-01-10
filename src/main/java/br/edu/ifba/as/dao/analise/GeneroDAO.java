@@ -24,7 +24,4 @@ public class GeneroDAO {
         sessao.delete(genero);
     }    
     
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }    
 }

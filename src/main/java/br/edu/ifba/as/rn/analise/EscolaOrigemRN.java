@@ -25,7 +25,18 @@ public class EscolaOrigemRN {
         return this.escolaOrigemDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos    
+        EscolaOrigem publica = new EscolaOrigem();
+        EscolaOrigem privadaBolsa = new EscolaOrigem();
+        EscolaOrigem privataSemBolsa = new EscolaOrigem();
+    
+        publica.setTipo("Pública");
+        privadaBolsa.setTipo("Privada com bolsa de estudo parcial ou integral");
+        privataSemBolsa.setTipo("Privada sem bolsa de estudo");
+        
+        this.escolaOrigemDAO.salvar(publica);
+        this.escolaOrigemDAO.salvar(privadaBolsa);
+        this.escolaOrigemDAO.salvar(privataSemBolsa);
     }
     
 }

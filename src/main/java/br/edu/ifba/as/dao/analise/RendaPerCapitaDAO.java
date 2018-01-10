@@ -23,9 +23,5 @@ public class RendaPerCapitaDAO {
     public void excluir(RendaPerCapita rendaPerCapita){
         sessao.delete(rendaPerCapita);
     }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }
-    
+
 }

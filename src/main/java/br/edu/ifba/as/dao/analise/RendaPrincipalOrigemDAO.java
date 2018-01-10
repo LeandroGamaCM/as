@@ -23,9 +23,5 @@ public class RendaPrincipalOrigemDAO {
     public void excluir(RendaPrincipalOrigem rendaPrincipalOrigem){
         sessao.delete(rendaPrincipalOrigem);
     }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }
-    
+
 }

@@ -23,9 +23,5 @@ public class SaudeDAO {
     public void excluir(Saude saude){
         sessao.delete(saude);
     }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }
-    
+
 }

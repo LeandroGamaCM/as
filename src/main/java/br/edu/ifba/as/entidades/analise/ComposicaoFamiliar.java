@@ -7,17 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class MoradiaFamilia implements Serializable {
+public class ComposicaoFamiliar implements Serializable {
     
-    private static final long serialVersionUID = 2670275614743673775L;
-
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue
     private Integer id;
-
+    
     private String tipo;
-    private Float pontuacao;
+    private Float pontuação;
 
+    
     public Integer getId() {
         return id;
     }
@@ -34,20 +35,20 @@ public class MoradiaFamilia implements Serializable {
         this.tipo = tipo;
     }
 
-    public Float getPontuacao() {
-        return pontuacao;
+    public Float getPontuação() {
+        return pontuação;
     }
 
-    public void setPontuacao(Float pontuacao) {
-        this.pontuacao = pontuacao;
+    public void setPontuação(Float pontuação) {
+        this.pontuação = pontuação;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 11 * hash + Objects.hashCode(this.id);
-        hash = 11 * hash + Objects.hashCode(this.tipo);
-        hash = 11 * hash + Objects.hashCode(this.pontuacao);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.tipo);
+        hash = 59 * hash + Objects.hashCode(this.pontuação);
         return hash;
     }
 
@@ -62,18 +63,18 @@ public class MoradiaFamilia implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final MoradiaFamilia other = (MoradiaFamilia) obj;
+        final ComposicaoFamiliar other = (ComposicaoFamiliar) obj;
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.pontuacao, other.pontuacao)) {
+        if (!Objects.equals(this.pontuação, other.pontuação)) {
             return false;
         }
         return true;
     }
-
+    
     
 }

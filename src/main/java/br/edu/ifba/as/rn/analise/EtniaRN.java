@@ -25,7 +25,19 @@ public class EtniaRN {
         return this.etniaDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos
+        Etnia negroIndigena = new Etnia();
+        Etnia pardo = new Etnia();
+        Etnia brancoAmareloOutro = new Etnia();
+
+        negroIndigena.setTipo("Negro ou Indígena");
+        pardo.setTipo("Pardo");
+        brancoAmareloOutro.setTipo("Branco, amarelo ou outra");
+        
+        this.etniaDAO.salvar(negroIndigena);
+        this.etniaDAO.salvar(pardo);
+        this.etniaDAO.salvar(brancoAmareloOutro);
+        
     }
     
 }

@@ -75,19 +75,18 @@ public class AlunoBean implements Serializable{
     }
 
     public void salvar(){
-        descartavel();
-//        AlunoRN alunoRN = new AlunoRN();
-//        TurmaRN turmaRN = new TurmaRN();
-//        
-//        System.out.println("turma.getNome: " + turma.getNome());
-//        turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
-//        aluno.setTurma(turma);
-//                     
-//        alunoRN.salvar(this.aluno);
-//
-//        salvarDependenciasAluno(aluno);
-//        
-//        System.out.println("salvou!");
+        AlunoRN alunoRN = new AlunoRN();
+        TurmaRN turmaRN = new TurmaRN();
+        
+        System.out.println("turma.getNome: " + turma.getNome());
+        turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
+        aluno.setTurma(turma);
+                     
+        alunoRN.salvar(this.aluno);
+
+        salvarDependenciasAluno(aluno);
+        
+        System.out.println("salvou!");
     }
     
     public void salvarDependenciasAluno(Aluno aluno){

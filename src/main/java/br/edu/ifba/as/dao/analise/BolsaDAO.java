@@ -1,7 +1,6 @@
 package br.edu.ifba.as.dao.analise;
 
 import br.edu.ifba.as.entidades.analise.Bolsa;
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 

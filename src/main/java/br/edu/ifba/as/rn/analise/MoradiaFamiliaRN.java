@@ -26,6 +26,22 @@ public class MoradiaFamiliaRN {
     }    
     public void definirPadroes(){
 // Aqui inicializa o banco colocando todas os objetos pre-definidos       
+        MoradiaFamilia alugado = new MoradiaFamilia();
+        MoradiaFamilia cedido = new MoradiaFamilia();
+        MoradiaFamilia financiado = new MoradiaFamilia();
+        MoradiaFamilia proprio = new MoradiaFamilia();
+
+        alugado.setTipo("Alugado");
+        cedido.setTipo("Cedido");
+        financiado.setTipo("Financiado");
+        proprio.setTipo("próprio");
+        
+        this.moradiaFamiliaDAO.salvar(alugado);
+        this.moradiaFamiliaDAO.salvar(cedido);
+        this.moradiaFamiliaDAO.salvar(financiado);
+        this.moradiaFamiliaDAO.salvar(proprio);
     }
+
+    
     
 }

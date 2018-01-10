@@ -25,7 +25,21 @@ public class SaudeRN {
         return this.saudeDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos  
+        Saude doencaGrave = new Saude();
+        Saude tratamentoMunicipio = new Saude();
+        Saude tratamentoOutroMunicipio = new Saude();
+        Saude conflitoViolencia = new Saude();
+
+        doencaGrave.setTipo("");
+        tratamentoMunicipio.setTipo("");
+        tratamentoOutroMunicipio.setTipo("");
+        conflitoViolencia.setTipo("");
+        
+        this.saudeDAO.salvar(doencaGrave);
+        this.saudeDAO.salvar(tratamentoMunicipio);
+        this.saudeDAO.salvar(tratamentoOutroMunicipio);
+        this.saudeDAO.salvar(conflitoViolencia);
     }
     
 }

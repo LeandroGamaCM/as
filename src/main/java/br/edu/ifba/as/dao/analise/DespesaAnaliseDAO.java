@@ -22,9 +22,6 @@ public class DespesaAnaliseDAO {
     }
     public void excluir(DespesaAnalise despesaAnalise){
         sessao.delete(despesaAnalise);
-    }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }    
+    }        
+   
 }

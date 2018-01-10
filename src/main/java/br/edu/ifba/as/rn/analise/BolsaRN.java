@@ -3,7 +3,6 @@ package br.edu.ifba.as.rn.analise;
 import br.edu.ifba.as.dao.DAOFactory;
 import br.edu.ifba.as.dao.analise.BolsaDAO;
 import br.edu.ifba.as.entidades.analise.Bolsa;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BolsaRN {

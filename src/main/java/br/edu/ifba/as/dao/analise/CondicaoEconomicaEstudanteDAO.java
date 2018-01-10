@@ -24,7 +24,4 @@ public class CondicaoEconomicaEstudanteDAO {
         sessao.delete(condicaoEconomicaEstudante);
     }    
     
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }    
 }

@@ -23,9 +23,5 @@ public class ProgramaSocialDAO {
     public void excluir(ProgramaSocial programaSocial){
         sessao.delete(programaSocial);
     }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }
-    
+
 }

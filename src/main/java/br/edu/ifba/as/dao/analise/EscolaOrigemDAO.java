@@ -23,8 +23,5 @@ public class EscolaOrigemDAO {
     public void excluir(EscolaOrigem escolaOrigem){
         sessao.delete(escolaOrigem);
     }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }    
+ 
 }

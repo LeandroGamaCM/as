@@ -16,7 +16,15 @@ public class LocalResidenciaFamilia implements Serializable {
     private Integer id;
 
     private String tipo;
-    private Integer pontuacao;
+    private Float pontuacao;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTipo() {
         return tipo;
@@ -26,19 +34,20 @@ public class LocalResidenciaFamilia implements Serializable {
         this.tipo = tipo;
     }
 
-    public Integer getPontuacao() {
+    public Float getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(Integer pontuacao) {
+    public void setPontuacao(Float pontuacao) {
         this.pontuacao = pontuacao;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.tipo);
-        hash = 41 * hash + Objects.hashCode(this.pontuacao);
+        hash = 43 * hash + Objects.hashCode(this.id);
+        hash = 43 * hash + Objects.hashCode(this.tipo);
+        hash = 43 * hash + Objects.hashCode(this.pontuacao);
         return hash;
     }
 
@@ -55,6 +64,9 @@ public class LocalResidenciaFamilia implements Serializable {
         }
         final LocalResidenciaFamilia other = (LocalResidenciaFamilia) obj;
         if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.pontuacao, other.pontuacao)) {

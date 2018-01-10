@@ -1,21 +1,6 @@
 package br.edu.ifba.as.dao;
 
-import br.edu.ifba.as.dao.analise.EntrevistaDAO;
-import br.edu.ifba.as.dao.analise.BolsaDAO;
-import br.edu.ifba.as.dao.analise.CondicaoEconomicaEstudanteDAO;
-import br.edu.ifba.as.dao.analise.DespesaAnaliseDAO;
-import br.edu.ifba.as.dao.analise.EscolaOrigemDAO;
-import br.edu.ifba.as.dao.analise.EtniaDAO;
-import br.edu.ifba.as.dao.analise.GeneroDAO;
-import br.edu.ifba.as.dao.analise.LocalResidenciaFamiliaDAO;
-import br.edu.ifba.as.dao.analise.MoradiaEstudanteDAO;
-import br.edu.ifba.as.dao.analise.MoradiaFamiliaDAO;
-import br.edu.ifba.as.dao.analise.ProgramaSocialDAO;
-import br.edu.ifba.as.dao.analise.RendaPerCapitaDAO;
-import br.edu.ifba.as.dao.analise.RendaPrincipalOrigemDAO;
-import br.edu.ifba.as.dao.analise.SaudeDAO;
-import br.edu.ifba.as.dao.analise.SituacaoOcupacionalDAO;
-import br.edu.ifba.as.entidades.analise.CondicaoEconomicaEstudante;
+import br.edu.ifba.as.dao.analise.*;
 import br.edu.ifba.as.util.HibernateUtil;
 
 public class DAOFactory {
@@ -130,6 +115,11 @@ public class DAOFactory {
         BolsaDAO bolsaDAO = new BolsaDAO();
         bolsaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return bolsaDAO;
+    }    
+    public static ComposicaoFamiliarDAO criarComposicaoFamiliarDAO(){
+        ComposicaoFamiliarDAO composicaoFamiliarDAO = new ComposicaoFamiliarDAO();
+        composicaoFamiliarDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return composicaoFamiliarDAO;
     }    
     public static CondicaoEconomicaEstudanteDAO criarCondicaoEconomicaEstudanteDAO(){
         CondicaoEconomicaEstudanteDAO condicaoEconomicaEstudanteDAO = new CondicaoEconomicaEstudanteDAO();

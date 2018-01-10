@@ -16,11 +16,14 @@ public class RendaPerCapita implements Serializable {
     private Integer id;
     
     private Double limite;
-    private Integer pontuacao;
+    private Float pontuacao;
 
-    
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getLimite() {
@@ -31,20 +34,20 @@ public class RendaPerCapita implements Serializable {
         this.limite = limite;
     }
 
-    public Integer getPontuacao() {
+    public Float getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(Integer pontuacao) {
+    public void setPontuacao(Float pontuacao) {
         this.pontuacao = pontuacao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.limite);
-        hash = 29 * hash + Objects.hashCode(this.pontuacao);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.limite);
+        hash = 53 * hash + Objects.hashCode(this.pontuacao);
         return hash;
     }
 
@@ -71,5 +74,6 @@ public class RendaPerCapita implements Serializable {
         }
         return true;
     }
+
 
 }

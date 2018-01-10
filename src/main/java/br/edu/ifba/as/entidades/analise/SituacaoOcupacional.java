@@ -16,7 +16,15 @@ public class SituacaoOcupacional implements Serializable {
     private Integer id;
 
     private String tipo;
-    private Integer pontuacao;
+    private Float pontuacao;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTipo() {
         return tipo;
@@ -26,19 +34,20 @@ public class SituacaoOcupacional implements Serializable {
         this.tipo = tipo;
     }
 
-    public Integer getPontuacao() {
+    public Float getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(Integer pontuacao) {
+    public void setPontuacao(Float pontuacao) {
         this.pontuacao = pontuacao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.tipo);
-        hash = 83 * hash + Objects.hashCode(this.pontuacao);
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.tipo);
+        hash = 71 * hash + Objects.hashCode(this.pontuacao);
         return hash;
     }
 
@@ -57,11 +66,13 @@ public class SituacaoOcupacional implements Serializable {
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         if (!Objects.equals(this.pontuacao, other.pontuacao)) {
             return false;
         }
         return true;
     }
-
     
 }

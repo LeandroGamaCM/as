@@ -23,8 +23,5 @@ public class LocalResidenciaFamiliaDAO {
     public void excluir(LocalResidenciaFamilia localResidenciaFamiliaa){
         sessao.delete(localResidenciaFamiliaa);
     }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }    
+       
 }

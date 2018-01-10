@@ -24,8 +24,5 @@ public class RendaPerCapitaRN {
     public List<RendaPerCapita> listar(){
         return this.rendaPerCapitaDAO.listar();
     }    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }
     
 }

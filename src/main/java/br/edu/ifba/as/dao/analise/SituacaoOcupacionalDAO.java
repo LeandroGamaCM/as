@@ -24,8 +24,4 @@ public class SituacaoOcupacionalDAO {
         sessao.delete(bolsa);
     }    
     
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }
-    
 }

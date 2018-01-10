@@ -25,7 +25,21 @@ public class MoradiaEstudanteRN {
         return this.moradiaEstudanteDAO.listar();
     }    
     public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
+// Aqui inicializa o banco colocando todas os objetos pre-definidos    
+        MoradiaEstudante alugado = new MoradiaEstudante();
+        MoradiaEstudante cedido = new MoradiaEstudante();
+        MoradiaEstudante financiado = new MoradiaEstudante();
+        MoradiaEstudante proprio = new MoradiaEstudante();
+
+        alugado.setTipo("Alugado");
+        cedido.setTipo("Cedido");
+        financiado.setTipo("Financiado");
+        proprio.setTipo("próprio");
+        
+        this.moradiaEstudanteDAO.salvar(alugado);
+        this.moradiaEstudanteDAO.salvar(cedido);
+        this.moradiaEstudanteDAO.salvar(financiado);
+        this.moradiaEstudanteDAO.salvar(proprio);
     }
     
 }

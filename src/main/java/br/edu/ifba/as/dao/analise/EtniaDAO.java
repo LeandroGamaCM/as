@@ -22,9 +22,6 @@ public class EtniaDAO {
     }
     public void excluir(Etnia etnia){
         sessao.delete(etnia);
-    }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }    
+    }        
+  
 }

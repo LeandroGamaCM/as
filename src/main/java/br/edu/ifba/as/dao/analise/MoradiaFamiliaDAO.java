@@ -23,9 +23,5 @@ public class MoradiaFamiliaDAO {
     public void excluir(MoradiaFamilia moradiaFamilia){
         sessao.delete(moradiaFamilia);
     }    
-    
-    public void definirPadroes(){
-// Aqui inicializa o banco colocando todas os objetos pre-definidos       
-    }
-    
+
 }

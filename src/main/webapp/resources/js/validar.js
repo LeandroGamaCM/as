@@ -19,10 +19,8 @@ function validar() {
 
 //valida formulário de inscrição
 function onnext(){
-    var nome = document.getElementById('nome');
-    var cpf = document.getElementById('cpf');
-    
-
+//    var nome = document.getElementById('nome');
+//    var cpf = document.getElementById('cpf');
 //    
 //    if(nome.value === ''){
 //        alert('Por favor, preencha o campo Nome!');
@@ -36,4 +34,10 @@ function onnext(){
 //    }
 //    
 //    return true;
+    
+    //função chamar o topo da tela
+    $('html, body').animate({scrollTop:0}, 'medium');
+}
+function onback(){
+    $('html, body').animate({scrollTop:0}, 'medium');
 }

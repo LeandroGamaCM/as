@@ -11,7 +11,7 @@
             <div class="card card-w-title">
                 <h1>Formulário de Inscrição</h1>
                 <!-- Quando clicar em proximo fazer ele ir pro topo (Ajax?)-->
-                <p:wizard nextLabel="Próximo" onnext="return onnext();" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
+                <p:wizard nextLabel="Próximo" onnext="return onnext();" onback="return onback();" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
 
                     <p:tab id="parte1" title="Dados Pessoais">
                         <p:panel header="Dados Pessoais">

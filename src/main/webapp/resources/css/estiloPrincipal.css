@@ -163,7 +163,7 @@ body .fa {
     font-weight: bold;
 }
 
-/*CALENDÁRIO*/
+/*CALENDÁRIO
 .dashboard .schedule .ui-panel {
     border: 0 none;
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
@@ -550,4 +550,4 @@ body .ui-widget-content {
     top: 0;
     left: 0;
     right: 0;
-}
+}*/

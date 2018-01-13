@@ -13,22 +13,25 @@
         
         <ui:define name="conteudo">
             <h:form>
-                <p:panel>
+                <p:outputPanel id="toolbar">
                     <p:toolbar>
                         <p:toolbarGroup>
-                            <p:commandButton />
-                            <p:commandButton />
+                            <p:commandButton value="Bolsas" update="panel" actionListener="#{bolsasBean.changeToTelaBolsas()}"/>
+                            <p:commandButton value="Barema" update="panel" actionListener="#{bolsasBean.changeToTelaBarema()}"/>
                         </p:toolbarGroup>
                     </p:toolbar>
-                    <p:outputPanel id="panelBolsas">
-                        <ui:include src="/templates/componenteBolsas.xhtml"/>
-
-                    </p:outputPanel>
-                    <p:outputPanel id="panelBarema">
-                        <ui:include src="/templates/componenteBarema.xhtml"/>
-                    </p:outputPanel>
-                </p:panel>
+                </p:outputPanel>
             </h:form>
+                
+            <p:outputPanel id="panel">
+                <p:panel rendered="#{bolsasBean.telaBolsas}" header="Bolsas">
+                    <ui:include src="/templates/componenteBolsas.xhtml"/>
+                </p:panel>
+
+                <p:panel rendered="#{bolsasBean.telaBarema}" header="Barema">
+                    <ui:include src="/templates/componenteBarema.xhtml"/>
+                </p:panel>
+            </p:outputPanel>
         </ui:define>
         
     </ui:composition>

@@ -65,12 +65,12 @@ public class Bolsa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.bolsa);
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.valor);
-        hash = 97 * hash + Objects.hashCode(this.qtddDistribuida);
-        hash = 97 * hash + Objects.hashCode(this.alunos);
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.bolsa);
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.valor);
+        hash = 67 * hash + Objects.hashCode(this.qtddDistribuida);
+        hash = 67 * hash + Objects.hashCode(this.alunos);
         return hash;
     }
 

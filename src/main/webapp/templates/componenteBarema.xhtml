@@ -10,10 +10,7 @@
             
             <h:form>
 <!--Rowspan-->
-<p:dataTable var="parametro" value="#{bolsasBean.barema.parametros}" sortBy="#{parametro.categoria}"  editable="true" editMode="cell">
-                    <f:facet name="header">
-                        <h:outputText value="Barema" />
-                    </f:facet>
+                <p:dataTable var="parametro" value="#{bolsasBean.parametros}" sortBy="#{parametro.categoria}"  editable="true" editMode="cell">
                     <p:ajax event="cellEdit" listener="#{bolsasBean.editarBarema(parametro)}"/>   
                     <p:column headerText="Categoria de Análise" groupRow="true">
                         <h:outputText value="#{parametro.categoria}" />

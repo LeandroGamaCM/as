@@ -34,7 +34,6 @@ public class BolsaRN {
         Bolsa auxilioCopiaImpressao = new Bolsa();
         Bolsa auxilioAquisicoesViagens = new Bolsa();
         Bolsa bolsaPina = new Bolsa();
-        Bolsa bolsaMonitoria = new Bolsa();
         
         bolsaEstudo.setNome("Bolsa de Estudos");
         auxilioMoradia.setNome("Auxílio Moradia");
@@ -43,7 +42,6 @@ public class BolsaRN {
         auxilioCopiaImpressao.setNome("Auxílio Cópia e Impressão");
         auxilioAquisicoesViagens.setNome("Auxílio Aquisições e Viagens");
         bolsaPina.setNome("Bolsa PINA");
-        bolsaMonitoria.setNome("Bolsa Monitoria");
                 
         this.bolsaDAO.salvar(bolsaEstudo);
         this.bolsaDAO.salvar(auxilioMoradia);
@@ -52,7 +50,6 @@ public class BolsaRN {
         this.bolsaDAO.salvar(auxilioCopiaImpressao);
         this.bolsaDAO.salvar(auxilioAquisicoesViagens);
         this.bolsaDAO.salvar(bolsaPina);
-        this.bolsaDAO.salvar(bolsaMonitoria);
         
     }
 }

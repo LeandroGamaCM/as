@@ -8,8 +8,24 @@
     <ui:composition>
         <div class="ui-fluid">
             <h:form>
-                
-                
+                <p:dataTable var="bolsa" value="#{bolsasBean.bolsas}" editable="true" editMode="cell">
+                    <p:ajax event="cellEdit" listener="#{bolsasBean.editarBolsa(bolsa)}"/>
+                    <p:column headerText="Bolsa">
+                        <h:outputLabel value="#{bolsa.nome}"/>
+                    </p:column>
+                    <p:column headerText="Valor">
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{bolsa.valor}"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{bolsa.valor}"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Quantidade distribuída">
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{bolsa.qtddDistribuida}"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{bolsa.qtddDistribuida}"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                </p:dataTable>
             </h:form>
         </div>
     </ui:composition>

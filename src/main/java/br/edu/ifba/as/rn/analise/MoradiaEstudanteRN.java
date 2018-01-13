@@ -34,12 +34,24 @@ public class MoradiaEstudanteRN {
         alugado.setTipo("Alugado");
         cedido.setTipo("Cedido");
         financiado.setTipo("Financiado");
-        proprio.setTipo("próprio");
+        proprio.setTipo("Próprio");
         
         this.moradiaEstudanteDAO.salvar(alugado);
         this.moradiaEstudanteDAO.salvar(cedido);
         this.moradiaEstudanteDAO.salvar(financiado);
         this.moradiaEstudanteDAO.salvar(proprio);
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<MoradiaEstudante> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }  
+    public MoradiaEstudante buscarPorAspectoEmAvaliacao(String tipo){
+        return this.moradiaEstudanteDAO.buscarPorAspectoEmAvaliacao(tipo);
+    }     
 }

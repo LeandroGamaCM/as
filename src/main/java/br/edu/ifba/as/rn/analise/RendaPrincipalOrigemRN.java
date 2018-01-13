@@ -37,13 +37,13 @@ public class RendaPrincipalOrigemRN {
         RendaPrincipalOrigem trabalhoFormalProvedor = new RendaPrincipalOrigem();
 
         ajuda.setTipo("Apenas ajuda da família e outros");
-        beneficios.setTipo("Apenas ajuda da família e outros");
+        beneficios.setTipo("Apenas benefícios assistenciais PBF");
         trabalhoInformalProvedor.setTipo("Trabalho informal do(s) provedor(es)");
         trabalhoRural.setTipo("Trabalhador rural/agricultura familiar");
         avisoPrevioSeguroDesemprego.setTipo("Aviso Prévio/Seguro desemprego/Estágio remunerado");
         beneficiosPrevidenciarios.setTipo("Benefício(s) previdenciário(s)");
         trabalhoAutonomo.setTipo("Trabalho autônomo do(s) provedor(es)");
-        rendaLocacaoImoveis.setTipo("Trabalho autônomo do(s) provedor(es)");
+        rendaLocacaoImoveis.setTipo("Renda da locação de imóveis (exclusivamente)");
         trabalhoFormalProvedor.setTipo("Trabalho formal do(s) provedore(s)");
 
         this.rendaPrincipalOrigemDAO.salvar(ajuda);
@@ -57,5 +57,17 @@ public class RendaPrincipalOrigemRN {
         this.rendaPrincipalOrigemDAO.salvar(trabalhoFormalProvedor);
     
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<RendaPrincipalOrigem> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)            
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }    
+    public RendaPrincipalOrigem buscarPorAspectoEmAvaliacao(String tipo){
+        return this.rendaPrincipalOrigemDAO.buscarPorAspectoEmAvaliacao(tipo);
+    }     
 }

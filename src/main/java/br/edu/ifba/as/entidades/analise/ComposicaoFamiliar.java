@@ -16,9 +16,8 @@ public class ComposicaoFamiliar implements Serializable {
     private Integer id;
     
     private String tipo;
-    private Float pontuação;
+    private Float pontuacao;
 
-    
     public Integer getId() {
         return id;
     }
@@ -35,20 +34,20 @@ public class ComposicaoFamiliar implements Serializable {
         this.tipo = tipo;
     }
 
-    public Float getPontuação() {
-        return pontuação;
+    public Float getPontuacao() {
+        return pontuacao;
     }
 
-    public void setPontuação(Float pontuação) {
-        this.pontuação = pontuação;
+    public void setPontuacao(Float pontuacao) {
+        this.pontuacao = pontuacao;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.tipo);
-        hash = 59 * hash + Objects.hashCode(this.pontuação);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.tipo);
+        hash = 17 * hash + Objects.hashCode(this.pontuacao);
         return hash;
     }
 
@@ -70,11 +69,13 @@ public class ComposicaoFamiliar implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.pontuação, other.pontuação)) {
+        if (!Objects.equals(this.pontuacao, other.pontuacao)) {
             return false;
         }
         return true;
     }
+
+    
     
     
 }

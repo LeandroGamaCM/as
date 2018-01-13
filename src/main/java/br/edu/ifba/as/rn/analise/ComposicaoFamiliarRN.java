@@ -32,15 +32,28 @@ public class ComposicaoFamiliarRN {
         ComposicaoFamiliar criancaAdolescente = new ComposicaoFamiliar();
         ComposicaoFamiliar adulto = new ComposicaoFamiliar();
 
-        gestante.setTipo("gestantes");
-        idoso.setTipo("idosos");
+        gestante.setTipo("Gestantes");
+        idoso.setTipo("Idosos");
         doente.setTipo("PDC/Doença incapacitante");
         criancaAdolescente.setTipo("Crianças/Adolescentes");
+        adulto.setTipo("Adulto");
         
         this.composicaoFamiliarDAO.salvar(gestante);
         this.composicaoFamiliarDAO.salvar(idoso);
         this.composicaoFamiliarDAO.salvar(doente);
         this.composicaoFamiliarDAO.salvar(criancaAdolescente);
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<ComposicaoFamiliar> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }
+    public ComposicaoFamiliar buscarPorAspectoEmAvaliacao(String tipo){
+        return this.composicaoFamiliarDAO.buscarPorAspectoEmAvaliacao(tipo);
+    }   
 }

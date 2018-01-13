@@ -3,6 +3,7 @@ package br.edu.ifba.as.dao.analise;
 import br.edu.ifba.as.entidades.analise.Saude;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class SaudeDAO {
     private Session sessao;
@@ -23,5 +24,7 @@ public class SaudeDAO {
     public void excluir(Saude saude){
         sessao.delete(saude);
     }    
-
+    public Saude buscarPorAspectoEmAvaliacao(String tipo){
+        return (Saude) this.sessao.createCriteria(Saude.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
+    }
 }

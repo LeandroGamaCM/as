@@ -44,10 +44,10 @@ public class RendaPerCapita implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.limite);
-        hash = 53 * hash + Objects.hashCode(this.pontuacao);
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.limite);
+        hash = 41 * hash + Objects.hashCode(this.pontuacao);
         return hash;
     }
 
@@ -74,6 +74,5 @@ public class RendaPerCapita implements Serializable {
         }
         return true;
     }
-
-
+    
 }

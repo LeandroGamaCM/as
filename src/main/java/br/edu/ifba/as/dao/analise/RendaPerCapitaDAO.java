@@ -3,6 +3,7 @@ package br.edu.ifba.as.dao.analise;
 import br.edu.ifba.as.entidades.analise.RendaPerCapita;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class RendaPerCapitaDAO {
     private Session sessao;
@@ -23,5 +24,9 @@ public class RendaPerCapitaDAO {
     public void excluir(RendaPerCapita rendaPerCapita){
         sessao.delete(rendaPerCapita);
     }    
+    public RendaPerCapita buscarPorAspectoEmAvaliacao(String tipo){
+        return (RendaPerCapita) this.sessao.createCriteria(RendaPerCapita.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
+        
+    }
 
 }

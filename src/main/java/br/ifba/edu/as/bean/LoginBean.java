@@ -4,7 +4,9 @@ import br.edu.ifba.as.entidades.formulario.Aluno;
 import br.edu.ifba.as.entidades.usuario.Usuario;
 import br.edu.ifba.as.rn.AlunoRN;
 import br.edu.ifba.as.rn.UsuarioRN;
+import br.edu.ifba.as.rn.analise.*;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -18,6 +20,12 @@ public class LoginBean implements Serializable{
 //    private String emailPagina;
     private String senhaPagina;
 
+    @PostConstruct
+    public void init(){
+        System.out.println("\n\tEntrou em init\n");
+        inicializar();
+    }
+    
     public String verificaExistencia(){
         UsuarioRN usuarioRN = new UsuarioRN();
         AlunoRN alunoRN = new AlunoRN();
@@ -66,6 +74,77 @@ public class LoginBean implements Serializable{
         this.aluno.setNome(nomePagina);
 // Esse email deve ser uma variavel diferente do formulario? Porque ele é pra recuperação e lá pra contato
 //        aluno.setEmail(emailPagina);
+    }
+
+// Esse método deve sair daqui e entrar em um inicializador    
+    public void inicializar(){
+        BolsaRN bolsaRN = new BolsaRN();
+        ComposicaoFamiliarRN composicaoFamiliarRN = new ComposicaoFamiliarRN();
+        CondicaoEconomicaEstudanteRN condicaoEconomicaEstudanteRN = new CondicaoEconomicaEstudanteRN();
+        DespesaAnaliseRN despesaAnaliseRN = new DespesaAnaliseRN();
+        EscolaOrigemRN escolaOrigemRN = new EscolaOrigemRN();
+        EtniaRN etniaRN = new EtniaRN();
+        GeneroRN generoRN = new GeneroRN();
+        LocalResidenciaFamiliaRN localResidenciaFamiliaRN = new LocalResidenciaFamiliaRN();
+        MoradiaEstudanteRN moradiaEstudanteRN = new MoradiaEstudanteRN();
+        MoradiaFamiliaRN moradiaFamiliaRN = new MoradiaFamiliaRN();
+        ProgramaSocialRN programaSocialRN = new ProgramaSocialRN();
+        RendaPerCapitaRN rendaPerCapitaRN = new RendaPerCapitaRN();
+        RendaPrincipalOrigemRN rendaPrincipalOrigemRN = new RendaPrincipalOrigemRN();
+        SaudeRN saudeRN = new SaudeRN();
+        SituacaoOcupacionalRN situacaoOcupacionalRN = new SituacaoOcupacionalRN();
+        UsuarioRN usuarioRN = new UsuarioRN();
+
+        if(usuarioRN.listar() == null || usuarioRN.listar().isEmpty()){
+            System.out.println("Cadastrou usuario");
+            usuarioRN.criarADM();
+        }
+        if(bolsaRN.listar() == null || bolsaRN.listar().isEmpty()){
+            System.out.println("\n\tEntrou no if de bolsa\n");
+            bolsaRN.definirPadroes();
+        }
+        if(composicaoFamiliarRN.listar() == null || composicaoFamiliarRN.listar().isEmpty()){
+            composicaoFamiliarRN.definirPadroes();
+        }
+        if(condicaoEconomicaEstudanteRN.listar() == null || condicaoEconomicaEstudanteRN.listar().isEmpty()){
+            condicaoEconomicaEstudanteRN.definirPadroes();
+        }
+        if(despesaAnaliseRN.listar() == null || despesaAnaliseRN.listar().isEmpty()){
+            despesaAnaliseRN.definirPadroes();
+        }
+        if(escolaOrigemRN.listar() == null || escolaOrigemRN.listar().isEmpty()){
+            escolaOrigemRN.definirPadroes();
+        }
+        if(etniaRN.listar() == null || etniaRN.listar().isEmpty()){
+            etniaRN.definirPadroes();
+        }
+        if(generoRN.listar() == null || generoRN.listar().isEmpty()){
+            generoRN.definirPadroes();
+        }
+        if(localResidenciaFamiliaRN.listar() == null || localResidenciaFamiliaRN.listar().isEmpty()){
+            localResidenciaFamiliaRN.definirPadroes();
+        }
+        if(moradiaEstudanteRN.listar() == null || moradiaEstudanteRN.listar().isEmpty()){
+            moradiaEstudanteRN.definirPadroes();
+        }
+        if(moradiaFamiliaRN.listar() == null || moradiaFamiliaRN.listar().isEmpty()){
+            moradiaFamiliaRN.definirPadroes();
+        }
+        if(programaSocialRN.listar() == null || programaSocialRN.listar().isEmpty()){
+            programaSocialRN.definirPadroes();
+        }
+        if(rendaPerCapitaRN.listar() == null || rendaPerCapitaRN.listar().isEmpty()){
+            rendaPerCapitaRN.definirPadroes();
+        }
+        if(rendaPrincipalOrigemRN.listar() == null || rendaPrincipalOrigemRN.listar().isEmpty()){
+            rendaPrincipalOrigemRN.definirPadroes();
+        }
+        if(saudeRN.listar() == null || saudeRN.listar().isEmpty()){
+            saudeRN.definirPadroes();
+        }
+        if(situacaoOcupacionalRN.listar() == null || situacaoOcupacionalRN.listar().isEmpty()){
+            situacaoOcupacionalRN.definirPadroes();
+        }
     }
 
 

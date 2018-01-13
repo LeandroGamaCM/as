@@ -31,15 +31,27 @@ public class SaudeRN {
         Saude tratamentoOutroMunicipio = new Saude();
         Saude conflitoViolencia = new Saude();
 
-        doencaGrave.setTipo("");
-        tratamentoMunicipio.setTipo("");
-        tratamentoOutroMunicipio.setTipo("");
-        conflitoViolencia.setTipo("");
+        doencaGrave.setTipo("Diagnóstico de doença grave");
+        tratamentoMunicipio.setTipo("Tratamento realizado no mesmo município do domicílio");
+        tratamentoOutroMunicipio.setTipo("Tratamento realizado em município diferente do domicílio");
+        conflitoViolencia.setTipo("Situação de conflito e/ou violência");
         
         this.saudeDAO.salvar(doencaGrave);
         this.saudeDAO.salvar(tratamentoMunicipio);
         this.saudeDAO.salvar(tratamentoOutroMunicipio);
         this.saudeDAO.salvar(conflitoViolencia);
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<Saude> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }    
+    public Saude buscarPorAspectoEmAvaliacao(String tipo){
+        return this.saudeDAO.buscarPorAspectoEmAvaliacao(tipo);
+    } 
 }

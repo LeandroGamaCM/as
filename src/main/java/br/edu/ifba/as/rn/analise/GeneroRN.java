@@ -35,5 +35,17 @@ public class GeneroRN {
         this.generoDAO.salvar(mulherSolteira);
         this.generoDAO.salvar(mulherCasada);
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<Genero> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }  
+    public Genero buscarPorAspectoEmAvaliacao(String tipo){
+        return this.generoDAO.buscarPorAspectoEmAvaliacao(tipo);
+    }     
 }

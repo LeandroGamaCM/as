@@ -3,6 +3,7 @@ package br.edu.ifba.as.dao.analise;
 import br.edu.ifba.as.entidades.analise.ProgramaSocial;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class ProgramaSocialDAO {
     private Session sessao;
@@ -23,5 +24,7 @@ public class ProgramaSocialDAO {
     public void excluir(ProgramaSocial programaSocial){
         sessao.delete(programaSocial);
     }    
-
+    public ProgramaSocial buscarPorAspectoEmAvaliacao(String tipo){
+        return (ProgramaSocial) this.sessao.createCriteria(ProgramaSocial.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
+    } 
 }

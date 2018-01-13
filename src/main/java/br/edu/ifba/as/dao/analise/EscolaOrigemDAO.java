@@ -3,6 +3,7 @@ package br.edu.ifba.as.dao.analise;
 import br.edu.ifba.as.entidades.analise.EscolaOrigem;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class EscolaOrigemDAO {
     private Session sessao;
@@ -23,5 +24,8 @@ public class EscolaOrigemDAO {
     public void excluir(EscolaOrigem escolaOrigem){
         sessao.delete(escolaOrigem);
     }    
- 
+    public EscolaOrigem buscarPorAspectoEmAvaliacao(String tipo){
+        return (EscolaOrigem) this.sessao.createCriteria(EscolaOrigem.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
+        
+    }
 }

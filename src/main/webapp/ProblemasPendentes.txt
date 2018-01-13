@@ -11,3 +11,24 @@
 - O aluno não pode digitar qualquer coisa em despesa, renda... Tem que ser campos definidos mesmo
 
 - Revisar todas as chaves primárias e estrangeiras de todas as classes
+
+- Se um adm faz a inscricao de um aluno verificar o que acontece quando esse aluno tenta se pre cadastrar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

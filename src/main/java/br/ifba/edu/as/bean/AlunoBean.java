@@ -61,6 +61,7 @@ public class AlunoBean implements Serializable{
     @PostConstruct
     public void init(){
         TurmaRN turmaRN = new TurmaRN();
+        System.out.println("\n\tAluno bean init");
         List<String> aux = turmaRN.listarModalidades();
         if(aux != null){
             modalidades = new HashSet<>(aux);        

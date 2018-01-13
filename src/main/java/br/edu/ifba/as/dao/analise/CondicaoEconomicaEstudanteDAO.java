@@ -3,6 +3,7 @@ package br.edu.ifba.as.dao.analise;
 import br.edu.ifba.as.entidades.analise.CondicaoEconomicaEstudante;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class CondicaoEconomicaEstudanteDAO {
     private Session sessao;
@@ -23,5 +24,8 @@ public class CondicaoEconomicaEstudanteDAO {
     public void excluir(CondicaoEconomicaEstudante condicaoEconomicaEstudante){
         sessao.delete(condicaoEconomicaEstudante);
     }    
-    
+    public CondicaoEconomicaEstudante buscarPorAspectoEmAvaliacao(String tipo){
+        return (CondicaoEconomicaEstudante) this.sessao.createCriteria(CondicaoEconomicaEstudante.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
+        
+    }    
 }

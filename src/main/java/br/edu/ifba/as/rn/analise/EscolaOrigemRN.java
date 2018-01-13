@@ -38,5 +38,17 @@ public class EscolaOrigemRN {
         this.escolaOrigemDAO.salvar(privadaBolsa);
         this.escolaOrigemDAO.salvar(privataSemBolsa);
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<EscolaOrigem> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }    
+    public EscolaOrigem buscarPorAspectoEmAvaliacao(String tipo){
+        return this.escolaOrigemDAO.buscarPorAspectoEmAvaliacao(tipo);
+    } 
 }

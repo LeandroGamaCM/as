@@ -39,5 +39,17 @@ public class EtniaRN {
         this.etniaDAO.salvar(brancoAmareloOutro);
         
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<Etnia> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }  
+    public Etnia buscarPorAspectoEmAvaliacao(String tipo){
+        return this.etniaDAO.buscarPorAspectoEmAvaliacao(tipo);
+    }     
 }

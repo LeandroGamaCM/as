@@ -34,14 +34,25 @@ public class MoradiaFamiliaRN {
         alugado.setTipo("Alugado");
         cedido.setTipo("Cedido");
         financiado.setTipo("Financiado");
-        proprio.setTipo("próprio");
+        proprio.setTipo("Próprio");
         
         this.moradiaFamiliaDAO.salvar(alugado);
         this.moradiaFamiliaDAO.salvar(cedido);
         this.moradiaFamiliaDAO.salvar(financiado);
         this.moradiaFamiliaDAO.salvar(proprio);
     }
-
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<MoradiaFamilia> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }
+    public MoradiaFamilia buscarPorAspectoEmAvaliacao(String tipo){
+        return this.moradiaFamiliaDAO.buscarPorAspectoEmAvaliacao(tipo);
+    }     
     
 }

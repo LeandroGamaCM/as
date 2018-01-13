@@ -3,6 +3,7 @@ package br.edu.ifba.as.dao.analise;
 import br.edu.ifba.as.entidades.analise.ComposicaoFamiliar;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class ComposicaoFamiliarDAO {
     private Session sessao;
@@ -23,4 +24,8 @@ public class ComposicaoFamiliarDAO {
     public void excluir(ComposicaoFamiliar composicaoFamiliar){
         sessao.delete(composicaoFamiliar);
     }      
+    public ComposicaoFamiliar buscarPorAspectoEmAvaliacao(String tipo){
+        return (ComposicaoFamiliar) this.sessao.createCriteria(ComposicaoFamiliar.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
+        
+    }    
 }

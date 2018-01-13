@@ -40,4 +40,13 @@ public class UsuarioRN {
         return this.usuarioDAO.listar();
     }
     
+    public void criarADM(){
+        Usuario usuario = new Usuario();
+        usuario.setLogin("admin");
+        usuario.setSenha("admin");
+        usuario.setAtivo(Boolean.TRUE);
+        usuario.getPermissao().add("ROLE_ADMINISTRADOR");
+        
+        this.usuarioDAO.salvar(usuario);
+    }
 }

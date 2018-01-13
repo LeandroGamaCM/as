@@ -31,15 +31,27 @@ public class LocalResidenciaFamiliaRN {
         LocalResidenciaFamilia ruralMesmoMunicipio = new LocalResidenciaFamilia();
         LocalResidenciaFamilia mesmoMunicipio = new LocalResidenciaFamilia();
         
-        ruralMesmoMunicipio.setTipo("Na zona rural do município do campus");
         ruralMunicipioDiferente.setTipo("Na zona rural de município diferente do campus");
-        mesmoMunicipio.setTipo("No município do campus");
         municipioDiferente.setTipo("Em município diferente do campus");
+        ruralMesmoMunicipio.setTipo("Na zona rural do município do campus");
+        mesmoMunicipio.setTipo("No município do campus");
         
-        this.localResidenciaFamiliaDAO.salvar(ruralMesmoMunicipio);
         this.localResidenciaFamiliaDAO.salvar(ruralMunicipioDiferente);
-        this.localResidenciaFamiliaDAO.salvar(mesmoMunicipio);
         this.localResidenciaFamiliaDAO.salvar(municipioDiferente);
+        this.localResidenciaFamiliaDAO.salvar(ruralMesmoMunicipio);
+        this.localResidenciaFamiliaDAO.salvar(mesmoMunicipio);
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<LocalResidenciaFamilia> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }   
+    public LocalResidenciaFamilia buscarPorAspectoEmAvaliacao(String tipo){
+        return this.localResidenciaFamiliaDAO.buscarPorAspectoEmAvaliacao(tipo);
+    }     
 }

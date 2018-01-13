@@ -50,5 +50,17 @@ public class ProgramaSocialRN {
         this.programaSocialDAO.salvar(caps);
         this.programaSocialDAO.salvar(prouniFies);
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<ProgramaSocial> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }    
+    public ProgramaSocial buscarPorAspectoEmAvaliacao(String tipo){
+        return this.programaSocialDAO.buscarPorAspectoEmAvaliacao(tipo);
+    } 
 }

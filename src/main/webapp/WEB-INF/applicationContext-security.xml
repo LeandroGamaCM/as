@@ -8,7 +8,6 @@
      http://www.springframework.org/schema/security
      http://www.springframework.org/schema/security/spring-security.xsd">
    
-<!-- Mudar as configurações de acordo do o que for necessário -->
     <http auto-config="true">
 <!--        <intercept-url pattern="/paginas/adm/**" access="ROLE_ADMINISTRADOR"/>
         <intercept-url pattern="/paginas/aluno/**" access="ROLE_USUARIO"/>-->
@@ -17,16 +16,12 @@
         <form-login login-page="/paginas/publico/loginEntrar.jsf"
                 authentication-success-handler-ref="redirectRoleStrategy"
         />
-<!--                default-target-url="/login_success"-->
         
         <logout/>
     </http>
 
     <authentication-manager>
         <authentication-provider>
-<!--            <user-service>
-                <user name="leo" password="123" authorities="ROLE_USER"/>
-            </user-service>-->
             <jdbc-user-service data-source-ref="asbdDataSource"
             authorities-by-username-query="SELECT u.login, p.permissao
                                         FROM Usuario u, usuario_permissao p
@@ -43,21 +38,5 @@
             </beans:map>
         </beans:property>
     </beans:bean>
-<!--    <urlrewrite>
-        <rule>
-            <condition type="user-in-role">ROLE_USUARIO</condition>
-            <from>/login_success</from>
-            <to type="redirect">paginas/aluno/inscricao.jsf</to>
-        </rule>
-        <rule>
-            <condition type="user-in-role">ROLE_ADMINISTRADOR</condition>
-            <from>/login_success</from>
-            <to type="redirect">/index.jsf</to>
-        </rule>
-        <rule>
-            <from>/login_success</from>
-            <to type="redirect">index.jsf</to>
-        </rule>
-    </urlrewrite>-->
 
 </beans:beans>

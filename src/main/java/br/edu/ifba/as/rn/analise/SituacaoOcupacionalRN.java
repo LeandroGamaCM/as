@@ -56,5 +56,17 @@ public class SituacaoOcupacionalRN {
         this.situacaoOcupacionalDAO.salvar(estudante);
         this.situacaoOcupacionalDAO.salvar(trabalhadorFormal);
     }
-    
+    public Float getPeso(){
+        int i = 0;
+        Float peso = 0.0F;
+        List<SituacaoOcupacional> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }    
+    public SituacaoOcupacional buscarPorAspectoEmAvaliacao(String tipo){
+        return this.situacaoOcupacionalDAO.buscarPorAspectoEmAvaliacao(tipo);
+    }     
 }

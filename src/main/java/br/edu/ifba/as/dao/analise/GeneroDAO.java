@@ -3,6 +3,7 @@ package br.edu.ifba.as.dao.analise;
 import br.edu.ifba.as.entidades.analise.Genero;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class GeneroDAO {
     private Session sessao;
@@ -23,5 +24,7 @@ public class GeneroDAO {
     public void excluir(Genero genero){
         sessao.delete(genero);
     }    
-    
+    public Genero buscarPorAspectoEmAvaliacao(String tipo){
+        return (Genero) this.sessao.createCriteria(Genero.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
+    }     
 }

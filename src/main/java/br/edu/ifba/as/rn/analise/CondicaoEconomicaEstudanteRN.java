@@ -38,5 +38,17 @@ public class CondicaoEconomicaEstudanteRN {
         this.condicaoEconomicaEstudanteDAO.salvar(dependente);
         this.condicaoEconomicaEstudanteDAO.salvar(colaborador);
     }
-    
+    public Float getPeso(){
+        int i;
+        Float peso = 0.0F;
+        List<CondicaoEconomicaEstudante> list = listar();
+        for(i=0; i<list.size(); i++){
+            if(list.get(i).getPontuacao() != null)
+            peso = peso + list.get(i).getPontuacao();
+        }
+        return peso;
+    }    
+    public CondicaoEconomicaEstudante buscarPorAspectoEmAvaliacao(String tipo){
+        return this.condicaoEconomicaEstudanteDAO.buscarPorAspectoEmAvaliacao(tipo);
+    } 
 }

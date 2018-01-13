@@ -53,6 +53,7 @@ Contributor(s):
 -->
     <!-- Mapeando Classes -->
     <mapping class="br.edu.ifba.as.entidades.analise.Bolsa"></mapping>
+    <mapping class="br.edu.ifba.as.entidades.analise.ComposicaoFamiliar"></mapping>
     <mapping class="br.edu.ifba.as.entidades.analise.CondicaoEconomicaEstudante"></mapping>
     <mapping class="br.edu.ifba.as.entidades.analise.DespesaAnalise"></mapping>
     <mapping class="br.edu.ifba.as.entidades.analise.Entrevista"></mapping>

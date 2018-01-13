@@ -3,6 +3,7 @@ package br.edu.ifba.as.dao.analise;
 import br.edu.ifba.as.entidades.analise.RendaPrincipalOrigem;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 public class RendaPrincipalOrigemDAO {
     private Session sessao;
@@ -23,5 +24,7 @@ public class RendaPrincipalOrigemDAO {
     public void excluir(RendaPrincipalOrigem rendaPrincipalOrigem){
         sessao.delete(rendaPrincipalOrigem);
     }    
-
+    public RendaPrincipalOrigem buscarPorAspectoEmAvaliacao(String tipo){
+        return (RendaPrincipalOrigem) this.sessao.createCriteria(RendaPrincipalOrigem.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
+    } 
 }

@@ -9,18 +9,22 @@ import javax.persistence.*;
 public class Doenca implements Serializable {
     private static final long serialVersionUID = -5599780096979180218L;
 
-
     @Id
-    @GeneratedValue
-    @Column(name = "cod_doenca")
+    @GeneratedValue(generator = "fk_doenca_cod_aluno")
+    @org.hibernate.annotations.GenericGenerator(name = "fk_doenca_cod_aluno", 
+            strategy = "foreign", parameters = @org.hibernate.annotations.Parameter(name = "property", value = "familia"))
+    @Column(name = "cod_familia")
     private Integer doenca;
+       
+    @OneToOne(mappedBy = "doenca")
+    private Familia familia;
     
-    @ManyToOne
-    @JoinColumn(name = "cod_membro_familiar")
-    private MembroFamiliar membro_familiar;    
+    @Column(name = "possui_doenca")
+    private Boolean possuiDoenca;
     
-    @Column(name = "nome_doenca")
-    private String nomeDoenca;
+    private String doente;
+    private String doencas;
+    private String tratamento;
 
     public Integer getDoenca() {
         return doenca;
@@ -30,28 +34,55 @@ public class Doenca implements Serializable {
         this.doenca = doenca;
     }
 
-    public MembroFamiliar getMembro_familiar() {
-        return membro_familiar;
+    public Familia getFamilia() {
+        return familia;
     }
 
-    public void setMembro_familiar(MembroFamiliar membro_familiar) {
-        this.membro_familiar = membro_familiar;
+    public void setFamilia(Familia familia) {
+        this.familia = familia;
     }
 
-    public String getNomeDoenca() {
-        return nomeDoenca;
+    public Boolean getPossuiDoenca() {
+        return possuiDoenca;
     }
 
-    public void setNomeDoenca(String nomeDoenca) {
-        this.nomeDoenca = nomeDoenca;
+    public void setPossuiDoenca(Boolean possuiDoenca) {
+        this.possuiDoenca = possuiDoenca;
+    }
+
+    public String getDoente() {
+        return doente;
+    }
+
+    public void setDoente(String doente) {
+        this.doente = doente;
+    }
+
+    public String getDoencas() {
+        return doencas;
+    }
+
+    public void setDoencas(String doencas) {
+        this.doencas = doencas;
+    }
+
+    public String getTratamento() {
+        return tratamento;
+    }
+
+    public void setTratamento(String tratamento) {
+        this.tratamento = tratamento;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 73 * hash + Objects.hashCode(this.doenca);
-        hash = 73 * hash + Objects.hashCode(this.membro_familiar);
-        hash = 73 * hash + Objects.hashCode(this.nomeDoenca);
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.doenca);
+        hash = 83 * hash + Objects.hashCode(this.familia);
+        hash = 83 * hash + Objects.hashCode(this.possuiDoenca);
+        hash = 83 * hash + Objects.hashCode(this.doente);
+        hash = 83 * hash + Objects.hashCode(this.doencas);
+        hash = 83 * hash + Objects.hashCode(this.tratamento);
         return hash;
     }
 
@@ -67,16 +98,26 @@ public class Doenca implements Serializable {
             return false;
         }
         final Doenca other = (Doenca) obj;
-        if (!Objects.equals(this.nomeDoenca, other.nomeDoenca)) {
+        if (!Objects.equals(this.doente, other.doente)) {
+            return false;
+        }
+        if (!Objects.equals(this.doencas, other.doencas)) {
+            return false;
+        }
+        if (!Objects.equals(this.tratamento, other.tratamento)) {
             return false;
         }
         if (!Objects.equals(this.doenca, other.doenca)) {
             return false;
         }
-        if (!Objects.equals(this.membro_familiar, other.membro_familiar)) {
+        if (!Objects.equals(this.familia, other.familia)) {
+            return false;
+        }
+        if (!Objects.equals(this.possuiDoenca, other.possuiDoenca)) {
             return false;
         }
         return true;
     }
 
+        
 }

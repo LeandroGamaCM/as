@@ -19,9 +19,6 @@ public class MembroFamiliar implements Serializable {
     @JoinColumn(name = "cod_familia")
     private Familia familia;
     
-    @OneToMany(mappedBy = "membro_familiar", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<Doenca> doencas;
-    
     private String nome;
     private String parentesco;
     private String escolaridade;
@@ -44,14 +41,6 @@ public class MembroFamiliar implements Serializable {
 
     public void setFamilia(Familia familia) {
         this.familia = familia;
-    }
-
-    public List<Doenca> getDoencas() {
-        return doencas;
-    }
-
-    public void setDoencas(List<Doenca> doencas) {
-        this.doencas = doencas;
     }
 
     public String getNome() {
@@ -96,15 +85,14 @@ public class MembroFamiliar implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.membroFamiliar);
-        hash = 53 * hash + Objects.hashCode(this.familia);
-        hash = 53 * hash + Objects.hashCode(this.doencas);
-        hash = 53 * hash + Objects.hashCode(this.nome);
-        hash = 53 * hash + Objects.hashCode(this.parentesco);
-        hash = 53 * hash + Objects.hashCode(this.escolaridade);
-        hash = 53 * hash + Objects.hashCode(this.salario);
-        hash = 53 * hash + Objects.hashCode(this.idade);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.membroFamiliar);
+        hash = 79 * hash + Objects.hashCode(this.familia);
+        hash = 79 * hash + Objects.hashCode(this.nome);
+        hash = 79 * hash + Objects.hashCode(this.parentesco);
+        hash = 79 * hash + Objects.hashCode(this.escolaridade);
+        hash = 79 * hash + Objects.hashCode(this.salario);
+        hash = 79 * hash + Objects.hashCode(this.idade);
         return hash;
     }
 
@@ -135,9 +123,6 @@ public class MembroFamiliar implements Serializable {
         if (!Objects.equals(this.familia, other.familia)) {
             return false;
         }
-        if (!Objects.equals(this.doencas, other.doencas)) {
-            return false;
-        }
         if (!Objects.equals(this.salario, other.salario)) {
             return false;
         }
@@ -146,5 +131,6 @@ public class MembroFamiliar implements Serializable {
         }
         return true;
     }
+
     
 }

@@ -9,81 +9,81 @@
         <h:form>
             <p:panel id="dadosPessoais">
                 <p:outputLabel value="Nome Completo: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.nome}"/>
+                <p:outputLabel value="#{alunoBean.aluno.nome}"/>
                 <p:outputLabel value="CPF: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.cpf}"/>
+                <p:outputLabel value="#{alunoBean.aluno.cpf}"/>
                 <p:outputLabel value="Apelido: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.apelido}"/>
+                <p:outputLabel value="#{alunoBean.aluno.apelido}"/>
                 <p:outputLabel value="Sexo: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.sexo}"/>
+                <p:outputLabel value="#{alunoBean.aluno.sexo}"/>
                 <p:outputLabel value="Data de Nascimento: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.dataNascimento}"/>                
+                <p:outputLabel value="#{alunoBean.aluno.dataNascimento}"/>                
                 <p:outputLabel value="RG: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.rg}"/>
+                <p:outputLabel value="#{alunoBean.aluno.rg}"/>
                 <p:outputLabel value="Estado civil: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.estadoCivil}"/>
+                <p:outputLabel value="#{alunoBean.aluno.estadoCivil}"/>
                 <p:outputLabel value="Modalidade: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.turma.modalidade}"/>
+                <p:outputLabel value="#{alunoBean.turma.modalidade}"/>
                 <p:outputLabel value="Curso "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.turma.curso}"/>
+                <p:outputLabel value="#{alunoBean.turma.curso}"/>
                 <p:outputLabel value="Turma: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.turma.nome}"/>                
+                <p:outputLabel value="#{alunoBean.turma.nome}"/>                
             </p:panel>
             <p:panel header="Contato">
                 <p:outputLabel value="Telefone: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.telefone}"/>   
+                <p:outputLabel value="#{alunoBean.aluno.telefone}"/>   
                 <p:outputLabel value="Celular "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.celular}"/>   
+                <p:outputLabel value="#{alunoBean.aluno.celular}"/>   
                 <p:outputLabel value="Email: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.aluno.email}"/> 
+                <p:outputLabel value="#{alunoBean.aluno.email}"/> 
             </p:panel>            
             <p:panel header="Endereco">
                 <p:outputLabel value="Endereco: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.endereco.rua}"/>   
+                <p:outputLabel value="#{alunoBean.endereco.rua}"/>   
                 <p:outputLabel value="Nº: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.endereco.numero}"/>   
+                <p:outputLabel value="#{alunoBean.endereco.numero}"/>   
                 <p:outputLabel value="Bairro: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.endereco.bairro}"/>   
+                <p:outputLabel value="#{alunoBean.endereco.bairro}"/>   
                 <p:outputLabel value="Cidade: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.endereco.cidade}"/> 
+                <p:outputLabel value="#{alunoBean.endereco.cidade}"/> 
             </p:panel>            
             <p:panel header="Preferências de Bolsa: ">
                 <p:outputLabel value="Primeira opção: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.formulario.primeiraPreferencia}"/>   
+                <p:outputLabel value="#{alunoBean.formulario.primeiraPreferencia}"/>   
                 <p:outputLabel value="Segunda opção: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.formulario.segundaPreferencia}"/>   
+                <p:outputLabel value="#{alunoBean.formulario.segundaPreferencia}"/>   
             </p:panel>            
             <p:panel header="Dados Bancários">
                 <p:outputLabel value="Possui conta bancária"/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.conta.nomeBanco}"/>   
+                <p:outputLabel value="#{alunoBean.conta.nomeBanco}"/>   
                 <p:outputLabel value="Banco: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.conta.agencia}"/>   
+                <p:outputLabel value="#{alunoBean.conta.agencia}"/>   
                 <p:outputLabel value="Agência: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.conta.contaCorrente}"/>   
+                <p:outputLabel value="#{alunoBean.conta.contaCorrente}"/>   
                 <p:outputLabel value="Operação: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.conta.operacao}"/>   
+                <p:outputLabel value="#{alunoBean.conta.operacao}"/>   
             </p:panel>
             
             <p:panel header="Curso preparatório">
                 <p:outputLabel value="Possui curso preparatório: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.informacoesCurriculares.cursoPreparatorio}"/>   
+                <p:outputLabel value="#{alunoBean.informacoesCurriculares.cursoPreparatorio}"/>   
                 <p:outputLabel value="Curso: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.informacoesCurriculares.nomeCursoPreparatorio}"/>                   
+                <p:outputLabel value="#{alunoBean.informacoesCurriculares.nomeCursoPreparatorio}"/>                   
             </p:panel>
 
             <p:panel header="Onde estudou">
                 <p:outputLabel value="Tipo de escola: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.informacoesCurriculares.ondeEstudou}"/>   
+                <p:outputLabel value="#{alunoBean.informacoesCurriculares.ondeEstudou}"/>   
             </p:panel>
             <p:panel header="Estudos">
                 <p:outputLabel value="Houve interrupção: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.informacoesCurriculares.interrupcaoEstudos}"/>   
+                <p:outputLabel value="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>   
                 <p:outputLabel value="Motivo interrupção: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.informacoesCurriculares.interrupcaoEstudos}"/>   
+                <p:outputLabel value="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>   
                 <p:outputLabel value="Data da interrupção: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.informacoesCurriculares.dataInterrupcao}"/>   
+                <p:outputLabel value="#{alunoBean.informacoesCurriculares.dataInterrupcao}"/>   
                 <p:outputLabel value="Tempo de interrupção: "/>
-                <p:outputLabel value="#{telaDadosInscricaoBean.alunoInscricao.informacoesCurriculares.tempoInterrupcao}"/>   
+                <p:outputLabel value="#{alunoBean.informacoesCurriculares.tempoInterrupcao}"/>   
             </p:panel>
             <p:panel header="Bolsas: ">
             </p:panel>

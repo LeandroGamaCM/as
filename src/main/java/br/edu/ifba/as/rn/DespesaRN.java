@@ -18,7 +18,7 @@ public class DespesaRN {
     public void excluir(Despesa despesa){
         this.despesaDAO.excluir(despesa);
     }
-    public List<Despesa> buscarPorFamilia(Integer codFamilia){
+    public Despesa buscarPorFamilia(Integer codFamilia){
         return this.despesaDAO.buscarPorFamilia(codFamilia);
     }
     public Despesa carregar(Integer codigo){

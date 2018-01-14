@@ -42,6 +42,7 @@ public class ComposicaoFamiliarRN {
         this.composicaoFamiliarDAO.salvar(idoso);
         this.composicaoFamiliarDAO.salvar(doente);
         this.composicaoFamiliarDAO.salvar(criancaAdolescente);
+        this.composicaoFamiliarDAO.salvar(adulto);
     }
     public Float getPeso(){
         int i = 0;

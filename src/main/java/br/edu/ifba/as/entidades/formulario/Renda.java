@@ -10,19 +10,40 @@ public class Renda implements Serializable {
     private static final long serialVersionUID = -8022334389005626316L;
     
     @Id
-    @GeneratedValue
-    @Column(name = "cod_renda")
+    @GeneratedValue(generator = "fk_despesa_cod_aluno")
+    @org.hibernate.annotations.GenericGenerator(name = "fk_despesa_cod_aluno", 
+            strategy = "foreign", parameters = @org.hibernate.annotations.Parameter(name = "property", value = "familia"))
+    @Column(name = "cod_familia")
     private Integer renda;
-
-    @ManyToOne
-    @JoinColumn(name = "cod_familia")
+    
+    @OneToOne(mappedBy = "renda")
     private Familia familia;
     
-    @Column(name = "nome_renda")
-    private String nomeRenda;
-    @Column(name = "valor_renda")
-    private Double valorRenda;
+    // Variáveis fixas
+    private Boolean aluguel;
+    @Column(name = "valor_aluguel")
+    private Double valorAluguel;
+    
+    @Column(name = "pensao_morte")
+    private Boolean pensaoMorte;
+    @Column(name = "valor_pensao_morte")
+    private Double valorPensaoMorte;
 
+    @Column(name = "pensao_alimenticia")
+    private Boolean pensaoAlimenticia;
+    @Column(name = "valor_pensao_alimenticia")
+    private Double valorPensaoAlimenticia;
+    
+    private Boolean ajuda;
+    @Column(name = "valor_ajuda")
+    private Double valorAjuda;
+    
+    private Boolean outros;
+    @Column(name = "valor_outros")
+    private Double valorOutros;
+    @Column(name = "nome_outros")
+    private String nomeOutros;
+    
 // Getters e Setters
 
     public Integer getRenda() {
@@ -41,29 +62,110 @@ public class Renda implements Serializable {
         this.familia = familia;
     }
 
-    public String getNomeRenda() {
-        return nomeRenda;
+    public Boolean getAluguel() {
+        return aluguel;
     }
 
-    public void setNomeRenda(String nomeRenda) {
-        this.nomeRenda = nomeRenda;
+    public void setAluguel(Boolean aluguel) {
+        this.aluguel = aluguel;
     }
 
-    public Double getValorRenda() {
-        return valorRenda;
+    public Double getValorAluguel() {
+        return valorAluguel;
     }
 
-    public void setValorRenda(Double valorRenda) {
-        this.valorRenda = valorRenda;
+    public void setValorAluguel(Double valorAluguel) {
+        this.valorAluguel = valorAluguel;
+    }
+
+    public Boolean getPensaoMorte() {
+        return pensaoMorte;
+    }
+
+    public void setPensaoMorte(Boolean pensaoMorte) {
+        this.pensaoMorte = pensaoMorte;
+    }
+
+    public Double getValorPensaoMorte() {
+        return valorPensaoMorte;
+    }
+
+    public void setValorPensaoMorte(Double valorPensaoMorte) {
+        this.valorPensaoMorte = valorPensaoMorte;
+    }
+
+    public Boolean getPensaoAlimenticia() {
+        return pensaoAlimenticia;
+    }
+
+    public void setPensaoAlimenticia(Boolean pensaoAlimenticia) {
+        this.pensaoAlimenticia = pensaoAlimenticia;
+    }
+
+    public Double getValorPensaoAlimenticia() {
+        return valorPensaoAlimenticia;
+    }
+
+    public void setValorPensaoAlimenticia(Double valorPensaoAlimenticia) {
+        this.valorPensaoAlimenticia = valorPensaoAlimenticia;
+    }
+
+    public Boolean getAjuda() {
+        return ajuda;
+    }
+
+    public void setAjuda(Boolean ajuda) {
+        this.ajuda = ajuda;
+    }
+
+    public Double getValorAjuda() {
+        return valorAjuda;
+    }
+
+    public void setValorAjuda(Double valorAjuda) {
+        this.valorAjuda = valorAjuda;
+    }
+
+    public Boolean getOutros() {
+        return outros;
+    }
+
+    public void setOutros(Boolean outros) {
+        this.outros = outros;
+    }
+
+    public Double getValorOutros() {
+        return valorOutros;
+    }
+
+    public void setValorOutros(Double valorOutros) {
+        this.valorOutros = valorOutros;
+    }
+
+    public String getNomeOutros() {
+        return nomeOutros;
+    }
+
+    public void setNomeOutros(String nomeOutros) {
+        this.nomeOutros = nomeOutros;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.renda);
-        hash = 67 * hash + Objects.hashCode(this.familia);
-        hash = 67 * hash + Objects.hashCode(this.nomeRenda);
-        hash = 67 * hash + Objects.hashCode(this.valorRenda);
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.renda);
+        hash = 41 * hash + Objects.hashCode(this.familia);
+        hash = 41 * hash + Objects.hashCode(this.aluguel);
+        hash = 41 * hash + Objects.hashCode(this.valorAluguel);
+        hash = 41 * hash + Objects.hashCode(this.pensaoMorte);
+        hash = 41 * hash + Objects.hashCode(this.valorPensaoMorte);
+        hash = 41 * hash + Objects.hashCode(this.pensaoAlimenticia);
+        hash = 41 * hash + Objects.hashCode(this.valorPensaoAlimenticia);
+        hash = 41 * hash + Objects.hashCode(this.ajuda);
+        hash = 41 * hash + Objects.hashCode(this.valorAjuda);
+        hash = 41 * hash + Objects.hashCode(this.outros);
+        hash = 41 * hash + Objects.hashCode(this.valorOutros);
+        hash = 41 * hash + Objects.hashCode(this.nomeOutros);
         return hash;
     }
 
@@ -79,7 +181,7 @@ public class Renda implements Serializable {
             return false;
         }
         final Renda other = (Renda) obj;
-        if (!Objects.equals(this.nomeRenda, other.nomeRenda)) {
+        if (!Objects.equals(this.nomeOutros, other.nomeOutros)) {
             return false;
         }
         if (!Objects.equals(this.renda, other.renda)) {
@@ -88,10 +190,37 @@ public class Renda implements Serializable {
         if (!Objects.equals(this.familia, other.familia)) {
             return false;
         }
-        if (!Objects.equals(this.valorRenda, other.valorRenda)) {
+        if (!Objects.equals(this.aluguel, other.aluguel)) {
+            return false;
+        }
+        if (!Objects.equals(this.valorAluguel, other.valorAluguel)) {
+            return false;
+        }
+        if (!Objects.equals(this.pensaoMorte, other.pensaoMorte)) {
+            return false;
+        }
+        if (!Objects.equals(this.valorPensaoMorte, other.valorPensaoMorte)) {
+            return false;
+        }
+        if (!Objects.equals(this.pensaoAlimenticia, other.pensaoAlimenticia)) {
+            return false;
+        }
+        if (!Objects.equals(this.valorPensaoAlimenticia, other.valorPensaoAlimenticia)) {
+            return false;
+        }
+        if (!Objects.equals(this.ajuda, other.ajuda)) {
+            return false;
+        }
+        if (!Objects.equals(this.valorAjuda, other.valorAjuda)) {
+            return false;
+        }
+        if (!Objects.equals(this.outros, other.outros)) {
+            return false;
+        }
+        if (!Objects.equals(this.valorOutros, other.valorOutros)) {
             return false;
         }
         return true;
     }
-    
+
 }

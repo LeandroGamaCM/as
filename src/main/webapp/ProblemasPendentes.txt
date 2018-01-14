@@ -6,13 +6,12 @@
 - (Opcional) Definir limites para as variaveis no banco
     Por exemplo, Apelido não tem valor definido então haverá desperdicio de memória
 
-- Criar classe para setar valores no banco (bolsa, cidades...)
-
-- O aluno não pode digitar qualquer coisa em despesa, renda... Tem que ser campos definidos mesmo
-
-- Revisar todas as chaves primárias e estrangeiras de todas as classes
+- Criar classe para setar valores no banco (falta estados e cidades, )
 
 - Se um adm faz a inscricao de um aluno verificar o que acontece quando esse aluno tenta se pre cadastrar
+
+- Possível solução pra RendaPerCapita: ao invés do adm escolher os valores dos limites faz ele definir
+    o valor do salário minimo, aí depois quebra o valor em 10
 
 
 

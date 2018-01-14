@@ -1,11 +1,14 @@
 package br.ifba.edu.as.bean;
 
+import br.edu.ifba.as.entidades.analise.Bolsa;
 import br.edu.ifba.as.entidades.enums.ComQuemMora;
 import br.edu.ifba.as.entidades.enums.SituacaoCasa;
+import br.edu.ifba.as.entidades.enums.Zona;
 import br.edu.ifba.as.entidades.formulario.*;
 import br.edu.ifba.as.rn.*;
 import br.edu.ifba.as.rn.analise.BolsaRN;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,8 +17,10 @@ import javax.faces.bean.*;
 import org.primefaces.event.FlowEvent;
 
 @ManagedBean(name = "alunoBean")
-@ViewScoped 
+@SessionScoped
 public class AlunoBean implements Serializable{
+    private String estadoTela = "telaFormulario";
+    
     private Aluno aluno = new Aluno();
     private BolsasAuxilio bolsasAuxilio = new BolsasAuxilio();
     private CondicaoManutencao condicaoManutencao = new CondicaoManutencao();
@@ -37,10 +42,13 @@ public class AlunoBean implements Serializable{
     private SituacaoResidencial situacaoResidencial = new SituacaoResidencial();
     private Turma turma = new Turma();
     
+    private List<String> listaBolsas = new ArrayList<>();
+    
     private String[] selectedDependentes;
     private String[] selectedSustentadores;
     private String[] selectedResidencia;
     private String[] selectedBolsasAuxilio;
+    private String[] selectedImoveis;
     
     private List<MembroFamiliar> membrosFamiliares;
     private List<Renda> rendas;
@@ -60,6 +68,7 @@ public class AlunoBean implements Serializable{
     
     @PostConstruct
     public void init(){
+        selecaoBolsa();
         TurmaRN turmaRN = new TurmaRN();
         System.out.println("\n\tAluno bean init");
         List<String> aux = turmaRN.listarModalidades();
@@ -67,6 +76,19 @@ public class AlunoBean implements Serializable{
             modalidades = new HashSet<>(aux);        
         }
     }
+// Controle de Tela
+    public boolean isTelaFormulario(){
+        return "telaFormulario".equals(this.estadoTela);
+    }
+    public void changeToFormulario(){
+        this.estadoTela = "telaFormulario";
+    }
+    public boolean isTelaDados(){
+        return "telaDados".equals(this.estadoTela);
+    }
+    public void changeToTelaDados(){
+        this.estadoTela = "telaDados";
+    }    
     
     public void descartavel(){
         System.out.println("Entroy aqui!");
@@ -146,6 +168,24 @@ public class AlunoBean implements Serializable{
         System.out.println("Apagado!");
     }
     
+    public boolean isZonaRural(){
+        if(residenciaFamilia.getZona() != null){
+            if(residenciaFamilia.getZona() == Zona.Rural)
+                return true;
+        }
+        return false;
+    }
+    public void selecaoBolsa(){
+        BolsaRN bolsaRN = new BolsaRN();
+        List<Bolsa> bolsas = bolsaRN.listar();
+        if(bolsas != null){
+            int i;
+            for(i=0; i<bolsas.size(); i++){
+                listaBolsas.add(bolsas.get(i).getNome());
+            }
+        }
+    }
+    
     public void selecaoModalidade(){
         TurmaRN turmaRN = new TurmaRN();
         List<String> aux = turmaRN.listarCursos(turma.getModalidade());
@@ -179,7 +219,7 @@ public class AlunoBean implements Serializable{
                 despesa.setFamilia(familia);
                 renda.setFamilia(familia);
                 residenciaFamilia.setFamilia(familia);
-                    doenca.setMembro_familiar(membroFamiliar);
+                doenca.setFamilia(familia);
             formulario.setAluno(aluno);
             informacoesCurriculares.setAluno(aluno);
             ocupacao.setAluno(aluno);
@@ -225,6 +265,27 @@ public class AlunoBean implements Serializable{
             }
         }
     }
+    public void setImovelProperties(){
+        int i;
+        if(selectedImoveis != null){
+            for(i=0;i<selectedImoveis.length;i++){
+                if("p".equals(selectedImoveis[i]))
+                    imovel.setCasaPraia(Boolean.TRUE);
+                if("a".equals(selectedImoveis[i]))
+                    imovel.setApartamentos(Boolean.TRUE);
+                if("sc".equals(selectedImoveis[i]))
+                    imovel.setSalasComerciais(Boolean.TRUE);
+                if("l".equals(selectedImoveis[i]))
+                    imovel.setLotes(Boolean.TRUE);
+                if("t".equals(selectedImoveis[i]))
+                    imovel.setTerras(Boolean.TRUE);
+                if("s".equals(selectedImoveis[i]))
+                    imovel.setSitios(Boolean.TRUE);
+                if("o".equals(selectedImoveis[i]))
+                    imovel.setOutroImovel(Boolean.TRUE);
+            }
+        }
+    }
     public void setResidenciaFamilaProperties(){
         int i;
         if(selectedResidencia != null){
@@ -256,7 +317,6 @@ public class AlunoBean implements Serializable{
         }
         return false;
     }
-    
     
     public void setDependentesProperties(){
         int i;
@@ -644,6 +704,23 @@ public class AlunoBean implements Serializable{
     public void setDependenteOutro(boolean dependenteOutro) {
         this.dependenteOutro = dependenteOutro;
     }
+
+    public List<String> getListaBolsas() {
+        return listaBolsas;
+    }
+
+    public void setListaBolsas(List<String> listaBolsas) {
+        this.listaBolsas = listaBolsas;
+    }
+
+    public String[] getSelectedImoveis() {
+        return selectedImoveis;
+    }
+
+    public void setSelectedImoveis(String[] selectedImoveis) {
+        this.selectedImoveis = selectedImoveis;
+    }
+
 
 
 }

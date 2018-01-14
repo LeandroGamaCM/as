@@ -10,15 +10,14 @@
             <p:growl id="growl" sticky="true" showDetail="true"/>               
             <div class="card card-w-title">
                 <h1>Formulário de Inscrição</h1>
-                <!-- Quando clicar em proximo fazer ele ir pro topo (Ajax?)-->
                 <p:wizard nextLabel="Próximo" onnext="return onnext();" onback="return onback();" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
 
-                    <p:tab id="parte1" title="Dados Pessoais">
+                    <p:tab id="parte1" titleStyleClass="tab1" title="Dados Pessoais">
                         <p:panel header="Dados Pessoais">
                             <p:messages />                              
                             <h:panelGrid width="100%" style="margin-top: 7px" columns="4" columnClasses="label1, value1, label2, value2">
                                 <p:outputLabel style="width: 100%" value="Nome Completo: " for="nome" />
-                                <p:inputText style="width: 100%" id="nome" value="#{alunoBean.aluno.nome}" label="name"/>
+                                <p:inputText style="width: 100%" id="nome" value="#{alunoBean.aluno.nome}" label="name"/>                               
 
                                 <p:outputLabel style="width: 100%; margin-left: 20px;" for="cpf" value="CPF: "/>
                                 <p:inputText style="width: 100%" id="cpf" value="#{alunoBean.aluno.cpf}" label="CPF"/>
@@ -148,7 +147,7 @@
                             </p:outputPanel>
                         </p:panel> 
                     </p:tab>
-                    <p:tab id="parte2" title="Vida Acadêmica">
+                    <p:tab id="parte2" titleStyleClass="tab2" title="Vida Acadêmica">
 
                         <p:panel header="Para ingressar no IFBA você fez algum curso preparatório?">
                             <p:messages />                              
@@ -241,7 +240,7 @@
                     </p:tab>
 
 
-                    <p:tab id="parte3" title="Parte 3">
+                    <p:tab id="parte3" titleStyleClass="tab3" title="Parte 3">
                         <p:panel header="Qual a sua condição de manutenção?">
                             <p:outputPanel id="manutAjax">
                                 <p:messages /> 
@@ -491,7 +490,7 @@
 
                     </p:tab>
 
-                    <p:tab id="parte4" title="Dados Familiares">
+                    <p:tab id="parte4" titleStyleClass="tab4" title="Dados Familiares">
                         <p:panel header="Enumere os membros da família que moram na mesma casa.">
                             <p:messages /> 
                             <p:dataTable style="margin-top: 7px" var="membroFamiliar" value="#{alunoBean.membrosFamiliares}">                            

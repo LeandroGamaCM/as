@@ -3,7 +3,7 @@ var submenu = function () {
     
     this.acionar = function () {
         sub_menu.classList.toggle('submenu');
-        return false();
+        return false;
     };
 };
 
@@ -15,6 +15,6 @@ var submenu2 = function () {
         sub_menu2.classList.toggle('topbar-menu-active');
         sub_menu2.classList.toggle('fadeInDown');
         sub_menu3.classList.toggle('active-topmenuitem');
-        return false();
+        return false;
     };
 };

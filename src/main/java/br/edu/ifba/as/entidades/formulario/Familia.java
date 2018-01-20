@@ -1,8 +1,6 @@
 // Duvida: Podde ter mais de um programa social?
 package br.edu.ifba.as.entidades.formulario;
 
-import br.edu.ifba.as.entidades.enums.ProgramaSocial;
-import br.edu.ifba.as.entidades.enums.ServicoSaude;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -58,13 +56,11 @@ public class Familia implements Serializable {
     @PrimaryKeyJoinColumn(name = "cod_aluno")
     private Despesa despesa;
   
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private ServicoSaude servicoSaude;
+    @Column(name = "servico_saude")
+    private String servicoSaude;
     
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private ProgramaSocial programaSocial;
+    @Column(name = "programa_social")
+    private String programaSocial;
     
 // Getters e Setters 
 
@@ -164,39 +160,39 @@ public class Familia implements Serializable {
         this.despesa = despesa;
     }
 
-    public ServicoSaude getServicoSaude() {
+    public String getServicoSaude() {
         return servicoSaude;
     }
 
-    public void setServicoSaude(ServicoSaude servicoSaude) {
+    public void setServicoSaude(String servicoSaude) {
         this.servicoSaude = servicoSaude;
     }
 
-    public ProgramaSocial getProgramaSocial() {
+    public String getProgramaSocial() {
         return programaSocial;
     }
 
-    public void setProgramaSocial(ProgramaSocial programaSocial) {
+    public void setProgramaSocial(String programaSocial) {
         this.programaSocial = programaSocial;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.rendaFamiliarTotal) ^ (Double.doubleToLongBits(this.rendaFamiliarTotal) >>> 32));
-        hash = 79 * hash + Objects.hashCode(this.familia);
-        hash = 79 * hash + Objects.hashCode(this.aluno);
-        hash = 79 * hash + Objects.hashCode(this.possuiProgramaSocial);
-        hash = 79 * hash + Objects.hashCode(this.possuiGestante);
-        hash = 79 * hash + Objects.hashCode(this.outroProgramaSocial);
-        hash = 79 * hash + Objects.hashCode(this.imovel);
-        hash = 79 * hash + Objects.hashCode(this.membrosFamiliares);
-        hash = 79 * hash + Objects.hashCode(this.residencia_familia);
-        hash = 79 * hash + Objects.hashCode(this.renda);
-        hash = 79 * hash + Objects.hashCode(this.doenca);
-        hash = 79 * hash + Objects.hashCode(this.despesa);
-        hash = 79 * hash + Objects.hashCode(this.servicoSaude);
-        hash = 79 * hash + Objects.hashCode(this.programaSocial);
+        int hash = 5;
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.rendaFamiliarTotal) ^ (Double.doubleToLongBits(this.rendaFamiliarTotal) >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.familia);
+        hash = 97 * hash + Objects.hashCode(this.aluno);
+        hash = 97 * hash + Objects.hashCode(this.possuiProgramaSocial);
+        hash = 97 * hash + Objects.hashCode(this.possuiGestante);
+        hash = 97 * hash + Objects.hashCode(this.outroProgramaSocial);
+        hash = 97 * hash + Objects.hashCode(this.imovel);
+        hash = 97 * hash + Objects.hashCode(this.membrosFamiliares);
+        hash = 97 * hash + Objects.hashCode(this.residencia_familia);
+        hash = 97 * hash + Objects.hashCode(this.renda);
+        hash = 97 * hash + Objects.hashCode(this.doenca);
+        hash = 97 * hash + Objects.hashCode(this.despesa);
+        hash = 97 * hash + Objects.hashCode(this.servicoSaude);
+        hash = 97 * hash + Objects.hashCode(this.programaSocial);
         return hash;
     }
 
@@ -216,6 +212,12 @@ public class Familia implements Serializable {
             return false;
         }
         if (!Objects.equals(this.outroProgramaSocial, other.outroProgramaSocial)) {
+            return false;
+        }
+        if (!Objects.equals(this.servicoSaude, other.servicoSaude)) {
+            return false;
+        }
+        if (!Objects.equals(this.programaSocial, other.programaSocial)) {
             return false;
         }
         if (!Objects.equals(this.familia, other.familia)) {
@@ -248,15 +250,8 @@ public class Familia implements Serializable {
         if (!Objects.equals(this.despesa, other.despesa)) {
             return false;
         }
-        if (this.servicoSaude != other.servicoSaude) {
-            return false;
-        }
-        if (this.programaSocial != other.programaSocial) {
-            return false;
-        }
         return true;
-    }
-    
+    }    
     
     
 }

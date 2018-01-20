@@ -13,7 +13,18 @@ body {
 div {
     display: block;
 }
-
+/*Barra de rolagem*/
+::-webkit-scrollbar-track {
+    background-color: #ffffff;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+    background: #b3b3b3;
+    border-radius: 1px;
+}
 /*Código CSS para componentes de conteúdo do formulário*/
 .ui-g {
     -ms-flex-wrap: wrap;

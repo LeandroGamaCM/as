@@ -158,53 +158,164 @@
                         <p:outputLabel value="Situação da casa: #{alunoBean.situacaoResidencial.situacaoCasa}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa != 'Outro'}"/>
                         <p:outputLabel value="Valor aluguel: #{alunoBean.situacaoResidencial.valorAluguel}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa alugada'}"/>
                         <p:outputLabel value="Quem emprestou : #{alunoBean.situacaoResidencial.casaQuemEmprestou}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa cedida'}"/>
-                        <p:outputLabel value=" : #{alunoBean.situacaoResidencial.casaQuemEmprestou}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa cedida'}"/>
+                        <p:outputLabel value=" : #{alunoBean.situacaoResidencial.casaQuemEmprestou}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Outro'}"/>
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel header="">
+                <p:panel header="Características da sua casa">
                     <h:panelGrid columns="1">
-                        <p:outputLabel />
+                        <p:outputLabel value="Possui: "/>
+                        <p:outputLabel value="Acabamento" rendered="#{alunoBean.residencia.acabamento}"/>
+                        <p:outputLabel value="Rede de esgoto" rendered="#{alunoBean.residencia.redeEsgoto}"/>
+                        <p:outputLabel value="Água" rendered="#{alunoBean.residencia.agua}"/>
+                        <p:outputLabel value="Luz" rendered="#{alunoBean.residencia.luz}"/>
+                        <p:outputLabel value="Fossa" rendered="#{alunoBean.residencia.fossa}"/>
+                        <p:outputLabel value="Banheiro" rendered="#{alunoBean.residencia.banheiro}"/>
+                        <p:outputLabel value="Chuveiro" rendered="#{alunoBean.residencia.chuveiro}"/>
+                        <br/>
+                        <p:outputLabel value="Não possui: " rendered="#{!alunoBean.residencia.acabamento and !alunoBean.residencia.redeEsgoto and !alunoBean.residencia.agua and !alunoBean.residencia.luz and !alunoBean.residencia.fossa and !alunoBean.residencia.banheiro and !alunoBean.residencia.chuveiro}"/>
+                        <p:outputLabel value="Acabamento" rendered="#{!alunoBean.residencia.acabamento}"/>
+                        <p:outputLabel value="Rede de esgoto" rendered="#{!alunoBean.residencia.redeEsgoto}"/>
+                        <p:outputLabel value="Água" rendered="#{!alunoBean.residencia.agua}"/>
+                        <p:outputLabel value="Luz" rendered="#{!alunoBean.residencia.luz}"/>
+                        <p:outputLabel value="Fossa" rendered="#{!alunoBean.residencia.fossa}"/>
+                        <p:outputLabel value="Banheiro" rendered="#{!alunoBean.residencia.banheiro}"/>
+                        <p:outputLabel value="Chuveiro" rendered="#{!alunoBean.residencia.chuveiro}"/>
+                        <br/>
+                        <p:outputLabel value="Tipo de cobertura: #{alunoBean.residencia.cobertura}"/>
+                        <p:outputLabel value="Tipo de piso: #{alunoBean.residencia.piso}"/>
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel header="">
+                <p:panel header="Acesso a internet">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="" />
+                        <p:outputLabel value="Acessa #{alunoBean.situacaoResidencial.acessoInternet}" rendered="#{alunoBean.situacaoResidencial.acessoInternet != 'Não Acessa a Internet'}"/>
+                        <p:outputLabel value="#{alunoBean.situacaoResidencial.acessoInternet}" rendered="#{alunoBean.situacaoResidencial.acessoInternet == 'Não Acessa a Internet'}"/>
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel header="">
+                <p:panel header="Membros da família que moram na mesma casa">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="" />
+                        <p:dataTable var="membroFamiliar" value="#{alunoBean.membrosFamiliares}">
+                            <p:column headerText="Nome">
+                                <p:outputLabel value="#{membroFamiliar.nome}"/>
+                            </p:column>
+                            <p:column headerText="Parentesco">
+                                <p:outputLabel value="#{membroFamiliar.parentesco}"/>
+                            </p:column>
+                            <p:column headerText="Idade">
+                                <p:outputLabel value="#{membroFamiliar.idade}"/>
+                            </p:column>
+                            <p:column headerText="Escolaridade">
+                                <p:outputLabel value="#{membroFamiliar.escolaridade}"/>
+                            </p:column>
+                            <p:column headerText="Salário">
+                                <p:outputLabel value="#{membroFamiliar.salario}"/>
+                            </p:column>
+                        
+                        </p:dataTable>
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel header="">
+                <p:panel header="Doenças graves">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="" />
+                        <p:outputLabel value="Não possui nenhum membro familiar com doenças graves e/ou que faz uso de medicação contínua" rendered="#{!alunoBean.doenca.possuiDoenca}"/>
+                        <p:outputLabel value="Doente(s): #{alunoBean.doenca.doente}" rendered="#{alunoBean.doenca.possuiDoenca}"/>
+                        <p:outputLabel value="Doente(s): #{alunoBean.doenca.doencas}" rendered="#{alunoBean.doenca.possuiDoenca}"/>
+                        <p:outputLabel value="Local de tratamento: #{alunoBean.doenca.tratamento}" rendered="#{alunoBean.doenca.possuiDoenca}"/>
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel header="">
+                <p:panel header="Gestante">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="" />
+                        <p:outputLabel value="Possui membro familiar gestante" rendered="#{alunoBean.familia.possuiGestante}"/>
+                        <p:outputLabel value="Não possui membro familiar gestante" rendered="#{!alunoBean.familia.possuiGestante}"/>
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel header="">
+                <p:panel header="Rendas">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="" />
+                        <p:outputLabel value="Não possui nenhuma renda" rendered="#{!alunoBean.renda.aluguel and !alunoBean.renda.ajuda and !alunoBean.renda.outros and !alunoBean.renda.pensaoAlimenticia and !alunoBean.renda.pensaoMorte}"/>
+                        <p:outputLabel value="Aluguel: R$ #{alunoBean.renda.valorAluguel}" rendered="#{alunoBean.renda.aluguel}"/>
+                        <p:outputLabel value="Ajuda de terceiros: R$ #{alunoBean.renda.valorAjuda}" rendered="#{alunoBean.renda.ajuda}"/>
+                        <p:outputLabel value="Pensão alímentícia: R$ #{alunoBean.renda.valorPensaoAlimenticia}" rendered="#{alunoBean.renda.pensaoAlimenticia}"/>
+                        <p:outputLabel value="Pensão por morte: R$ #{alunoBean.renda.valorPensaoMorte}" rendered="#{alunoBean.renda.pensaoMorte}"/>
+                        <p:outputLabel value="Outras rendas: R$ #{alunoBean.renda.valorOutros}" rendered="#{alunoBean.renda.outros}"/>
                     </h:panelGrid>
                 </p:panel>
 
-                <p:panel header="">
+                <p:panel header="Despesas">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="" />
+                        <p:outputLabel value="Não possui nenhuma despesa" rendered="#{!alunoBean.despesa.aluguel and !alunoBean.despesa.agua and !alunoBean.despesa.endividamento and !alunoBean.despesa.financiamentos and !alunoBean.despesa.internet
+                                                                                      and !alunoBean.despesa.investimentosEducacao and !alunoBean.despesa.luz and !alunoBean.despesa.medicamentos and !alunoBean.despesa.mensalidadeEscolar and !alunoBean.despesa.outros
+                                                                                      and !alunoBean.despesa.planoSaude and !alunoBean.despesa.telefone and !alunoBean.despesa.transporte}"/>
+                        <p:outputLabel value="Aluguel: R$ #{alunoBean.despesa.valorAluguel}" rendered="#{alunoBean.despesa.aluguel}"/>
+                        <p:outputLabel value="Água: R$ #{alunoBean.despesa.valorAgua}" rendered="#{alunoBean.despesa.agua}"/>
+                        <p:outputLabel value="Luz: R$ #{alunoBean.despesa.valorLuz}" rendered="#{alunoBean.despesa.luz}"/>
+                        <p:outputLabel value="Medicamentos: R$ #{alunoBean.despesa.valorMedicamentos}" rendered="#{alunoBean.despesa.medicamentos}"/>
+                        <p:outputLabel value="Mensalidade escolar: R$ #{alunoBean.despesa.valorMensalidadeEscolar}" rendered="#{alunoBean.despesa.mensalidadeEscolar}"/>
+                        <p:outputLabel value="Financiamentos: R$ #{alunoBean.despesa.valorFinanciamentos}" rendered="#{alunoBean.despesa.financiamentos}"/>
+                        <p:outputLabel value="Internet: R$ #{alunoBean.despesa.valorInternet}" rendered="#{alunoBean.despesa.internet}"/>
+                        <p:outputLabel value="Investimentos em educação: R$ #{alunoBean.despesa.valorInvestimentosEducacao}" rendered="#{alunoBean.despesa.investimentosEducacao}"/>
+                        <p:outputLabel value="Plano de saúde: R$ #{alunoBean.despesa.valorPlanoSaude}" rendered="#{alunoBean.despesa.planoSaude}"/>
+                        <p:outputLabel value="Endividamento: R$ #{alunoBean.despesa.valorEndividamento}" rendered="#{alunoBean.despesa.endividamento}"/>
+                        <p:outputLabel value="Telefone: R$ #{alunoBean.despesa.valorTelefone}" rendered="#{alunoBean.despesa.telefone}"/>
+                        <p:outputLabel value="Transporte: R$ #{alunoBean.despesa.valorTransporte}" rendered="#{alunoBean.despesa.transporte}"/>
+                        <p:outputLabel value="Outros: R$ #{alunoBean.despesa.valorOutros}" rendered="#{alunoBean.despesa.outros}"/>
                     </h:panelGrid>
                 </p:panel>
 
+                <p:panel header="Residência familiar">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="#{alunoBean.residenciaFamilia.zona}" />
+                        <p:outputLabel value="Distância do campus: #{alunoBean.residenciaFamilia.distanciaCampus} Km" rendered="#{alunoBean.residenciaFamilia.zona == 'Zona rural'}"/>
+                        <p:outputLabel value="Situaçao residenial: #{alunoBean.residenciaFamilia.situacaoCasa}"/>
+                        <br/>
+                        <p:outputLabel value="Quantidade de automóveis: #{alunoBean.residenciaFamilia.qtdeAutomoveis}"/>
+                        <p:outputLabel value="Quantidade de computadores: #{alunoBean.residenciaFamilia.qtdeComputadores}"/>
+                        <p:outputLabel value="Quantidade de televisores: #{alunoBean.residenciaFamilia.qtdeTelevisores}"/>
+                        <p:outputLabel value="Quantidade de geladeiras: #{alunoBean.residenciaFamilia.qtdeGeladeiras}"/>
+                        <p:outputLabel value="Quantidade de máquinas de lavar: #{alunoBean.residenciaFamilia.qtdeMaquinaLavar}"/>
+                        <p:outputLabel value="Quantidade de quartos: #{alunoBean.residenciaFamilia.qtdeQuartos}"/>
+                        <p:outputLabel value="Quantidade de banheiros: #{alunoBean.residenciaFamilia.qtdeBanheiros}"/>
+                    </h:panelGrid>
+                </p:panel>
 
+                <p:panel header="Imóveis">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Não possui outros imóveis alem do que habita" rendered="#{!alunoBean.imovel.possuiImovel}"/>
+                        <p:outputLabel value="Possui:" rendered="#{alunoBean.imovel.possuiImovel}"/>
+                        <p:outputLabel value="Apartamento(s)" rendered="#{alunoBean.imovel.apartamentos}"/>
+                        <p:outputLabel value="Casa(s) de praia" rendered="#{alunoBean.imovel.casaPraia}"/>
+                        <p:outputLabel value="Fazenda(s)" rendered="#{alunoBean.imovel.fazendas}"/>
+                        <p:outputLabel value="Lotes" rendered="#{alunoBean.imovel.lotes}"/>
+                        <p:outputLabel value="Salas comerciais" rendered="#{alunoBean.imovel.salasComerciais}"/>
+                        <p:outputLabel value="Sítio(s)" rendered="#{alunoBean.imovel.sitios}"/>
+                        <p:outputLabel value="Terras" rendered="#{alunoBean.imovel.terras}"/>
+                        <p:outputLabel value="#{alunoBean.imovel.nomeOutroImovel}" rendered="#{alunoBean.imovel.outroImovel}"/>
+                        <p:outputLabel value="Quantidade de Hectáres: #{alunoBean.imovel.hectares}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Programas Sociais">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Não possui programas sociais" rendered="#{!alunoBean.familia.possuiProgramaSocial}"/>
+                        <p:outputLabel value="#{alunoBean.familia.programaSocial}" rendered="#{alunoBean.familia.programaSocial != 'Outro'}"/>
+                        <p:outputLabel value="#{alunoBean.familia.outroProgramaSocial}" rendered="#{alunoBean.familia.programaSocial == 'Outro'}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Serviço de saúde">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="#{alunoBean.familia.servicoSaude}" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Esclarecimentos">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="#{alunoBean.formulario.esclarecimentos}" />
+                    </h:panelGrid>
+                </p:panel>
             </h:form>
         </div>
         

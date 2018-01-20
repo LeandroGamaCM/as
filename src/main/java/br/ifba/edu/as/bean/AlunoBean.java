@@ -1,8 +1,6 @@
 package br.ifba.edu.as.bean;
 
 import br.edu.ifba.as.entidades.analise.Bolsa;
-import br.edu.ifba.as.entidades.enums.ComQuemMora;
-import br.edu.ifba.as.entidades.enums.SituacaoCasa;
 import br.edu.ifba.as.entidades.enums.Zona;
 import br.edu.ifba.as.entidades.formulario.*;
 import br.edu.ifba.as.rn.*;
@@ -50,7 +48,7 @@ public class AlunoBean implements Serializable{
     private String[] selectedBolsasAuxilio;
     private String[] selectedImoveis;
     
-    private List<MembroFamiliar> membrosFamiliares;
+    private List<MembroFamiliar> membrosFamiliares = new ArrayList<>();
     private List<Renda> rendas;
     private List<Despesa> despesas;
     
@@ -68,6 +66,7 @@ public class AlunoBean implements Serializable{
     
     @PostConstruct
     public void init(){
+        addMembroFamiliar();
         selecaoBolsa();
         TurmaRN turmaRN = new TurmaRN();
         System.out.println("\n\tAluno bean init");
@@ -90,13 +89,7 @@ public class AlunoBean implements Serializable{
         this.estadoTela = "telaDados";
     }    
     
-    public void descartavel(){
-        System.out.println("Entroy aqui!");
-        BolsaRN bolsaRN = new BolsaRN();
-        bolsaRN.definirPadroes();
-        System.out.println("\n\tDefiniu tudo!\n");
-    }
-
+    
     public void salvar(){
         AlunoRN alunoRN = new AlunoRN();
         TurmaRN turmaRN = new TurmaRN();
@@ -123,8 +116,7 @@ public class AlunoBean implements Serializable{
         FamiliaRN familiaRN = new FamiliaRN();
             ImovelRN imovelRN = new ImovelRN();
             DespesaRN despesaRN = new DespesaRN();
-            MembroFamiliarRN membroFamiliarRN = new MembroFamiliarRN();
-                DoencaRN doencaRN = new DoencaRN();
+            DoencaRN doencaRN = new DoencaRN();
             RendaRN rendaRN = new RendaRN();
             ResidenciaFamiliaRN residenciaFamiliaRN = new ResidenciaFamiliaRN();
         FormularioRN formularioRN = new FormularioRN();
@@ -136,8 +128,7 @@ public class AlunoBean implements Serializable{
         familia.setAluno(aluno);
         familiaRN.salvar(familia);
         
-        membroFamiliar.setFamilia(familia);
-        membroFamiliarRN.salvar(membroFamiliar);
+        salvarMemmrosFamiliares();
         
         setProperties();
 
@@ -161,6 +152,17 @@ public class AlunoBean implements Serializable{
 
     }
     
+    public void salvarMemmrosFamiliares(){
+        MembroFamiliarRN membroFamiliarRN = new MembroFamiliarRN();
+        int i = 0;
+        while(i < membrosFamiliares.size()){
+            membroFamiliar = membrosFamiliares.get(i);
+            membroFamiliar.setFamilia(familia);
+            membroFamiliarRN.salvar(membroFamiliar);
+            i++;
+        }
+    }
+    
     public void excluir(){
         // Não é necessário apagar as dependências porque elas se apagam automaticamente por meio do cascate.delete
         AlunoRN alunoRN = new AlunoRN();
@@ -168,13 +170,11 @@ public class AlunoBean implements Serializable{
         System.out.println("Apagado!");
     }
     
-    public boolean isZonaRural(){
-        if(residenciaFamilia.getZona() != null){
-            if(residenciaFamilia.getZona() == Zona.Rural)
-                return true;
-        }
-        return false;
+    public void addMembroFamiliar(){
+        MembroFamiliar novoMembroFamiliar = new MembroFamiliar();
+        membrosFamiliares.add(novoMembroFamiliar);
     }
+    
     public void selecaoBolsa(){
         BolsaRN bolsaRN = new BolsaRN();
         List<Bolsa> bolsas = bolsaRN.listar();
@@ -440,38 +440,7 @@ public class AlunoBean implements Serializable{
         return false;
     }
     
-    public boolean verificaCasaAlugada(){
-        if(situacaoResidencial.getSituacaoCasa() == null){
-            return false;
-        }else{
-            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Alugada)){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public boolean verificaCasaCedida(){
-        if(situacaoResidencial.getSituacaoCasa() == null){
-            return false;
-        }else{
-            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Cedida))
-                return true;
-        }
-        return false;
-    }
-    
-    public boolean verificaCasaOutro(){
-        if(situacaoResidencial.getSituacaoCasa() == null){
-            return false;
-        }else{
-            if(situacaoResidencial.getSituacaoCasa().equals(SituacaoCasa.Outro))
-                return true;
-        }
-        return false;
-    }
-    
-    
+
 // Getters e Setters
 
     public Aluno getAluno() {

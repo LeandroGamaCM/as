@@ -7,7 +7,7 @@ var resp = function () {
         menuLateral.classList.toggle('toggleMenu');
         menuLateral2.classList.toggle('toggleMenu2');
         menuLateral3.classList.toggle('toggleMenu3');
-        return false();
+        return false;
     };
 };
 
@@ -18,7 +18,7 @@ var resp2 = function () {
     this.acionar = function () {
         menuLateral.classList.toggle('toggleMenu1');
         menuLateral2.classList.toggle('btn-menu2');
-        return false();
+        return false;
     };
 };
 

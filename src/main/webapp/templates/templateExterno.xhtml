@@ -1,12 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>       
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="estiloPrincipal.css" />
+        <h:outputStylesheet library="css" name="estiloComponentes.css" />
+        <h:outputStylesheet library="css" name="estiloCabecalho.css" />
+        <h:outputStylesheet library="css" name="estiloNavegacao.css" />
+        <h:outputStylesheet library="css" name="estiloLogotipo.css" />
+        <h:outputStylesheet library="css" name="estiloMenu.css" />
+        <h:outputStylesheet library="css" name="estiloConteudo.css" />
+        <h:outputStylesheet library="css" name="estiloRodape.css" />
+        <h:outputStylesheet library="css" name="temaPrimefaces.css" />
+        <h:outputScript library="js" name="responsivo.js"/>
+        <h:outputScript library="js" name="submenus.js"/>
+        <h:outputScript library="js" name="validar.js" />
+        <title><ui:insert name="titulo">Título</ui:insert></title>  
     </h:head>
-    <h:body>
-        Hello from Facelets
+    <h:body  class="hidden-overflow">        
+        <div class="layout-wrapper layout-wrapper-static layout-wrapper-active">
+            <div class="layout-sidebar layout-sidebar-active" id="menu-lateral">                
+                <div class="sidebar-logo">
+                    <ui:insert name="logotipo">
+                        <ui:include src="componenteLogotipo.xhtml"/>
+                    </ui:insert>
+                </div>
+                <div class="nano has-scrollbar">
+                    <ui:insert name="menu">
+                        <ui:include src="componenteMenuAluno.xhtml"/>
+                    </ui:insert>
+                </div>
+            </div>
+            <div class="layout-main" id="menu-lateral2">
+                <div class="layout-topbar" id="menu-lateral3">                    
+                    <ui:insert name="cabecalho">
+                        <ui:include src="componenteCabecalhoAluno.xhtml"/>
+                    </ui:insert>                    
+                </div>
+                <div class="layout-breadcrumb">
+                    <ui:insert name="navegacao">
+                        <ui:include src="componenteNavegacaoAluno.xhtml"/>
+                    </ui:insert>
+                </div>
+                <div class="layout-content">
+                    <ui:insert name="conteudo">
+                        Area de Conteudo
+                    </ui:insert> 
+                </div>
+                <div class="layout-footer clearfix">
+                    <ui:insert name="rodape">
+                        <ui:include src="componenteRodape.xhtml"/>
+                    </ui:insert>             
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            obj = new resp();
+            obj2 = new resp2();
+            obj3 = new submenu();
+            obj4 = new submenu2();
+        </script>
     </h:body>
 </html>
 

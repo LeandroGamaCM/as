@@ -43,7 +43,7 @@ public class SituacaoResidencial implements Serializable {
     @Column(name = "com_quem_mora")
     private String comQuemMora;
     
-    @Column(name = "ituacao_casa")
+    @Column(name = "situacao_casa")
     private String situacaoCasa;
 
     @Column(name = "acesso_internet")

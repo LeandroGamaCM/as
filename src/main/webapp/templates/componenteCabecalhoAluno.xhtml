@@ -17,23 +17,17 @@
             <ul class="topbar-menu animated" id="respAnimado">
                 <li class="profile-item" id="respAnimado2">
                     <a href="#"  onClick="obj3.acionar()">       
-                        <span class="profile-image-wrapper"><h:graphicImage library="imagens" name="usuario.png" />
+                        <span class="profile-image-wrapper"><i class="fa fa-user-circle" style="font-size: 40px"></i>
                         </span>                     
-                        <span class="topbar-item-name profile-name">Amanda Oliveira</span>
+                        <span class="topbar-item-name profile-name">André de Oliveira Navas</span>
                     </a>                    
                     <ul class="animated" id="animado">
                         <li role="menuitem">
                             <a href="#{request.contextPath}/paginas/adm/perfil.jsf">
                                 <i class="fa fa-user" style="font-size: 20px"></i>
-                                <span>Minha Conta</span>
+                                <span>Dados Cadastrais</span>
                             </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#{request.contextPath}/paginas/adm/usuarios.jsf">
-                                <i class="fa fa-users" style="font-size: 15px"></i>
-                                <span>Usuários</span>
-                            </a>
-                        </li>                        
+                        </li>                     
                         <li role="menuitem">
                             <a href="#{request.contextPath}/j_spring_security_logout">
                                 <i class="fa fa-power-off" style="font-size: 19px"></i>
@@ -46,3 +40,4 @@
         </div>
     </ui:composition>
 </html>
+

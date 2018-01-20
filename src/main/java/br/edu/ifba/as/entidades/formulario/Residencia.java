@@ -1,8 +1,6 @@
 // Pertence a Aluno por hora
 package br.edu.ifba.as.entidades.formulario;
 
-import br.edu.ifba.as.entidades.enums.Cobertura;
-import br.edu.ifba.as.entidades.enums.Piso;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
@@ -30,14 +28,8 @@ public class Residencia implements Serializable {
     private Boolean agua;
     private Boolean luz;
     private Integer qtdeComodos;
-    
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private Piso piso;
-    
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private Cobertura cobertura;
+    private String piso;
+    private String cobertura;
 
     public Integer getResidencia() {
         return residencia;
@@ -119,37 +111,37 @@ public class Residencia implements Serializable {
         this.qtdeComodos = qtdeComodos;
     }
 
-    public Piso getPiso() {
+    public String getPiso() {
         return piso;
     }
 
-    public void setPiso(Piso piso) {
+    public void setPiso(String piso) {
         this.piso = piso;
     }
 
-    public Cobertura getCobertura() {
+    public String getCobertura() {
         return cobertura;
     }
 
-    public void setCobertura(Cobertura cobertura) {
+    public void setCobertura(String cobertura) {
         this.cobertura = cobertura;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.residencia);
-        hash = 67 * hash + Objects.hashCode(this.aluno);
-        hash = 67 * hash + Objects.hashCode(this.acabamento);
-        hash = 67 * hash + Objects.hashCode(this.redeEsgoto);
-        hash = 67 * hash + Objects.hashCode(this.fossa);
-        hash = 67 * hash + Objects.hashCode(this.banheiro);
-        hash = 67 * hash + Objects.hashCode(this.chuveiro);
-        hash = 67 * hash + Objects.hashCode(this.agua);
-        hash = 67 * hash + Objects.hashCode(this.luz);
-        hash = 67 * hash + Objects.hashCode(this.qtdeComodos);
-        hash = 67 * hash + Objects.hashCode(this.piso);
-        hash = 67 * hash + Objects.hashCode(this.cobertura);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.residencia);
+        hash = 89 * hash + Objects.hashCode(this.aluno);
+        hash = 89 * hash + Objects.hashCode(this.acabamento);
+        hash = 89 * hash + Objects.hashCode(this.redeEsgoto);
+        hash = 89 * hash + Objects.hashCode(this.fossa);
+        hash = 89 * hash + Objects.hashCode(this.banheiro);
+        hash = 89 * hash + Objects.hashCode(this.chuveiro);
+        hash = 89 * hash + Objects.hashCode(this.agua);
+        hash = 89 * hash + Objects.hashCode(this.luz);
+        hash = 89 * hash + Objects.hashCode(this.qtdeComodos);
+        hash = 89 * hash + Objects.hashCode(this.piso);
+        hash = 89 * hash + Objects.hashCode(this.cobertura);
         return hash;
     }
 
@@ -165,6 +157,12 @@ public class Residencia implements Serializable {
             return false;
         }
         final Residencia other = (Residencia) obj;
+        if (!Objects.equals(this.piso, other.piso)) {
+            return false;
+        }
+        if (!Objects.equals(this.cobertura, other.cobertura)) {
+            return false;
+        }
         if (!Objects.equals(this.residencia, other.residencia)) {
             return false;
         }
@@ -195,13 +193,7 @@ public class Residencia implements Serializable {
         if (!Objects.equals(this.qtdeComodos, other.qtdeComodos)) {
             return false;
         }
-        if (this.piso != other.piso) {
-            return false;
-        }
-        if (this.cobertura != other.cobertura) {
-            return false;
-        }
         return true;
     }
-    
+       
 }

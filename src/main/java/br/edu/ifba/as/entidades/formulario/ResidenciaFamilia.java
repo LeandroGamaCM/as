@@ -45,14 +45,12 @@ public class ResidenciaFamilia implements Serializable {
     @Column(name = "distancia_campus")
     private Float distanciaCampus;
 
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private SituacaoCasa situacaoCasa;    
+    @Column(name = "situacao_casa")
+    private String situacaoCasa;    
     
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private Zona zona;
+    private String zona;
 
+    
     public Integer getResidenciaFamilia() {
         return residenciaFamilia;
     }
@@ -133,37 +131,37 @@ public class ResidenciaFamilia implements Serializable {
         this.distanciaCampus = distanciaCampus;
     }
 
-    public SituacaoCasa getSituacaoCasa() {
+    public String getSituacaoCasa() {
         return situacaoCasa;
     }
 
-    public void setSituacaoCasa(SituacaoCasa situacaoCasa) {
+    public void setSituacaoCasa(String situacaoCasa) {
         this.situacaoCasa = situacaoCasa;
     }
 
-    public Zona getZona() {
+    public String getZona() {
         return zona;
     }
 
-    public void setZona(Zona zona) {
+    public void setZona(String zona) {
         this.zona = zona;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.residenciaFamilia);
-        hash = 97 * hash + Objects.hashCode(this.familia);
-        hash = 97 * hash + Objects.hashCode(this.qtdeQuartos);
-        hash = 97 * hash + Objects.hashCode(this.qtdeBanheiros);
-        hash = 97 * hash + Objects.hashCode(this.qtdeTelevisores);
-        hash = 97 * hash + Objects.hashCode(this.qtdeGeladeiras);
-        hash = 97 * hash + Objects.hashCode(this.qtdeComputadores);
-        hash = 97 * hash + Objects.hashCode(this.qtdeMaquinaLavar);
-        hash = 97 * hash + Objects.hashCode(this.qtdeAutomoveis);
-        hash = 97 * hash + Objects.hashCode(this.distanciaCampus);
-        hash = 97 * hash + Objects.hashCode(this.situacaoCasa);
-        hash = 97 * hash + Objects.hashCode(this.zona);
+        hash = 89 * hash + Objects.hashCode(this.residenciaFamilia);
+        hash = 89 * hash + Objects.hashCode(this.familia);
+        hash = 89 * hash + Objects.hashCode(this.qtdeQuartos);
+        hash = 89 * hash + Objects.hashCode(this.qtdeBanheiros);
+        hash = 89 * hash + Objects.hashCode(this.qtdeTelevisores);
+        hash = 89 * hash + Objects.hashCode(this.qtdeGeladeiras);
+        hash = 89 * hash + Objects.hashCode(this.qtdeComputadores);
+        hash = 89 * hash + Objects.hashCode(this.qtdeMaquinaLavar);
+        hash = 89 * hash + Objects.hashCode(this.qtdeAutomoveis);
+        hash = 89 * hash + Objects.hashCode(this.distanciaCampus);
+        hash = 89 * hash + Objects.hashCode(this.situacaoCasa);
+        hash = 89 * hash + Objects.hashCode(this.zona);
         return hash;
     }
 
@@ -179,6 +177,12 @@ public class ResidenciaFamilia implements Serializable {
             return false;
         }
         final ResidenciaFamilia other = (ResidenciaFamilia) obj;
+        if (!Objects.equals(this.situacaoCasa, other.situacaoCasa)) {
+            return false;
+        }
+        if (!Objects.equals(this.zona, other.zona)) {
+            return false;
+        }
         if (!Objects.equals(this.residenciaFamilia, other.residenciaFamilia)) {
             return false;
         }
@@ -207,12 +211,6 @@ public class ResidenciaFamilia implements Serializable {
             return false;
         }
         if (!Objects.equals(this.distanciaCampus, other.distanciaCampus)) {
-            return false;
-        }
-        if (this.situacaoCasa != other.situacaoCasa) {
-            return false;
-        }
-        if (this.zona != other.zona) {
             return false;
         }
         return true;

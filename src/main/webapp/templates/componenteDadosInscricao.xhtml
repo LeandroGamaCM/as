@@ -6,89 +6,207 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
-        <h:form>
-            <p:panel id="dadosPessoais">
-                <p:outputLabel value="Nome Completo: "/>
-                <p:outputLabel value="#{alunoBean.aluno.nome}"/>
-                <p:outputLabel value="CPF: "/>
-                <p:outputLabel value="#{alunoBean.aluno.cpf}"/>
-                <p:outputLabel value="Apelido: "/>
-                <p:outputLabel value="#{alunoBean.aluno.apelido}"/>
-                <p:outputLabel value="Sexo: "/>
-                <p:outputLabel value="#{alunoBean.aluno.sexo}"/>
-                <p:outputLabel value="Data de Nascimento: "/>
-                <p:outputLabel value="#{alunoBean.aluno.dataNascimento}"/>                
-                <p:outputLabel value="RG: "/>
-                <p:outputLabel value="#{alunoBean.aluno.rg}"/>
-                <p:outputLabel value="Estado civil: "/>
-                <p:outputLabel value="#{alunoBean.aluno.estadoCivil}"/>
-                <p:outputLabel value="Modalidade: "/>
-                <p:outputLabel value="#{alunoBean.turma.modalidade}"/>
-                <p:outputLabel value="Curso "/>
-                <p:outputLabel value="#{alunoBean.turma.curso}"/>
-                <p:outputLabel value="Turma: "/>
-                <p:outputLabel value="#{alunoBean.turma.nome}"/>                
-            </p:panel>
-            <p:panel header="Contato">
-                <p:outputLabel value="Telefone: "/>
-                <p:outputLabel value="#{alunoBean.aluno.telefone}"/>   
-                <p:outputLabel value="Celular "/>
-                <p:outputLabel value="#{alunoBean.aluno.celular}"/>   
-                <p:outputLabel value="Email: "/>
-                <p:outputLabel value="#{alunoBean.aluno.email}"/> 
-            </p:panel>            
-            <p:panel header="Endereco">
-                <p:outputLabel value="Endereco: "/>
-                <p:outputLabel value="#{alunoBean.endereco.rua}"/>   
-                <p:outputLabel value="Nº: "/>
-                <p:outputLabel value="#{alunoBean.endereco.numero}"/>   
-                <p:outputLabel value="Bairro: "/>
-                <p:outputLabel value="#{alunoBean.endereco.bairro}"/>   
-                <p:outputLabel value="Cidade: "/>
-                <p:outputLabel value="#{alunoBean.endereco.cidade}"/> 
-            </p:panel>            
-            <p:panel header="Preferências de Bolsa: ">
-                <p:outputLabel value="Primeira opção: "/>
-                <p:outputLabel value="#{alunoBean.formulario.primeiraPreferencia}"/>   
-                <p:outputLabel value="Segunda opção: "/>
-                <p:outputLabel value="#{alunoBean.formulario.segundaPreferencia}"/>   
-            </p:panel>            
-            <p:panel header="Dados Bancários">
-                <p:outputLabel value="Possui conta bancária"/>
-                <p:outputLabel value="#{alunoBean.conta.nomeBanco}"/>   
-                <p:outputLabel value="Banco: "/>
-                <p:outputLabel value="#{alunoBean.conta.agencia}"/>   
-                <p:outputLabel value="Agência: "/>
-                <p:outputLabel value="#{alunoBean.conta.contaCorrente}"/>   
-                <p:outputLabel value="Operação: "/>
-                <p:outputLabel value="#{alunoBean.conta.operacao}"/>   
-            </p:panel>
+        <div class="ui-fluid">
             
-            <p:panel header="Curso preparatório">
-                <p:outputLabel value="Possui curso preparatório: "/>
-                <p:outputLabel value="#{alunoBean.informacoesCurriculares.cursoPreparatorio}"/>   
-                <p:outputLabel value="Curso: "/>
-                <p:outputLabel value="#{alunoBean.informacoesCurriculares.nomeCursoPreparatorio}"/>                   
-            </p:panel>
+            <h:form>
+                <p:panel id="dadosPessoais">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Nome Completo: #{alunoBean.aluno.nome}"/>
+                        <p:outputLabel value="CPF: #{alunoBean.aluno.cpf}"/>
+                        <p:outputLabel value="Apelido: #{alunoBean.aluno.apelido}"/>
+                        <p:outputLabel value="Sexo: #{alunoBean.aluno.sexo}"/>
+                        <p:outputLabel value="Data de Nascimento: #{alunoBean.aluno.dataNascimento}"/>
+                        <p:outputLabel value="RG: #{alunoBean.aluno.rg}"/>
+                        <p:outputLabel value="Estado civil: #{alunoBean.aluno.estadoCivil}"/>
+                        <p:outputLabel value="Modalidade: #{alunoBean.turma.modalidade}"/>
+                        <p:outputLabel value="Curso: #{alunoBean.turma.curso}"/>
+                        <p:outputLabel value="Turma: #{alunoBean.turma.nome}"/>
+                    </h:panelGrid>
+                </p:panel>
 
-            <p:panel header="Onde estudou">
-                <p:outputLabel value="Tipo de escola: "/>
-                <p:outputLabel value="#{alunoBean.informacoesCurriculares.ondeEstudou}"/>   
-            </p:panel>
-            <p:panel header="Estudos">
-                <p:outputLabel value="Houve interrupção: "/>
-                <p:outputLabel value="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>   
-                <p:outputLabel value="Motivo interrupção: "/>
-                <p:outputLabel value="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>   
-                <p:outputLabel value="Data da interrupção: "/>
-                <p:outputLabel value="#{alunoBean.informacoesCurriculares.dataInterrupcao}"/>   
-                <p:outputLabel value="Tempo de interrupção: "/>
-                <p:outputLabel value="#{alunoBean.informacoesCurriculares.tempoInterrupcao}"/>   
-            </p:panel>
-            <p:panel header="Bolsas: ">
-            </p:panel>
-            
-        </h:form>
+                <p:panel header="Contato">
+                    <h:panelGrid columns="1">                        
+                        <p:outputLabel value="Telefone: #{alunoBean.aluno.telefone}"/>
+                        <p:outputLabel value="Celular: #{alunoBean.aluno.celular}"/>
+                        <p:outputLabel value="Email: #{alunoBean.aluno.email}"/>
+                    </h:panelGrid>
+                </p:panel>            
+
+                <p:panel header="Endereco">
+                    <h:panelGrid columns="1">                        
+                        <p:outputLabel value="Endereco: #{alunoBean.endereco.rua}"/>
+                        <p:outputLabel value="Nº: #{alunoBean.endereco.numero}"/>
+                        <p:outputLabel value="Bairro: #{alunoBean.endereco.bairro}"/>
+                        <p:outputLabel value="Cidade: #{alunoBean.endereco.cidade}"/>
+                    </h:panelGrid>
+                </p:panel>            
+
+                <p:panel header="Preferências de Bolsa: ">
+                    <h:panelGrid columns="1">                        
+                        <p:outputLabel value="Primeira opção: #{alunoBean.formulario.primeiraPreferencia}"/>
+                        <p:outputLabel value="Segunda opção: #{alunoBean.formulario.segundaPreferencia}"/>
+                    </h:panelGrid>
+                </p:panel>            
+
+                <p:panel header="Dados Bancários">
+                    <h:panelGrid columns="1">                        
+                        <p:outputLabel value="Não possui conta bancária" rendered="#{!alunoBean.conta.possuiConta}"/> 
+                        <p:outputLabel value="Banco: #{alunoBean.conta.nomeBanco}" rendered="#{alunoBean.conta.possuiConta}" />
+                        <p:outputLabel value="Agência: #{alunoBean.conta.agencia}" rendered="#{alunoBean.conta.possuiConta}"/>
+                        <p:outputLabel value="Tipo de conta: #{alunoBean.conta.tipo}" rendered="#{alunoBean.conta.possuiConta}"/>
+                        <p:outputLabel value="Número da conta: #{alunoBean.conta.numero}" rendered="#{alunoBean.conta.possuiConta}"/>
+                        <p:outputLabel value="Operação: #{alunoBean.conta.operacao}" rendered="#{alunoBean.conta.possuiConta}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Curso preparatório">
+                    <h:panelGrid columns="1">                        
+                        <p:outputLabel value="Não possui curso preparatório" rendered="#{!alunoBean.informacoesCurriculares.cursoPreparatorio}" />
+                        <p:outputLabel value="Curso: #{alunoBean.informacoesCurriculares.nomeCursoPreparatorio}" rendered="#{alunoBean.informacoesCurriculares.cursoPreparatorio}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Escola de origem">
+                    <h:panelGrid columns="1">                        
+                        <p:outputLabel value="#{alunoBean.informacoesCurriculares.ondeEstudou}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Interrupção dos estudos">
+                    <h:panelGrid columns="1">                        
+                        <p:outputLabel value="Não houve interrupção" rendered="#{!alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
+                        <p:outputLabel value="Motivo interrupção: #{alunoBean.informacoesCurriculares.motivoInterrupcao}" rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
+                        <p:outputLabel value="Data da interrupção: #{alunoBean.informacoesCurriculares.dataInterrupcao}" rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
+                        <p:outputLabel value="Tempo de interrupção: #{alunoBean.informacoesCurriculares.tempoInterrupcao}" rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Bolsas: ">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Nenhuma bolsa" rendered="#{!alunoBean.bolsasAuxilio.programaExtensao and !alunoBean.bolsasAuxilio.pibicjr and !alunoBean.bolsasAuxilio.pibid and !alunoBean.bolsasAuxilio.pibic and !alunoBean.bolsasAuxilio.monitoria}"/>
+                        <p:outputLabel value="Bolsa de Programa de Extensão" rendered="#{alunoBean.bolsasAuxilio.programaExtensao}"/>
+                        <p:outputLabel value="Bolsa PIBIC/Jr." rendered="#{alunoBean.bolsasAuxilio.pibicjr}"/>
+                        <p:outputLabel value="Bolsa PIBID" rendered="#{alunoBean.bolsasAuxilio.pibid}"/>
+                        <p:outputLabel value="Bolsa PIBIC" rendered="#{alunoBean.bolsasAuxilio.pibic}"/>
+                        <p:outputLabel value="Bolsa de Monitoria" rendered="#{alunoBean.bolsasAuxilio.monitoria}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Estágio remunerado">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Não possui estágio remunerado" rendered="#{!alunoBean.ocupacao.possuiEstagio}"/>
+                        <p:outputLabel value="Instituição do estágio: #{alunoBean.ocupacao.instiruicaoEstagio}" rendered="#{alunoBean.ocupacao.possuiEstagio}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Condição de manutenção">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Sustentado por ambos os pais" rendered="#{alunoBean.condicaoManutencao.ambosPais}"/>
+                        <p:outputLabel value="Sustentado apenas pelo pai"  rendered="#{alunoBean.condicaoManutencao.apenasPai}"/>
+                        <p:outputLabel value="Sustentado apenas pela mãe"  rendered="#{alunoBean.condicaoManutencao.apenasMae}"/>
+                        <p:outputLabel value="Sustentado pelos avós" rendered="#{alunoBean.condicaoManutencao.avos}"/>
+                        <p:outputLabel value="Sustentado por: #{alunoBean.condicaoManutencao.parentesco}" rendered="#{alunoBean.condicaoManutencao.outrosParentes}"/>
+                        <p:outputLabel value="Sustentado por: #{alunoBean.condicaoManutencao.nomeOutrosMeios}" rendered="#{alunoBean.condicaoManutencao.outrosMeios}"/>
+                        <p:outputLabel value="Nenhuma das opções" rendered="#{!alunoBean.condicaoManutencao.ambosPais and
+                                                                              !alunoBean.condicaoManutencao.apenasPai and 
+                                                                              !alunoBean.condicaoManutencao.apenasMae and 
+                                                                              !alunoBean.condicaoManutencao.avos and 
+                                                                              !alunoBean.condicaoManutencao.parentesco and 
+                                                                              !alunoBean.condicaoManutencao.nomeOutrosMeios}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Situação ocupacional">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Não possui trabalho" rendered="#{!alunoBean.ocupacao.possuiTrabalho}"/>
+                        
+                        <p:outputLabel value="Profissão: #{alunoBean.ocupacao.profissao}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="Tipo de profissão: #{alunoBean.ocupacao.trabalho}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="Nome do empregador e/ou da empresa: #{alunoBean.ocupacao.nomeEmpregador}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="Tempo de serviço: #{alunoBean.ocupacao.tempoServico} anos" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="Telefone do empregador ou da empresa: #{alunoBean.ocupacao.telefoneEmpregador}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="Salário Mensal: R$ #{alunoBean.ocupacao.salarioMensal}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Dependentes">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Não possui dependentes" rendered="#{!alunoBean.dependentes.possuiDependente}"/>
+                        <p:outputLabel value="Quantidade de dependentes: #{alunoBean.dependentes.quantos}" rendered="#{alunoBean.dependentes.possuiDependente}"/>
+                        <p:outputLabel value="Tipo de dependentes: " rendered="#{alunoBean.dependentes.possuiDependente}"/>
+                        <p:outputLabel value="Companheiro" rendered="#{alunoBean.dependentes.companheiro}"/>
+                        <p:outputLabel value="Filho" rendered="#{alunoBean.dependentes.filho}"/>
+                        <p:outputLabel value="Idoso" rendered="#{alunoBean.dependentes.idoso}"/>
+                        <p:outputLabel value="#{alunoBean.dependentes.outroDependente}" rendered="#{alunoBean.dependentes.outro}"/>
+                        
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Despesas no campus">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Alimentação: #{alunoBean.despesasCampus.alimentacao}" rendered="#{alunoBean.despesasCampus.alimentacao > 0}"/>
+                        <p:outputLabel value="Materiais escolares: #{alunoBean.despesasCampus.materiaisEscolares}" rendered="#{alunoBean.despesasCampus.materiaisEscolares > 0}"/>
+                        <p:outputLabel value="Trabalhos: #{alunoBean.despesasCampus.trabalhos}" rendered="#{alunoBean.despesasCampus.trabalhos > 0}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Com quem você mora">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="#{alunoBean.situacaoResidencial.comQuemMora}" rendered="#{alunoBean.situacaoResidencial.comQuemMora != 'Outra Situação'}"/>
+                        <p:outputLabel value="#{alunoBean.situacaoResidencial.moraComQuemOutro}" rendered="#{alunoBean.situacaoResidencial.comQuemMora == 'Outra Situação'}"/>
+                        <p:outputLabel value="Despesas extras com moradia: #{alunoBean.situacaoResidencial.despesasExtra}" rendered="#{alunoBean.situacaoResidencial.despesasExtra > 0}"/>
+                        <p:outputLabel value="Situação da casa: #{alunoBean.situacaoResidencial.situacaoCasa}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa != 'Outro'}"/>
+                        <p:outputLabel value="Valor aluguel: #{alunoBean.situacaoResidencial.valorAluguel}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa alugada'}"/>
+                        <p:outputLabel value="Quem emprestou : #{alunoBean.situacaoResidencial.casaQuemEmprestou}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa cedida'}"/>
+                        <p:outputLabel value=" : #{alunoBean.situacaoResidencial.casaQuemEmprestou}" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa cedida'}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="" />
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="">
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="" />
+                    </h:panelGrid>
+                </p:panel>
+
+
+            </h:form>
+        </div>
         
         
     </ui:composition>

@@ -39,8 +39,8 @@
 
                                 <p:outputLabel style="margin-left: 20px" value="Sexo:" />
                                 <p:selectOneRadio value="#{alunoBean.aluno.sexo}">
-                                    <f:selectItem itemLabel="Feminino" itemValue="FEMININO" />                                   
-                                    <f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />                                   
+                                    <f:selectItem itemLabel="Feminino" itemValue="Feminino" />                                   
+                                    <f:selectItem itemLabel="Masculino" itemValue="Masculino" />                                   
                                 </p:selectOneRadio>   
 
                                 <p:outputLabel style="width: 100%; margin-left: 20px;" value="Data de Nascimento: " for="date" />                                    
@@ -56,22 +56,22 @@
                                 <p:outputLabel style="margin-left: 20px" value="Etnia: "/>
                                 <p:selectOneMenu value="#{alunoBean.aluno.etnia}">
                                     <f:selectItem itemLabel="Selecione..."/>
-                                    <f:selectItem itemLabel="Negro(a)" itemValue="Negro" />                                   
-                                    <f:selectItem itemLabel="Indigena(a)" itemValue="Indigena" />                                   
-                                    <f:selectItem itemLabel="Pardo(a)" itemValue="Pardo" />                                   
-                                    <f:selectItem itemLabel="Branco(a)" itemValue="Branco" />                                   
-                                    <f:selectItem itemLabel="Amarelo(a)" itemValue="Amarelo" />                                  
-                                    <f:selectItem itemLabel="Outro(a)" itemValue="Outro" />                                  
+                                    <f:selectItem itemLabel="Negro(a)" itemValue="Negro(a)" />                                   
+                                    <f:selectItem itemLabel="Indigena(a)" itemValue="Indigena(a)" />                                   
+                                    <f:selectItem itemLabel="Pardo(a)" itemValue="Pardo(a)" />                                   
+                                    <f:selectItem itemLabel="Branco(a)" itemValue="Branco(a)" />                                   
+                                    <f:selectItem itemLabel="Amarelo(a)" itemValue="Amarelo(a)" />                                  
+                                    <f:selectItem itemLabel="Outro(a)" itemValue="Outro(a)" />                                  
                                 </p:selectOneMenu>                                
 
                                 <p:outputLabel style="margin-left: 20px" value="Estado Civil: "/>
                                 <p:selectOneMenu value="#{alunoBean.aluno.estadoCivil}">
                                     <f:selectItem itemLabel="Selecione..."/>
-                                    <f:selectItem itemLabel="Solteiro(a)" itemValue="SOLTEIRO" />                                   
-                                    <f:selectItem itemLabel="Casado(a)" itemValue="CASADO" />                                   
-                                    <f:selectItem itemLabel="Uniao Estável" itemValue="UNIAO" />                                   
-                                    <f:selectItem itemLabel="Separado(a)" itemValue="SEPARADO" />                                   
-                                    <f:selectItem itemLabel="Viúvo(a)" itemValue="VIUVO" />                                  
+                                    <f:selectItem itemLabel="Solteiro(a)" itemValue="Solteiro(a)" />                                   
+                                    <f:selectItem itemLabel="Casado(a)" itemValue="Casado(a)" />                                   
+                                    <f:selectItem itemLabel="Uniao Estável" itemValue="Uniao Estável" />                                   
+                                    <f:selectItem itemLabel="Separado(a)" itemValue="Separado(a)" />                                   
+                                    <f:selectItem itemLabel="Viúvo(a)" itemValue="Viúvo(a)" />                                  
                                 </p:selectOneMenu>                                
                             </h:panelGrid>  
                             <h:panelGrid width="100%" style="margin-top: 7px" columns="6" columnClasses="label8, value8, label9, value9, label10, value10" >
@@ -109,23 +109,23 @@
                                 <p:inputMask mask="(99) 99999-9999" style="width: 100%" id="celular" label="celular" value="#{alunoBean.aluno.celular}"/>
 
                                 <p:outputLabel style="width: 100%; margin-left: 20px" for="Lemail" value="Email: "/>
-                                <p:inputText style="width: 100%" id="Lemail" label="Email"/>
+                                <p:inputText style="width: 100%" id="Lemail" label="Email" value="#{alunoBean.aluno.email}"/>
                             </h:panelGrid>
                         </p:panel>
 
                         <p:panel header="Endereço">                            
                             <h:panelGrid style="margin-top: 7px" width="100%" columns="8" columnClasses="col155, col16, col21, col22, col17, col18, col19, col20">
                                 <p:outputLabel style="width: 100%" for="cidad" value="Cidade: "/>
-                                <p:inputText style="width: 100%" id="cidad" label="Cidade"/>   
+                                <p:inputText value="#{alunoBean.endereco.cidade}" style="width: 100%" id="cidad" label="Cidade"/>   
 
                                 <p:outputLabel style="width: 100%; margin-left: 20px;" for="bairro" value="Bairro: "/>
-                                <p:inputText style="width: 100%" id="bairro" label="Bairro"/>
+                                <p:inputText value="#{alunoBean.endereco.bairro}" style="width: 100%" id="bairro" label="Bairro"/>
 
                                 <p:outputLabel style="width: 100%; margin-left: 20px;" for="rua" value="Rua: "/>
                                 <p:inputText style="width: 100%" value="#{alunoBean.endereco.rua}" id="rua" label="Rua"/>
 
                                 <p:outputLabel style="width: 100%; margin-left: 20px;" for="numb" value="Número: "/>
-                                <p:inputText style="width: 100%" id="numb" label="Numero"/>                                   
+                                <p:inputText value="#{alunoBean.endereco.numero}" style="width: 100%" id="numb" label="Numero"/>                                   
                             </h:panelGrid>
                         </p:panel>
 
@@ -156,16 +156,23 @@
                                     <p:ajax update="contaAjax" event="change"/>
                                 </p:selectOneRadio> 
                             </h:panelGrid>
-                            <p:outputPanel id="contaAjax">                                       
+                            <p:outputPanel id="contaAjax">  
+                                <p:outputLabel value="Renderiza" rendered="#{alunoBean.conta.possuiConta}" />
                                 <h:panelGrid rendered="#{alunoBean.conta.possuiConta}" width="100%" columns="8" columnClasses="label11, value11, label12, value12,label13, value13, label14, value14">
                                     <p:outputLabel style="width: 100%" value="Banco: " for="banco" />
                                     <p:inputText style="width: 100%" id="banco" value="#{alunoBean.conta.nomeBanco}" label="Banco"/>
 
                                     <p:outputLabel style="width: 100%; margin-left: 20px" value="Agência: " for="agencia" />
                                     <p:inputText style="width: 100%" id="agencia" value="#{alunoBean.conta.agencia}" label="Agência"/>
-
-                                    <p:outputLabel style="width: 100%; margin-left: 20px" value="Conta Corrente: " for="cc" />
-                                    <p:inputText style="width: 100%" id="cc" value="#{alunoBean.conta.contaCorrente}" label="Conta Corrente"/>
+                                    
+                                    <p:outputLabel value="Tipo de conta"/>
+                                    <p:selectOneMenu value="#{alunoBean.conta.tipo}">
+                                        <f:selectItem itemLabel="Conta corrente" itemValue="Conta corrente"/>
+                                        <f:selectItem itemLabel="Poupança" itemValue="Poupança"/>
+                                    </p:selectOneMenu>
+                                    
+                                    <p:outputLabel style="width: 100%; margin-left: 20px" value="Número da conta: " for="numeroConta" />
+                                    <p:inputText style="width: 100%" id="numeroConta" value="#{alunoBean.conta.numero}" label="Numero"/>
 
                                     <p:outputLabel style="width: 100%; margin-left: 20px" value="Operação: " for="operacao" />
                                     <p:inputText style="width: 100%" id="operacao" value="#{alunoBean.conta.operacao}" label="Operação"/>
@@ -197,11 +204,11 @@
                         <p:panel header="Onde você estudou?">
                             <p:messages />                                                           
                             <p:selectOneRadio  value="#{alunoBean.informacoesCurriculares.ondeEstudou}" layout="responsive" columns="1">
-                                <f:selectItem itemLabel="Escola pública" itemValue="Publica" />  
-                                <f:selectItem itemLabel="Escola particular com bolsa" itemValue="ParticularComBolsa" />  
-                                <f:selectItem itemLabel="Escola particular sem bolsa" itemValue="ParticularSemBolsa" />  
-                                <f:selectItem itemLabel="Parte em escola pública e parte em escola particular com bolsa" itemValue="PubliaEParticularComBolsa" />  
-                                <f:selectItem itemLabel="Parte em escola pública e parte em escola particular sem bolsa" itemValue="PublicaEParticularSemBolsa" />   
+                                <f:selectItem itemLabel="Escola pública" itemValue="Escola pública" />  
+                                <f:selectItem itemLabel="Escola particular com bolsa" itemValue="Escola particular com bolsa" />  
+                                <f:selectItem itemLabel="Escola particular sem bolsa" itemValue="Escola particular sem bolsa" />  
+                                <f:selectItem itemLabel="Parte em escola pública e parte em escola particular com bolsa" itemValue="Parte em escola pública e parte em escola particular com bolsa" />  
+                                <f:selectItem itemLabel="Parte em escola pública e parte em escola particular sem bolsa" itemValue="Parte em escola pública e parte em escola particular sem bolsa" />   
                             </p:selectOneRadio>                                                                  
                         </p:panel> 
 
@@ -214,7 +221,7 @@
                             </p:selectOneRadio>  
 
                             <p:outputPanel id="interrupcaoAjax">
-                                <p:panelGrid rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}">
+                                <h:panelGrid rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}">
                                     <h:panelGrid width="100%" style="margin-top: 5px" columns="2" columnClasses="label17, value17"> 
                                         <p:outputLabel style="width: 100%; margin-right: 4px" value="Por qual motivo? " for="intEst" />
                                         <p:inputText style="width: 100%" id="intEst" value="#{alunoBean.informacoesCurriculares.motivoInterrupcao}" label="Interrupcao"/>
@@ -229,7 +236,7 @@
                                         <p:outputLabel style="width: 100%; margin-right: 4px; margin-left: 20px" value="Por quanto tempo? " for="tempoInter" />
                                         <p:inputText style="width: 100%" id="tempoInter" value="#{alunoBean.informacoesCurriculares.tempoInterrupcao}" label="Tempo Interrupção"/>
                                     </h:panelGrid>  
-                                </p:panelGrid>
+                                </h:panelGrid>
                             </p:outputPanel>
                         </p:panel> 
 
@@ -242,6 +249,7 @@
                                     <f:selectItem itemLabel="Bolsa PIBID" itemValue="d" />
                                     <f:selectItem itemLabel="Bolsa PIBIC" itemValue="c" />
                                     <f:selectItem itemLabel="Bolsa de Monitoria" itemValue="m" />
+                                    <p:ajax event="change" listener="#{alunoBean.setBolsasAuxilioProperties()}"/>
                                 </p:selectManyCheckbox>
                             </h:panelGrid>
                         </p:panel>
@@ -272,14 +280,14 @@
                                 <p:messages /> 
                                 <h:panelGrid width="100%" columns="2" columnClasses="label25, value25" >                              
                                     <p:selectManyCheckbox value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
-                                        <f:selectItem itemLabel="Sustentado pelos meus pais." itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Sustentado somente pelo meu PAI." itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Sustentado somente pela minha MÃE." itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
-                                        <f:selectItem itemLabel="Sustentado por AVÓS." itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Sustentado por outros parentes: ..........." itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Outros Meios: ........................................" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Nenhuma das opções." itemValue="n" />
-                                        <p:ajax update="manutAjax" event="change"/>
+                                        <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
+                                        <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
+                                        <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
+                                        <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                        <f:selectItem itemLabel="Sustentado por outros parentes" itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                        <f:selectItem itemLabel="Outros Meios" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                        <f:selectItem itemLabel="Nenhuma das opções" itemValue="n" />
+                                        <p:ajax update="manutAjax" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
                                     </p:selectManyCheckbox>  
 
                                     <h:panelGrid width="100%" style="margin-top: 104px" columns="2" columnClasses="label27, value27, label28, value28" >       
@@ -317,11 +325,11 @@
                                         <p:outputLabel value="Tipo de Profissão: "/>
 
                                         <p:selectOneRadio value="#{alunoBean.ocupacao.trabalho}" layout="responsive" columns="5">
-                                            <f:selectItem itemLabel="Carteira Assinada" itemValue="CarteiraAssinada"/>
-                                            <f:selectItem itemLabel="Trabalho Informal" itemValue="Informal"/>
-                                            <f:selectItem itemLabel="Trabalho Rural" itemValue="Rural"/>
-                                            <f:selectItem itemLabel="Autônomo" itemValue="Autonomo"/>
-                                            <f:selectItem itemLabel="Servidor Público" itemValue="ServidorPublico"/>
+                                            <f:selectItem itemLabel="Carteira Assinada" itemValue="Carteira Assinada"/>
+                                            <f:selectItem itemLabel="Trabalho Informal" itemValue="Trabalho Informal"/>
+                                            <f:selectItem itemLabel="Trabalho Rural" itemValue="Trabalho Rural"/>
+                                            <f:selectItem itemLabel="Autônomo" itemValue="Autônomo"/>
+                                            <f:selectItem itemLabel="Servidor Público" itemValue="Servidor Público"/>
                                         </p:selectOneRadio>   
                                     </h:panelGrid>
 
@@ -331,12 +339,12 @@
                                         <p:outputLabel style="width: 100%" value="Nome do empregador e/ou da empresa: " for="nomeEmp" />
                                         <p:inputText style="width: 100%" id="nomeEmp" value="#{alunoBean.ocupacao.nomeEmpregador}" label="Nome Empregador"/>
 
-                                        <p:outputLabel style="width: 100%; margin-left: 35px;" value="Tempo de serviço: " for="tel" />
+                                        <p:outputLabel style="width: 100%" value="Telefone do empregador ou da empresa: "  for="tel"/>
                                         <p:inputText style="width: 100%" id="tel" value="#{alunoBean.ocupacao.telefoneEmpregador}" label="Telefone"/>
                                     </h:panelGrid>
 
                                     <h:panelGrid width="100%" style="margin-top: 7px" columns="4" columnClasses="label23, value23, label24, value24">                                
-                                        <p:outputLabel style="width: 100%" value="Telefone do empregador ou da empresa: " for="tempoServico" />
+                                        <p:outputLabel style="width: 100%; margin-left: 35px;" value="Tempo de serviço: " for="tempoServico" />
                                         <p:inputText style="width: 100%" id="tempoServico" value="#{alunoBean.ocupacao.tempoServico}" label="Tempo Serviço"/>
 
                                         <p:outputLabel style="width: 100%; margin-left: 35px;" value="Salário Mensal: R$ " for="sal" />
@@ -365,7 +373,7 @@
                                         <f:selectItem itemLabel="Filho" itemValue="f" />
                                         <f:selectItem itemLabel="Idoso" itemValue="i" />
                                         <f:selectItem itemLabel="Outro:" itemValue="o" />
-                                        <p:ajax update="depOutro" event="change"/>
+                                        <p:ajax update="depOutro" event="change" listener="#{alunoBean.setDependentesProperties()}"/>
                                     </p:selectManyCheckbox>
                                     <p:outputPanel id="depOutro">
                                         <p:inputText  rendered="#{alunoBean.selectedDependenteOutro()}" style="width: 100%" value="#{alunoBean.dependentes.outroDependente}" label="outro"/>
@@ -398,14 +406,14 @@
                                 <h:panelGrid width="100%" columns="1" columnClasses="label32, value32"> 
                                     <p:selectOneRadio value="#{alunoBean.situacaoResidencial.comQuemMora}" layout="responsive" columns="3">
                                         <f:selectItem itemLabel="Sozinho" itemValue="Sozinho"/>
-                                        <f:selectItem itemLabel="Com os pais" itemValue="Pais"/>                                        
-                                        <f:selectItem itemLabel="Com os avós" itemValue="Avos"/>
-                                        <f:selectItem itemLabel="Com somente a mãe" itemValue="Mae"/>
-                                        <f:selectItem itemLabel="Com somente o pai" itemValue="Pai"/>
-                                        <f:selectItem itemLabel="Outro Familiar" itemValue="OutroFamiliar"/>
-                                        <f:selectItem itemLabel="Em república" itemValue="Republica"/>
-                                        <f:selectItem itemLabel="Em pensão" itemValue="Pensao"/>
-                                        <f:selectItem itemLabel="Outra Situação:" itemValue="Outro"/>
+                                        <f:selectItem itemLabel="Com os pais" itemValue="Com os pais"/>                                        
+                                        <f:selectItem itemLabel="Somente com a mãe" itemValue="Mae"/>
+                                        <f:selectItem itemLabel="Somente com o pai" itemValue="Pai"/>
+                                        <f:selectItem itemLabel="Com os avós" itemValue="Com os avós"/>
+                                        <f:selectItem itemLabel="Com outro Familiar" itemValue="Outro Familiar"/>
+                                        <f:selectItem itemLabel="Em república" itemValue="Em república"/>
+                                        <f:selectItem itemLabel="Em pensão" itemValue="Em pensão"/>
+                                        <f:selectItem itemLabel="Outra Situação" itemValue="Outra Situação"/>
                                         <p:ajax update="moraAjax" event="change"/>
                                     </p:selectOneRadio> 
                                 </h:panelGrid>
@@ -427,10 +435,10 @@
                             <h:panelGrid width="100%" columns="2" columnClasses="label35, value35">
                                 <h:panelGrid width="100%" columns="1" columnClasses="label36">
                                     <p:selectOneRadio value="#{alunoBean.situacaoResidencial.situacaoCasa}" layout="responsive" columns="1">
-                                        <f:selectItem itemLabel="Casa própria" itemValue="Propria"/>    
-                                        <f:selectItem itemLabel="Casa alugada" itemValue="Alugada"/>    
-                                        <f:selectItem itemLabel="Casa cedida" itemValue="Cedida"/>    
-                                        <f:selectItem itemLabel="Casa financiada" itemValue="Financiada"/>    
+                                        <f:selectItem itemLabel="Casa própria" itemValue="Casa própria"/>    
+                                        <f:selectItem itemLabel="Casa alugada" itemValue="Casa alugada"/>    
+                                        <f:selectItem itemLabel="Casa cedida" itemValue="Casa cedida"/>    
+                                        <f:selectItem itemLabel="Casa financiada" itemValue="Casa financiada"/>    
                                         <f:selectItem itemLabel="Outra situação" itemValue="Outro"/>
                                         <p:ajax update="casaAjax" event="change"/>
                                     </p:selectOneRadio> 

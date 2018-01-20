@@ -229,6 +229,13 @@ public class AlunoBean implements Serializable{
     
     public void setCondicaoManutencaoProperties(){
         int i;
+        condicaoManutencao.setAmbosPais(Boolean.FALSE);
+        condicaoManutencao.setApenasPai(Boolean.FALSE);
+        condicaoManutencao.setApenasMae(Boolean.FALSE);
+        condicaoManutencao.setOutrosParentes(Boolean.FALSE);
+        condicaoManutencao.setOutrosMeios(Boolean.FALSE);
+        condicaoManutencao.setAvos(Boolean.FALSE);
+
         if(selectedSustentadores != null){
             for(i=0;i<selectedSustentadores.length;i++){
                 if("pm".equals(selectedSustentadores[i]))
@@ -249,8 +256,13 @@ public class AlunoBean implements Serializable{
     
     public void setBolsasAuxilioProperties(){
         int i;
+        bolsasAuxilio.setMonitoria(Boolean.FALSE);
+        bolsasAuxilio.setPibic(Boolean.FALSE);
+        bolsasAuxilio.setPibicjr(Boolean.FALSE);
+        bolsasAuxilio.setPibid(Boolean.FALSE);
+        bolsasAuxilio.setProgramaExtensao(Boolean.FALSE);
+        
         if(selectedBolsasAuxilio != null){
-            System.out.println("length: " + selectedBolsasAuxilio.length);
             for(i=0;i<selectedBolsasAuxilio.length;i++){
                 if("m".equals(selectedBolsasAuxilio[i]))
                     bolsasAuxilio.setMonitoria(Boolean.TRUE);
@@ -267,6 +279,14 @@ public class AlunoBean implements Serializable{
     }
     public void setImovelProperties(){
         int i;
+        imovel.setCasaPraia(Boolean.FALSE);
+        imovel.setApartamentos(Boolean.FALSE);
+        imovel.setSalasComerciais(Boolean.FALSE);
+        imovel.setLotes(Boolean.FALSE);
+        imovel.setTerras(Boolean.FALSE);
+        imovel.setSitios(Boolean.FALSE);
+        imovel.setOutroImovel(Boolean.FALSE);
+
         if(selectedImoveis != null){
             for(i=0;i<selectedImoveis.length;i++){
                 if("p".equals(selectedImoveis[i]))
@@ -288,6 +308,13 @@ public class AlunoBean implements Serializable{
     }
     public void setResidenciaFamilaProperties(){
         int i;
+        residencia.setRedeEsgoto(Boolean.FALSE);
+        residencia.setFossa(Boolean.FALSE);
+        residencia.setBanheiro(Boolean.FALSE);
+        residencia.setChuveiro(Boolean.FALSE);
+        residencia.setLuz(Boolean.FALSE);
+        residencia.setAgua(Boolean.FALSE);
+
         if(selectedResidencia != null){
             for(i=0;i<selectedResidencia.length;i++){
                 if("e".equals(selectedResidencia[i]))
@@ -307,19 +334,14 @@ public class AlunoBean implements Serializable{
         
     }
     
-    public boolean selectedDependenteOutro(){
-        int i;
-        if(selectedDependentes != null){
-            for(i=0;i<selectedDependentes.length;i++){
-                if("o".equals(selectedDependentes[i]))
-                    return true;
-            }
-        }
-        return false;
-    }
-    
+
     public void setDependentesProperties(){
         int i;
+        dependentes.setCompanheiro(Boolean.FALSE);
+        dependentes.setFilho(Boolean.FALSE);
+        dependentes.setIdoso(Boolean.FALSE);
+        dependentes.setOutro(Boolean.FALSE);
+
         if(selectedDependentes != null){
             for(i=0;i<selectedDependentes.length;i++){
                 if("c".equals(selectedDependentes[i]))
@@ -333,7 +355,18 @@ public class AlunoBean implements Serializable{
             }            
         }
     }
-    
+
+    public boolean selectedDependenteOutro(){
+        int i;
+        if(selectedDependentes != null){
+            for(i=0;i<selectedDependentes.length;i++){
+                if("o".equals(selectedDependentes[i]))
+                    return true;
+            }
+        }
+        return false;
+    }
+        
     public boolean verificaSelectedSustentadoresPM(){
         int i;
         if(selectedSustentadores != null){
@@ -401,7 +434,7 @@ public class AlunoBean implements Serializable{
         if(situacaoResidencial.getComQuemMora() == null){
             return false;
         }else{
-            if(situacaoResidencial.getComQuemMora().equals(ComQuemMora.Outro))
+            if(situacaoResidencial.getComQuemMora().equals("Outra Situação"))
                 return true;
         }
         return false;

@@ -14,7 +14,7 @@
     o valor do salário minimo, aí depois quebra o valor em 10
 
 
-
+criar um ativador de periodo de inscricao
 
 
 

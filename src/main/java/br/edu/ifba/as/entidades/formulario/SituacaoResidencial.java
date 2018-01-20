@@ -1,8 +1,5 @@
 package br.edu.ifba.as.entidades.formulario;
 
-import br.edu.ifba.as.entidades.enums.AcessoInternet;
-import br.edu.ifba.as.entidades.enums.ComQuemMora;
-import br.edu.ifba.as.entidades.enums.SituacaoCasa;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
@@ -43,17 +40,14 @@ public class SituacaoResidencial implements Serializable {
     @Column(name = "despesas_extra")
     private Double despesasExtra;
 
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private ComQuemMora comQuemMora;
+    @Column(name = "com_quem_mora")
+    private String comQuemMora;
     
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private SituacaoCasa situacaoCasa;
+    @Column(name = "ituacao_casa")
+    private String situacaoCasa;
 
-    @Enumerated
-    @Column(columnDefinition = "smallint")
-    private AcessoInternet acessoInternet;
+    @Column(name = "acesso_internet")
+    private String acessoInternet;
     
 // Getters e Setters
 
@@ -129,45 +123,45 @@ public class SituacaoResidencial implements Serializable {
         this.despesasExtra = despesasExtra;
     }
 
-    public ComQuemMora getComQuemMora() {
+    public String getComQuemMora() {
         return comQuemMora;
     }
 
-    public void setComQuemMora(ComQuemMora comQuemMora) {
+    public void setComQuemMora(String comQuemMora) {
         this.comQuemMora = comQuemMora;
     }
 
-    public SituacaoCasa getSituacaoCasa() {
+    public String getSituacaoCasa() {
         return situacaoCasa;
     }
 
-    public void setSituacaoCasa(SituacaoCasa situacaoCasa) {
+    public void setSituacaoCasa(String situacaoCasa) {
         this.situacaoCasa = situacaoCasa;
     }
 
-    public AcessoInternet getAcessoInternet() {
+    public String getAcessoInternet() {
         return acessoInternet;
     }
 
-    public void setAcessoInternet(AcessoInternet acessoInternet) {
+    public void setAcessoInternet(String acessoInternet) {
         this.acessoInternet = acessoInternet;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.situacaoResidencial);
-        hash = 23 * hash + Objects.hashCode(this.aluno);
-        hash = 23 * hash + Objects.hashCode(this.moraComQuemOutro);
-        hash = 23 * hash + Objects.hashCode(this.casaQuemEmprestou);
-        hash = 23 * hash + Objects.hashCode(this.casaSituacaoOutro);
-        hash = 23 * hash + Objects.hashCode(this.acessoInternetOutro);
-        hash = 23 * hash + Objects.hashCode(this.gastoMoradia);
-        hash = 23 * hash + Objects.hashCode(this.valorAluguel);
-        hash = 23 * hash + Objects.hashCode(this.despesasExtra);
-        hash = 23 * hash + Objects.hashCode(this.comQuemMora);
-        hash = 23 * hash + Objects.hashCode(this.situacaoCasa);
-        hash = 23 * hash + Objects.hashCode(this.acessoInternet);
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.situacaoResidencial);
+        hash = 89 * hash + Objects.hashCode(this.aluno);
+        hash = 89 * hash + Objects.hashCode(this.moraComQuemOutro);
+        hash = 89 * hash + Objects.hashCode(this.casaQuemEmprestou);
+        hash = 89 * hash + Objects.hashCode(this.casaSituacaoOutro);
+        hash = 89 * hash + Objects.hashCode(this.acessoInternetOutro);
+        hash = 89 * hash + Objects.hashCode(this.gastoMoradia);
+        hash = 89 * hash + Objects.hashCode(this.valorAluguel);
+        hash = 89 * hash + Objects.hashCode(this.despesasExtra);
+        hash = 89 * hash + Objects.hashCode(this.comQuemMora);
+        hash = 89 * hash + Objects.hashCode(this.situacaoCasa);
+        hash = 89 * hash + Objects.hashCode(this.acessoInternet);
         return hash;
     }
 
@@ -195,6 +189,15 @@ public class SituacaoResidencial implements Serializable {
         if (!Objects.equals(this.acessoInternetOutro, other.acessoInternetOutro)) {
             return false;
         }
+        if (!Objects.equals(this.comQuemMora, other.comQuemMora)) {
+            return false;
+        }
+        if (!Objects.equals(this.situacaoCasa, other.situacaoCasa)) {
+            return false;
+        }
+        if (!Objects.equals(this.acessoInternet, other.acessoInternet)) {
+            return false;
+        }
         if (!Objects.equals(this.situacaoResidencial, other.situacaoResidencial)) {
             return false;
         }
@@ -210,16 +213,8 @@ public class SituacaoResidencial implements Serializable {
         if (!Objects.equals(this.despesasExtra, other.despesasExtra)) {
             return false;
         }
-        if (this.comQuemMora != other.comQuemMora) {
-            return false;
-        }
-        if (this.situacaoCasa != other.situacaoCasa) {
-            return false;
-        }
-        if (this.acessoInternet != other.acessoInternet) {
-            return false;
-        }
         return true;
     }
+
 
 }

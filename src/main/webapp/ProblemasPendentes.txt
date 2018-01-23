@@ -18,7 +18,7 @@ criar um ativador de periodo de inscricao
 
 - Tem que puxar apenas os alunos do ano
 
-
+- Se no rodapé, ou semelhates, tiver um link para outra pagina tanto aluno como adm tem que ter um 
 
 
 

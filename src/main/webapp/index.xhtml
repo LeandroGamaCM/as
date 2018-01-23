@@ -3,12 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
       
-    <ui:composition template="/templates/templateInterno.xhtml">
+    <ui:composition template="/templates/adm/templateInterno.xhtml">
         <ui:define name="titulo">
-            PAAE - Menu Inicial
+            INDEX
         </ui:define>     
         <ui:define name="conteudo">
-            <ui:include src="templates/componentePrincipal.xhtml" />
+<!--O index não deve ter nenhuma referencia para paginas/aluno ou paginas/adm            -->
+            <ui:include src="/templates/adm/componentePrincipal.xhtml" />
         </ui:define>
     </ui:composition>
 </html>

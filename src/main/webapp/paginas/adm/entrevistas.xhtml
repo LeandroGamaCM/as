@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     
-    <ui:composition template="/templates/templateInterno.xhtml">
+    <ui:composition template="/templates/adm/templateInterno.xhtml">
         <ui:define name="titulo">
             PAAE - Entrevistas
         </ui:define>
@@ -29,7 +29,7 @@
                 
             <p:outputPanel id="panel">
                 <p:panel header="Entrevistas Realizadas" rendered="#{telaEntrevistaBean.entrevistasFeitas}">
-                    <ui:include src="/templates/componenteEntrevista.xhtml"/>
+                    <ui:include src="/templates/adm/componenteEntrevista.xhtml"/>
                 </p:panel>
 
                 <p:panel header="Entrevistas Não realizadas" rendered="#{telaEntrevistaBean.entrevistasNaoFeitas}">

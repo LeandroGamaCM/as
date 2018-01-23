@@ -18,7 +18,6 @@
                     <p:toolbarGroup align="left">
                         <p:commandButton value="Pre cadastrar alunos" update="panel" action="#{telaAlunosBean.changeToPreCadastro()}"/>
                         <p:commandButton value="Fichas de inscrição" update="panel" action="#{telaAlunosBean.listarFichas()}"/>
-                        <p:commandButton value="Alunos com bolsa" update="panel" action="#{telaAlunosBean.listarAlunosBolsa()}"/>
                     </p:toolbarGroup>
                 </p:toolbar>
             </p:outputPanel>
@@ -68,27 +67,6 @@
                         </p:column>
                     </p:dataTable>
                 </p:panel>
-<!--_________________________________________________________________________________________________________-->
-
-                <p:panel rendered="#{telaAlunosBean.listarPorBolsa}" header="Lista de alunos">
-                        <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}">
-                            <f:facet name="header">
-                                    <h:outputText value="Alunos" />
-                            </f:facet>  
-                            <p:column headerText="Nome">
-                                <h:outputText value="#{aluno.aluno.nome}"/>
-                            </p:column>
-                            <p:column headerText="Cpf">
-                                <h:outputText value="#{aluno.aluno.cpf}"/>
-                            </p:column>
-                            <p:column headerText="Bolsa Recebida">
-                                <h:outputText value=""/>
-                            </p:column>
-
-                        </p:dataTable>                    
-                    
-                </p:panel>
-
 <!--_________________________________________________________________________________________________________-->
                 <p:panel rendered="#{telaAlunosBean.listarFichas}" header="Fichas de Inscrição">
                     <h:panelGrid id="margem" columns="2" columnClasses="label, value" >
@@ -144,7 +122,7 @@
                             </p:column>-->
                              
 <!--                            <p:column headerText="CPF">
-                                <h:outputText value="#{aluno.cpf}" />
+                                <h:outputText value="" />
                             </p:column>-->
                              
 <!--                            <p:column headerText="C                            <p:column headerText="Bolsa Escolhida">

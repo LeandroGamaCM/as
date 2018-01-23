@@ -30,7 +30,7 @@
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="redirectRoleStrategy" class="br.edu.ifba.as.spring.UrlAuthenticationSuccessHandler">
+    <beans:bean id="redirectRoleStrategy" class="br.edu.ifba.paae.spring.UrlAuthenticationSuccessHandler">
         <beans:property name="roleUrlMap">
             <beans:map>
                 <beans:entry key="ROLE_USUARIO" value="/paginas/aluno/principal.jsf"/>

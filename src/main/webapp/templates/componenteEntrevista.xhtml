@@ -7,42 +7,24 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
         <h:form>
-            <p:outputPanel id="toolbar">
-                <p:toolbar>
-                    <p:toolbarGroup align="right">
-                        <p:inputText value="#{telaAlunosBean.pesquisa}" placeholder="Nome, CPF, RG"/>
-                        <p:commandButton value="Pesquisar" update="panel" action="#{telaEntrevistaBean.buscar()}"/>
-                    </p:toolbarGroup>
-                </p:toolbar>
-                <p:toolbar>
-                    <p:toolbarGroup align="left">
-                        <p:commandButton value="Entrevistas realizadas" update="panel" action="#{telaEntrevistaBean.changeToEntrevistasFeitas()}"/>
-                        <p:commandButton value="Entrevistas a fazer" update="panel" action="#{telaEntrevistaBean.changeToEntrevistasNaoFeitas()}"/>
-                    </p:toolbarGroup>
-                </p:toolbar>
-            </p:outputPanel>
-            
-            <p:outputPanel id="panel">
-                
-                <p:panel header="Entrevistas Realizadas" rendered="#{telaEntrevistaBean.entrevistasFeitas}">
-                    <p:dataTable var="entrevistaFeita" value="#{telaEntrevistaBean.entrevistas}">
-                        <p:column>
-                            
-                        </p:column>
-                        
-                    </p:dataTable>
-                    
-                </p:panel>
-                
-                <p:panel header="Entrevistas Não realizadas" rendered="#{telaEntrevistaBean.entrevistasNaoFeitas}">
-                    
-                </p:panel>
-                
-                <p:panel header="Resultados da busca" rendered="#{telaEntrevistaBean.pesquisar}">
-                    
-                </p:panel>
-                
-            </p:outputPanel>
+            <p:dataTable var="formulario" value="#{telaEntrevistaBean.formularioAlunos}">
+                <p:column headerText="Aluno">
+                    <p:outputLabel value="#{formulario.aluno.nome}"/>
+                </p:column>
+                <p:column headerText="Turma">
+                    <p:outputLabel value="#{formulario.turma.nome} #{formulario.turma.curso}"/>
+                </p:column>
+                <p:column headerText="1ª Preferência de bolsa">
+                    <p:outputLabel value="#{formulario.formulario.primeiraPreferencia}"/>
+                </p:column>
+                <p:column headerText="2ª Preferência de bolsa">
+                    <p:outputLabel value="#{formulario.formulario.segundaPreferencia}"/>
+                </p:column>
+                <p:column headerText="Pontuação por Barema">
+                    <p:outputLabel value="#{formulario.entrevista.pontuacaoComposicaoFamiliar}"/>
+                </p:column>
+
+            </p:dataTable>
 
         </h:form>
     </ui:composition>

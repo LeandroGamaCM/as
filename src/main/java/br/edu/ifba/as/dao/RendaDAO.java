@@ -12,11 +12,11 @@ public class RendaDAO {
         this.sessao = sessao;
     }
 
-    public List<Renda> buscarPorFamilia(Integer codFamilia){
+    public Renda buscarPorFamilia(Integer codFamilia){
         String hql = "select u from Renda u where u.familia = :codFamilia";
         Query c = this.sessao.createQuery(hql);
         c.setString("codFamilia", codFamilia.toString());
-        return c.list();
+        return (Renda) c.uniqueResult();
     }
     public Renda carregar(Integer codigo){
         return (Renda) this.sessao.get(Renda.class, codigo);

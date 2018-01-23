@@ -39,6 +39,9 @@ public class UsuarioRN {
     public List<Usuario> listar(){
         return this.usuarioDAO.listar();
     }
+    public Usuario buscarPorLogin(String login){
+        return this.usuarioDAO.buscarPorLogin(login);
+    }
     
     public void criarADM(){
         Usuario usuario = new Usuario();

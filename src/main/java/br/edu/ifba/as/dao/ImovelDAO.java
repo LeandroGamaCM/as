@@ -15,7 +15,7 @@ public class ImovelDAO {
     public Imovel buscarPorFamilia(Integer codFamilia){
         String hql = "select u from Imovel u where u.imovel = :codFamilia";
         Query c = this.sessao.createQuery(hql);
-        c.setString("codfamilia", codFamilia.toString());
+        c.setString("codFamilia", codFamilia.toString());
         return (Imovel) c.uniqueResult();
     }
     public Imovel carregar(Integer codigo){

@@ -16,16 +16,25 @@ public class Barema {
     
     public void salvar(Parametro parametro){
         parametros = criarLista();
+        System.out.println("\nParametro: \n\tCategoria: " + parametro.getCategoria() + "\n\tAspectoAvaliacao: " + parametro.getAspectoAvaliacao() + "\n\tPontuacao: " + parametro.getPontuacao());
+        
         int i;
         for(i = 0; i<parametros.size(); i++){
             if(parametro.getCategoria().equals(parametros.get(i).getCategoria()) && "Composição Familiar".equals(parametro.getCategoria())){
                 ComposicaoFamiliarRN rn = new ComposicaoFamiliarRN();
+                System.out.println("\tEntrou em Composicao Familar");
 
                 if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
+                    System.out.println("\tEntrou no aspecto avaliação");
                     ComposicaoFamiliar aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
+                    System.out.println("\tAux: \n\tAspectoAvaliacao: " + aux.getTipo() + "\n\tPontuacao: " + aux.getPontuacao());
+
                     aux.setPontuacao(parametro.getPontuacao());
                     rn.salvar(aux);
+                    System.out.println("\nO novo aux: ");
+                    System.out.println("\tAux: \n\tAspectoAvaliacao: " + aux.getTipo() + "\n\tPontuacao: " + aux.getPontuacao());
                     System.out.println("\tSalvou");
+                    break;
                 }
             }
 //            if(parametro.getCategoria().equals(parametros.get(i).getCategoria()) && "Renda per capita".equals(parametro.getCategoria())){
@@ -160,8 +169,6 @@ public class Barema {
             }
             
         }
-        parametros = criarLista();
-        
     }
     
     
@@ -291,7 +298,7 @@ public class Barema {
             parametro.setCategoria("Local de residência da família");
             parametro.setAspectoAvaliacao(localResidenciaFamilias.get(i).getTipo());
             parametro.setPontuacao(localResidenciaFamilias.get(i).getPontuacao());
-            parametro.setPeso(5F);
+            parametro.setPeso(localResidenciaFamiliaRN.getPeso());
             ListParametros.add(parametro);
         }
         for(i = 0; i < situacaoOcupacionals.size(); i++){
@@ -299,7 +306,7 @@ public class Barema {
             parametro.setCategoria("Situação ocupacional do estudante");
             parametro.setAspectoAvaliacao(situacaoOcupacionals.get(i).getTipo());
             parametro.setPontuacao(situacaoOcupacionals.get(i).getPontuacao());
-            parametro.setPeso(5F);
+            parametro.setPeso(situacaoOcupacionalRN.getPeso());
             ListParametros.add(parametro);
         }
         for(i = 0; i < programaSocials.size(); i++){
@@ -307,7 +314,7 @@ public class Barema {
             parametro.setCategoria("Programas, projetos, serviços e benefícios governamentais");
             parametro.setAspectoAvaliacao(programaSocials.get(i).getTipo());
             parametro.setPontuacao(programaSocials.get(i).getPontuacao());
-            parametro.setPeso(4F);
+            parametro.setPeso(programaSocialRN.getPeso());
             ListParametros.add(parametro);
         }
         for(i = 0; i < saudes.size(); i++){
@@ -315,7 +322,7 @@ public class Barema {
             parametro.setCategoria("Saúde");
             parametro.setAspectoAvaliacao(saudes.get(i).getTipo());
             parametro.setPontuacao(saudes.get(i).getPontuacao());
-            parametro.setPeso(3.0F);
+            parametro.setPeso(saudeRN.getPeso());
             ListParametros.add(parametro);
         }
         for(i = 0; i < escolaOrigems.size(); i++){
@@ -323,7 +330,7 @@ public class Barema {
             parametro.setCategoria("Escola de origem");
             parametro.setAspectoAvaliacao(escolaOrigems.get(i).getTipo());
             parametro.setPontuacao(escolaOrigems.get(i).getPontuacao());
-            parametro.setPeso(3.0F);
+            parametro.setPeso(escolaOrigemRN.getPeso());
             ListParametros.add(parametro);
         }
         

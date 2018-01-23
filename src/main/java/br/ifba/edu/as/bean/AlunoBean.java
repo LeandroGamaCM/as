@@ -1,8 +1,8 @@
 package br.ifba.edu.as.bean;
 
 import br.edu.ifba.as.entidades.analise.Bolsa;
-import br.edu.ifba.as.entidades.enums.Zona;
 import br.edu.ifba.as.entidades.formulario.*;
+import br.edu.ifba.as.entidades.usuario.Usuario;
 import br.edu.ifba.as.rn.*;
 import br.edu.ifba.as.rn.analise.BolsaRN;
 import java.io.Serializable;
@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.*;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 
 @ManagedBean(name = "alunoBean")
@@ -66,6 +68,19 @@ public class AlunoBean implements Serializable{
     
     @PostConstruct
     public void init(){
+        AlunoRN alunoRN = new AlunoRN();
+        FacesContext context = FacesContext.getCurrentInstance();
+        ExternalContext external = context.getExternalContext();
+        String cpf = external.getRemoteUser();
+        UsuarioRN usuarioRN = new UsuarioRN();
+        Usuario usuario = usuarioRN.buscarPorLogin(cpf);
+        
+        if(usuario != null){
+            if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
+                aluno = alunoRN.buscarPorCPF(cpf);
+            }else
+                System.out.println("\n\tADM!\n");            
+        }
         addMembroFamiliar();
         selecaoBolsa();
         TurmaRN turmaRN = new TurmaRN();
@@ -161,13 +176,6 @@ public class AlunoBean implements Serializable{
             membroFamiliarRN.salvar(membroFamiliar);
             i++;
         }
-    }
-    
-    public void excluir(){
-        // Não é necessário apagar as dependências porque elas se apagam automaticamente por meio do cascate.delete
-        AlunoRN alunoRN = new AlunoRN();
-        alunoRN.excluir(alunoRN.buscarPorCPF(1111));
-        System.out.println("Apagado!");
     }
     
     public void addMembroFamiliar(){

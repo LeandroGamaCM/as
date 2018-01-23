@@ -8,25 +8,22 @@
     <ui:composition>
         <div class="ui-fluid">
             
-            <h:form>
-<!--Rowspan-->
-                <p:dataTable var="parametro" value="#{bolsasBean.parametros}" sortBy="#{parametro.categoria}"  editable="true" editMode="cell">
+            <h:form>  
+                <!--Rowspan-->
+                <p:dataTable var="parametro" value="#{bolsasBean.parametros}" sortBy="#{parametro.categoria}" editable="true" editMode="cell">
                     <p:ajax event="cellEdit" listener="#{bolsasBean.editarBarema(parametro)}"/>   
-                    <p:column headerText="Categoria de Análise" groupRow="true">
-                        <h:outputText value="#{parametro.categoria}" />
+                    <p:column headerText="Categoria de Análise">
+                        <h:outputLabel value="#{parametro.categoria} (Peso = #{parametro.peso})" />
                     </p:column>
-                    <p:column headerText="Aspectos em Avalição">
-                        <h:outputText value="#{parametro.aspectoAvaliacao}" />
+                    <p:column headerText="Aspectos em Avalição" groupRow="true">
+                        <h:outputLabel value="#{parametro.aspectoAvaliacao}" />                        
                     </p:column>
                     <p:column headerText="Pontuação">
                         <p:cellEditor>
                             <f:facet name="output"><p:outputLabel value="#{parametro.pontuacao}"/></f:facet>
                             <f:facet name="input"><p:inputText value="#{parametro.pontuacao}"/></f:facet>
                         </p:cellEditor>
-                    </p:column>
-                    <p:column headerText="Peso">
-                        <h:outputText value="#{parametro.peso}" />
-                    </p:column>                    
+                    </p:column>                   
                 </p:dataTable>
 
             </h:form>

@@ -14,7 +14,7 @@ public class BolsasAuxilio implements Serializable {
     @org.hibernate.annotations.GenericGenerator(name = "fk_bolsas_auxilio_cod_aluno", 
             strategy = "foreign", parameters = @org.hibernate.annotations.Parameter(name = "property", value = "aluno"))
     @Column(name = "cod_aluno")
-    private Integer bolsaAuxilio;
+    private Integer bolsasAuxilio;
     
     @OneToOne(mappedBy = "bolsas_auxilio")
     private Aluno aluno;    
@@ -27,12 +27,12 @@ public class BolsasAuxilio implements Serializable {
     private Boolean pibic;
     private Boolean pibicjr;
 
-    public Integer getBolsaAuxilio() {
-        return bolsaAuxilio;
+    public Integer getBolsasAuxilio() {
+        return bolsasAuxilio;
     }
 
-    public void setBolsaAuxilio(Integer bolsaAuxilio) {
-        this.bolsaAuxilio = bolsaAuxilio;
+    public void setBolsaAuxilio(Integer bolsasAuxilio) {
+        this.bolsasAuxilio = bolsasAuxilio;
     }
 
     public Aluno getAluno() {
@@ -86,7 +86,7 @@ public class BolsasAuxilio implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.bolsaAuxilio);
+        hash = 17 * hash + Objects.hashCode(this.bolsasAuxilio);
         hash = 17 * hash + Objects.hashCode(this.aluno);
         hash = 17 * hash + Objects.hashCode(this.programaExtensao);
         hash = 17 * hash + Objects.hashCode(this.pibid);
@@ -108,7 +108,7 @@ public class BolsasAuxilio implements Serializable {
             return false;
         }
         final BolsasAuxilio other = (BolsasAuxilio) obj;
-        if (!Objects.equals(this.bolsaAuxilio, other.bolsaAuxilio)) {
+        if (!Objects.equals(this.bolsasAuxilio, other.bolsasAuxilio)) {
             return false;
         }
         if (!Objects.equals(this.aluno, other.aluno)) {

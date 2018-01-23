@@ -18,7 +18,7 @@ public class RendaRN {
     public void excluir(Renda renda){
         this.rendaDAO.excluir(renda);
     }
-    public List<Renda> buscarPorFamilia(Integer codFamilia){
+    public Renda buscarPorFamilia(Integer codFamilia){
         return this.rendaDAO.buscarPorFamilia(codFamilia);
     }
     public Renda carregar(Integer codigo){

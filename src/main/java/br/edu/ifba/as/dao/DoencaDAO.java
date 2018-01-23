@@ -12,11 +12,11 @@ public class DoencaDAO {
         this.sessao = sessao;
     }
 
-    public List<Doenca> buscarPorMembroFamiliar(Integer codMembroFamiliar){
-        String hql = "select u from Doenca u where u.membro_familiar = :codMembroFamiliar";
+    public Doenca buscarPorFamilia(Integer codFamilia){
+        String hql = "select u from Doenca u where u.doenca = :codFamilia";
         Query c = this.sessao.createQuery(hql);
-        c.setString("codMembroFamiliar", codMembroFamiliar.toString());
-        return c.list();
+        c.setString("codFamilia", codFamilia.toString());
+        return (Doenca) c.uniqueResult();
     }
     public Doenca carregar(Integer codigo){
         return (Doenca) this.sessao.get(Doenca.class, codigo);

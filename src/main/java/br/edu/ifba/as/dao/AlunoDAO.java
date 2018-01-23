@@ -34,10 +34,10 @@ public class AlunoDAO{
         return c.list();        
     }
     
-    public Aluno buscarPorCPF(Integer cpf){
+    public Aluno buscarPorCPF(String cpf){
         String hql = "select u from Aluno u where u.cpf = :cpf";
         Query c = this.sessao.createQuery(hql);
-        c.setString("cpf", cpf.toString());
+        c.setString("cpf", cpf);
         return (Aluno) c.uniqueResult();
     }    
 

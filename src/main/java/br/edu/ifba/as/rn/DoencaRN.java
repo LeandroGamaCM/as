@@ -18,8 +18,8 @@ public class DoencaRN {
     public void excluir(Doenca doenca){
         this.doencaDAO.excluir(doenca);
     }
-    public List<Doenca> buscarPorMembroFamiliar(Integer codMembroFamiliar){
-        return this.doencaDAO.buscarPorMembroFamiliar(codMembroFamiliar);
+    public Doenca buscarPorFamilia(Integer codFamilia){
+        return this.doencaDAO.buscarPorFamilia(codFamilia);
     }
     public Doenca carregar(Integer codigo){
         return this.doencaDAO.carregar(codigo);

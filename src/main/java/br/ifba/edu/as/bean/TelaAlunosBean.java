@@ -52,6 +52,7 @@ public class TelaAlunosBean implements Serializable{
         UsuarioRN usuarioRN = new UsuarioRN();
         
         usuario.setAtivo(Boolean.FALSE);
+        usuario.setLogin(novoAluno.getCpf());
 //        usuario.getPermissao().add("ROLE_ADMINISTRADOR");
         usuarioRN.salvar(usuario);
         System.out.println("Salvou usuario");

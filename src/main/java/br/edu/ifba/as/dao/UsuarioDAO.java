@@ -25,6 +25,12 @@ public class UsuarioDAO{
         c.setString("codUsuario", codUsuario.toString());
         return (Aluno) c.uniqueResult();
     }
+    public Usuario buscarPorLogin(String login){
+        String hql = "select u from Usuario u where u.login = :login";
+        Query c = this.sessao.createQuery(hql);
+        c.setString("login", login);
+        return (Usuario) c.uniqueResult();        
+    }
     public Usuario carregar(Integer codigo){
         return (Usuario) this.sessao.get(Usuario.class, codigo);
     }
@@ -35,7 +41,7 @@ public class UsuarioDAO{
         sessao.save(usuario);
     }
     public void atualizar(Usuario usuario){
-        if(usuario.getPermissao() == null || usuario.getPermissao().size() == 0){
+        if(usuario.getPermissao() == null || usuario.getPermissao().isEmpty()){
             Usuario usuarioPermissao = this.carregar(usuario.getUsuario());
             usuario.setPermissao(usuarioPermissao.getPermissao());
             this.sessao.evict(usuarioPermissao);

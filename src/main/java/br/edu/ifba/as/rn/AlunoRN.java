@@ -15,8 +15,8 @@ public class AlunoRN {
     public Aluno carregar(Integer codigo){
         return this.alunoDAO.carregar(codigo);
     }
-    public Aluno buscarPorCPF(Integer valor){
-        return this.alunoDAO.buscarPorCPF(valor);
+    public Aluno buscarPorCPF(String cpf){
+        return this.alunoDAO.buscarPorCPF(cpf);
     }    
     public void salvar(Aluno aluno){
         this.alunoDAO.salvar(aluno);

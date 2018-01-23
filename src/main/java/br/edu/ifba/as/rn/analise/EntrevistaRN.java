@@ -12,12 +12,7 @@ import br.edu.ifba.as.entidades.analise.LocalResidenciaFamilia;
 import br.edu.ifba.as.entidades.analise.MoradiaEstudante;
 import br.edu.ifba.as.entidades.analise.MoradiaFamilia;
 import br.edu.ifba.as.entidades.analise.ProgramaSocial;
-import br.edu.ifba.as.entidades.enums.OndeEstudou;
-import br.edu.ifba.as.entidades.enums.SituacaoCasa;
-import br.edu.ifba.as.entidades.enums.TipoEtnia;
-import br.edu.ifba.as.entidades.enums.Zona;
 import br.edu.ifba.as.entidades.formulario.Aluno;
-import br.edu.ifba.as.entidades.formulario.Dependentes;
 import br.edu.ifba.as.entidades.formulario.Despesa;
 import br.edu.ifba.as.entidades.formulario.Doenca;
 import br.edu.ifba.as.entidades.formulario.Endereco;
@@ -26,7 +21,6 @@ import br.edu.ifba.as.entidades.formulario.InformacoesCurriculares;
 import br.edu.ifba.as.entidades.formulario.MembroFamiliar;
 import br.edu.ifba.as.entidades.formulario.ResidenciaFamilia;
 import br.edu.ifba.as.entidades.formulario.SituacaoResidencial;
-import br.edu.ifba.as.rn.DependentesRN;
 import br.edu.ifba.as.rn.DespesaRN;
 import br.edu.ifba.as.rn.DoencaRN;
 import br.edu.ifba.as.rn.EnderecoRN;
@@ -86,9 +80,10 @@ public class EntrevistaRN {
         DoencaRN doencaRN = new DoencaRN();
         FamiliaRN familiaRN = new FamiliaRN();
         Familia familia = familiaRN.buscarPorAluno(aluno.getAluno());
+        Doenca doenca = doencaRN.buscarPorFamilia(familia.getFamilia());
         
         ComposicaoFamiliarRN composicaoFamiliarRN = new ComposicaoFamiliarRN();
-        ComposicaoFamiliar composicaoFamiliar = new ComposicaoFamiliar();
+        ComposicaoFamiliar composicaoFamiliar;
         
         Float pontuacao = 0F;
         
@@ -109,17 +104,18 @@ public class EntrevistaRN {
                     composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("Idosos");
                     pontuacao +=  composicaoFamiliar.getPontuacao();
                 }
-                if(doencaRN.buscarPorMembroFamiliar(membroFamiliars.get(i).getMembroFamiliar()) != null){
+                if(doenca.getPossuiDoenca()){
                     composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("PDC/Doença incapacitante");
                     pontuacao +=  composicaoFamiliar.getPontuacao();                    
-                }
-                if(familia.getPossuiGestante()){
-                    composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("Gestantes");
-                    pontuacao += composicaoFamiliar.getPontuacao();
                 }
             }
             
         }
+        if(familia.getPossuiGestante()){
+            composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("Gestantes");
+            pontuacao += composicaoFamiliar.getPontuacao();
+        }
+
         return pontuacao;
     }
     
@@ -138,7 +134,7 @@ public class EntrevistaRN {
         Despesa despesa = despesaRN.buscarPorFamilia(aluno.getAluno());
         
         DespesaAnaliseRN despesaAnaliseRN = new DespesaAnaliseRN();
-        DespesaAnalise despesaAnalise = new DespesaAnalise();
+        DespesaAnalise despesaAnalise;
         
         Float pontuacao = 0F;
         
@@ -173,15 +169,15 @@ public class EntrevistaRN {
         InformacoesCurricularesRN informacoesCurricularesRN = new InformacoesCurricularesRN();
         InformacoesCurriculares informacoesCurriculares = informacoesCurricularesRN.buscarPorAluno(aluno.getAluno());
         EscolaOrigemRN escolaOrigemRN = new EscolaOrigemRN();
-        EscolaOrigem escolaOrigem = new EscolaOrigem();
+        EscolaOrigem escolaOrigem;
         
         Float pontuacao = 0F;
 // Algumas possibilidades não são utilizadas e falta uma verificação(olha no barema)   
-        if(informacoesCurriculares.getOndeEstudou() == OndeEstudou.Publica){
+        if("Pública".equals(informacoesCurriculares.getOndeEstudou())){
             escolaOrigem = escolaOrigemRN.buscarPorAspectoEmAvaliacao("Pública");
             pontuacao += escolaOrigem.getPontuacao();
         }
-        if(informacoesCurriculares.getOndeEstudou() == OndeEstudou.ParticularSemBolsa){
+        if("Escola particular sem bolsa".equals(informacoesCurriculares.getOndeEstudou())){
             escolaOrigem = escolaOrigemRN.buscarPorAspectoEmAvaliacao("Privada sem bolsa de estudo");
             pontuacao += escolaOrigem.getPontuacao();
         }
@@ -190,18 +186,18 @@ public class EntrevistaRN {
     }
     private Float calcularPontuacaoEtnia(Aluno aluno){
         EtniaRN etniaRN = new EtniaRN();
-        Etnia etnia = new Etnia();
+        Etnia etnia;
         Float pontuacao = 0F;
         
-        if(aluno.getEtnia() == TipoEtnia.Negro || aluno.getEtnia() == TipoEtnia.Indigena){
+        if("Negro(a)".equals(aluno.getEtnia()) || "Indigena(a)".equals(aluno.getEtnia())){
             etnia = etniaRN.buscarPorAspectoEmAvaliacao("Negro ou Indígena");
             pontuacao += etnia.getPontuacao();
         }        
-        if(aluno.getEtnia() == TipoEtnia.Pardo){
+        if("Pardo(a)".equals(aluno.getEtnia())){
             etnia = etniaRN.buscarPorAspectoEmAvaliacao("Pardo");
             pontuacao += etnia.getPontuacao();
         }
-        if(aluno.getEtnia() == TipoEtnia.Branco || aluno.getEtnia() == TipoEtnia.Amarelo || aluno.getEtnia() == TipoEtnia.Outro){
+        if("Branco(a)".equals(aluno.getEtnia()) || "Amarelo(a)".equals(aluno.getEtnia()) || "Outro(a)".equals(aluno.getEtnia())){
             etnia = etniaRN.buscarPorAspectoEmAvaliacao("Branco, amarelo ou outra");
             pontuacao += etnia.getPontuacao();
         }
@@ -221,23 +217,23 @@ public class EntrevistaRN {
         Endereco endereco = enderecoRN.buscarPorAluno(aluno.getAluno());
         
         LocalResidenciaFamiliaRN localResidenciaFamiliaRN = new LocalResidenciaFamiliaRN();
-        LocalResidenciaFamilia localResidenciaFamilia = new LocalResidenciaFamilia();
+        LocalResidenciaFamilia localResidenciaFamilia;
 
         Float pontuacao = 0F;
 
-        if("Irecê".equals(endereco.getCidade()) && residenciaFamilia.getZona() == Zona.Rural){
+        if("Irecê".equals(endereco.getCidade()) && "Zona rural".equals(residenciaFamilia.getZona())){
             localResidenciaFamilia = localResidenciaFamiliaRN.buscarPorAspectoEmAvaliacao("Na zona rural do município do campus");
             pontuacao += localResidenciaFamilia.getPontuacao();
         }
-        if("Irecê".equals(endereco.getCidade()) && residenciaFamilia.getZona() == Zona.Urbana){
+        if("Irecê".equals(endereco.getCidade()) && "Zona urbana".equals(residenciaFamilia.getZona())){
             localResidenciaFamilia = localResidenciaFamiliaRN.buscarPorAspectoEmAvaliacao("No município do campus");
             pontuacao += localResidenciaFamilia.getPontuacao();
         }
-        if(!"Irecê".equals(endereco.getCidade()) && residenciaFamilia.getZona() == Zona.Urbana){
+        if(!"Irecê".equals(endereco.getCidade()) && "Zona urbana".equals(residenciaFamilia.getZona())){
             localResidenciaFamilia = localResidenciaFamiliaRN.buscarPorAspectoEmAvaliacao("Em município diferente do campus");
             pontuacao += localResidenciaFamilia.getPontuacao();
         }
-        if(!"Irecê".equals(endereco.getCidade()) && residenciaFamilia.getZona() == Zona.Rural){
+        if(!"Irecê".equals(endereco.getCidade()) && "Zona rural".equals(residenciaFamilia.getZona())){
             localResidenciaFamilia = localResidenciaFamiliaRN.buscarPorAspectoEmAvaliacao("Na zona rural de município diferente do campus");
             pontuacao += localResidenciaFamilia.getPontuacao();
         }
@@ -250,23 +246,23 @@ public class EntrevistaRN {
         SituacaoResidencial situacaoResidencial = situacaoResidencialRN.buscarPorAluno(aluno.getAluno());
         
         MoradiaEstudanteRN moradiaEstudanteRN = new MoradiaEstudanteRN();
-        MoradiaEstudante moradiaEstudante = new MoradiaEstudante();
+        MoradiaEstudante moradiaEstudante;
         
         Float pontuacao = 0F;
         
-        if(situacaoResidencial.getSituacaoCasa() == SituacaoCasa.Alugada){
+        if("Casa alugada".equals(situacaoResidencial.getSituacaoCasa())){
             moradiaEstudante = moradiaEstudanteRN.buscarPorAspectoEmAvaliacao("Alugado");
             pontuacao += moradiaEstudante.getPontuacao();
         }
-        if(situacaoResidencial.getSituacaoCasa() == SituacaoCasa.Cedida){
+        if("Casa cedida".equals(situacaoResidencial.getSituacaoCasa())){
             moradiaEstudante = moradiaEstudanteRN.buscarPorAspectoEmAvaliacao("Cedido");
             pontuacao += moradiaEstudante.getPontuacao();
         }
-        if(situacaoResidencial.getSituacaoCasa() == SituacaoCasa.Propria){
+        if("Casa própria".equals(situacaoResidencial.getSituacaoCasa())){
             moradiaEstudante = moradiaEstudanteRN.buscarPorAspectoEmAvaliacao("Próprio");
             pontuacao += moradiaEstudante.getPontuacao();
         }
-        if(situacaoResidencial.getSituacaoCasa() == SituacaoCasa.Financiada){
+        if("Casa financiada".equals(situacaoResidencial.getSituacaoCasa())){
             moradiaEstudante = moradiaEstudanteRN.buscarPorAspectoEmAvaliacao("	Financiado");
             pontuacao += moradiaEstudante.getPontuacao();
         }
@@ -278,23 +274,23 @@ public class EntrevistaRN {
         ResidenciaFamilia residenciaFamilia = residenciaFamiliaRN.buscarPorFamilia(aluno.getAluno());
         
         MoradiaFamiliaRN moradiaFamiliaRN = new MoradiaFamiliaRN();
-        MoradiaFamilia moradiaFamilia = new MoradiaFamilia();
+        MoradiaFamilia moradiaFamilia;
         
         Float pontuacao = 0F;
 
-        if(residenciaFamilia.getSituacaoCasa() == SituacaoCasa.Alugada){
+        if("Casa alugada".equals(residenciaFamilia.getSituacaoCasa())){
             moradiaFamilia = moradiaFamiliaRN.buscarPorAspectoEmAvaliacao("Alugado");
             pontuacao += moradiaFamilia.getPontuacao();
         }
-        if(residenciaFamilia.getSituacaoCasa() == SituacaoCasa.Cedida){
+        if("Casa cedida".equals(residenciaFamilia.getSituacaoCasa())){
             moradiaFamilia = moradiaFamiliaRN.buscarPorAspectoEmAvaliacao("Cedido");
             pontuacao += moradiaFamilia.getPontuacao();
         }
-        if(residenciaFamilia.getSituacaoCasa() == SituacaoCasa.Propria){
+        if("Casa própria".equals(residenciaFamilia.getSituacaoCasa())){
             moradiaFamilia = moradiaFamiliaRN.buscarPorAspectoEmAvaliacao("Próprio");
             pontuacao += moradiaFamilia.getPontuacao();
         }
-        if(residenciaFamilia.getSituacaoCasa() == SituacaoCasa.Financiada){
+        if("Casa financiada".equals(residenciaFamilia.getSituacaoCasa())){
             moradiaFamilia = moradiaFamiliaRN.buscarPorAspectoEmAvaliacao("	Financiado");
             pontuacao += moradiaFamilia.getPontuacao();
         }     
@@ -306,40 +302,36 @@ public class EntrevistaRN {
         Familia familia = familiaRN.buscarPorAluno(aluno.getAluno());
         
         ProgramaSocialRN programaSocialRN = new ProgramaSocialRN();
-        ProgramaSocial programaSocial = new ProgramaSocial();
+        ProgramaSocial programaSocial;
         
         Float pontuacao = 0F;
 // Não pode ter varios desses?        
         if(familia.getPossuiProgramaSocial()){
-            if(familia.getProgramaSocial() == br.edu.ifba.as.entidades.enums.ProgramaSocial.BCP){
+            if("BCP".equals(familia.getProgramaSocial())){
                 programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("BCP");
                 pontuacao += programaSocial.getPontuacao();
             }
-            if(familia.getProgramaSocial() == br.edu.ifba.as.entidades.enums.ProgramaSocial.BolsaFamilia){
+            if("Bolsa Família".equals(familia.getProgramaSocial())){
                 programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("PBF");
                 pontuacao += programaSocial.getPontuacao();
             }
-            if(familia.getProgramaSocial() == br.edu.ifba.as.entidades.enums.ProgramaSocial.Caps){
+            if("Atendimento no CAPS".equals(familia.getProgramaSocial())){
                 programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("Atendimento no CAPS");
                 pontuacao += programaSocial.getPontuacao();
             }
-            if(familia.getProgramaSocial() == br.edu.ifba.as.entidades.enums.ProgramaSocial.Cras){
+            if("Atendimento no CRAS".equals(familia.getProgramaSocial())){
                 programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("Atendimento no CRAS");
                 pontuacao += programaSocial.getPontuacao();
             }
-            if(familia.getProgramaSocial() == br.edu.ifba.as.entidades.enums.ProgramaSocial.Fies){
+            if("Fies".equals(familia.getProgramaSocial()) || "Prouni".equals(familia.getProgramaSocial())){
                 programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("PROUNI/FIES");
                 pontuacao += programaSocial.getPontuacao();
             }
-            if(familia.getProgramaSocial() == br.edu.ifba.as.entidades.enums.ProgramaSocial.Prouni){
-                programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("PROUNI/FIES");
-                pontuacao += programaSocial.getPontuacao();
-            }
-            if(familia.getProgramaSocial() == br.edu.ifba.as.entidades.enums.ProgramaSocial.Projovem){
+            if("Projovem".equals(familia.getProgramaSocial())){
                 programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("Serviço socioeducativo PROJOVEM");
                 pontuacao += programaSocial.getPontuacao();
             }
-            if(familia.getProgramaSocial() == br.edu.ifba.as.entidades.enums.ProgramaSocial.JovemAprendiz){
+            if("Jovem Aprendiz".equals(familia.getProgramaSocial())){
                 programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("Programa JOVEM APRENDIZ");
                 pontuacao += programaSocial.getPontuacao();
             }

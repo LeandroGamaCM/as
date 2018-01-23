@@ -16,7 +16,7 @@
 
 criar um ativador de periodo de inscricao
 
-
+- Tem que puxar apenas os alunos do ano
 
 
 

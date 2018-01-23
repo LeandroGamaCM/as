@@ -1,9 +1,12 @@
 package br.ifba.edu.as.bean;
 
-import br.edu.ifba.as.entidades.analise.Entrevista;
 import br.edu.ifba.as.entidades.formulario.Aluno;
+import br.edu.ifba.as.logica.telaEntrevista.FormularioAluno;
+import br.edu.ifba.as.rn.AlunoRN;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -17,11 +20,19 @@ public class TelaEntrevistaBean implements Serializable{
     private String filtroCurso;
     private String filtroAno;    
     
-    private List<Entrevista> entrevistas;
-    private List<Aluno> alunos;
+    private List<Aluno> alunos = new ArrayList<>();
+    private List<FormularioAluno> formularioAlunos = new ArrayList<>();
     
     @PostConstruct
-    public void init(){
+    public void init(){        
+        AlunoRN alunoRN = new AlunoRN();
+        alunos = alunoRN.listar();
+        int i;
+        
+        for(i=0; i<alunos.size(); i++){
+            FormularioAluno formularioAluno = new FormularioAluno(alunos.get(i));
+            formularioAlunos.add(formularioAluno);
+        }
         
     }    
     
@@ -85,14 +96,6 @@ public class TelaEntrevistaBean implements Serializable{
         this.filtroAno = filtroAno;
     }
 
-    public List<Entrevista> getEntrevistas() {
-        return entrevistas;
-    }
-
-    public void setEntrevistas(List<Entrevista> entrevistas) {
-        this.entrevistas = entrevistas;
-    }
-
     public List<Aluno> getAlunos() {
         return alunos;
     }
@@ -100,6 +103,60 @@ public class TelaEntrevistaBean implements Serializable{
     public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
     }
+
+    public List<FormularioAluno> getFormularioAlunos() {
+        return formularioAlunos;
+    }
+
+    public void setFormularioAlunos(List<FormularioAluno> formularioAlunos) {
+        this.formularioAlunos = formularioAlunos;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.estadoTela);
+        hash = 97 * hash + Objects.hashCode(this.pesquisa);
+        hash = 97 * hash + Objects.hashCode(this.filtroCurso);
+        hash = 97 * hash + Objects.hashCode(this.filtroAno);
+        hash = 97 * hash + Objects.hashCode(this.alunos);
+        hash = 97 * hash + Objects.hashCode(this.formularioAlunos);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TelaEntrevistaBean other = (TelaEntrevistaBean) obj;
+        if (!Objects.equals(this.estadoTela, other.estadoTela)) {
+            return false;
+        }
+        if (!Objects.equals(this.pesquisa, other.pesquisa)) {
+            return false;
+        }
+        if (!Objects.equals(this.filtroCurso, other.filtroCurso)) {
+            return false;
+        }
+        if (!Objects.equals(this.filtroAno, other.filtroAno)) {
+            return false;
+        }
+        if (!Objects.equals(this.alunos, other.alunos)) {
+            return false;
+        }
+        if (!Objects.equals(this.formularioAlunos, other.formularioAlunos)) {
+            return false;
+        }
+        return true;
+    }
+
     
     
     

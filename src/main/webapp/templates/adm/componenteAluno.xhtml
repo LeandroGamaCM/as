@@ -71,14 +71,14 @@
                 <p:panel rendered="#{telaAlunosBean.listarFichas}" header="Fichas de Inscrição">
                     <h:panelGrid id="margem" columns="2" columnClasses="label, value" >
                         <h5>Filtrar por modalidade:</h5>                   
-                        <p:selectOneRadio id="filtroCurso" value="#{telaAlunosBean.filtroModalidade}">
+                        <p:selectOneRadio id="filtroModalidade" value="#{telaAlunosBean.filtroModalidade}">
                             <f:selectItem itemLabel="Todos" itemValue="todos"/> 
                             <f:selectItems value="#{telaAlunosBean.modalidades}"/>
                             <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
                         </p:selectOneRadio> 
 
                         <h5>Filtrar por curso:</h5>
-                        <p:selectOneRadio id="filtroTurma" value="#{telaAlunosBean.filtroCurso}">
+                        <p:selectOneRadio id="filtroCurso" value="#{telaAlunosBean.filtroCurso}">
                             <f:selectItem itemLabel="Todos" itemValue="todos" /> 
                             <f:selectItems value="#{telaAlunosBean.cursos}"/>
                             <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>

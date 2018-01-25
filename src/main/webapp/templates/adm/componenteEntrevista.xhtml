@@ -7,25 +7,46 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
         <h:form>
-            <p:dataTable var="formulario" value="#{telaEntrevistaBean.formularioAlunos}">
-                <p:column headerText="Aluno">
-                    <p:outputLabel value="#{formulario.aluno.nome}"/>
-                </p:column>
-                <p:column headerText="Turma">
-                    <p:outputLabel value="#{formulario.turma.nome} #{formulario.turma.curso}"/>
-                </p:column>
-                <p:column headerText="1ª Preferência de bolsa">
-                    <p:outputLabel value="#{formulario.formulario.primeiraPreferencia}"/>
-                </p:column>
-                <p:column headerText="2ª Preferência de bolsa">
-                    <p:outputLabel value="#{formulario.formulario.segundaPreferencia}"/>
-                </p:column>
-                <p:column headerText="Pontuação por Barema">
-                    <p:outputLabel value="#{formulario.entrevista.pontuacaoComposicaoFamiliar}"/>
-                </p:column>
+                <p:panel rendered="#{telaAlunosBean.listarFichas}" header="Fichas de Inscrição">
+                    <h:panelGrid id="margem" columns="2" columnClasses="label, value" >
+                        <h5>Filtrar por modalidade:</h5>                   
+                        <p:selectOneRadio id="filtroModalidade" value="#{telaEntrevistaBean.filtroModalidade}">
+                            <f:selectItem itemLabel="Todos" itemValue="todos"/> 
+                            <f:selectItems value="#{telaAlunosBean.modalidades}"/>
+                            <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
+                        </p:selectOneRadio> 
 
-            </p:dataTable>
+                        <h5>Filtrar por curso:</h5>
+                        <p:selectOneRadio id="filtroCurso" value="#{telaAlunosBean.filtroCurso}">
+                            <f:selectItem itemLabel="Todos" itemValue="todos" /> 
+                            <f:selectItems value="#{telaAlunosBean.cursos}"/>
+                            <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
+                            </p:selectOneRadio> 
+                    </h:panelGrid>
+<!--Ver Expansion  (primefaces datatable)-->
+                    <p:outputPanel id="tabela">
 
+                        <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}" sortBy="#{aluno.turma.nome}">
+                            <f:facet name="header">
+                                    <h:outputText value="Alunos" />
+                            </f:facet>
+                            <p:headerRow>
+                                <p:column colspan="2">
+                                    <h:outputText value="#{aluno.turma.nome}" />
+                                </p:column>
+                            </p:headerRow>    
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{aluno.aluno.nome}"/>
+                            </p:column>
+                            <p:column headerText="Cpf">
+                                <h:outputText value="#{aluno.aluno.cpf}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:outputPanel>
+
+                </p:panel>
         </h:form>
     </ui:composition>
 </html>

@@ -1,12 +1,15 @@
 package br.edu.ifba.paae.bean;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
-import br.edu.ifba.paae.logica.FormularioAluno;
+import br.edu.ifba.paae.entidades.formulario.Turma;
+import br.edu.ifba.paae.logica.AlunoTabela;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
+import br.edu.ifba.paae.rn.formulario.TurmaRN;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -16,27 +19,93 @@ import javax.faces.bean.ViewScoped;
 public class TelaEntrevistaBean implements Serializable{
 
     private String estadoTela = "entrevistasFeitas";
-    private String pesquisa;
-    private String filtroCurso;
-    private String filtroAno;    
+    private String pesquisa = "";
     
-    private List<Aluno> alunos = new ArrayList<>();
-    private List<FormularioAluno> formularioAlunos = new ArrayList<>();
+    private String filtroCurso = "todos";
+    private String filtroModalidade = "todos";
+    
+
+    private List<Aluno> alunos;
+    private List<AlunoTabela> alunosTabela = new ArrayList<>();
+    private Set<String> modalidades;
+    private Set<String> cursos;
+    private List<Turma> turmas;
     
     @PostConstruct
-    public void init(){        
+    public void init(){
+        TurmaRN turmaRN = new TurmaRN();
+        listarFichas();
+        turmas = turmaRN.listar();
+    }     
+    public void listarFichas(){
         AlunoRN alunoRN = new AlunoRN();
-        alunos = alunoRN.listar();
-        int i;
-        
-        for(i=0; i<alunos.size(); i++){
-            FormularioAluno formularioAluno = new FormularioAluno(alunos.get(i));
-            formularioAlunos.add(formularioAluno);
+        TurmaRN turmaRN = new TurmaRN();
+        List<String> auxMod = turmaRN.listarModalidades();
+        List<String> auxCur = turmaRN.listarCursos();
+        if(auxMod != null){
+            modalidades = new HashSet<>(auxMod);        
         }
+        if(auxCur != null){
+            cursos = new HashSet<>(auxCur);
+        }
+        alunosTabela = new ArrayList<>();
+        alunos = new ArrayList<>();
+        int i;
+
         
-    }    
+        if(filtroModalidade == null || "todos".equals(filtroModalidade)){
+            if(filtroCurso == null || "todos".equals(filtroCurso)){
+                alunos = alunoRN.listar();
+                if(alunos != null || !alunos.isEmpty()){
+                    for(i = 0; i < alunos.size(); i++){
+                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                        alunosTabela.add(alunoTabela);
+                    }
+                }
+            }else{
+                alunos = alunoRN.listarPorCurso(filtroCurso);
+                if(alunos != null || !alunos.isEmpty()){
+                    for(i = 0; i < alunos.size(); i++){
+                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                        alunosTabela.add(alunoTabela);
+                    }
+                }                
+            }
+        }else{
+            if(filtroCurso == null || "todos".equals(filtroCurso)){
+                alunos = alunoRN.listarPorModalidade(filtroModalidade);
+                if(alunos != null || !alunos.isEmpty()){
+                    for(i = 0; i < alunos.size(); i++){
+                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                        alunosTabela.add(alunoTabela);
+                    }
+                }
+            }else{
+                alunos = alunoRN.listarPorModalidadeCurso(filtroModalidade, filtroCurso);
+                if(alunos != null || !alunos.isEmpty()){
+                    for(i = 0; i < alunos.size(); i++){
+                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                        alunosTabela.add(alunoTabela);
+                    }
+                }
+            }            
+        }
+
+    }
+        
     
     public void buscar(){
+        AlunoRN alunoRN = new AlunoRN();
+        int i;
+        alunosTabela = new ArrayList<>();
+        alunos = alunoRN.buscarCPFNomeRG(pesquisa);
+        if(alunos != null || !alunos.isEmpty()){
+            for(i = 0; i < alunos.size(); i++){
+                AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
+                alunosTabela.add(alunoTabela);
+            }
+        }           
+        pesquisa = "";
         changeToPesquisar();
     }
     
@@ -62,6 +131,7 @@ public class TelaEntrevistaBean implements Serializable{
         this.estadoTela = "pesquisar";
     }
 
+    
 // Getters e Setters
 
     public String getEstadoTela() {
@@ -88,12 +158,12 @@ public class TelaEntrevistaBean implements Serializable{
         this.filtroCurso = filtroCurso;
     }
 
-    public String getFiltroAno() {
-        return filtroAno;
+    public String getFiltroModalidade() {
+        return filtroModalidade;
     }
 
-    public void setFiltroAno(String filtroAno) {
-        this.filtroAno = filtroAno;
+    public void setFiltroModalidade(String filtroModalidade) {
+        this.filtroModalidade = filtroModalidade;
     }
 
     public List<Aluno> getAlunos() {
@@ -104,57 +174,36 @@ public class TelaEntrevistaBean implements Serializable{
         this.alunos = alunos;
     }
 
-    public List<FormularioAluno> getFormularioAlunos() {
-        return formularioAlunos;
+    public List<AlunoTabela> getAlunosTabela() {
+        return alunosTabela;
     }
 
-    public void setFormularioAlunos(List<FormularioAluno> formularioAlunos) {
-        this.formularioAlunos = formularioAlunos;
+    public void setAlunosTabela(List<AlunoTabela> alunosTabela) {
+        this.alunosTabela = alunosTabela;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.estadoTela);
-        hash = 97 * hash + Objects.hashCode(this.pesquisa);
-        hash = 97 * hash + Objects.hashCode(this.filtroCurso);
-        hash = 97 * hash + Objects.hashCode(this.filtroAno);
-        hash = 97 * hash + Objects.hashCode(this.alunos);
-        hash = 97 * hash + Objects.hashCode(this.formularioAlunos);
-        return hash;
+    public Set<String> getModalidades() {
+        return modalidades;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TelaEntrevistaBean other = (TelaEntrevistaBean) obj;
-        if (!Objects.equals(this.estadoTela, other.estadoTela)) {
-            return false;
-        }
-        if (!Objects.equals(this.pesquisa, other.pesquisa)) {
-            return false;
-        }
-        if (!Objects.equals(this.filtroCurso, other.filtroCurso)) {
-            return false;
-        }
-        if (!Objects.equals(this.filtroAno, other.filtroAno)) {
-            return false;
-        }
-        if (!Objects.equals(this.alunos, other.alunos)) {
-            return false;
-        }
-        if (!Objects.equals(this.formularioAlunos, other.formularioAlunos)) {
-            return false;
-        }
-        return true;
+    public void setModalidades(Set<String> modalidades) {
+        this.modalidades = modalidades;
+    }
+
+    public Set<String> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(Set<String> cursos) {
+        this.cursos = cursos;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
     }
 
     

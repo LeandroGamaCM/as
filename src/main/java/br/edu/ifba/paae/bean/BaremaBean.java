@@ -3,23 +3,28 @@ package br.edu.ifba.paae.bean;
 
 import br.edu.ifba.paae.logica.Barema;
 import br.edu.ifba.paae.logica.Parametro;
+import br.edu.ifba.paae.rn.analise.RendaPerCapitaRN;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-@ManagedBean
+@ManagedBean(name = "baremaBean")
 @ViewScoped
-public class bolsasBean implements Serializable{
+public class BaremaBean implements Serializable{
     private Barema barema = new Barema();
     private List<Parametro> parametros;
+    private Double salario;
     
     private String estadoTela = "telaBarema";
     
     @PostConstruct
     public void init() {
+        RendaPerCapitaRN rendaPerCapitaRN = new RendaPerCapitaRN();
         parametros = barema.criarLista();
+        salario = rendaPerCapitaRN.buscarSalario();
+        System.out.println("\tSalário: " + salario);
     }
 
     public void editarBarema(Parametro parametro) {
@@ -185,7 +190,12 @@ public class bolsasBean implements Serializable{
 
     }    
     
-    
+    public void editarSalario(){
+        RendaPerCapitaRN rendaPerCapitaRN = new RendaPerCapitaRN();
+        if(salario != null){
+            rendaPerCapitaRN.editarSalario(salario);
+        }
+    }
     
 // Controle de Tela
 
@@ -215,6 +225,13 @@ public class bolsasBean implements Serializable{
         this.parametros = parametros;
     }
 
+    public Double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(Double salario) {
+        this.salario = salario;
+    }
 
     public String getEstadoTela() {
         return estadoTela;
@@ -223,6 +240,7 @@ public class bolsasBean implements Serializable{
     public void setEstadoTela(String estadoTela) {
         this.estadoTela = estadoTela;
     }
+
 
     
     

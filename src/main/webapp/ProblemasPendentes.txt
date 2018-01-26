@@ -7,11 +7,6 @@
 
 - Criar classe para setar valores no banco (falta estados e cidades, )
 
-- Possível solução pra RendaPerCapita: ao invés do adm escolher os valores dos limites faz ele definir
-    o valor do salário minimo, aí depois quebra o valor em 10
-
-criar um ativador de periodo de inscricao
-
 - Tem que puxar apenas os alunos do ano
 
 - colocar grafico de preferencia de bolsa e status de alunos (cadastrados = x%, pre-cadastrados = y% ...)

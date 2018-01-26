@@ -6,12 +6,20 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
-        <div class="ui-fluid">
             
-            <h:form>  
-                <!--Rowspan-->
-                <p:dataTable var="parametro" value="#{bolsasBean.parametros}" sortBy="#{parametro.categoria}" editable="true" editMode="cell">
-                    <p:ajax event="cellEdit" listener="#{bolsasBean.editarBarema(parametro)}"/>   
+        <h:form>  
+            <!--Rowspan-->
+            <h:panelGrid columns="2">
+                <p:outputLabel value="Salario base de cálculo: R$"/>
+                <p:inputText value="#{baremaBean.salario}">
+                    <p:ajax event="blur" listener="#{baremaBean.editarSalario()}" update="tabelaBarema"/>
+                </p:inputText>
+            </h:panelGrid>
+
+        <div class="ui-fluid">
+            <p:outputPanel id="tabelaBarema">
+                <p:dataTable var="parametro" value="#{baremaBean.parametros}" sortBy="#{parametro.categoria}" editable="true" editMode="cell">
+                    <p:ajax event="cellEdit" listener="#{baremaBean.editarBarema(parametro)}"/>   
                     <p:column headerText="Categoria de Análise">
                         <h:outputLabel value="#{parametro.categoria} (Peso = #{parametro.peso})" />
                     </p:column>
@@ -24,10 +32,11 @@
                             <f:facet name="input"><p:inputText value="#{parametro.pontuacao}"/></f:facet>
                         </p:cellEditor>
                     </p:column>                   
-                </p:dataTable>
-
-            </h:form>
+                </p:dataTable>                
+            </p:outputPanel>
         </div>
+            
+    </h:form>
     </ui:composition>
     
 </html>

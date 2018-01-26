@@ -21,13 +21,16 @@ public class TelaPrincipalBean implements Serializable{
     public void ativarDesativar(){
         InscricaoRN inscricaoRN = new InscricaoRN();
         
-        if(inscricao != null && inscricao.getPeriodoInscricao()){
-            inscricao.setPeriodoInscricao(Boolean.FALSE);
-            inscricaoRN.atualizar(Boolean.FALSE);
-        }else{
-            inscricao.setPeriodoInscricao(Boolean.TRUE);
-            inscricaoRN.atualizar(Boolean.TRUE);
+        if(inscricao != null){
+            if(inscricao.getPeriodoInscricao()){
+                inscricao.setPeriodoInscricao(Boolean.FALSE);
+                inscricaoRN.atualizar(Boolean.FALSE);
+            }else{
+                inscricao.setPeriodoInscricao(Boolean.TRUE);
+                inscricaoRN.atualizar(Boolean.TRUE);
+            }            
         }
+        
     }
     
     public Inscricao getInscricao() {

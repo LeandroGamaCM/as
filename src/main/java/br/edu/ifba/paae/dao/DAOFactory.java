@@ -112,12 +112,7 @@ public class DAOFactory {
         turmaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return turmaDAO;
     }
-// Analise
-    public static BolsaDAO criarBolsaDAO(){
-        BolsaDAO bolsaDAO = new BolsaDAO();
-        bolsaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
-        return bolsaDAO;
-    }    
+// Analise  
     public static ComposicaoFamiliarDAO criarComposicaoFamiliarDAO(){
         ComposicaoFamiliarDAO composicaoFamiliarDAO = new ComposicaoFamiliarDAO();
         composicaoFamiliarDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());

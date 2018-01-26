@@ -1,4 +1,3 @@
-- Fazer as tabelas introduzirem elementos
 - Fazer a função do Esqueci a senha
 - Quando a sessao inspirar tem que recarregar a pagina automaticamente ou 
     mostrar mensagem e forcar o recarregamento (Javascript?)
@@ -8,19 +7,14 @@
 
 - Criar classe para setar valores no banco (falta estados e cidades, )
 
-- Se um adm faz a inscricao de um aluno verificar o que acontece quando esse aluno tenta se pre cadastrar
-
 - Possível solução pra RendaPerCapita: ao invés do adm escolher os valores dos limites faz ele definir
     o valor do salário minimo, aí depois quebra o valor em 10
-
 
 criar um ativador de periodo de inscricao
 
 - Tem que puxar apenas os alunos do ano
 
-- Se no rodapé, ou semelhates, tiver um link para outra pagina tanto aluno como adm tem que ter um 
-
-
+- colocar grafico de preferencia de bolsa e status de alunos (cadastrados = x%, pre-cadastrados = y% ...)
 
 
 

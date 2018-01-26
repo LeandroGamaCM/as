@@ -1,7 +1,6 @@
 package br.edu.ifba.paae.bean;
 
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
-import br.edu.ifba.paae.rn.analise.BolsaRN;
 import br.edu.ifba.paae.rn.analise.ComposicaoFamiliarRN;
 import br.edu.ifba.paae.rn.analise.CondicaoEconomicaEstudanteRN;
 import br.edu.ifba.paae.rn.analise.DespesaAnaliseRN;
@@ -28,7 +27,6 @@ public class InicializadorBean {
     }
 
     public void inicializar(){
-        BolsaRN bolsaRN = new BolsaRN();
         ComposicaoFamiliarRN composicaoFamiliarRN = new ComposicaoFamiliarRN();
         CondicaoEconomicaEstudanteRN condicaoEconomicaEstudanteRN = new CondicaoEconomicaEstudanteRN();
         DespesaAnaliseRN despesaAnaliseRN = new DespesaAnaliseRN();
@@ -45,13 +43,9 @@ public class InicializadorBean {
         SituacaoOcupacionalRN situacaoOcupacionalRN = new SituacaoOcupacionalRN();
         UsuarioRN usuarioRN = new UsuarioRN();
 
+        System.out.println("\tDefinindo padrões");
         if(usuarioRN.listar() == null || usuarioRN.listar().isEmpty()){
-            System.out.println("Cadastrou usuario");
             usuarioRN.criarADM();
-        }
-        if(bolsaRN.listar() == null || bolsaRN.listar().isEmpty()){
-            System.out.println("\n\tEntrou no if de bolsa\n");
-            bolsaRN.definirPadroes();
         }
         if(composicaoFamiliarRN.listar() == null || composicaoFamiliarRN.listar().isEmpty()){
             composicaoFamiliarRN.definirPadroes();

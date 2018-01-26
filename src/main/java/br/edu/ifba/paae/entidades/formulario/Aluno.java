@@ -1,6 +1,5 @@
 package br.edu.ifba.paae.entidades.formulario;
 
-import br.edu.ifba.paae.entidades.analise.Bolsa;
 import br.edu.ifba.paae.entidades.analise.Entrevista;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import java.io.Serializable;
@@ -44,6 +43,8 @@ public class Aluno implements Serializable {
 
     private String etnia;
         
+    private String status;
+    
 // Relacionamentos
     @OneToOne
     @JoinColumn(name = "cod_usuario")
@@ -101,10 +102,6 @@ public class Aluno implements Serializable {
     @PrimaryKeyJoinColumn(name = "cod_aluno")
     private Formulario formulario;
     
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "cod_bolsa")
-    private Bolsa bolsa;
-
     @ManyToOne
     @JoinColumn(name = "cod_turma")
     private Turma turma;
@@ -206,6 +203,14 @@ public class Aluno implements Serializable {
 
     public void setEtnia(String etnia) {
         this.etnia = etnia;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Usuario getUsuario() {
@@ -320,14 +325,6 @@ public class Aluno implements Serializable {
         this.formulario = formulario;
     }
 
-    public Bolsa getBolsa() {
-        return bolsa;
-    }
-
-    public void setBolsa(Bolsa bolsa) {
-        this.bolsa = bolsa;
-    }
-
     public Turma getTurma() {
         return turma;
     }
@@ -339,34 +336,34 @@ public class Aluno implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.aluno);
-        hash = 23 * hash + Objects.hashCode(this.cpf);
-        hash = 23 * hash + Objects.hashCode(this.rg);
-        hash = 23 * hash + Objects.hashCode(this.email);
-        hash = 23 * hash + Objects.hashCode(this.nome);
-        hash = 23 * hash + Objects.hashCode(this.apelido);
-        hash = 23 * hash + Objects.hashCode(this.telefone);
-        hash = 23 * hash + Objects.hashCode(this.celular);
-        hash = 23 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 23 * hash + Objects.hashCode(this.sexo);
-        hash = 23 * hash + Objects.hashCode(this.estadoCivil);
-        hash = 23 * hash + Objects.hashCode(this.etnia);
-        hash = 23 * hash + Objects.hashCode(this.usuario);
-        hash = 23 * hash + Objects.hashCode(this.bolsas_auxilio);
-        hash = 23 * hash + Objects.hashCode(this.despesas_campus);
-        hash = 23 * hash + Objects.hashCode(this.informacoes_curriculares);
-        hash = 23 * hash + Objects.hashCode(this.condicao_manutencao);
-        hash = 23 * hash + Objects.hashCode(this.situacao_residencial);
-        hash = 23 * hash + Objects.hashCode(this.endereco);
-        hash = 23 * hash + Objects.hashCode(this.entrevista);
-        hash = 23 * hash + Objects.hashCode(this.ocupacao);
-        hash = 23 * hash + Objects.hashCode(this.dependentes);
-        hash = 23 * hash + Objects.hashCode(this.conta);
-        hash = 23 * hash + Objects.hashCode(this.residencia);
-        hash = 23 * hash + Objects.hashCode(this.familia);
-        hash = 23 * hash + Objects.hashCode(this.formulario);
-        hash = 23 * hash + Objects.hashCode(this.bolsa);
-        hash = 23 * hash + Objects.hashCode(this.turma);
+        hash = 37 * hash + Objects.hashCode(this.aluno);
+        hash = 37 * hash + Objects.hashCode(this.cpf);
+        hash = 37 * hash + Objects.hashCode(this.rg);
+        hash = 37 * hash + Objects.hashCode(this.email);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.apelido);
+        hash = 37 * hash + Objects.hashCode(this.telefone);
+        hash = 37 * hash + Objects.hashCode(this.celular);
+        hash = 37 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 37 * hash + Objects.hashCode(this.sexo);
+        hash = 37 * hash + Objects.hashCode(this.estadoCivil);
+        hash = 37 * hash + Objects.hashCode(this.etnia);
+        hash = 37 * hash + Objects.hashCode(this.status);
+        hash = 37 * hash + Objects.hashCode(this.usuario);
+        hash = 37 * hash + Objects.hashCode(this.bolsas_auxilio);
+        hash = 37 * hash + Objects.hashCode(this.despesas_campus);
+        hash = 37 * hash + Objects.hashCode(this.informacoes_curriculares);
+        hash = 37 * hash + Objects.hashCode(this.condicao_manutencao);
+        hash = 37 * hash + Objects.hashCode(this.situacao_residencial);
+        hash = 37 * hash + Objects.hashCode(this.endereco);
+        hash = 37 * hash + Objects.hashCode(this.entrevista);
+        hash = 37 * hash + Objects.hashCode(this.ocupacao);
+        hash = 37 * hash + Objects.hashCode(this.dependentes);
+        hash = 37 * hash + Objects.hashCode(this.conta);
+        hash = 37 * hash + Objects.hashCode(this.residencia);
+        hash = 37 * hash + Objects.hashCode(this.familia);
+        hash = 37 * hash + Objects.hashCode(this.formulario);
+        hash = 37 * hash + Objects.hashCode(this.turma);
         return hash;
     }
 
@@ -410,6 +407,9 @@ public class Aluno implements Serializable {
             return false;
         }
         if (!Objects.equals(this.etnia, other.etnia)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
             return false;
         }
         if (!Objects.equals(this.aluno, other.aluno)) {
@@ -460,15 +460,11 @@ public class Aluno implements Serializable {
         if (!Objects.equals(this.formulario, other.formulario)) {
             return false;
         }
-        if (!Objects.equals(this.bolsa, other.bolsa)) {
-            return false;
-        }
         if (!Objects.equals(this.turma, other.turma)) {
             return false;
         }
         return true;
     }
-
-
+    
     
 }

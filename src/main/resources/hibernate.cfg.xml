@@ -52,7 +52,6 @@ Contributor(s):
     <property name="use_sql_comments">true</property>
 -->
     <!-- Mapeando Classes -->
-    <mapping class="br.edu.ifba.paae.entidades.analise.Bolsa"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.analise.ComposicaoFamiliar"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.analise.CondicaoEconomicaEstudante"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.analise.DespesaAnalise"></mapping>
@@ -91,7 +90,5 @@ Contributor(s):
     <mapping class="br.edu.ifba.paae.entidades.formulario.Turma"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.usuario.Usuario"></mapping>
 
-
-    
   </session-factory>
 </hibernate-configuration>

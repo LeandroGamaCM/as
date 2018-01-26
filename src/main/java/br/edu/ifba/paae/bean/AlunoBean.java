@@ -4,8 +4,6 @@ import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.rn.formulario.*;
 import br.edu.ifba.paae.entidades.formulario.*;
-import br.edu.ifba.paae.entidades.analise.Bolsa;
-import br.edu.ifba.paae.rn.analise.BolsaRN;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -83,7 +81,6 @@ public class AlunoBean implements Serializable{
                 System.out.println("\n\tADM!\n");            
         }
         addMembroFamiliar();
-        selecaoBolsa();
         TurmaRN turmaRN = new TurmaRN();
         System.out.println("\n\tAluno bean init");
         List<String> aux = turmaRN.listarModalidades();
@@ -182,17 +179,6 @@ public class AlunoBean implements Serializable{
     public void addMembroFamiliar(){
         MembroFamiliar novoMembroFamiliar = new MembroFamiliar();
         membrosFamiliares.add(novoMembroFamiliar);
-    }
-    
-    public void selecaoBolsa(){
-        BolsaRN bolsaRN = new BolsaRN();
-        List<Bolsa> bolsas = bolsaRN.listar();
-        if(bolsas != null){
-            int i;
-            for(i=0; i<bolsas.size(); i++){
-                listaBolsas.add(bolsas.get(i).getNome());
-            }
-        }
     }
     
     public void selecaoModalidade(){

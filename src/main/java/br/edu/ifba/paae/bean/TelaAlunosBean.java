@@ -57,6 +57,7 @@ public class TelaAlunosBean implements Serializable{
         usuarioRN.salvar(usuario);
         System.out.println("Salvou usuario");
         novoAluno.setUsuario(usuario);
+        novoAluno.setStatus("Pré-cadastrado");
         alunoRN.salvar(novoAluno);
         System.out.println("Aluno pré-cadastrado");
 // Mostrar mensagem        

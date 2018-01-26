@@ -110,7 +110,7 @@ public class AlunoBean implements Serializable{
         System.out.println("turma.getNome: " + turma.getNome());
         turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
         aluno.setTurma(turma);
-                     
+        aluno.setStatus("Inscrição realizada");
         alunoRN.salvar(this.aluno);
 
         salvarDependenciasAluno(aluno);

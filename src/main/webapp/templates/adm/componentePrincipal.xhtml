@@ -3,8 +3,26 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition>
+    <ui:composition>        
         <div class="ui-g dashboard">
+            <div class="ui-g-12 ui-lg-4">
+                <p:outputPanel id="periodoInscricao">
+                    <div class="task-box task-box-2">
+                        <div class="task-box-header">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="task-box-content">
+                            <h3>Período de inscrição</h3>
+                            <p:outputLabel value="Ativado" rendered="#{telaPrincipalBean.inscricao.periodoInscricao}"/>
+                            <p:outputLabel value="Desativado" rendered="#{!telaPrincipalBean.inscricao.periodoInscricao}"/>
+                        </div>
+                        <div class="task-box-footer">
+                            <p:commandButton value="Ativar/Desativar" actionListener="#{telaPrincipalBean.ativarDesativar()}" update="periodoInscricao"/>
+                        </div>
+                    </div>                    
+                </p:outputPanel>
+            </div>
+            
             <div class="ui-g-12 ui-lg-4">
                 <div class="task-box task-box-1">
                     <div class="task-box-header">
@@ -19,20 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui-g-12 ui-lg-4">
-                <div class="task-box task-box-2">
-                    <div class="task-box-header">
-                        <i class="fa fa-calendar"></i>
-                    </div>
-                    <div class="task-box-content">
-                        <h3>Agenda</h3>
-                        <p>Adicione um evento</p>
-                    </div>
-                    <div class="task-box-footer">
-                        <a href="#{request.contextPath}/paginas/adm/principal.jsf"><span class="task-status">Adicionar</span></a>
-                    </div>
-                </div>
-            </div>
+            
             <div class="ui-g-12 ui-lg-4">
                 <div class="task-box task-box-3">
                     <div class="task-box-header">

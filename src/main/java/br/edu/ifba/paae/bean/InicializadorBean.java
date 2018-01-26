@@ -15,6 +15,7 @@ import br.edu.ifba.paae.rn.analise.RendaPerCapitaRN;
 import br.edu.ifba.paae.rn.analise.RendaPrincipalOrigemRN;
 import br.edu.ifba.paae.rn.analise.SaudeRN;
 import br.edu.ifba.paae.rn.analise.SituacaoOcupacionalRN;
+import br.edu.ifba.paae.rn.inscricao.InscricaoRN;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
@@ -42,8 +43,14 @@ public class InicializadorBean {
         SaudeRN saudeRN = new SaudeRN();
         SituacaoOcupacionalRN situacaoOcupacionalRN = new SituacaoOcupacionalRN();
         UsuarioRN usuarioRN = new UsuarioRN();
-
+        InscricaoRN inscricaoRN = new InscricaoRN();
+        
         System.out.println("\tDefinindo padrões");
+
+        
+        if(inscricaoRN.carregar() == null){
+            inscricaoRN.criarInscricao();
+        }
         if(usuarioRN.listar() == null || usuarioRN.listar().isEmpty()){
             usuarioRN.criarADM();
         }

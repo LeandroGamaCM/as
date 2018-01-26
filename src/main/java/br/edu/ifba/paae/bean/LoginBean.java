@@ -53,6 +53,7 @@ public class LoginBean implements Serializable{
         Aluno aluno = alunoRN.buscarPorCPF(cpfPagina);
         if(aluno != null){
             aluno.setNome(nomePagina);
+            aluno.setStatus("Inscrição pendente");
             alunoRN.salvar(aluno);
         }
         UsuarioRN usuarioRN = new UsuarioRN();

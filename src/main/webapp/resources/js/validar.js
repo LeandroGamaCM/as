@@ -1,3 +1,18 @@
+//formulário de login
+function validarLogin() {
+    var cpf = document.getElementById('cpfLogin');
+    var senha = document.getElementById('senhaLogin');
+
+    if (cpf.value === '') {
+        cpf.focus();
+        return false;
+
+    } else if (senha.value === '') {
+        senha.focus();
+        return false;
+    }
+}﻿
+
 //formulário de cadastro de usuários
 function validar() {
     var nome = document.getElementById('inputNome');

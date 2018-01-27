@@ -1,9 +1,7 @@
 - Fazer a função do Esqueci a senha
+
 - Quando a sessao inspirar tem que recarregar a pagina automaticamente ou 
     mostrar mensagem e forcar o recarregamento (Javascript?)
-
-- (Opcional) Definir limites para as variaveis no banco
-    Por exemplo, Apelido não tem valor definido então haverá desperdicio de memória
 
 - Criar classe para setar valores no banco (falta estados e cidades, )
 

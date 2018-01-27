@@ -79,6 +79,7 @@ Contributor(s):
     <mapping class="br.edu.ifba.paae.entidades.formulario.DespesasCampus"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.formulario.Doenca"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.formulario.Endereco"></mapping>
+    <mapping class="br.edu.ifba.paae.entidades.formulario.Cidade"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.formulario.Familia"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.formulario.Formulario"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.formulario.Imovel"></mapping>

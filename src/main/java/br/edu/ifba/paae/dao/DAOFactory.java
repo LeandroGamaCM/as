@@ -29,6 +29,11 @@ public class DAOFactory {
         enderecoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return enderecoDAO;
     }
+    public static CidadeDAO criarCidadeDAO(){
+        CidadeDAO cidadeDAO = new CidadeDAO();
+        cidadeDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return cidadeDAO;
+    }
     public static BolsasAuxilioDAO criarBolsasAuxilioDAO(){
         BolsasAuxilioDAO bolsasAuxilioDAO = new BolsasAuxilioDAO();
         bolsasAuxilioDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());

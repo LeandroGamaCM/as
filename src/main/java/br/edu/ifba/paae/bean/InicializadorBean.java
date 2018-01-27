@@ -16,16 +16,10 @@ import br.edu.ifba.paae.rn.analise.RendaPrincipalOrigemRN;
 import br.edu.ifba.paae.rn.analise.SaudeRN;
 import br.edu.ifba.paae.rn.analise.SituacaoOcupacionalRN;
 import br.edu.ifba.paae.rn.inscricao.InscricaoRN;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+@ManagedBean(name = "inicializadorBean")
 public class InicializadorBean {
-    
-    @PostConstruct
-    public void init(){
-        inicializar();
-    }
 
     public void inicializar(){
         ComposicaoFamiliarRN composicaoFamiliarRN = new ComposicaoFamiliarRN();

@@ -37,7 +37,7 @@ public class LoginBean implements Serializable{
         }
     }
     
-    public void salvar(){
+    public String salvar(){
 // Exibir mensagem e voltar pra tela de Login
         if(verificaExistencia()){
             atribuirProperties();
@@ -45,7 +45,9 @@ public class LoginBean implements Serializable{
             
             usuarioRN.salvar(usuario);
             System.out.println("\n\tSalvo com Sucesso!\n");
+            return "loginEntrar";
         }    
+        return "loginCadastro";
     }
     
     public void atribuirProperties(){

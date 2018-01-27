@@ -6,7 +6,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.Parameter;
 
 @Entity
-@Table
+@Table(name = "endereco")
 public class Endereco implements Serializable {
     private static final long serialVersionUID = -8577490813567926816L;
 
@@ -24,11 +24,11 @@ public class Endereco implements Serializable {
     private Integer numero;
     private Integer cep;
     private String bairro;
-    
-// É ideia pegar esses dados por listas prontas --------------------------------
-    private String cidade;
-    private String estado;
-// -----------------------------------------------------------------------------
+
+
+    @OneToOne
+    @JoinColumn(name = "cod_cidade")
+    private Cidade cidade;
 
     public Integer getEndereco() {
         return endereco;
@@ -78,33 +78,24 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public void setCidade(String cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.endereco);
-        hash = 53 * hash + Objects.hashCode(this.aluno);
-        hash = 53 * hash + Objects.hashCode(this.rua);
-        hash = 53 * hash + Objects.hashCode(this.numero);
-        hash = 53 * hash + Objects.hashCode(this.cep);
-        hash = 53 * hash + Objects.hashCode(this.bairro);
-        hash = 53 * hash + Objects.hashCode(this.cidade);
-        hash = 53 * hash + Objects.hashCode(this.estado);
+        hash = 31 * hash + Objects.hashCode(this.endereco);
+        hash = 31 * hash + Objects.hashCode(this.aluno);
+        hash = 31 * hash + Objects.hashCode(this.rua);
+        hash = 31 * hash + Objects.hashCode(this.numero);
+        hash = 31 * hash + Objects.hashCode(this.cep);
+        hash = 31 * hash + Objects.hashCode(this.bairro);
+        hash = 31 * hash + Objects.hashCode(this.cidade);
         return hash;
     }
 
@@ -126,12 +117,6 @@ public class Endereco implements Serializable {
         if (!Objects.equals(this.bairro, other.bairro)) {
             return false;
         }
-        if (!Objects.equals(this.cidade, other.cidade)) {
-            return false;
-        }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
-        }
         if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
@@ -144,7 +129,10 @@ public class Endereco implements Serializable {
         if (!Objects.equals(this.cep, other.cep)) {
             return false;
         }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
         return true;
     }
-
+    
 }

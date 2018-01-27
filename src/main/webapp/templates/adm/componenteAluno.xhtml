@@ -61,9 +61,10 @@
                             <p:cellEditor>
                                 <f:facet name="output"><p:outputLabel value="#{turma.nome}"/></f:facet>
                                 <f:facet name="input"><p:inputText value="#{turma.nome}"/></f:facet>
-                            </p:cellEditor>                        </p:column>
-                        <p:column>
-                            <p:commandButton value="Deletar" action="#{telaAlunosBean.excluirTurma(turma)}"/>
+                            </p:cellEditor>                        
+                        </p:column>
+                        <p:column headerText="Apagar">
+                            <p:commandButton update="@form" value="Deletar" action="#{telaAlunosBean.excluirTurma(turma)}"/>
                         </p:column>
                     </p:dataTable>
                 </p:panel>

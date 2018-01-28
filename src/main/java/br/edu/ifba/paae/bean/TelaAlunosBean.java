@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "telaAlunosBean")
-@SessionScoped
+@ViewScoped
 public class TelaAlunosBean implements Serializable{
     private Aluno aluno = new Aluno();
     private Aluno novoAluno = new Aluno();

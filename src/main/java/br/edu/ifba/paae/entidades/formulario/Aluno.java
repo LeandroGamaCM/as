@@ -99,7 +99,6 @@ public class Aluno implements Serializable {
     private Familia familia;
 
     @OneToOne(cascade = CascadeType.REMOVE)
-    @PrimaryKeyJoinColumn(name = "cod_aluno")
     private Formulario formulario;
     
     @ManyToOne

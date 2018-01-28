@@ -1,11 +1,14 @@
 package br.edu.ifba.paae.bean;
 
+import br.edu.ifba.paae.entidades.analise.Entrevista;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.rn.formulario.*;
 import br.edu.ifba.paae.entidades.formulario.*;
+import br.edu.ifba.paae.rn.analise.EntrevistaRN;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +19,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.FlowEvent;
 
 @ManagedBean(name = "alunoBean")
-@SessionScoped
+@ViewScoped
 public class AlunoBean implements Serializable{
     private String estadoTela = "telaFormulario";
     
@@ -40,6 +43,7 @@ public class AlunoBean implements Serializable{
     private ResidenciaFamilia residenciaFamilia = new ResidenciaFamilia();
     private SituacaoResidencial situacaoResidencial = new SituacaoResidencial();
     private Turma turma = new Turma();
+    private Entrevista entrevista = new Entrevista();
     
     private List<String> listaBolsas = new ArrayList<>();
     
@@ -68,27 +72,179 @@ public class AlunoBean implements Serializable{
     @PostConstruct
     public void init(){
         AlunoRN alunoRN = new AlunoRN();
+        UsuarioRN usuarioRN = new UsuarioRN();
+        TurmaRN turmaRN = new TurmaRN();
+        
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();
         String cpf = external.getRemoteUser();
-        UsuarioRN usuarioRN = new UsuarioRN();
         Usuario usuario = usuarioRN.buscarPorLogin(cpf);
         
         if(usuario != null){
             if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
                 aluno = alunoRN.buscarPorCPF(cpf);
+                inicializar();
             }else
                 System.out.println("\n\tADM!\n");            
         }
+        
+        
         addMembroFamiliar();
-        TurmaRN turmaRN = new TurmaRN();
-        System.out.println("\n\tAluno bean init");
         List<String> aux = turmaRN.listarModalidades();
         if(aux != null){
             modalidades = new HashSet<>(aux);        
         }
     }
-// Controle de Tela
+    
+    public void inicializar(){
+       EntrevistaRN entrevistaRN = new EntrevistaRN();
+        BolsasAuxilioRN bolsasAuxilioRN = new BolsasAuxilioRN();
+        CondicaoManutencaoRN condicaoManutencaoRN = new CondicaoManutencaoRN();
+        ContaRN contaRN = new ContaRN();
+        DependentesRN dependentesRN = new DependentesRN();
+        DespesasCampusRN despesasCampusRN = new DespesasCampusRN();
+        EnderecoRN enderecoRN = new EnderecoRN();
+        FamiliaRN familiaRN = new FamiliaRN();
+            ImovelRN imovelRN = new ImovelRN();
+            DespesaRN despesaRN = new DespesaRN();
+            DoencaRN doencaRN = new DoencaRN();
+            RendaRN rendaRN = new RendaRN();
+            ResidenciaFamiliaRN residenciaFamiliaRN = new ResidenciaFamiliaRN();
+        FormularioRN formularioRN = new FormularioRN();
+        InformacoesCurricularesRN informacoesCurricularesRN = new InformacoesCurricularesRN();
+        OcupacaoRN ocupacaoRN = new OcupacaoRN();
+        ResidenciaRN residenciaRN = new ResidenciaRN();
+        SituacaoResidencialRN situacaoResidencialRN = new SituacaoResidencialRN();  
+        MembroFamiliarRN membroFamiliarRN = new MembroFamiliarRN();
+        TurmaRN turmaRN = new TurmaRN();
+        
+        
+//        turma = turmaRN.buscarPorAluno(aluno.getAluno());
+//        if(turma == null){
+//            turma = new Turma();            
+//        }
+        
+        entrevista = entrevistaRN.buscarPorAluno(aluno.getAluno());
+        if(entrevista == null){
+            entrevista = new Entrevista();            
+            entrevista.setAluno(aluno);
+        }
+        
+        bolsasAuxilio = bolsasAuxilioRN.buscarPorAluno(aluno.getAluno());
+        if(bolsasAuxilio == null){
+            bolsasAuxilio = new BolsasAuxilio();
+            bolsasAuxilio.setAluno(aluno);
+        }
+
+        condicaoManutencao = condicaoManutencaoRN.buscarPorAluno(aluno.getAluno());
+        if(condicaoManutencao == null){
+            condicaoManutencao = new CondicaoManutencao();
+            condicaoManutencao.setAluno(aluno);
+        }
+                
+        conta = contaRN.buscarPorAluno(aluno.getAluno());
+        if(conta == null){
+            conta = new Conta();
+            conta.setAluno(aluno);
+        }
+                
+        dependentes = dependentesRN.buscarPorAluno(aluno.getAluno());
+        if(dependentes == null){
+            dependentes = new Dependentes();
+            dependentes.setAluno(aluno);
+        }
+                
+        despesasCampus = despesasCampusRN.buscarPorAluno(aluno.getAluno());
+        if(despesasCampus == null){
+            despesasCampus = new DespesasCampus();
+            despesasCampus.setAluno(aluno);
+        }
+                
+        endereco = enderecoRN.buscarPorAluno(aluno.getAluno());
+        if(endereco == null){
+            endereco = new Endereco();
+            endereco.setAluno(aluno);
+        }
+                
+        familia = familiaRN.buscarPorAluno(aluno.getAluno());
+        if(familia == null){
+            familia = new Familia();
+            familia.setAluno(aluno);
+            familiaRN.salvar(familia);
+        }
+                
+        imovel = imovelRN.buscarPorFamilia(familia.getFamilia());
+        if(imovel == null){
+            imovel = new Imovel();
+            imovel.setFamilia(familia);
+        }
+                
+        despesa = despesaRN.buscarPorFamilia(familia.getFamilia());
+        if(despesa == null){
+            despesa = new Despesa();
+            despesa.setFamilia(familia);
+        }
+                
+        doenca = doencaRN.buscarPorFamilia(familia.getFamilia());
+        if(doenca == null){
+            doenca = new Doenca();
+            doenca.setFamilia(familia);
+        }
+                
+        renda = rendaRN.buscarPorFamilia(familia.getFamilia());
+        if(renda == null){
+            renda = new Renda();
+            renda.setFamilia(familia);
+        }
+                
+        residenciaFamilia = residenciaFamiliaRN.buscarPorFamilia(familia.getFamilia());
+        if(residenciaFamilia == null){
+            residenciaFamilia = new ResidenciaFamilia();
+            residenciaFamilia.setFamilia(familia);
+        }
+                
+        formulario = formularioRN.buscarPorAluno(aluno.getAluno());
+        if(formulario == null){
+            formulario = new Formulario();
+            Calendar cal = Calendar.getInstance();
+            System.out.println("\tCal.getTime: " + cal.getTime());
+            formulario.setDataInscricao(cal.getTime());
+            formulario.setAluno(aluno);
+        }
+                
+        informacoesCurriculares = informacoesCurricularesRN.buscarPorAluno(aluno.getAluno());
+        if(informacoesCurriculares == null){
+            informacoesCurriculares = new InformacoesCurriculares();
+            informacoesCurriculares.setAluno(aluno);
+        }
+                
+        ocupacao = ocupacaoRN.buscarPorAluno(aluno.getAluno());
+        if(ocupacao == null){
+            ocupacao = new Ocupacao();
+            ocupacao.setAluno(aluno);
+        }
+
+        residencia = residenciaRN.buscarPorAluno(aluno.getAluno());
+        if(residencia == null){
+            residencia = new Residencia();
+            residencia.setAluno(aluno);
+        }
+
+        situacaoResidencial = situacaoResidencialRN.buscarPorAluno(aluno.getAluno());
+        if(situacaoResidencial == null){
+            situacaoResidencial = new SituacaoResidencial();
+            situacaoResidencial.setAluno(aluno);
+        }
+
+        membrosFamiliares = membroFamiliarRN.buscarPorFamilia(familia.getFamilia());
+        if(membrosFamiliares == null){
+            membrosFamiliares = new ArrayList<>();
+        }
+        
+
+    }
+    
+// Controle de Tela UK_3wpes15e0anbfaa4do0pey97k
     public boolean isTelaFormulario(){
         return "telaFormulario".equals(this.estadoTela);
     }
@@ -106,6 +262,7 @@ public class AlunoBean implements Serializable{
     public void salvar(){
         AlunoRN alunoRN = new AlunoRN();
         TurmaRN turmaRN = new TurmaRN();
+        EntrevistaRN entrevistaRN = new EntrevistaRN();
         
         System.out.println("turma.getNome: " + turma.getNome());
         turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
@@ -114,12 +271,14 @@ public class AlunoBean implements Serializable{
         alunoRN.salvar(this.aluno);
 
         salvarDependenciasAluno(aluno);
+        entrevistaRN.setPontuacao(aluno);        
         
         System.out.println("salvou!");
     }
     
     public void salvarDependenciasAluno(Aluno aluno){
         // ATENÇÂO: A ordem dessas operações deve ser realizada exatamente do jeito que está! 
+        EntrevistaRN entrevistaRN = new EntrevistaRN();
         BolsasAuxilioRN bolsasAuxilioRN = new BolsasAuxilioRN();
         CondicaoManutencaoRN condicaoManutencaoRN = new CondicaoManutencaoRN();
         ContaRN contaRN = new ContaRN();
@@ -137,14 +296,15 @@ public class AlunoBean implements Serializable{
         OcupacaoRN ocupacaoRN = new OcupacaoRN();
         ResidenciaRN residenciaRN = new ResidenciaRN();
         SituacaoResidencialRN situacaoResidencialRN = new SituacaoResidencialRN();        
-
+        
         familia.setAluno(aluno);
         familiaRN.salvar(familia);
-        
+
         salvarMemmrosFamiliares();
-        
+            
         setProperties();
 
+        entrevistaRN.salvar(entrevista);        
         bolsasAuxilioRN.salvar(bolsasAuxilio);
         contaRN.salvar(conta);
         condicaoManutencaoRN.salvar(condicaoManutencao);
@@ -164,7 +324,7 @@ public class AlunoBean implements Serializable{
         residenciaFamiliaRN.salvar(residenciaFamilia);
 
     }
-    
+        
     public void salvarMemmrosFamiliares(){
         MembroFamiliarRN membroFamiliarRN = new MembroFamiliarRN();
         int i = 0;
@@ -183,18 +343,30 @@ public class AlunoBean implements Serializable{
     
     public void selecaoModalidade(){
         TurmaRN turmaRN = new TurmaRN();
-        List<String> aux = turmaRN.listarCursos(turma.getModalidade());
-        if(aux != null){
-            cursos = new HashSet<>(aux);
-            selectedModalidade = true;
+        if(turma.getModalidade() != null){
+            List<String> aux = turmaRN.listarCursos(turma.getModalidade());
+            if(aux != null){
+                cursos = new HashSet<>(aux);
+                selectedModalidade = true;
+                System.out.println("Turma.modalidade: " + turma.getModalidade());
+            }            
+        }
+        else{
+            selectedModalidade = false;
         }
     }
     public void selecaoCurso(){
         TurmaRN turmaRN = new TurmaRN();
-        List<String> aux = turmaRN.listarTurmas(turma.getModalidade(), turma.getCurso());
-        if(aux != null){
-            turmas = new HashSet<>(aux);
-            selectedCurso = true;
+        
+        if(turma.getCurso() != null){
+            List<String> aux = turmaRN.listarTurmas(turma.getModalidade(), turma.getCurso());
+            if(aux != null){
+                turmas = new HashSet<>(aux);
+                selectedCurso = true;
+                System.out.println("Turma.curso: " + turma.getCurso());
+            }            
+        }else{
+            selectedCurso = false;
         }
     }
     
@@ -203,7 +375,7 @@ public class AlunoBean implements Serializable{
         setBolsasAuxilioProperties();
         setResidenciaFamilaProperties();
         setDependentesProperties();
-        
+            
             bolsasAuxilio.setAluno(aluno);
             condicaoManutencao.setAluno(aluno);
             conta.setAluno(aluno);

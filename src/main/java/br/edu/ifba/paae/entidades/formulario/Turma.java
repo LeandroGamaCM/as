@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,7 +24,8 @@ public class Turma implements Serializable{
     @Column(name = "cod_turma")
     private Integer turma;
 
-    @OneToMany(mappedBy = "turma", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @OneToMany(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "cod_turma")    
     private List<Aluno> alunos;
     
     private String modalidade;

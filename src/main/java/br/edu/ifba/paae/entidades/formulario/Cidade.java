@@ -23,10 +23,7 @@ public class Cidade implements Serializable {
     private String cidade;
 
     @Column(length = 4)    
-    private String uf;
-    
-    @OneToOne(mappedBy = "cidade")
-    private Endereco endereco;    
+    private String uf; 
 
     public Long getId() {
         return id;
@@ -52,13 +49,6 @@ public class Cidade implements Serializable {
         this.uf = uf;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 
     @Override
     public int hashCode() {
@@ -66,7 +56,6 @@ public class Cidade implements Serializable {
         hash = 29 * hash + Objects.hashCode(this.id);
         hash = 29 * hash + Objects.hashCode(this.cidade);
         hash = 29 * hash + Objects.hashCode(this.uf);
-        hash = 29 * hash + Objects.hashCode(this.endereco);
         return hash;
     }
 
@@ -89,9 +78,6 @@ public class Cidade implements Serializable {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
         return true;

@@ -33,7 +33,7 @@
                         <p>Acesse os relatórios gerados</p>
                     </div>
                     <div class="task-box-footer">
-                        <a href="#{request.contextPath}/paginas/adm/principal.jsf"><span class="task-status">Acessar</span></a>
+                        <a href="#{request.contextPath}/paginas/adm/relatorios.jsf"><span class="task-status">Acessar</span></a>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         <p>Realize um entrevista</p>
                     </div>
                     <div class="task-box-footer">
-                        <a href="#{request.contextPath}/paginas/adm/principal.jsf"><span class="task-status">Realizar</span></a>
+                        <a href="#{request.contextPath}/paginas/adm/entrevistas.jsf"><span class="task-status">Realizar</span></a>
                     </div>
                 </div>
             </div>
@@ -58,8 +58,8 @@
                     <div class="overview-box-header"></div>
                     <div class="overview-box-content">
                         <div class="overview-box-icon"><i class="fa fa-user"></i></div>
-                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/principal.jsf">Alunos Cadastrados</a></div>
-                        <div class="overview-box-count">326</div>
+                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/alunos.jsf">Alunos Cadastrados</a></div>
+                        <div class="overview-box-count">#{telaPrincipalBean.alunosCadastrados}</div>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                     <div class="overview-box-header"></div>
                     <div class="overview-box-content">
                         <div class="overview-box-icon"><i class="fa fa-comments-o"></i></div>
-                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/principal.jsf">Entrevistas Realizadas</a></div>
+                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/entrevistas.jsf">Entrevistas Realizadas</a></div>
                         <div class="overview-box-count">28</div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                     <div class="overview-box-content">
                         <div class="overview-box-icon"><i class="fa fa-address-card" style="font-size: 22px"></i></div>
                         <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/principal.jsf">Número de Inscrições</a></div>
-                        <div class="overview-box-count">129</div>
+                        <div class="overview-box-count">#{telaPrincipalBean.alunosInscritos}</div>
                     </div>
                 </div>
             </div>

@@ -20,6 +20,7 @@
                 <p:outputPanel id="chefao">
                     <p:panel rendered="#{alunoBean.telaFormulario}">
                 <h1>Formulário de Inscrição</h1>
+                        <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
                 <p:wizard nextLabel="Próximo" onnext="return onnext();" onback="return onback();" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
 
                     <p:tab id="parte1" titleStyleClass="tab1" title="Dados Pessoais">
@@ -79,9 +80,9 @@
                                 <p:selectOneMenu style="width: 100%" id="modalidade" value="#{alunoBean.turma.modalidade}">
                                     <f:selectItem itemLabel="Selecione..."/>
                                     <f:selectItems value="#{alunoBean.modalidades}"/>                                  
-                                    <p:ajax update="curAjax,turAjax" event="change" listener="#{alunoBean.selecaoModalidade()}"/>
+                                    <p:ajax update="curAjax" event="change" listener="#{alunoBean.selecaoModalidade()}"/>
                                 </p:selectOneMenu> 
-
+                                
                                 <p:outputPanel id="curAjax" >
                                     <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Curso: " for="curso" />
                                     <p:selectOneMenu style="width: 100%" id="curso" value="#{alunoBean.turma.curso}" disabled="#{!alunoBean.selectedModalidade}">
@@ -89,14 +90,14 @@
                                         <f:selectItems value="#{alunoBean.cursos}"/>                                  
                                         <p:ajax update="turAjax" event="change" listener="#{alunoBean.selecaoCurso()}"/>
                                     </p:selectOneMenu>
-                                </p:outputPanel>
 
-                                <p:outputPanel id="turAjax">
-                                    <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Turma: " for="turma" />
-                                    <p:selectOneMenu style="width: 100%" id="turma" value="#{alunoBean.turma.nome}" disabled="#{!alunoBean.selectedCurso}">
-                                        <f:selectItem itemLabel="Selecione..."/>
-                                        <f:selectItems value="#{alunoBean.turmas}"/>                                   
-                                    </p:selectOneMenu>  
+                                    <p:outputPanel id="turAjax">
+                                        <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Turma: " for="turma" />
+                                        <p:selectOneMenu style="width: 100%" id="turma" value="#{alunoBean.turma.nome}" disabled="#{!alunoBean.selectedCurso}">
+                                            <f:selectItem itemLabel="Selecione..."/>
+                                            <f:selectItems value="#{alunoBean.turmas}"/>                                   
+                                        </p:selectOneMenu>  
+                                    </p:outputPanel>
                                 </p:outputPanel>
                             </h:panelGrid>
                         </p:panel>
@@ -115,8 +116,10 @@
 
                         <p:panel header="Endereço">                            
                             <h:panelGrid style="margin-top: 7px" width="100%" columns="1" columnClasses="col155, col16, col21, col22, col17, col18, col19, col20">
-                                <select id="estado"></select>
-                                <select  id="cidade"></select>                                
+                                <h:selectOneMenu id="estado" value="#{alunoBean.endereco.estado}"></h:selectOneMenu>
+                                <h:selectOneMenu id="cidade" value="#{alunoBean.endereco.cidade}"></h:selectOneMenu>
+                                <!--                                <select id="estado"></select>-->
+<!--                            <select  id="cidade"></select>                                -->
                                 
                                 <p:outputLabel style="width: 100%" for="cidad" value="Cidade: "/>
                                 <p:inputText value="#{alunoBean.endereco.cidade}" style="width: 100%" id="cidad" label="Cidade"/>   

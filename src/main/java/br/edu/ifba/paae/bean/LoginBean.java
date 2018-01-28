@@ -61,7 +61,7 @@ public class LoginBean implements Serializable{
         UsuarioRN usuarioRN = new UsuarioRN();
         this.usuario.setAtivo(Boolean.TRUE);
         this.usuario.setSenha(senhaPagina);
-        
+        this.usuario.setNome(nomePagina);
 // Esse email deve ser uma variavel diferente do formulario? Porque ele é pra recuperação e lá pra contato
 //        usuario.setEmail(emailPagina);
     }

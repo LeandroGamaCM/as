@@ -23,6 +23,7 @@ public class Usuario implements Serializable{
     @Column(length = 45, unique = true)
     private String login;
     
+    private String nome;
     private String senha;
     private Boolean ativo;
 
@@ -58,6 +59,14 @@ public class Usuario implements Serializable{
         this.login = login;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getSenha() {
         return senha;
     }
@@ -84,13 +93,14 @@ public class Usuario implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.usuario);
-        hash = 97 * hash + Objects.hashCode(this.aluno);
-        hash = 97 * hash + Objects.hashCode(this.login);
-        hash = 97 * hash + Objects.hashCode(this.senha);
-        hash = 97 * hash + Objects.hashCode(this.ativo);
-        hash = 97 * hash + Objects.hashCode(this.permissao);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.usuario);
+        hash = 29 * hash + Objects.hashCode(this.aluno);
+        hash = 29 * hash + Objects.hashCode(this.login);
+        hash = 29 * hash + Objects.hashCode(this.nome);
+        hash = 29 * hash + Objects.hashCode(this.senha);
+        hash = 29 * hash + Objects.hashCode(this.ativo);
+        hash = 29 * hash + Objects.hashCode(this.permissao);
         return hash;
     }
 
@@ -107,6 +117,9 @@ public class Usuario implements Serializable{
         }
         final Usuario other = (Usuario) obj;
         if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (!Objects.equals(this.senha, other.senha)) {

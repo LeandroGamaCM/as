@@ -8,10 +8,11 @@
         <h:outputStylesheet library="css" name="estiloCadastroUser.css" />
         <h:outputStylesheet library="css" name="temaPrimefaces.css" />
         <h:outputStylesheet library="css" name="estiloLogin.css" />
+        <h:outputScript library="js" name="validar.js" />
         <h:outputScript library="js" name="vanilla-masker.min.js" />
     </h:head>
-    <h:body class="login-body">
-        <div class="login-panel ui-fluid">
+    <h:body onload="removerClass3()" class="login-body">
+        <div id="scriptR" class="login-panel ui-fluid recuperar layout">
             <div class="login-panel-header">
                 <h1><h:graphicImage library="imagens" name="logoIFBA150px.png"/></h1>
             </div>
@@ -28,7 +29,7 @@
                             </span>
                         </div>                       
                         <div class="ui-g-12">
-                            <input type="submit" value="Recuperar Senha" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />     
+                            <input type="submit" value="Recuperar Senha" onclick="return validarRecu();" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />     
                         </div>
                     </div>
                 </form>
@@ -51,12 +52,32 @@
               VMasker(c).maskPattern(masks[m]);
               c.value = VMasker.toPattern(v, masks[m]);
             }
-
+            
+            function limpaCampo(event) {
+                var value = event.target.value;
+                //<![CDATA[
+                    if (value.length < 14) {
+                        event.target.value = '';
+                        this.classList.remove('ui-state-filled');
+                    }
+                //]]>
+            }
+            
             var docMask = ['999.999.999-99'];
             var doc = document.querySelector('#cpfRecuperar');
+            
             VMasker(doc).maskPattern(docMask[0]);
+            
             doc.addEventListener('input', inputHandler.bind(undefined, docMask, 15), false);
+            
+            doc.addEventListener('blur', limpaCampo);
         </script> 
+        
+        <noscript>
+            Para completa funcionalidade deste site é necessário habilitar o JavaScript.<br/>
+            Aqui estão as <a href="https://www.enable-javascript.com/pt/" target="_blank">
+            instruções de como habilitar o JavaScript no seu navegador</a>.
+        </noscript>
     </h:body>
 </html>
 

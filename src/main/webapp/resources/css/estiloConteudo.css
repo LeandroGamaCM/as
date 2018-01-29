@@ -1,4 +1,7 @@
 /*Código CSS para template*/
+.layout{
+  display: none;
+}
 .layout-wrapper-static .layout-main {
     margin-left: 240px;
 }

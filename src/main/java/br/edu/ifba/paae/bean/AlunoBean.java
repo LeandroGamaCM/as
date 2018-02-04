@@ -5,7 +5,9 @@ import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.rn.formulario.*;
 import br.edu.ifba.paae.entidades.formulario.*;
+import br.edu.ifba.paae.entidades.inscricao.Inscricao;
 import br.edu.ifba.paae.rn.analise.EntrevistaRN;
+import br.edu.ifba.paae.rn.inscricao.InscricaoRN;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +24,7 @@ import org.primefaces.event.FlowEvent;
 @ViewScoped
 public class AlunoBean implements Serializable{
     private String estadoTela = "telaFormulario";
+    private Inscricao inscricao;
     
     private Aluno aluno = new Aluno();
     private BolsasAuxilio bolsasAuxilio = new BolsasAuxilio();
@@ -71,10 +74,13 @@ public class AlunoBean implements Serializable{
     
     @PostConstruct
     public void init(){
+        InscricaoRN inscricaoRN = new InscricaoRN();        
         AlunoRN alunoRN = new AlunoRN();
         UsuarioRN usuarioRN = new UsuarioRN();
         TurmaRN turmaRN = new TurmaRN();
         
+        inscricao = inscricaoRN.carregar();
+
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();
         String cpf = external.getRemoteUser();
@@ -888,6 +894,30 @@ public class AlunoBean implements Serializable{
 
     public void setSelectedImoveis(String[] selectedImoveis) {
         this.selectedImoveis = selectedImoveis;
+    }
+
+    public String getEstadoTela() {
+        return estadoTela;
+    }
+
+    public void setEstadoTela(String estadoTela) {
+        this.estadoTela = estadoTela;
+    }
+
+    public Inscricao getInscricao() {
+        return inscricao;
+    }
+
+    public void setInscricao(Inscricao inscricao) {
+        this.inscricao = inscricao;
+    }
+
+    public Entrevista getEntrevista() {
+        return entrevista;
+    }
+
+    public void setEntrevista(Entrevista entrevista) {
+        this.entrevista = entrevista;
     }
 
 

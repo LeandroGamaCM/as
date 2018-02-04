@@ -9,39 +9,10 @@
         <ui:define name="titulo">
             PAAE - Entrevistas
         </ui:define>
-        <ui:define name="conteudo">
-            <h:form>
-                <p:outputPanel id="toolbar">
-                    <p:toolbar>
-                        <p:toolbarGroup align="right">
-                            <p:inputText value="#{telaAlunosBean.pesquisa}" placeholder="Nome, CPF, RG"/>
-                            <p:commandButton value="Pesquisar" update="panel" action="#{telaEntrevistaBean.buscar()}"/>
-                        </p:toolbarGroup>
-                    </p:toolbar>
-                    <p:toolbar>
-                        <p:toolbarGroup align="left">
-                            <p:commandButton value="Entrevistas realizadas" update="panel" action="#{telaEntrevistaBean.changeToEntrevistasFeitas()}"/>
-                            <p:commandButton value="Entrevistas a fazer" update="panel" action="#{telaEntrevistaBean.changeToEntrevistasNaoFeitas()}"/>
-                        </p:toolbarGroup>
-                    </p:toolbar>
-                </p:outputPanel>
-            </h:form>
-                
-            <p:outputPanel id="panel">
-                <p:panel header="Entrevistas Realizadas" rendered="#{telaEntrevistaBean.entrevistasFeitas}">
-                    <ui:include src="/templates/adm/componenteEntrevista.xhtml"/>
-                </p:panel>
-
-                <p:panel header="Entrevistas Não realizadas" rendered="#{telaEntrevistaBean.entrevistasNaoFeitas}">
-                    
-                </p:panel>
-                
-                <p:panel header="Resultados da busca" rendered="#{telaEntrevistaBean.pesquisar}">
-                    
-                </p:panel>
-            </p:outputPanel>
-        </ui:define>
         
+        <ui:define name="conteudo">
+            <ui:include src="/templates/adm/componenteEntrevista.xhtml"/>
+        </ui:define>
     </ui:composition>
 </html>
 

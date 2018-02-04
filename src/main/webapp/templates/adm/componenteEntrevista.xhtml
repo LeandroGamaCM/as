@@ -7,46 +7,120 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
         <h:form>
-                <p:panel rendered="#{telaAlunosBean.listarFichas}" header="Fichas de Inscrição">
-                    <h:panelGrid id="margem" columns="2" columnClasses="label, value" >
-                        <h5>Filtrar por modalidade:</h5>                   
-                        <p:selectOneRadio id="filtroModalidade" value="#{telaEntrevistaBean.filtroModalidade}">
-                            <f:selectItem itemLabel="Todos" itemValue="todos"/> 
-                            <f:selectItems value="#{telaAlunosBean.modalidades}"/>
-                            <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
-                        </p:selectOneRadio> 
-
-                        <h5>Filtrar por curso:</h5>
-                        <p:selectOneRadio id="filtroCurso" value="#{telaAlunosBean.filtroCurso}">
-                            <f:selectItem itemLabel="Todos" itemValue="todos" /> 
-                            <f:selectItems value="#{telaAlunosBean.cursos}"/>
-                            <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
-                            </p:selectOneRadio> 
-                    </h:panelGrid>
-<!--Ver Expansion  (primefaces datatable)-->
-                    <p:outputPanel id="tabela">
-
-                        <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}" sortBy="#{aluno.turma.nome}">
+            <p:outputPanel id="toolbar" rendered="#{!telaEntrevistaBean.entrevistarAluno and !telaEntrevistaBean.verEntrevista}">
+                    <p:toolbar>
+                        <p:toolbarGroup align="right">
+                            <p:inputText value="#{telaEntrevistaBean.pesquisa}" placeholder="Nome, CPF, RG"/>
+                            <p:commandButton value="Pesquisar" update="@form" action="#{telaEntrevistaBean.buscar()}"/>
+                        </p:toolbarGroup>
+                        <p:toolbarGroup align="left">
+                            <p:commandButton value="Entrevistas realizadas" update="painel" action="#{telaEntrevistaBean.changeToEntrevistasFeitas()}"/>
+                            <p:commandButton value="Entrevistas NÃO realizadas  " update="painel" action="#{telaEntrevistaBean.changeToEntrevistasNaoFeitas()}"/>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+            </p:outputPanel>
+            <p:outputPanel id="painel">
+                <p:panel header="Entrevistas Realizadas" rendered="#{telaEntrevistaBean.entrevistasFeitas}">
+                    <p:outputPanel id="tabelaFeitas">
+                        <p:dataTable var="formularioAluno" value="#{telaEntrevistaBean.formularioAlunos}">
                             <f:facet name="header">
                                     <h:outputText value="Alunos" />
                             </f:facet>
-                            <p:headerRow>
-                                <p:column colspan="2">
-                                    <h:outputText value="#{aluno.turma.nome}" />
-                                </p:column>
-                            </p:headerRow>    
-
+                            <p:column headerText="Turma">
+                                <h:outputText value="#{formularioAluno.turma.nome} #{formularioAluno.turma.curso}" />
+                            </p:column>
                             <p:column headerText="Nome">
-                                <h:outputText value="#{aluno.aluno.nome}"/>
+                                <h:outputText value="#{formularioAluno.aluno.nome}"/>
                             </p:column>
                             <p:column headerText="Cpf">
-                                <h:outputText value="#{aluno.aluno.cpf}"/>
+                                <h:outputText value="#{formularioAluno.aluno.cpf}"/>
                             </p:column>
-
+                            <p:column headerText="Expandir">
+                                <p:commandButton value="Expandir" update="@form" actionListener="#{telaEntrevistaBean.changeToVerEntrevista(formularioAluno.aluno)}"/>
+<!--                                <p:commandButton value="Entrevistar" onclick="PF('formularioDialog').show()" icon="ui-icon-extlink" >
+                                        <f:setPropertyActionListener target="#{telaEntrevistaBean.formularioAluno}" value="#{formularioAluno}" />
+                                </p:commandButton>-->
+                            </p:column>
                         </p:dataTable>
+<!--                        <p:dialog header="Formulário completo de Inscrição" widgetVar="formularioDialog" minHeight="40">
+                            <p:outputLabel value="Nome: #{formularioAluno.aluno.nome}"/>
+                        </p:dialog>-->
                     </p:outputPanel>
-
                 </p:panel>
+                
+                <p:panel header="Entrevistas NÃO realizadas" rendered="#{telaEntrevistaBean.entrevistasNaoFeitas}">
+                    <p:outputPanel id="tabelaNaoFeitas">
+                        <p:dataTable var="formularioAluno" value="#{telaEntrevistaBean.formularioAlunos}">
+                            <f:facet name="header">
+                                    <h:outputText value="Alunos" />
+                            </f:facet>
+                            <p:column headerText="Turma">
+                                <h:outputText value="#{formularioAluno.turma.nome} #{formularioAluno.turma.curso}" />
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{formularioAluno.aluno.nome}"/>
+                            </p:column>
+                            <p:column headerText="Cpf">
+                                <h:outputText value="#{formularioAluno.aluno.cpf}"/>
+                            </p:column>
+                            <p:column headerText="Entrevistar">
+                                <p:commandButton value="Entrevistar" update="@form" actionListener="#{telaEntrevistaBean.changeToEntrevistarAluno(formularioAluno.aluno)}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:outputPanel>                    
+                </p:panel>
+                
+                <p:panel header="Resultados da busca" rendered="#{telaEntrevistaBean.pesquisar}">
+                    <p:dataTable var="formularioAluno" value="#{telaEntrevistaBean.formularioAlunos}">
+                        <f:facet name="header">
+                                <h:outputText value="Alunos" />
+                        </f:facet>
+                        <p:column headerText="Turma">
+                            <h:outputText value="#{formularioAluno.turma.nome} #{formularioAluno.turma.curso}" />
+                        </p:column>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{formularioAluno.aluno.nome}"/>
+                        </p:column>
+                        <p:column headerText="Cpf">
+                            <h:outputText value="#{formularioAluno.aluno.cpf}"/>
+                        </p:column>
+                        <p:column headerText="Status de entrevista">
+                            <p:outputLabel value="#{formularioAluno.entrevista.status}"/>
+                        </p:column>
+                    </p:dataTable>                    
+                </p:panel>
+                
+                <h:panelGrid rendered="#{telaEntrevistaBean.entrevistarAluno}">
+                    <p:panel header="Formulário de inscrição">
+                        <ui:include src="/templates/adm/componenteDadosAluno.xhtml"/>
+                    </p:panel>
+                    <p:panel header="Anotações">
+                        <div class="ui-g ui-fluid" style="margin-top: 7px">
+                            <p:inputTextarea value="#{telaEntrevistaBean.formularioAluno.entrevista.observacoes}" placeholder="Anotações..." rows="5" counter="display" maxlength="800" counterTemplate="{0} caracteres restantes." autoResize="true" />
+                            <h:outputText id="display" />
+                        </div>
+                    </p:panel>
+                    <p:panel>
+                        <p:commandButton value="Finalizar" update="@form" actionListener="#{telaEntrevistaBean.salvarEntrevista()}"/>
+                    </p:panel>
+                </h:panelGrid>
+                
+                <h:panelGrid rendered="#{telaEntrevistaBean.verEntrevista}">
+                    <p:panel header="Formulário de inscrição">
+                        <ui:include src="/templates/adm/componenteDadosAluno.xhtml"/>
+                    </p:panel>
+                    <p:panel header="Anotações">
+                        <div class="ui-g ui-fluid" style="margin-top: 7px">
+                            <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.entrevista.observacoes}"/>
+                        </div>
+                    </p:panel>
+                    <p:panel>
+                        <p:commandButton value="Fechar" update="@form" actionListener="#{telaEntrevistaBean.changeToEntrevistasFeitas()}"/>
+                    </p:panel>
+                </h:panelGrid>
+                
+                
+            </p:outputPanel>
         </h:form>
     </ui:composition>
 </html>

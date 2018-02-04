@@ -27,6 +27,7 @@ public class Entrevista implements Serializable{
     @OneToOne(mappedBy = "entrevista")
     private Aluno aluno;
     
+    private String status;
     private Float pontuacaoComposicaoFamiliar;
     private Float pontuacaoCondicaoEconomicaEstudante;
     private Float pontuacaoDespesaAnalise;
@@ -62,6 +63,14 @@ public class Entrevista implements Serializable{
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Float getPontuacaoComposicaoFamiliar() {
@@ -194,25 +203,26 @@ public class Entrevista implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.entrevista);
-        hash = 17 * hash + Objects.hashCode(this.aluno);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoComposicaoFamiliar);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoCondicaoEconomicaEstudante);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoDespesaAnalise);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoEntrevista);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoEscolaOrigem);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoEtnia);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoGenero);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoLocalResidenciaFamilia);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoMoradiaEstudante);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoMoradiaFamilia);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoProgramaSocial);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoRendaPerCapita);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoRendaPrincipalOrigem);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoSaude);
-        hash = 17 * hash + Objects.hashCode(this.pontuacaoSituacaoOcupacional);
-        hash = 17 * hash + Objects.hashCode(this.observacoes);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.entrevista);
+        hash = 37 * hash + Objects.hashCode(this.aluno);
+        hash = 37 * hash + Objects.hashCode(this.status);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoComposicaoFamiliar);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoCondicaoEconomicaEstudante);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoDespesaAnalise);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoEntrevista);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoEscolaOrigem);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoEtnia);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoGenero);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoLocalResidenciaFamilia);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoMoradiaEstudante);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoMoradiaFamilia);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoProgramaSocial);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoRendaPerCapita);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoRendaPrincipalOrigem);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoSaude);
+        hash = 37 * hash + Objects.hashCode(this.pontuacaoSituacaoOcupacional);
+        hash = 37 * hash + Objects.hashCode(this.observacoes);
         return hash;
     }
 
@@ -228,6 +238,9 @@ public class Entrevista implements Serializable{
             return false;
         }
         final Entrevista other = (Entrevista) obj;
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
         if (!Objects.equals(this.observacoes, other.observacoes)) {
             return false;
         }

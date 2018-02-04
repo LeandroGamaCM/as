@@ -74,5 +74,11 @@ public class AlunoRN {
     }
     public List<Aluno> alunosInscritos(){
         return this.alunoDAO.alunosInscritos();
-    }    
+    } 
+    public List<Aluno> alunosEntrevistados(){
+        return this.alunoDAO.alunosEntrevistados();
+    }
+    public List<Aluno> alunosNAOEntrevistados(){
+        return this.alunoDAO.alunosNAOEntrevistados();
+    }
 }

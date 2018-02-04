@@ -9,7 +9,7 @@
         <div class="ui-fluid">
             
             <h:form>
-                <p:panel id="dadosPessoais">
+                <p:panel header="Dados Pessoais">
                     <h:panelGrid columns="1">
                         <p:outputLabel value="Nome Completo: #{alunoBean.aluno.nome}"/>
                         <p:outputLabel value="CPF: #{alunoBean.aluno.cpf}"/>
@@ -144,6 +144,7 @@
 
                 <p:panel header="Despesas no campus">
                     <h:panelGrid columns="1">
+                        <p:outputLabel value="Não possui" rendered="#{!(alunoBean.despesasCampus.alimentacao > 0) and !(alunoBean.despesasCampus.materiaisEscolares > 0) and !(alunoBean.despesasCampus.trabalhos > 0)}"/>
                         <p:outputLabel value="Alimentação: #{alunoBean.despesasCampus.alimentacao}" rendered="#{alunoBean.despesasCampus.alimentacao > 0}"/>
                         <p:outputLabel value="Materiais escolares: #{alunoBean.despesasCampus.materiaisEscolares}" rendered="#{alunoBean.despesasCampus.materiaisEscolares > 0}"/>
                         <p:outputLabel value="Trabalhos: #{alunoBean.despesasCampus.trabalhos}" rendered="#{alunoBean.despesasCampus.trabalhos > 0}"/>
@@ -293,7 +294,7 @@
                         <p:outputLabel value="Sítio(s)" rendered="#{alunoBean.imovel.sitios}"/>
                         <p:outputLabel value="Terras" rendered="#{alunoBean.imovel.terras}"/>
                         <p:outputLabel value="#{alunoBean.imovel.nomeOutroImovel}" rendered="#{alunoBean.imovel.outroImovel}"/>
-                        <p:outputLabel value="Quantidade de Hectáres: #{alunoBean.imovel.hectares}"/>
+                        <p:outputLabel value="Quantidade de Hectáres: #{alunoBean.imovel.hectares}" rendered="#{alunoBean.imovel.possuiImovel}"/>
                     </h:panelGrid>
                 </p:panel>
 
@@ -313,7 +314,8 @@
 
                 <p:panel header="Esclarecimentos">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="#{alunoBean.formulario.esclarecimentos}" />
+                        <p:outputLabel value="Nenhum esclarecimento adicional" rendered="#{alunoBean.formulario.esclarecimentos == null}"/>
+                        <p:outputLabel value="#{alunoBean.formulario.esclarecimentos}" rendered="#{alunoBean.formulario.esclarecimentos != null}"/>
                     </h:panelGrid>
                 </p:panel>
             </h:form>

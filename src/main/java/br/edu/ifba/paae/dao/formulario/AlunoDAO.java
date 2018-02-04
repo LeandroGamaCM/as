@@ -67,11 +67,12 @@ public class AlunoDAO{
         return c.list();        
     }
     public List<Aluno> buscarCPFNomeRG(String valor){
-        String hql = "select a from Aluno a where a.cpf = :valor OR a.rg = :valor OR a.nome like :valor";
+        String hql = "select a from Aluno a where a.cpf like :valor OR a.rg like :valor OR a.nome like :valor";
         Query c = this.sessao.createQuery(hql);
-        c.setString("valor", valor);
-        c.setString("valor", valor);
         c.setString("valor", valor+"%");
+        c.setString("valor", valor+"%");
+        c.setString("valor", valor+"%");
+        
         return c.list();        
     }
     public List<Aluno> alunosCadastrados(){
@@ -81,6 +82,16 @@ public class AlunoDAO{
     }
     public List<Aluno> alunosInscritos(){
         String hql = "select a from Aluno a where a.status = 'Inscrição realizada'";
+        Query c = this.sessao.createQuery(hql);
+        return c.list();         
+    }
+    public List<Aluno> alunosEntrevistados(){
+        String hql = "select a from Aluno a, Entrevista e where a.entrevista = e.entrevista AND e.status = 'Feita'";
+        Query c = this.sessao.createQuery(hql);
+        return c.list();         
+    }
+    public List<Aluno> alunosNAOEntrevistados(){
+        String hql = "select a from Aluno a, Entrevista e where a.entrevista = e.entrevista AND e.status <> 'Feita'";
         Query c = this.sessao.createQuery(hql);
         return c.list();         
     }

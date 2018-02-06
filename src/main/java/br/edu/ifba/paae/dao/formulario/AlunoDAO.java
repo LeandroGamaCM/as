@@ -91,7 +91,7 @@ public class AlunoDAO{
         return c.list();         
     }
     public List<Aluno> alunosNAOEntrevistados(){
-        String hql = "select a from Aluno a, Entrevista e where a.entrevista = e.entrevista AND e.status <> 'Feita'";
+        String hql = "select a from Aluno a, Entrevista e where a.entrevista = e.entrevista AND e.status = 'Não feita'";
         Query c = this.sessao.createQuery(hql);
         return c.list();         
     }

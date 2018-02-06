@@ -37,7 +37,7 @@ public class TelaEntrevistaBean implements Serializable{
         if(tipo){
             List<Aluno> alunos = alunoRN.alunosEntrevistados();
             
-            if(alunos != null && !alunos.isEmpty()){
+            if(alunos != null || !alunos.isEmpty()){
                 for(i = 0; i < alunos.size(); i++){
                     formularioAluno = new FormularioAluno(alunos.get(i));
                     formularioAlunos.add(formularioAluno);
@@ -46,8 +46,9 @@ public class TelaEntrevistaBean implements Serializable{
         }
         if(!tipo){
             List<Aluno> alunos = alunoRN.alunosNAOEntrevistados();
-            
-            if(alunos != null && !alunos.isEmpty()){
+            System.out.println("Entrevistas NÂO feitas");
+            if(alunos != null || !alunos.isEmpty()){
+                System.out.println("alunos.size:"+ alunos.size());
                 for(i = 0; i < alunos.size(); i++){
                     formularioAluno = new FormularioAluno(alunos.get(i));
                     formularioAlunos.add(formularioAluno);

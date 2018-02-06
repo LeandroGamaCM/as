@@ -48,8 +48,7 @@ public class AlunoRN {
     public List<Aluno> buscarCPFNomeRG(String valor){
         return  this.alunoDAO.buscarCPFNomeRG(valor);
     }    
-    public List<Aluno> alunosAtuais(){
-        List<Aluno> lista = listar();
+    public List<Aluno> alunosAtuais(List<Aluno> lista){
         FormularioRN formularioRN = new FormularioRN();
         Formulario formulario;
         List<Aluno> alunos = new ArrayList<>();

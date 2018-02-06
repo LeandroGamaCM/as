@@ -49,12 +49,13 @@ public class UsuarioBean implements Serializable{
         UsuarioRN usuarioRN = new UsuarioRN();
         
         if(usuario.getSenha().equals(confirmacaoSenha)){
-            AlunoRN alunoRN = new AlunoRN();
-            EnderecoRN enderecoRN = new EnderecoRN();
-            
-            alunoRN.salvar(formularioAluno.getAluno());
-            enderecoRN.salvar(formularioAluno.getEndereco());
-            
+            if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
+                AlunoRN alunoRN = new AlunoRN();
+                EnderecoRN enderecoRN = new EnderecoRN();
+
+                alunoRN.salvar(formularioAluno.getAluno());
+                enderecoRN.salvar(formularioAluno.getEndereco());
+            }
             usuario.setSenha(novaSenha);
             usuarioRN.atualizar(usuario);
         }

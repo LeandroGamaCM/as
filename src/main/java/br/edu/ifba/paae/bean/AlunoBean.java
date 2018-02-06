@@ -132,7 +132,8 @@ public class AlunoBean implements Serializable{
         
         entrevista = entrevistaRN.buscarPorAluno(aluno.getAluno());
         if(entrevista == null){
-            entrevista = new Entrevista();            
+            entrevista = new Entrevista();
+            entrevista.setStatus("Não feita");
             entrevista.setAluno(aluno);
         }
         
@@ -274,9 +275,10 @@ public class AlunoBean implements Serializable{
         turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
         aluno.setTurma(turma);
         aluno.setStatus("Inscrição realizada");
+        
         alunoRN.salvar(this.aluno);
-
         salvarDependenciasAluno(aluno);
+        
         entrevistaRN.setPontuacao(aluno);        
         
         System.out.println("salvou!");

@@ -19,6 +19,7 @@ public class TelaPrincipalBean implements Serializable{
     private Usuario usuario;
     private Integer alunosCadastrados = 0;
     private Integer alunosInscritos = 0;
+    private Integer entrevistas = 0;
     
     @PostConstruct
     public void init(){
@@ -26,11 +27,17 @@ public class TelaPrincipalBean implements Serializable{
         UsuarioRN usuarioRN = new UsuarioRN();
         inscricao = inscricaoRN.carregar();
         AlunoRN alunoRN = new AlunoRN();
+        
         if(alunoRN.alunosCadastrados() != null)
             alunosCadastrados = alunoRN.alunosCadastrados().size();
         
         if(alunoRN.alunosInscritos() != null)
             alunosInscritos = alunoRN.alunosInscritos().size();
+        
+        if(alunoRN.alunosEntrevistados() != null){
+            entrevistas = alunoRN.alunosEntrevistados().size();
+        }
+        
         
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();
@@ -88,6 +95,14 @@ public class TelaPrincipalBean implements Serializable{
 
     public void setAlunosInscritos(Integer alunosInscritos) {
         this.alunosInscritos = alunosInscritos;
+    }
+
+    public Integer getEntrevistas() {
+        return entrevistas;
+    }
+
+    public void setEntrevistas(Integer entrevistas) {
+        this.entrevistas = entrevistas;
     }
     
     

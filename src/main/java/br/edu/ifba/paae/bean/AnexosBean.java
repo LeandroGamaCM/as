@@ -1,6 +1,7 @@
 package br.edu.ifba.paae.bean;
 
-import br.edu.ifba.paae.logica.ArquivoUtil;
+import br.edu.ifba.paae.entidades.formulario.Aluno;
+import br.edu.ifba.paae.rn.arquivo.ArquivoRN;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,24 +25,31 @@ import org.primefaces.model.UploadedFile;
 public class AnexosBean implements Serializable{
     private static final long serialVersionUID = 7475879667730605467L;
     
+    Aluno aluno = new Aluno();
+    
     private List<File> arquivos = new ArrayList<>();
     private StreamedContent streamedContent;
+    private UploadedFile uploadedFile;
     
     @PostConstruct
-    public void postConstruct() {
-        arquivos = new ArrayList<>(ArquivoUtil.listar());
+    public void init() {
+        arquivos = new ArrayList<>(ArquivoRN.listarFiles());
+        aluno.setAluno(9);
+        buscarArquivo("docId");
     }
     
     public void upload(FileUploadEvent event) {
-        UploadedFile uploadedFile = event.getFile();
-        
+        uploadedFile = event.getFile();
+        salvarFile(uploadedFile, uploadedFile.getFileName());
+    }
+    public void salvarFile(UploadedFile uploadedFile, String nome){
         try {
-            File arquivo = ArquivoUtil.escrever(uploadedFile.getFileName(), uploadedFile.getContents());
+            File file = ArquivoRN.escrever(nome, uploadedFile.getContents());
             
-            arquivos.add(arquivo);
+            arquivos.add(file);
             
             FacesContext.getCurrentInstance().addMessage(null, 
-                    new FacesMessage("Upload completo", "O arquivo " + arquivo.getName() + " foi salvo!"));            
+                    new FacesMessage("Upload completo", "O arquivo " + file.getName() + " foi salvo!"));            
         } catch (IOException e) {
             FacesContext.getCurrentInstance().addMessage(null, 
                     new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", e.getMessage()));
@@ -54,7 +62,29 @@ public class AnexosBean implements Serializable{
         streamedContent = new DefaultStreamedContent(inputStream, 
                 Files.probeContentType(file.toPath()), file.getName());
     }
+   
     
+//    public void atribuirDono(String dono){
+//        if(uploadedFile != null){
+//            if(dono.equals("aluno")){
+//                ArquivoRN arquivoRN = new ArquivoRN();
+//                File file = arquivoRN.buscarFile(uploadedFile.getFileName());
+//                file.delete();
+//
+//                salvarFile(uploadedFile, dono);
+//            }
+//            
+//        }
+//    }
+//    
+    public void buscarArquivo(String chave){
+        int i;
+        for(i=0; i<arquivos.size(); i++){
+            if(arquivos.get(i).getName().equals(chave)){
+                System.out.println("\tAchou!");
+            }
+        }
+    }
 
     public StreamedContent getStreamedContent() {
         return streamedContent;
@@ -63,4 +93,6 @@ public class AnexosBean implements Serializable{
     public List<File> getArquivos() {
         return arquivos;
     }
+    
+    
 }

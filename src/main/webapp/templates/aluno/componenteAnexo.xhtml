@@ -10,20 +10,23 @@
 			<p:growl showDetail="true" autoUpdate="true" />
 
 			<h:panelGrid columns="2">
-				<p:outputLabel value="Arquivo: " for="fileUpload" />
+				<p:outputLabel value="Documento de identificação:" />
 				<p:fileUpload id="fileUpload"
 					fileUploadListener="#{anexosBean.upload}"
-					update="dataTable" label="Escolher" uploadLabel="Enviar"
-					cancelLabel="Cancelar" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-					invalidFileMessage="São permitidas somente imagens (gif, jpeg, jpg e png)"
-					sizeLimit="102400"
-					invalidSizeMessage="O tamanho máximo permitido é de 1KB."
+					update="dataTable" label="Arquivo" uploadLabel="Enviar"
+					cancelLabel="Cancelar" allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+					invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+					sizeLimit="1048576"
+					invalidSizeMessage="O tamanho máximo permitido é de 1MB."
 					fileLimit="1"
-					fileLimitMessage="Só é possível escolher 5 arquivos por vez."
 					multiple="false" auto="false"
 					onstart="console.log('Iniciando envio de arquivo')"
 					onerror="console.log('Erro na requisição de envio')"
-					oncomplete="console.log('Envio concluído')" />
+					oncomplete="rc()">
+<!--                                    <p:ajax event="" listener="#anexosBean.atribuirDono('aluno')}"/>-->
+                                </p:fileUpload>
+
+<p:remoteCommand name="rc" update="@form" actionListener="#{anexosBean.atribuirDono('aluno')}" />
 			</h:panelGrid>
 
 			<p:spacer height="20px" />

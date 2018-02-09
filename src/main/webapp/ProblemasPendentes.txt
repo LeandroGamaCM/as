@@ -7,14 +7,12 @@
 
 - Tem que puxar apenas os alunos do ano
 
-- colocar grafico de preferencia de bolsa e status de alunos (cadastrados = x%, pre-cadastrados = y% ...)
+- Perguntar a Mirela se os anexos dos alunos
 
+- O Delete dos arquivos nao pode ficar no login porque se outra pessoar logar apaga os do outro
 
+- Criptografar a senha
 
+- Duvida: Podde ter mais de um programa social?
 
-
-
-
-
-
-
+- INICIALIZAR AS pontuacoes do barema se nao da nullpointerexc

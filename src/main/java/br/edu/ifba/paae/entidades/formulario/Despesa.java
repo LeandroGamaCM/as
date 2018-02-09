@@ -1,5 +1,3 @@
-// Obs -------------------------------------------------------------------------
-// Despesa pertence ao pacote familia e o Id tem que mudar
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
@@ -21,69 +19,90 @@ public class Despesa implements Serializable {
     @OneToOne(mappedBy = "despesa")
     private Familia familia;
     
-//    @Column(name = "nome_despesa")
-//    private String nomeDespesa;
-//    @Column(name = "valor_despesa")
-//    private Double valorDespesa;
-
-
-// Variáveis fixas
     private Boolean aluguel;
     @Column(name = "valor_aluguel")
     private Double valorAluguel;
-
+    @Column(name = "arquivo_despesa_aluguel")
+    private String arquivoDespesaAluguel;
+    
     @Column(name = "mensalidade_escolar")
     private Boolean mensalidadeEscolar;
     @Column(name = "valor_mensalidade_escolar")
     private Double valorMensalidadeEscolar;
-
+    @Column(name = "arquivo_despesa_mensalidade_escolar")
+    private String arquivoDespesaMensalidadeEscolar;
+    
     private Boolean telefone;
     @Column(name = "valor_telefone")
     private Double valorTelefone;
+    @Column(name = "arquivo_despesa_telefone")
+    private String arquivoDespesaTelefone;
     
     private Boolean endividamento;
     @Column(name = "valor_endividamento")
     private Double valorEndividamento;
+    @Column(name = "arquivo_despesa_endividamento")
+    private String arquivoDespesaEndividamento;
     
     private Boolean internet;
     @Column(name = "valor_internet")
     private Double valorInternet;
+    @Column(name = "arquivo_despesa_internet")
+    private String arquivoDespesaInternet;
 
     private Boolean agua;
     @Column(name = "valor_agua")
     private Double valorAgua;
+    @Column(name = "arquivo_despesa_agua")
+    private String arquivoDespesaAgua;
 
     private Boolean medicamentos;
     @Column(name = "valor_medicamentos")
     private Double valorMedicamentos;
+    @Column(name = "arquivo_despesa_medicamentos")
+    private String arquivoDespesaMedicamentos;
 
     private Boolean luz;
     @Column(name = "valor_luz")
     private Double valorLuz;
+    @Column(name = "arquivo_despesa_luz")
+    private String arquivoDespesaLuz;
 
     @Column(name = "plano_saude")
     private Boolean planoSaude;
     @Column(name = "valor_plano_saude")
     private Double valorPlanoSaude;
+    @Column(name = "arquivo_despesa_plano_saude")
+    private String arquivoDespesaPlanoSaude;
 
     private Boolean financiamentos;
     @Column(name = "valor_financiamentos")
     private Double valorFinanciamentos;
+    @Column(name = "arquivo_despesa_financiamentos")
+    private String arquivoDespesaFinanciamentos;
 
     private Boolean transporte;
     @Column(name = "valor_transporte")
     private Double valorTransporte;
+    @Column(name = "arquivo_despesa_transporte")
+    private String arquivoDespesaTransporte;
 
     @Column(name = "investimentos_educacao")
     private Boolean investimentosEducacao;
     @Column(name = "valor_investimentos_educacao")
     private Double valorInvestimentosEducacao;
+    @Column(name = "arquivo_despesa_investimentos_educacao")
+    private String arquivoDespesaInvestimentosEducacao;
 
     private Boolean outros;
     @Column(name = "valor_outros")
     private Double valorOutros;
     @Column(name = "nome_outros")
     private String nomeOutros;
+    @Column(name = "arquivo_despesa_outros")
+    private String arquivoDespesaOutros;
+    
+// Getters e Setters
 
     public Integer getDespesa() {
         return despesa;
@@ -117,6 +136,14 @@ public class Despesa implements Serializable {
         this.valorAluguel = valorAluguel;
     }
 
+    public String getArquivoDespesaAluguel() {
+        return arquivoDespesaAluguel;
+    }
+
+    public void setArquivoDespesaAluguel(String arquivoDespesaAluguel) {
+        this.arquivoDespesaAluguel = arquivoDespesaAluguel;
+    }
+
     public Boolean getMensalidadeEscolar() {
         return mensalidadeEscolar;
     }
@@ -131,6 +158,14 @@ public class Despesa implements Serializable {
 
     public void setValorMensalidadeEscolar(Double valorMensalidadeEscolar) {
         this.valorMensalidadeEscolar = valorMensalidadeEscolar;
+    }
+
+    public String getArquivoDespesaMensalidadeEscolar() {
+        return arquivoDespesaMensalidadeEscolar;
+    }
+
+    public void setArquivoDespesaMensalidadeEscolar(String arquivoDespesaMensalidadeEscolar) {
+        this.arquivoDespesaMensalidadeEscolar = arquivoDespesaMensalidadeEscolar;
     }
 
     public Boolean getTelefone() {
@@ -149,6 +184,14 @@ public class Despesa implements Serializable {
         this.valorTelefone = valorTelefone;
     }
 
+    public String getArquivoDespesaTelefone() {
+        return arquivoDespesaTelefone;
+    }
+
+    public void setArquivoDespesaTelefone(String arquivoDespesaTelefone) {
+        this.arquivoDespesaTelefone = arquivoDespesaTelefone;
+    }
+
     public Boolean getEndividamento() {
         return endividamento;
     }
@@ -163,6 +206,14 @@ public class Despesa implements Serializable {
 
     public void setValorEndividamento(Double valorEndividamento) {
         this.valorEndividamento = valorEndividamento;
+    }
+
+    public String getArquivoDespesaEndividamento() {
+        return arquivoDespesaEndividamento;
+    }
+
+    public void setArquivoDespesaEndividamento(String arquivoDespesaEndividamento) {
+        this.arquivoDespesaEndividamento = arquivoDespesaEndividamento;
     }
 
     public Boolean getInternet() {
@@ -181,6 +232,14 @@ public class Despesa implements Serializable {
         this.valorInternet = valorInternet;
     }
 
+    public String getArquivoDespesaInternet() {
+        return arquivoDespesaInternet;
+    }
+
+    public void setArquivoDespesaInternet(String arquivoDespesaInternet) {
+        this.arquivoDespesaInternet = arquivoDespesaInternet;
+    }
+
     public Boolean getAgua() {
         return agua;
     }
@@ -195,6 +254,14 @@ public class Despesa implements Serializable {
 
     public void setValorAgua(Double valorAgua) {
         this.valorAgua = valorAgua;
+    }
+
+    public String getArquivoDespesaAgua() {
+        return arquivoDespesaAgua;
+    }
+
+    public void setArquivoDespesaAgua(String arquivoDespesaAgua) {
+        this.arquivoDespesaAgua = arquivoDespesaAgua;
     }
 
     public Boolean getMedicamentos() {
@@ -213,6 +280,14 @@ public class Despesa implements Serializable {
         this.valorMedicamentos = valorMedicamentos;
     }
 
+    public String getArquivoDespesaMedicamentos() {
+        return arquivoDespesaMedicamentos;
+    }
+
+    public void setArquivoDespesaMedicamentos(String arquivoDespesaMedicamentos) {
+        this.arquivoDespesaMedicamentos = arquivoDespesaMedicamentos;
+    }
+
     public Boolean getLuz() {
         return luz;
     }
@@ -227,6 +302,14 @@ public class Despesa implements Serializable {
 
     public void setValorLuz(Double valorLuz) {
         this.valorLuz = valorLuz;
+    }
+
+    public String getArquivoDespesaLuz() {
+        return arquivoDespesaLuz;
+    }
+
+    public void setArquivoDespesaLuz(String arquivoDespesaLuz) {
+        this.arquivoDespesaLuz = arquivoDespesaLuz;
     }
 
     public Boolean getPlanoSaude() {
@@ -245,6 +328,14 @@ public class Despesa implements Serializable {
         this.valorPlanoSaude = valorPlanoSaude;
     }
 
+    public String getArquivoDespesaPlanoSaude() {
+        return arquivoDespesaPlanoSaude;
+    }
+
+    public void setArquivoDespesaPlanoSaude(String arquivoDespesaPlanoSaude) {
+        this.arquivoDespesaPlanoSaude = arquivoDespesaPlanoSaude;
+    }
+
     public Boolean getFinanciamentos() {
         return financiamentos;
     }
@@ -259,6 +350,14 @@ public class Despesa implements Serializable {
 
     public void setValorFinanciamentos(Double valorFinanciamentos) {
         this.valorFinanciamentos = valorFinanciamentos;
+    }
+
+    public String getArquivoDespesaFinanciamentos() {
+        return arquivoDespesaFinanciamentos;
+    }
+
+    public void setArquivoDespesaFinanciamentos(String arquivoDespesaFinanciamentos) {
+        this.arquivoDespesaFinanciamentos = arquivoDespesaFinanciamentos;
     }
 
     public Boolean getTransporte() {
@@ -277,6 +376,14 @@ public class Despesa implements Serializable {
         this.valorTransporte = valorTransporte;
     }
 
+    public String getArquivoDespesaTransporte() {
+        return arquivoDespesaTransporte;
+    }
+
+    public void setArquivoDespesaTransporte(String arquivoDespesaTransporte) {
+        this.arquivoDespesaTransporte = arquivoDespesaTransporte;
+    }
+
     public Boolean getInvestimentosEducacao() {
         return investimentosEducacao;
     }
@@ -291,6 +398,14 @@ public class Despesa implements Serializable {
 
     public void setValorInvestimentosEducacao(Double valorInvestimentosEducacao) {
         this.valorInvestimentosEducacao = valorInvestimentosEducacao;
+    }
+
+    public String getArquivoDespesaInvestimentosEducacao() {
+        return arquivoDespesaInvestimentosEducacao;
+    }
+
+    public void setArquivoDespesaInvestimentosEducacao(String arquivoDespesaInvestimentosEducacao) {
+        this.arquivoDespesaInvestimentosEducacao = arquivoDespesaInvestimentosEducacao;
     }
 
     public Boolean getOutros() {
@@ -317,38 +432,59 @@ public class Despesa implements Serializable {
         this.nomeOutros = nomeOutros;
     }
 
+    public String getArquivoDespesaOutros() {
+        return arquivoDespesaOutros;
+    }
+
+    public void setArquivoDespesaOutros(String arquivoDespesaOutros) {
+        this.arquivoDespesaOutros = arquivoDespesaOutros;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 11 * hash + Objects.hashCode(this.despesa);
-        hash = 11 * hash + Objects.hashCode(this.familia);
-        hash = 11 * hash + Objects.hashCode(this.aluguel);
-        hash = 11 * hash + Objects.hashCode(this.valorAluguel);
-        hash = 11 * hash + Objects.hashCode(this.mensalidadeEscolar);
-        hash = 11 * hash + Objects.hashCode(this.valorMensalidadeEscolar);
-        hash = 11 * hash + Objects.hashCode(this.telefone);
-        hash = 11 * hash + Objects.hashCode(this.valorTelefone);
-        hash = 11 * hash + Objects.hashCode(this.endividamento);
-        hash = 11 * hash + Objects.hashCode(this.valorEndividamento);
-        hash = 11 * hash + Objects.hashCode(this.internet);
-        hash = 11 * hash + Objects.hashCode(this.valorInternet);
-        hash = 11 * hash + Objects.hashCode(this.agua);
-        hash = 11 * hash + Objects.hashCode(this.valorAgua);
-        hash = 11 * hash + Objects.hashCode(this.medicamentos);
-        hash = 11 * hash + Objects.hashCode(this.valorMedicamentos);
-        hash = 11 * hash + Objects.hashCode(this.luz);
-        hash = 11 * hash + Objects.hashCode(this.valorLuz);
-        hash = 11 * hash + Objects.hashCode(this.planoSaude);
-        hash = 11 * hash + Objects.hashCode(this.valorPlanoSaude);
-        hash = 11 * hash + Objects.hashCode(this.financiamentos);
-        hash = 11 * hash + Objects.hashCode(this.valorFinanciamentos);
-        hash = 11 * hash + Objects.hashCode(this.transporte);
-        hash = 11 * hash + Objects.hashCode(this.valorTransporte);
-        hash = 11 * hash + Objects.hashCode(this.investimentosEducacao);
-        hash = 11 * hash + Objects.hashCode(this.valorInvestimentosEducacao);
-        hash = 11 * hash + Objects.hashCode(this.outros);
-        hash = 11 * hash + Objects.hashCode(this.valorOutros);
-        hash = 11 * hash + Objects.hashCode(this.nomeOutros);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.despesa);
+        hash = 47 * hash + Objects.hashCode(this.familia);
+        hash = 47 * hash + Objects.hashCode(this.aluguel);
+        hash = 47 * hash + Objects.hashCode(this.valorAluguel);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaAluguel);
+        hash = 47 * hash + Objects.hashCode(this.mensalidadeEscolar);
+        hash = 47 * hash + Objects.hashCode(this.valorMensalidadeEscolar);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaMensalidadeEscolar);
+        hash = 47 * hash + Objects.hashCode(this.telefone);
+        hash = 47 * hash + Objects.hashCode(this.valorTelefone);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaTelefone);
+        hash = 47 * hash + Objects.hashCode(this.endividamento);
+        hash = 47 * hash + Objects.hashCode(this.valorEndividamento);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaEndividamento);
+        hash = 47 * hash + Objects.hashCode(this.internet);
+        hash = 47 * hash + Objects.hashCode(this.valorInternet);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaInternet);
+        hash = 47 * hash + Objects.hashCode(this.agua);
+        hash = 47 * hash + Objects.hashCode(this.valorAgua);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaAgua);
+        hash = 47 * hash + Objects.hashCode(this.medicamentos);
+        hash = 47 * hash + Objects.hashCode(this.valorMedicamentos);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaMedicamentos);
+        hash = 47 * hash + Objects.hashCode(this.luz);
+        hash = 47 * hash + Objects.hashCode(this.valorLuz);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaLuz);
+        hash = 47 * hash + Objects.hashCode(this.planoSaude);
+        hash = 47 * hash + Objects.hashCode(this.valorPlanoSaude);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaPlanoSaude);
+        hash = 47 * hash + Objects.hashCode(this.financiamentos);
+        hash = 47 * hash + Objects.hashCode(this.valorFinanciamentos);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaFinanciamentos);
+        hash = 47 * hash + Objects.hashCode(this.transporte);
+        hash = 47 * hash + Objects.hashCode(this.valorTransporte);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaTransporte);
+        hash = 47 * hash + Objects.hashCode(this.investimentosEducacao);
+        hash = 47 * hash + Objects.hashCode(this.valorInvestimentosEducacao);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaInvestimentosEducacao);
+        hash = 47 * hash + Objects.hashCode(this.outros);
+        hash = 47 * hash + Objects.hashCode(this.valorOutros);
+        hash = 47 * hash + Objects.hashCode(this.nomeOutros);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesaOutros);
         return hash;
     }
 
@@ -364,7 +500,46 @@ public class Despesa implements Serializable {
             return false;
         }
         final Despesa other = (Despesa) obj;
+        if (!Objects.equals(this.arquivoDespesaAluguel, other.arquivoDespesaAluguel)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaMensalidadeEscolar, other.arquivoDespesaMensalidadeEscolar)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaTelefone, other.arquivoDespesaTelefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaEndividamento, other.arquivoDespesaEndividamento)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaInternet, other.arquivoDespesaInternet)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaAgua, other.arquivoDespesaAgua)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaMedicamentos, other.arquivoDespesaMedicamentos)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaLuz, other.arquivoDespesaLuz)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaPlanoSaude, other.arquivoDespesaPlanoSaude)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaFinanciamentos, other.arquivoDespesaFinanciamentos)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaTransporte, other.arquivoDespesaTransporte)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaInvestimentosEducacao, other.arquivoDespesaInvestimentosEducacao)) {
+            return false;
+        }
         if (!Objects.equals(this.nomeOutros, other.nomeOutros)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoDespesaOutros, other.arquivoDespesaOutros)) {
             return false;
         }
         if (!Objects.equals(this.despesa, other.despesa)) {
@@ -453,5 +628,7 @@ public class Despesa implements Serializable {
         }
         return true;
     }
+
+
     
 }

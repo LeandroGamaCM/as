@@ -1,7 +1,6 @@
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -18,6 +17,9 @@ public class MembroFamiliar implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cod_familia")
     private Familia familia;
+
+    @Column(name = "arquivo_renda")
+    private String arquivoRenda;
     
     private String nome;
     private String parentesco;
@@ -41,6 +43,14 @@ public class MembroFamiliar implements Serializable {
 
     public void setFamilia(Familia familia) {
         this.familia = familia;
+    }
+
+    public String getArquivoRenda() {
+        return arquivoRenda;
+    }
+
+    public void setArquivoRenda(String arquivoRenda) {
+        this.arquivoRenda = arquivoRenda;
     }
 
     public String getNome() {
@@ -86,13 +96,14 @@ public class MembroFamiliar implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.membroFamiliar);
-        hash = 79 * hash + Objects.hashCode(this.familia);
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + Objects.hashCode(this.parentesco);
-        hash = 79 * hash + Objects.hashCode(this.escolaridade);
-        hash = 79 * hash + Objects.hashCode(this.salario);
-        hash = 79 * hash + Objects.hashCode(this.idade);
+        hash = 37 * hash + Objects.hashCode(this.membroFamiliar);
+        hash = 37 * hash + Objects.hashCode(this.familia);
+        hash = 37 * hash + Objects.hashCode(this.arquivoRenda);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.parentesco);
+        hash = 37 * hash + Objects.hashCode(this.escolaridade);
+        hash = 37 * hash + Objects.hashCode(this.salario);
+        hash = 37 * hash + Objects.hashCode(this.idade);
         return hash;
     }
 
@@ -108,6 +119,9 @@ public class MembroFamiliar implements Serializable {
             return false;
         }
         final MembroFamiliar other = (MembroFamiliar) obj;
+        if (!Objects.equals(this.arquivoRenda, other.arquivoRenda)) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -132,5 +146,5 @@ public class MembroFamiliar implements Serializable {
         return true;
     }
 
-    
+
 }

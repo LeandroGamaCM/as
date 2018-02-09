@@ -1,5 +1,3 @@
-// Pendentes -------------------------------------------------------------------
-// tempoServico em anos
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
@@ -21,6 +19,9 @@ public class Ocupacao implements Serializable {
     @OneToOne(mappedBy = "ocupacao")
     private Aluno aluno;
     
+    @Column(name = "arquivo_ocupacao")
+    private String arquivoOcupacao;
+    
     private String trabalho;
 
     @Column(name = "telefone_empregador")
@@ -35,7 +36,7 @@ public class Ocupacao implements Serializable {
     private String nomeEmpregador;
     
     @Column(name = "possui_estagio")
-    private boolean possuiEstagio;
+    private Boolean possuiEstagio;
 
     @Column(name = "instituicao_estagio")
     private String instiruicaoEstagio;
@@ -63,6 +64,14 @@ public class Ocupacao implements Serializable {
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public String getArquivoOcupacao() {
+        return arquivoOcupacao;
+    }
+
+    public void setArquivoOcupacao(String arquivoOcupacao) {
+        this.arquivoOcupacao = arquivoOcupacao;
     }
 
     public String getTrabalho() {
@@ -105,11 +114,11 @@ public class Ocupacao implements Serializable {
         this.nomeEmpregador = nomeEmpregador;
     }
 
-    public boolean isPossuiEstagio() {
+    public Boolean getPossuiEstagio() {
         return possuiEstagio;
     }
 
-    public void setPossuiEstagio(boolean possuiEstagio) {
+    public void setPossuiEstagio(Boolean possuiEstagio) {
         this.possuiEstagio = possuiEstagio;
     }
 
@@ -139,18 +148,19 @@ public class Ocupacao implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.ocupacao);
-        hash = 37 * hash + Objects.hashCode(this.aluno);
-        hash = 37 * hash + Objects.hashCode(this.trabalho);
-        hash = 37 * hash + Objects.hashCode(this.telefoneEmpregador);
-        hash = 37 * hash + Objects.hashCode(this.possuiTrabalho);
-        hash = 37 * hash + Objects.hashCode(this.profissao);
-        hash = 37 * hash + Objects.hashCode(this.nomeEmpregador);
-        hash = 37 * hash + (this.possuiEstagio ? 1 : 0);
-        hash = 37 * hash + Objects.hashCode(this.instiruicaoEstagio);
-        hash = 37 * hash + Objects.hashCode(this.salarioMensal);
-        hash = 37 * hash + Objects.hashCode(this.tempoServico);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.ocupacao);
+        hash = 17 * hash + Objects.hashCode(this.aluno);
+        hash = 17 * hash + Objects.hashCode(this.arquivoOcupacao);
+        hash = 17 * hash + Objects.hashCode(this.trabalho);
+        hash = 17 * hash + Objects.hashCode(this.telefoneEmpregador);
+        hash = 17 * hash + Objects.hashCode(this.possuiTrabalho);
+        hash = 17 * hash + Objects.hashCode(this.profissao);
+        hash = 17 * hash + Objects.hashCode(this.nomeEmpregador);
+        hash = 17 * hash + Objects.hashCode(this.possuiEstagio);
+        hash = 17 * hash + Objects.hashCode(this.instiruicaoEstagio);
+        hash = 17 * hash + Objects.hashCode(this.salarioMensal);
+        hash = 17 * hash + Objects.hashCode(this.tempoServico);
         return hash;
     }
 
@@ -166,7 +176,7 @@ public class Ocupacao implements Serializable {
             return false;
         }
         final Ocupacao other = (Ocupacao) obj;
-        if (this.possuiEstagio != other.possuiEstagio) {
+        if (!Objects.equals(this.arquivoOcupacao, other.arquivoOcupacao)) {
             return false;
         }
         if (!Objects.equals(this.trabalho, other.trabalho)) {
@@ -193,6 +203,9 @@ public class Ocupacao implements Serializable {
         if (!Objects.equals(this.possuiTrabalho, other.possuiTrabalho)) {
             return false;
         }
+        if (!Objects.equals(this.possuiEstagio, other.possuiEstagio)) {
+            return false;
+        }
         if (!Objects.equals(this.salarioMensal, other.salarioMensal)) {
             return false;
         }
@@ -201,5 +214,6 @@ public class Ocupacao implements Serializable {
         }
         return true;
     }
+
 
 }

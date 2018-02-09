@@ -91,7 +91,9 @@ Contributor(s):
     <mapping class="br.edu.ifba.paae.entidades.formulario.ResidenciaFamilia"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.formulario.SituacaoResidencial"></mapping>
     <mapping class="br.edu.ifba.paae.entidades.formulario.Turma"></mapping>
+    
     <mapping class="br.edu.ifba.paae.entidades.usuario.Usuario"></mapping>
+    <mapping class="br.edu.ifba.paae.entidades.arquivo.Arquivo"></mapping>
 
   </session-factory>
 </hibernate-configuration>

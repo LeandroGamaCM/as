@@ -37,14 +37,31 @@ public class RendaPrincipalOrigemRN {
         RendaPrincipalOrigem trabalhoFormalProvedor = new RendaPrincipalOrigem();
 
         ajuda.setTipo("Apenas ajuda da família e outros");
+        ajuda.setPontuacao(5F);
+        
         beneficios.setTipo("Apenas benefícios assistenciais PBF");
+        beneficios.setPontuacao(5F);
+        
         trabalhoInformalProvedor.setTipo("Trabalho informal do(s) provedor(es)");
+        trabalhoInformalProvedor.setPontuacao(4F);
+        
         trabalhoRural.setTipo("Trabalhador rural/agricultura familiar");
+        trabalhoRural.setPontuacao(4F);
+        
         avisoPrevioSeguroDesemprego.setTipo("Aviso Prévio/Seguro desemprego/Estágio remunerado");
+        avisoPrevioSeguroDesemprego.setPontuacao(4F);
+        
         beneficiosPrevidenciarios.setTipo("Benefício(s) previdenciário(s)");
+        beneficiosPrevidenciarios.setPontuacao(3F);
+        
         trabalhoAutonomo.setTipo("Trabalho autônomo do(s) provedor(es)");
+        trabalhoAutonomo.setPontuacao(2F);
+        
         rendaLocacaoImoveis.setTipo("Renda da locação de imóveis (exclusivamente)");
+        rendaLocacaoImoveis.setPontuacao(1F);
+        
         trabalhoFormalProvedor.setTipo("Trabalho formal do(s) provedore(s)");
+        trabalhoFormalProvedor.setPontuacao(1F);
 
         this.rendaPrincipalOrigemDAO.salvar(ajuda);
         this.rendaPrincipalOrigemDAO.salvar(beneficios);

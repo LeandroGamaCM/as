@@ -35,12 +35,25 @@ public class ProgramaSocialRN {
         ProgramaSocial prouniFies = new ProgramaSocial();
         
         bcp.setTipo("BCP");
+        bcp.setPontuacao(1F);
+        
         pbf.setTipo("PBF");
+        pbf.setPontuacao(1F);
+        
         jovemAprendiz.setTipo("Programa JOVEM APRENDIZ");
+        jovemAprendiz.setPontuacao(0.4F);
+        
         proJovem.setTipo("Serviço socioeducativo PROJOVEM");
+        proJovem.setPontuacao(0.4F);
+        
         cras.setTipo("Atendimento no CRAS");
+        cras.setPontuacao(0.4F);
+        
         caps.setTipo("Atendimento no CAPS");
+        caps.setPontuacao(0.4F);
+        
         prouniFies.setTipo("PROUNI/FIES");
+        prouniFies.setPontuacao(0.4F);
         
         this.programaSocialDAO.salvar(bcp);
         this.programaSocialDAO.salvar(pbf);

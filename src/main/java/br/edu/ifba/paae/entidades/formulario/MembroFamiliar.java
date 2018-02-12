@@ -26,6 +26,9 @@ public class MembroFamiliar implements Serializable {
     private String escolaridade;
     private Double salario;
     private Integer idade;
+    private String sexo;
+    @Column(name = "situacao_ocupacional")
+    private String situacaoOcupacional;
 
 // Getters e Setters
 
@@ -93,17 +96,35 @@ public class MembroFamiliar implements Serializable {
         this.idade = idade;
     }
 
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getSituacaoOcupacional() {
+        return situacaoOcupacional;
+    }
+
+    public void setSituacaoOcupacional(String situacaoOcupacional) {
+        this.situacaoOcupacional = situacaoOcupacional;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.membroFamiliar);
-        hash = 37 * hash + Objects.hashCode(this.familia);
-        hash = 37 * hash + Objects.hashCode(this.arquivoRenda);
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        hash = 37 * hash + Objects.hashCode(this.parentesco);
-        hash = 37 * hash + Objects.hashCode(this.escolaridade);
-        hash = 37 * hash + Objects.hashCode(this.salario);
-        hash = 37 * hash + Objects.hashCode(this.idade);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.membroFamiliar);
+        hash = 97 * hash + Objects.hashCode(this.familia);
+        hash = 97 * hash + Objects.hashCode(this.arquivoRenda);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.parentesco);
+        hash = 97 * hash + Objects.hashCode(this.escolaridade);
+        hash = 97 * hash + Objects.hashCode(this.salario);
+        hash = 97 * hash + Objects.hashCode(this.idade);
+        hash = 97 * hash + Objects.hashCode(this.sexo);
+        hash = 97 * hash + Objects.hashCode(this.situacaoOcupacional);
         return hash;
     }
 
@@ -131,6 +152,12 @@ public class MembroFamiliar implements Serializable {
         if (!Objects.equals(this.escolaridade, other.escolaridade)) {
             return false;
         }
+        if (!Objects.equals(this.sexo, other.sexo)) {
+            return false;
+        }
+        if (!Objects.equals(this.situacaoOcupacional, other.situacaoOcupacional)) {
+            return false;
+        }
         if (!Objects.equals(this.membroFamiliar, other.membroFamiliar)) {
             return false;
         }
@@ -145,6 +172,5 @@ public class MembroFamiliar implements Serializable {
         }
         return true;
     }
-
 
 }

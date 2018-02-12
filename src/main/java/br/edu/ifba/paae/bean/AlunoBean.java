@@ -125,10 +125,13 @@ public class AlunoBean implements Serializable{
         TurmaRN turmaRN = new TurmaRN();
         
         
-//        turma = turmaRN.buscarPorAluno(aluno.getAluno());
-//        if(turma == null){
-//            turma = new Turma();            
-//        }
+        turma = turmaRN.buscarPorAluno(aluno.getAluno());
+        if(turma == null){
+            turma = new Turma();            
+        }else{
+            selecaoModalidade();
+            selecaoCurso();
+        }
         
         entrevista = entrevistaRN.buscarPorAluno(aluno.getAluno());
         if(entrevista == null){
@@ -271,9 +274,7 @@ public class AlunoBean implements Serializable{
         TurmaRN turmaRN = new TurmaRN();
         EntrevistaRN entrevistaRN = new EntrevistaRN();
         
-        System.out.println("turma.getNome: " + turma.getNome());
-        turma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
-        aluno.setTurma(turma);
+        aluno.setTurma(turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome()));
         aluno.setStatus("Inscrição realizada");
         
         alunoRN.salvar(this.aluno);
@@ -349,29 +350,39 @@ public class AlunoBean implements Serializable{
         membrosFamiliares.add(novoMembroFamiliar);
     }
     
+    public void changeModalidade(){
+        selecaoModalidade();
+        selectedCurso = false;
+        turma.setCurso("Selecione...");
+        turma.setNome("Selecione...");        
+    }
+    public void changeCurso(){
+        selecaoCurso();
+        turma.setNome("Selecione...");        
+    }
+    
     public void selecaoModalidade(){
         TurmaRN turmaRN = new TurmaRN();
-        if(turma.getModalidade() != null){
+        
+        if(turma.getModalidade() != null && !turma.getModalidade().equals("Selecione...")){
             List<String> aux = turmaRN.listarCursos(turma.getModalidade());
             if(aux != null){
                 cursos = new HashSet<>(aux);
                 selectedModalidade = true;
-                System.out.println("Turma.modalidade: " + turma.getModalidade());
             }            
         }
         else{
-            selectedModalidade = false;
+            selectedModalidade = false;           
         }
     }
     public void selecaoCurso(){
         TurmaRN turmaRN = new TurmaRN();
         
-        if(turma.getCurso() != null){
+        if(turma.getCurso() != null && !turma.getCurso().equals("Selecione...")){
             List<String> aux = turmaRN.listarTurmas(turma.getModalidade(), turma.getCurso());
             if(aux != null){
                 turmas = new HashSet<>(aux);
                 selectedCurso = true;
-                System.out.println("Turma.curso: " + turma.getCurso());
             }            
         }else{
             selectedCurso = false;

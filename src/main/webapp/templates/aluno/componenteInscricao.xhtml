@@ -84,17 +84,17 @@
                                 <h:panelGrid width="100%" style="margin-top: 7px" columns="6" columnClasses="label8, value8, label9, value9, label10, value10" >
                                     <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Modalidade: " for="modalidade" />
                                     <p:selectOneMenu style="width: 100%" id="modalidade" value="#{alunoBean.turma.modalidade}">
-                                        <f:selectItem itemLabel="Selecione..."/>
+                                        <f:selectItem itemLabel="Selecione..." itemValue="Selecione..."/>
                                         <f:selectItems value="#{alunoBean.modalidades}"/>                                  
-                                        <p:ajax update="curAjax" event="change" listener="#{alunoBean.selecaoModalidade()}"/>
+                                        <p:ajax update="curAjax" event="change" listener="#{alunoBean.changeModalidade()}"/>
                                     </p:selectOneMenu> 
 
                                     <p:outputPanel id="curAjax" >
                                         <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Curso: " for="curso" />
                                         <p:selectOneMenu style="width: 100%" id="curso" value="#{alunoBean.turma.curso}" disabled="#{!alunoBean.selectedModalidade}">
-                                            <f:selectItem itemLabel="Selecione..." />
+                                            <f:selectItem itemLabel="Selecione..." itemValue="Selecione..."/>
                                             <f:selectItems value="#{alunoBean.cursos}"/>                                  
-                                            <p:ajax update="turAjax" event="change" listener="#{alunoBean.selecaoCurso()}"/>
+                                            <p:ajax update="turAjax" event="change" listener="#{alunoBean.changeCurso()}"/>
                                         </p:selectOneMenu>
 
                                         <p:outputPanel id="turAjax">
@@ -122,13 +122,11 @@
 
                             <p:panel header="Endereço">                            
                                 <h:panelGrid style="margin-top: 7px" width="100%" columns="1" columnClasses="col155, col16, col21, col22, col17, col18, col19, col20">
-                                    <h:selectOneMenu id="estado" value="#{alunoBean.endereco.estado}"></h:selectOneMenu>
-                                    <h:selectOneMenu id="cidade" value="#{alunoBean.endereco.cidade}"></h:selectOneMenu>
-                                    <!--                                <select id="estado"></select>-->
-    <!--                            <select  id="cidade"></select>                                -->
-
                                     <p:outputLabel style="width: 100%" for="cidad" value="Cidade: "/>
                                     <p:inputText value="#{alunoBean.endereco.cidade}" style="width: 100%" id="cidad" label="Cidade"/>   
+                                    
+                                    <p:outputLabel value="UF: " for="uf"/>
+                                    <p:inputText id="uf" value="#{alunoBean.endereco.estado}"/>
 
                                     <p:outputLabel style="width: 100%; margin-left: 20px;" for="bairro" value="Bairro: "/>
                                     <p:inputText value="#{alunoBean.endereco.bairro}" style="width: 100%" id="bairro" label="Bairro"/>
@@ -327,18 +325,24 @@
                                 </p:outputPanel>
                             </p:panel>
 
-                            <p:panel header="Atualmente, você trabalha?">
+                            <p:panel header="Situação ocupacional">
                                 <p:messages />                               
                                 <h:panelGrid columns="1" columnClasses="label, value"> 
-                                    <p:selectOneRadio value="#{alunoBean.ocupacao.possuiTrabalho}" layout="responsive" columns="1">
-                                        <f:selectItem itemLabel="Não" itemValue="false" />  
-                                        <f:selectItem itemLabel="Sim" itemValue="true" /> 
+                                    <p:selectOneRadio value="#{alunoBean.ocupacao.situacaoOcupacional}" layout="responsive" columns="1">
+                                        <f:selectItem itemLabel="Apenas estudando" itemValue="Apenas estudando" />  
+                                        <f:selectItem itemLabel="Trabalhador(a)" itemValue="Trabalhador(a)" />  
+                                        <f:selectItem itemLabel="Desempregado(a)" itemValue="Desempregado(a)" />  
+                                        <f:selectItem itemLabel="Aviso Prévio/Seguro desemprego" itemValue="Aviso Prévio/Seguro desemprego" />
+                                        <f:selectItem itemLabel="Beneficiário do BPC - Benefício de Prestação Continuada de Assistência Social" itemValue="Beneficiário do BPC" />  
+                                        <f:selectItem itemLabel="Aposentado(a)/Pensionista" itemValue="Aposentado(a)/Pensionista" />  
+                                        
                                         <p:ajax update="trabalhoAjax" event="change"/>
                                     </p:selectOneRadio>                                   
                                 </h:panelGrid>
 
                                 <p:outputPanel id="trabalhoAjax">
-                                    <p:panelGrid rendered="#{alunoBean.ocupacao.possuiTrabalho}">
+                                    <p:panelGrid rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}">
+                                        <h5>Trabalho</h5>
                                         <h:panelGrid width="100%" columns="2" columnClasses="label20, value20">  
                                             <p:outputLabel value="Profissão: " for="prof" />
                                             <p:inputText style="width: 100%"  id="prof" value="#{alunoBean.ocupacao.profissao}" label="Profissão"/>
@@ -369,11 +373,13 @@
                                         <h:panelGrid width="100%" style="margin-top: 7px" columns="4" columnClasses="label23, value23, label24, value24">                                
                                             <p:outputLabel style="width: 100%; margin-left: 35px;" value="Tempo de serviço: " for="tempoServico" />
                                             <p:inputText style="width: 100%" id="tempoServico" value="#{alunoBean.ocupacao.tempoServico}" label="Tempo Serviço"/>
-
-                                            <p:outputLabel style="width: 100%; margin-left: 35px;" value="Salário Mensal: R$ " for="sal" />
-                                            <p:inputText style="width: 100%" id="sal" value="#{alunoBean.ocupacao.salarioMensal}" label="Lastname"/>
                                         </h:panelGrid>                             
                                     </p:panelGrid>
+
+                                    <p:panelGrid rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)' or alunoBean.ocupacao.situacaoOcupacional == 'Aviso Prévio/Seguro desemprego' or alunoBean.ocupacao.situacaoOcupacional == 'Beneficiário do BPC' or alunoBean.ocupacao.situacaoOcupacional == 'Aposentado(a)/Pensionista'}">
+                                            <p:outputLabel style="width: 100%; margin-left: 35px;" value="Salário Mensal: R$ " for="sal" />
+                                            <p:inputText style="width: 100%" id="sal" value="#{alunoBean.ocupacao.salarioMensal}" label="Salário"/>
+                                    </p:panelGrid>    
                                 </p:outputPanel>
                             </p:panel> 
 
@@ -558,24 +564,35 @@
                                             Membros Familiares
                                         </f:facet>
 
-                                        <p:column width="37%" headerText="Nome">
+                                        <p:column width="25%" headerText="Nome">
                                             <p:cellEditor>
                                                 <f:facet name="output"><p:outputLabel value="#{membroFamiliar.nome}"/></f:facet>
                                                 <f:facet name="input"><p:inputText value="#{membroFamiliar.nome}"/></f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
-                                        <p:column width="13%" headerText="Parentesco">
+                                        <p:column width="11%" headerText="Parentesco">
                                             <p:cellEditor>
                                                 <f:facet name="output"><p:outputLabel value="#{membroFamiliar.parentesco}"/></f:facet>
                                                 <f:facet name="input"><p:inputText value="#{membroFamiliar.parentesco}"/></f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
-                                        <p:column width="9%" headerText="Idade">
+                                        <p:column width="7%" headerText="Idade">
                                             <p:cellEditor>
                                                 <f:facet name="output"><p:outputLabel value="#{membroFamiliar.idade}"/></f:facet>
                                                 <f:facet name="input"><p:inputText value="#{membroFamiliar.idade}"/></f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column width="13%" headerText="Sexo">
+                                            <p:cellEditor>
+                                                <f:facet name="output"><p:outputLabel value="#{membroFamiliar.sexo}"/></f:facet>
+                                                <f:facet name="input"><p:selectOneMenu value="#{membroFamiliar.sexo}">
+                                                    <f:selectItem itemLabel="Selecione..."/>                                   
+                                                    <f:selectItem itemLabel="Feminino" itemValue="Feminino" />                                   
+                                                    <f:selectItem itemLabel="Masculino" itemValue="Masculino" />                                   
+                                                    </p:selectOneMenu></f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
@@ -583,6 +600,27 @@
                                             <p:cellEditor>
                                                 <f:facet name="output"><p:outputLabel value="#{membroFamiliar.escolaridade}"/></f:facet>
                                                 <f:facet name="input"><p:inputText value="#{membroFamiliar.escolaridade}"/></f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column headerText="Situaçao ocupacional">
+                                            <p:cellEditor>
+                                                <f:facet name="output"><p:outputLabel value="#{membroFamiliar.situacaoOcupacional}"/></f:facet>
+                                                <f:facet name="input">
+                                                    <p:selectOneMenu value="#{membroFamiliar.situacaoOcupacional}">
+                                                        <f:selectItem itemLabel="Selecione..." />  
+                                                        <f:selectItem itemLabel="Apenas estudando" itemValue="Apenas estudando" />  
+                                                        <f:selectItem itemLabel="Trabalhador rural/agricultura familiar" itemValue="Trabalhador rural/agricultura familiar" />  
+                                                        <f:selectItem itemLabel="Trabalhador(a) informal" itemValue="Trabalhador(a) informal" />  
+                                                        <f:selectItem itemLabel="Trabalhador(a) autônomo" itemValue="Trabalhador(a) autônomo" />  
+                                                        <f:selectItem itemLabel="Trabalhador(a) formal" itemValue="Trabalhodor(a) formal" /> 
+                                                        <f:selectItem itemLabel="Desempregado(a)" itemValue="Desempregado(a)" />  
+                                                        <f:selectItem itemLabel="Estágio remunerado" itemValue="Estágio remunerado" />  
+                                                        <f:selectItem itemLabel="Aviso Prévio/Seguro desemprego" itemValue="Aviso Prévio/Seguro desemprego" />
+                                                        <f:selectItem itemLabel="Beneficiário do BPC" itemValue="Beneficiário do BPC" />  
+                                                        <f:selectItem itemLabel="Aposentado(a)/Pensionista" itemValue="Aposentado(a)/Pensionista" /> 
+                                                    </p:selectOneMenu>
+                                                </f:facet>
                                             </p:cellEditor>
                                         </p:column>
 
@@ -614,9 +652,9 @@
 
                                         <p:outputLabel value="Que doença(s)? " for="aux68" />
                                         <p:inputText id="aux68"  value="#{alunoBean.doenca.doencas}" label="Doenças"/>
-                                        <p:outputLabel value="Onde e realizado o tratamento"/>
+                                        <p:outputLabel value="Caso haja tratamento indique onde é realizado"/>
                                         <p:selectOneMenu value="#{alunoBean.doenca.tratamento}">
-                                            <f:selectItem itemLabel="Selecione"/>
+                                            <f:selectItem itemLabel="Selecione..."/>
                                             <f:selectItem itemLabel="No mesmo município do domicílio" itemValue="No mesmo município do domicílio"/>
                                             <f:selectItem itemLabel="Em município diferente do domicílio" itemValue="Em município diferente do domicílio"/>
                                         </p:selectOneMenu>

@@ -26,7 +26,7 @@ public class InicializadorBean {
 
     public void verificarDadosEArquivos(){
         inicializar();
-        deletarArquivosTemporarios();
+//        deletarArquivosTemporarios();
     }
     public void inicializar(){
         ComposicaoFamiliarRN composicaoFamiliarRN = new ComposicaoFamiliarRN();

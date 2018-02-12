@@ -31,8 +31,13 @@ public class EtniaRN {
         Etnia brancoAmareloOutro = new Etnia();
 
         negroIndigena.setTipo("Negro ou Indígena");
+        negroIndigena.setPontuacao(2F);
+        
         pardo.setTipo("Pardo");
+        pardo.setPontuacao(1F);
+        
         brancoAmareloOutro.setTipo("Branco, amarelo ou outra");
+        brancoAmareloOutro.setPontuacao(0.5F);
         
         this.etniaDAO.salvar(negroIndigena);
         this.etniaDAO.salvar(pardo);

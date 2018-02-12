@@ -30,7 +30,10 @@ public class GeneroRN {
         Genero mulherCasada = new Genero();
         
         mulherSolteira.setTipo("Mulher chefe de família, mãe solteira ou viúva");
+        mulherSolteira.setPontuacao(1F);
+        
         mulherCasada.setTipo("Mulher chefe de família com companheiro");
+        mulherCasada.setPontuacao(0.5F);
         
         this.generoDAO.salvar(mulherSolteira);
         this.generoDAO.salvar(mulherCasada);

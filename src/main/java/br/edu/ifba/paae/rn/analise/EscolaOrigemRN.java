@@ -28,15 +28,20 @@ public class EscolaOrigemRN {
 // Aqui inicializa o banco colocando todas os objetos pre-definidos    
         EscolaOrigem publica = new EscolaOrigem();
         EscolaOrigem privadaBolsa = new EscolaOrigem();
-        EscolaOrigem privataSemBolsa = new EscolaOrigem();
+        EscolaOrigem privadaSemBolsa = new EscolaOrigem();
     
         publica.setTipo("Pública");
+        publica.setPontuacao(20F);
+                
         privadaBolsa.setTipo("Privada com bolsa de estudo parcial ou integral");
-        privataSemBolsa.setTipo("Privada sem bolsa de estudo");
+        privadaBolsa.setPontuacao(10F);
+        
+        privadaSemBolsa.setTipo("Privada sem bolsa de estudo");
+        privadaSemBolsa.setPontuacao(5F);
         
         this.escolaOrigemDAO.salvar(publica);
         this.escolaOrigemDAO.salvar(privadaBolsa);
-        this.escolaOrigemDAO.salvar(privataSemBolsa);
+        this.escolaOrigemDAO.salvar(privadaSemBolsa);
     }
     public Float getPeso(){
         int i = 0;

@@ -32,9 +32,16 @@ public class SaudeRN {
         Saude conflitoViolencia = new Saude();
 
         doencaGrave.setTipo("Diagnóstico de doença grave");
+        doencaGrave.setPontuacao(2F);
+        
         tratamentoMunicipio.setTipo("Tratamento realizado no mesmo município do domicílio");
+        tratamentoMunicipio.setPontuacao(1F);
+        
         tratamentoOutroMunicipio.setTipo("Tratamento realizado em município diferente do domicílio");
+        tratamentoOutroMunicipio.setPontuacao(1.5F);
+        
         conflitoViolencia.setTipo("Situação de conflito e/ou violência");
+        conflitoViolencia.setPontuacao(1F);
         
         this.saudeDAO.salvar(doencaGrave);
         this.saudeDAO.salvar(tratamentoMunicipio);

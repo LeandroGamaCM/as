@@ -118,14 +118,14 @@
 
                 <p:panel header="Situação ocupacional">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui trabalho" rendered="#{!alunoBean.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="#{alunoBean.ocupacao.situacaoOcupacional}"/>
                         
-                        <p:outputLabel value="Profissão: #{alunoBean.ocupacao.profissao}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Tipo de profissão: #{alunoBean.ocupacao.trabalho}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Nome do empregador e/ou da empresa: #{alunoBean.ocupacao.nomeEmpregador}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Tempo de serviço: #{alunoBean.ocupacao.tempoServico} anos" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Telefone do empregador ou da empresa: #{alunoBean.ocupacao.telefoneEmpregador}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Salário Mensal: R$ #{alunoBean.ocupacao.salarioMensal}" rendered="#{alunoBean.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="Profissão: #{alunoBean.ocupacao.profissao}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Tipo de profissão: #{alunoBean.ocupacao.trabalho}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Nome do empregador e/ou da empresa: #{alunoBean.ocupacao.nomeEmpregador}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Tempo de serviço: #{alunoBean.ocupacao.tempoServico} anos" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Telefone do empregador ou da empresa: #{alunoBean.ocupacao.telefoneEmpregador}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Salário Mensal: R$ #{alunoBean.ocupacao.salarioMensal}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                     </h:panelGrid>
                 </p:panel>
 
@@ -206,6 +206,9 @@
                             </p:column>
                             <p:column headerText="Idade">
                                 <p:outputLabel value="#{membroFamiliar.idade}"/>
+                            </p:column>
+                            <p:column headerText="Sexo">
+                                <p:outputLabel value="#{membroFamiliar.sexo}"/>
                             </p:column>
                             <p:column headerText="Escolaridade">
                                 <p:outputLabel value="#{membroFamiliar.escolaridade}"/>

@@ -31,8 +31,13 @@ public class CondicaoEconomicaEstudanteRN {
         CondicaoEconomicaEstudante colaborador = new CondicaoEconomicaEstudante();
         
         provedor.setTipo("Provedor(a)");
+        provedor.setPontuacao(3F);
+        
         dependente.setTipo("Dependente");
+        dependente.setPontuacao(2F);
+        
         colaborador.setTipo("Colaborador(a)");
+        colaborador.setPontuacao(1F);
         
         this.condicaoEconomicaEstudanteDAO.salvar(provedor);
         this.condicaoEconomicaEstudanteDAO.salvar(dependente);

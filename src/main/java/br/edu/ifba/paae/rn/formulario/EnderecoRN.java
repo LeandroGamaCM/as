@@ -4,6 +4,7 @@ import br.edu.ifba.paae.dao.DAOFactory;
 import br.edu.ifba.paae.dao.formulario.EnderecoDAO;
 import br.edu.ifba.paae.entidades.formulario.Endereco;
 import java.util.List;
+import java.util.Locale;
 
 public class EnderecoRN {
     private EnderecoDAO enderecoDAO;
@@ -27,5 +28,16 @@ public class EnderecoRN {
     public List<Endereco> listar(){
         return this.enderecoDAO.listar();
     }
+    public boolean comparaCidadeAIrece(Endereco endereco){
+        if(endereco.getCidade() != null){
+            String cidade = endereco.getCidade().toLowerCase(Locale.ROOT);
+    
+            if(cidade.equals("irece") || cidade.equals("irecê")){
+                return true;
+            }
+        }
         
+        return false;
+    }
+
 }

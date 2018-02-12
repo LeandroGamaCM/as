@@ -32,9 +32,16 @@ public class MoradiaEstudanteRN {
         MoradiaEstudante proprio = new MoradiaEstudante();
 
         alugado.setTipo("Alugado");
+        alugado.setPontuacao(3F);
+        
         cedido.setTipo("Cedido");
+        cedido.setPontuacao(2F);
+        
         financiado.setTipo("Financiado");
+        financiado.setPontuacao(1F);
+        
         proprio.setTipo("Próprio");
+        proprio.setPontuacao(0.5F);
         
         this.moradiaEstudanteDAO.salvar(alugado);
         this.moradiaEstudanteDAO.salvar(cedido);

@@ -3,16 +3,33 @@
 - Quando a sessao inspirar tem que recarregar a pagina automaticamente ou 
     mostrar mensagem e forcar o recarregamento (Javascript?)
 
-- Criar classe para setar valores no banco (falta estados e cidades, )
-
 - Tem que puxar apenas os alunos do ano
-
-- Perguntar a Mirela se os anexos dos alunos
-
-- O Delete dos arquivos nao pode ficar no login porque se outra pessoar logar apaga os do outro
 
 - Criptografar a senha
 
-- Duvida: Podde ter mais de um programa social?
+- Ver o componente dados do aluno do adm
 
-- INICIALIZAR AS pontuacoes do barema se nao da nullpointerexc
+- A linha de membro familiar nao pode ficar vazia tem que ter um botao para excluir
+
+
+- Falar com Mirela:
+    PontuacaoProgramaSocial
+        Podde ter mais de um programa social?
+    
+    CondicaoEconomicaEstudante:
+        Se o aluno é sustentando por alguem e trabalha ou tem estagio ou recebe beneficio, então é colaborador
+        Se o aluno é sustentado e não trabalha nem tem estagio nem recebe beneficio, entao é dependente
+        Se o aluno não é sustentado ele é provedor, indepentemente se tem dependente ou ter renda
+
+    ComposicaoFamiliar:
+        cada membro da familia é avaliado e recebe uma pontuacao de acordo com a idade.
+        Se tiver tres criancas recebe a pontuacao por 3 criancas.
+        Mas a pontuação por donca e gestante é apenas uma, indepentemente de quantos doentes ou gestantes existirem
+        Se a pontuacao passar de 10, corta o que passar
+
+    DespesaAnalise:
+        Como definir os outros de relevancia?
+        Solução aplicada: qualquel um da lista de despesas é relevante
+        
+    Saude:
+        NÃO TEM COMO AVALIAR se o aluno se encontra em 'Situação de conflito e/ou violência'

@@ -3,6 +3,7 @@ package br.edu.ifba.paae.rn.analise;
 import br.edu.ifba.paae.dao.DAOFactory;
 import br.edu.ifba.paae.dao.analise.RendaPerCapitaDAO;
 import br.edu.ifba.paae.entidades.analise.RendaPerCapita;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RendaPerCapitaRN {
@@ -27,9 +28,15 @@ public class RendaPerCapitaRN {
     public Double buscarSalario(){
         return this.rendaPerCapitaDAO.buscarSalario();
     }
+    public RendaPerCapita buscarPorLimite(Double limite){
+        return this.rendaPerCapitaDAO.buscarPorLimite(limite);
+    }
     public void definirPadroes(){
 // Aqui inicializa o banco colocando todas os objetos pre-definidos  
         Double salario = 954.0;
+        definir(salario);
+    }    
+    private void definir(Double salario){
         RendaPerCapita limite1 = new RendaPerCapita();
         RendaPerCapita limite2 = new RendaPerCapita();
         RendaPerCapita limite3 = new RendaPerCapita();
@@ -41,35 +48,45 @@ public class RendaPerCapitaRN {
         RendaPerCapita limite9 = new RendaPerCapita();
         RendaPerCapita limite10 = new RendaPerCapita();
         
-        limite1.setLimite("Até R$ " + String.valueOf(salario*1.5*0.1));
+        limite1.setLimite(salario*1.5*0.1);
         limite1.setSalario(salario);
+        limite1.setPontuacao(30F);
 
-        limite2.setLimite("Até R$ " + String.valueOf(salario*0.2*1.5));
+        limite2.setLimite(salario*0.2*1.5);
         limite2.setSalario(salario);
+        limite2.setPontuacao(27F);
 
-        limite3.setLimite("Até R$ " + String.valueOf(salario*0.3*1.5));
+        limite3.setLimite(salario*0.3*1.5);
         limite3.setSalario(salario);
+        limite3.setPontuacao(24F);
 
-        limite4.setLimite("Até R$ " + String.valueOf(salario*0.4*1.5));
+        limite4.setLimite(salario*0.4*1.5);
         limite4.setSalario(salario);
+        limite4.setPontuacao(21F);
 
-        limite5.setLimite("Até R$ " + String.valueOf(salario*0.5*1.5));
+        limite5.setLimite(salario*0.5*1.5);
         limite5.setSalario(salario);
+        limite5.setPontuacao(15F);
 
-        limite6.setLimite("Até R$ " + String.valueOf(salario*0.6*1.5));
+        limite6.setLimite(salario*0.6*1.5);
         limite6.setSalario(salario);
+        limite6.setPontuacao(9F);
 
-        limite7.setLimite("Até R$ " + String.valueOf(salario*0.7*1.5));
+        limite7.setLimite(salario*0.7*1.5);
         limite7.setSalario(salario);
+        limite7.setPontuacao(6F);
 
-        limite8.setLimite("Até R$ " + String.valueOf(salario*0.8*1.5));
+        limite8.setLimite(salario*0.8*1.5);
         limite8.setSalario(salario);
+        limite8.setPontuacao(3F);
 
-        limite9.setLimite("Até R$ " + String.valueOf(salario*0.9*1.5));
+        limite9.setLimite(salario*0.9*1.5);
         limite9.setSalario(salario);
+        limite9.setPontuacao(2F);
 
-        limite10.setLimite("Até R$ " + String.valueOf(salario*1.5));
+        limite10.setLimite(salario*1.5);
         limite10.setSalario(salario);
+        limite10.setPontuacao(1F);
 
         this.rendaPerCapitaDAO.salvar(limite1);
         this.rendaPerCapitaDAO.salvar(limite2);
@@ -81,6 +98,7 @@ public class RendaPerCapitaRN {
         this.rendaPerCapitaDAO.salvar(limite8);
         this.rendaPerCapitaDAO.salvar(limite9);
         this.rendaPerCapitaDAO.salvar(limite10);
+        
     }
     public Float getPeso(){
         int i = 0;
@@ -92,18 +110,27 @@ public class RendaPerCapitaRN {
         }
         return peso;
     }
-    public RendaPerCapita buscarPorAspectoEmAvaliacao(String tipo){
-        return this.rendaPerCapitaDAO.buscarPorAspectoEmAvaliacao(tipo);
+    public List<Double> listarLimites(){
+        List<RendaPerCapita> rendaPerCapitas = listar();
+        List<Double> limites = new ArrayList<>();
+        int i;
+        
+        if(rendaPerCapitas != null){
+            for(i=0; i<rendaPerCapitas.size(); i++){
+                limites.add(rendaPerCapitas.get(i).getLimite());
+            }            
+        }
+        return limites;
     }    
     public void editarSalario(Double salario){
-        salario += salario*0.5;
         List<RendaPerCapita> rendaPerCapitas = listar();
         int i;
         
-        for(i=0; i<rendaPerCapitas.size(); i++){
-            RendaPerCapita rendaPerCapita = rendaPerCapitas.get(i);
-            rendaPerCapita.setLimite("Até R$ " + String.valueOf(salario*0.1 * i));
-            salvar(rendaPerCapita);
+        if(rendaPerCapitas != null){
+            for(i=0; i<rendaPerCapitas.size(); i++){
+                excluir(rendaPerCapitas.get(i));
+            }            
         }
+        definir(salario);
     }
 }

@@ -90,6 +90,28 @@
             
             doc.addEventListener('blur', limpaCampo);
         </script> 
+<!--    <script type="text/javascript">
+        var els = document.querySelectorAll(".validar");
+        for(var x=0; els.length>x; x++){
+           els[x].addEventListener("blur", function(){
+              if(this.value === ''){
+                 this.nextSibling.outerHTML = '';
+                 var alerta = document.createElement("span");
+                 alerta.setAttribute("class", "avisoMSG");
+                 var t = document.createTextNode(this.getAttribute("alt"));
+                 alerta.appendChild(t);
+                 var seta = document.createElement("em");
+                 seta.setAttribute("class", "arrow-left");
+                 alerta.appendChild(seta);
+                 this.parentNode.insertBefore(alerta, this.nextSibling);
+              }
+           });
+
+           els[x].addEventListener("focus", function(){
+              this.nextSibling.outerHTML = '';
+           });
+        }
+    </script>-->
         
         <noscript>
             Para completa funcionalidade deste site é necessário habilitar o JavaScript.<br/>

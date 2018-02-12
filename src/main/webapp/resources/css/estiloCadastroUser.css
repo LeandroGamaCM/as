@@ -1,3 +1,29 @@
+.avisoMSG{
+   position: absolute;
+   display: block;
+   white-space: nowrap;
+   padding: 5px;
+   border-radius: 3px;
+   top: 50%;
+   left: 101%;
+   background: #f30;
+   color: #fff;
+   z-index: 9;
+   -webkit-transform: translateY(-50%);
+   -moz-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent; 
+  border-right: 5px solid #f30;
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  margin-top: -5px;
+}
 .layout{
   display: none;
 }

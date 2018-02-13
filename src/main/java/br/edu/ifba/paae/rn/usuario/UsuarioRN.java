@@ -47,6 +47,7 @@ public class UsuarioRN {
         Usuario usuario = new Usuario();
         usuario.setLogin("admin");
         usuario.setSenha("admin");
+        usuario.setNome("admin");
         usuario.setAtivo(Boolean.TRUE);
         usuario.getPermissao().add("ROLE_ADMINISTRADOR");
         

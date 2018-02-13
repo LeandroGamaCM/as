@@ -15,8 +15,9 @@ public class RendaPerCapita implements Serializable {
     @GeneratedValue
     private Integer id;
     
-    private Double limite;
+    private String limite;
     private Float pontuacao;
+    private Double salario;
 
     public Integer getId() {
         return id;
@@ -26,11 +27,11 @@ public class RendaPerCapita implements Serializable {
         this.id = id;
     }
 
-    public Double getLimite() {
+    public String getLimite() {
         return limite;
     }
 
-    public void setLimite(Double limite) {
+    public void setLimite(String limite) {
         this.limite = limite;
     }
 
@@ -42,12 +43,21 @@ public class RendaPerCapita implements Serializable {
         this.pontuacao = pontuacao;
     }
 
+    public Double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(Double salario) {
+        this.salario = salario;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.limite);
-        hash = 41 * hash + Objects.hashCode(this.pontuacao);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.limite);
+        hash = 29 * hash + Objects.hashCode(this.pontuacao);
+        hash = 29 * hash + Objects.hashCode(this.salario);
         return hash;
     }
 
@@ -72,7 +82,12 @@ public class RendaPerCapita implements Serializable {
         if (!Objects.equals(this.pontuacao, other.pontuacao)) {
             return false;
         }
+        if (!Objects.equals(this.salario, other.salario)) {
+            return false;
+        }
         return true;
     }
+    
+
     
 }

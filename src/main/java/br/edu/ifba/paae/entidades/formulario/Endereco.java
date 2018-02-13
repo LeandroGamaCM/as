@@ -6,7 +6,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.Parameter;
 
 @Entity
-@Table
+@Table(name = "endereco")
 public class Endereco implements Serializable {
     private static final long serialVersionUID = -8577490813567926816L;
 
@@ -24,11 +24,8 @@ public class Endereco implements Serializable {
     private Integer numero;
     private Integer cep;
     private String bairro;
-    
-// É ideia pegar esses dados por listas prontas --------------------------------
     private String cidade;
     private String estado;
-// -----------------------------------------------------------------------------
 
     public Integer getEndereco() {
         return endereco;
@@ -97,14 +94,14 @@ public class Endereco implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.endereco);
-        hash = 53 * hash + Objects.hashCode(this.aluno);
-        hash = 53 * hash + Objects.hashCode(this.rua);
-        hash = 53 * hash + Objects.hashCode(this.numero);
-        hash = 53 * hash + Objects.hashCode(this.cep);
-        hash = 53 * hash + Objects.hashCode(this.bairro);
-        hash = 53 * hash + Objects.hashCode(this.cidade);
-        hash = 53 * hash + Objects.hashCode(this.estado);
+        hash = 79 * hash + Objects.hashCode(this.endereco);
+        hash = 79 * hash + Objects.hashCode(this.aluno);
+        hash = 79 * hash + Objects.hashCode(this.rua);
+        hash = 79 * hash + Objects.hashCode(this.numero);
+        hash = 79 * hash + Objects.hashCode(this.cep);
+        hash = 79 * hash + Objects.hashCode(this.bairro);
+        hash = 79 * hash + Objects.hashCode(this.cidade);
+        hash = 79 * hash + Objects.hashCode(this.estado);
         return hash;
     }
 
@@ -147,4 +144,5 @@ public class Endereco implements Serializable {
         return true;
     }
 
+    
 }

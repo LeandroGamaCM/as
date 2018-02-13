@@ -1,7 +1,6 @@
 package br.edu.ifba.paae.bean;
 
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
-import br.edu.ifba.paae.rn.analise.BolsaRN;
 import br.edu.ifba.paae.rn.analise.ComposicaoFamiliarRN;
 import br.edu.ifba.paae.rn.analise.CondicaoEconomicaEstudanteRN;
 import br.edu.ifba.paae.rn.analise.DespesaAnaliseRN;
@@ -16,19 +15,13 @@ import br.edu.ifba.paae.rn.analise.RendaPerCapitaRN;
 import br.edu.ifba.paae.rn.analise.RendaPrincipalOrigemRN;
 import br.edu.ifba.paae.rn.analise.SaudeRN;
 import br.edu.ifba.paae.rn.analise.SituacaoOcupacionalRN;
-import javax.annotation.PostConstruct;
+import br.edu.ifba.paae.rn.inscricao.InscricaoRN;
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+@ManagedBean(name = "inicializadorBean")
 public class InicializadorBean {
-    
-    @PostConstruct
-    public void init(){
-        inicializar();
-    }
 
     public void inicializar(){
-        BolsaRN bolsaRN = new BolsaRN();
         ComposicaoFamiliarRN composicaoFamiliarRN = new ComposicaoFamiliarRN();
         CondicaoEconomicaEstudanteRN condicaoEconomicaEstudanteRN = new CondicaoEconomicaEstudanteRN();
         DespesaAnaliseRN despesaAnaliseRN = new DespesaAnaliseRN();
@@ -44,14 +37,16 @@ public class InicializadorBean {
         SaudeRN saudeRN = new SaudeRN();
         SituacaoOcupacionalRN situacaoOcupacionalRN = new SituacaoOcupacionalRN();
         UsuarioRN usuarioRN = new UsuarioRN();
+        InscricaoRN inscricaoRN = new InscricaoRN();
+        
+        System.out.println("\tDefinindo padrões");
 
-        if(usuarioRN.listar() == null || usuarioRN.listar().isEmpty()){
-            System.out.println("Cadastrou usuario");
-            usuarioRN.criarADM();
+        
+        if(inscricaoRN.carregar() == null){
+            inscricaoRN.criarInscricao();
         }
-        if(bolsaRN.listar() == null || bolsaRN.listar().isEmpty()){
-            System.out.println("\n\tEntrou no if de bolsa\n");
-            bolsaRN.definirPadroes();
+        if(usuarioRN.listar() == null || usuarioRN.listar().isEmpty()){
+            usuarioRN.criarADM();
         }
         if(composicaoFamiliarRN.listar() == null || composicaoFamiliarRN.listar().isEmpty()){
             composicaoFamiliarRN.definirPadroes();

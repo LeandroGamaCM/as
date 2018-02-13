@@ -3,6 +3,7 @@ package br.edu.ifba.paae.dao;
 import br.edu.ifba.paae.dao.analise.*;
 import br.edu.ifba.paae.dao.usuario.UsuarioDAO;
 import br.edu.ifba.paae.dao.formulario.*;
+import br.edu.ifba.paae.dao.inscricao.InscricaoDAO;
 import br.edu.ifba.paae.util.HibernateUtil;
 
 public class DAOFactory {
@@ -11,6 +12,12 @@ public class DAOFactory {
         usuarioDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return usuarioDAO;
     }
+    public static InscricaoDAO criarInscricaoDAO(){
+        InscricaoDAO inscricaoDAO = new InscricaoDAO();
+        inscricaoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return inscricaoDAO;
+    }
+
 // Formulário    
     public static AlunoDAO criarAlunoDAO(){
         AlunoDAO alunoDAO = new AlunoDAO();
@@ -21,6 +28,11 @@ public class DAOFactory {
         EnderecoDAO enderecoDAO = new EnderecoDAO();
         enderecoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return enderecoDAO;
+    }
+    public static CidadeDAO criarCidadeDAO(){
+        CidadeDAO cidadeDAO = new CidadeDAO();
+        cidadeDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return cidadeDAO;
     }
     public static BolsasAuxilioDAO criarBolsasAuxilioDAO(){
         BolsasAuxilioDAO bolsasAuxilioDAO = new BolsasAuxilioDAO();
@@ -112,12 +124,7 @@ public class DAOFactory {
         turmaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return turmaDAO;
     }
-// Analise
-    public static BolsaDAO criarBolsaDAO(){
-        BolsaDAO bolsaDAO = new BolsaDAO();
-        bolsaDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
-        return bolsaDAO;
-    }    
+// Analise  
     public static ComposicaoFamiliarDAO criarComposicaoFamiliarDAO(){
         ComposicaoFamiliarDAO composicaoFamiliarDAO = new ComposicaoFamiliarDAO();
         composicaoFamiliarDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());

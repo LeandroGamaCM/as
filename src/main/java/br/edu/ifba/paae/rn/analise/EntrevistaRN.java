@@ -2,33 +2,9 @@ package br.edu.ifba.paae.rn.analise;
 
 import br.edu.ifba.paae.dao.DAOFactory;
 import br.edu.ifba.paae.dao.analise.EntrevistaDAO;
-import br.edu.ifba.paae.entidades.analise.ComposicaoFamiliar;
-import br.edu.ifba.paae.entidades.analise.CondicaoEconomicaEstudante;
-import br.edu.ifba.paae.entidades.analise.DespesaAnalise;
-import br.edu.ifba.paae.entidades.analise.Entrevista;
-import br.edu.ifba.paae.entidades.analise.EscolaOrigem;
-import br.edu.ifba.paae.entidades.analise.Etnia;
-import br.edu.ifba.paae.entidades.analise.LocalResidenciaFamilia;
-import br.edu.ifba.paae.entidades.analise.MoradiaEstudante;
-import br.edu.ifba.paae.entidades.analise.MoradiaFamilia;
-import br.edu.ifba.paae.entidades.analise.ProgramaSocial;
-import br.edu.ifba.paae.entidades.formulario.Aluno;
-import br.edu.ifba.paae.entidades.formulario.Despesa;
-import br.edu.ifba.paae.entidades.formulario.Doenca;
-import br.edu.ifba.paae.entidades.formulario.Endereco;
-import br.edu.ifba.paae.entidades.formulario.Familia;
-import br.edu.ifba.paae.entidades.formulario.InformacoesCurriculares;
-import br.edu.ifba.paae.entidades.formulario.MembroFamiliar;
-import br.edu.ifba.paae.entidades.formulario.ResidenciaFamilia;
-import br.edu.ifba.paae.entidades.formulario.SituacaoResidencial;
-import br.edu.ifba.paae.rn.formulario.DespesaRN;
-import br.edu.ifba.paae.rn.formulario.DoencaRN;
-import br.edu.ifba.paae.rn.formulario.EnderecoRN;
-import br.edu.ifba.paae.rn.formulario.FamiliaRN;
-import br.edu.ifba.paae.rn.formulario.InformacoesCurricularesRN;
-import br.edu.ifba.paae.rn.formulario.MembroFamiliarRN;
-import br.edu.ifba.paae.rn.formulario.ResidenciaFamiliaRN;
-import br.edu.ifba.paae.rn.formulario.SituacaoResidencialRN;
+import br.edu.ifba.paae.entidades.analise.*;
+import br.edu.ifba.paae.entidades.formulario.*;
+import br.edu.ifba.paae.rn.formulario.*;
 import java.util.List;
 
 public class EntrevistaRN {
@@ -53,25 +29,53 @@ public class EntrevistaRN {
     public List<Entrevista> listar(){
         return this.entrevistaDAO.listar();
     }
-    public Float calcularPontuacao(Aluno aluno){
+    public void setPontuacao(Aluno aluno){
        Float pontuacao = 0F; 
+       Entrevista entrevista = this.buscarPorAluno(aluno.getAluno());
        
-       pontuacao += calcularPontuacaoComposicaoFamiliar(aluno);
-       pontuacao += calcularPontuacaoCondicaoEconomicaEstudante(aluno);
-       pontuacao += calcularPontuacaoDespesaAnalise(aluno);
-       pontuacao += calcularPontuacaoEscolaOrigem(aluno);
-       pontuacao += calcularPontuacaoEtnia(aluno);
-       pontuacao += calcularPontuacaoGenero(aluno);
-       pontuacao += calcularPontuacaoLocalResidenciaFamilia(aluno);
-       pontuacao += calcularPontuacaoMoradiaEstudante(aluno);
-       pontuacao += calcularPontuacaoMoradiaFamilia(aluno);
-       pontuacao += calcularPontuacaoProgramaSocial(aluno);
-       pontuacao += calcularPontuacaoRendaPerCapita(aluno);
-       pontuacao += calcularPontuacaoRendaPrincipalOrigem(aluno);
-       pontuacao += calcularPontuacaoSaude(aluno);
-       pontuacao += calcularPontuacaoSituacaoOcupacional(aluno);
-
-       return pontuacao;       
+       if(entrevista != null){
+            entrevista.setPontuacaoComposicaoFamiliar(calcularPontuacaoComposicaoFamiliar(aluno));
+            entrevista.setPontuacaoCondicaoEconomicaEstudante(calcularPontuacaoCondicaoEconomicaEstudante(aluno));
+            entrevista.setPontuacaoDespesaAnalise(calcularPontuacaoDespesaAnalise(aluno));
+            entrevista.setPontuacaoEscolaOrigem(calcularPontuacaoEscolaOrigem(aluno));
+            entrevista.setPontuacaoEtnia(calcularPontuacaoEtnia(aluno));
+            entrevista.setPontuacaoGenero(calcularPontuacaoGenero(aluno));
+            entrevista.setPontuacaoLocalResidenciaFamilia(calcularPontuacaoLocalResidenciaFamilia(aluno));
+            entrevista.setPontuacaoMoradiaEstudante(calcularPontuacaoMoradiaEstudante(aluno));
+            entrevista.setPontuacaoMoradiaFamilia(calcularPontuacaoMoradiaFamilia(aluno));
+            entrevista.setPontuacaoProgramaSocial(calcularPontuacaoProgramaSocial(aluno));
+            entrevista.setPontuacaoRendaPerCapita(calcularPontuacaoRendaPerCapita(aluno));
+            entrevista.setPontuacaoRendaPrincipalOrigem(calcularPontuacaoRendaPrincipalOrigem(aluno));
+            entrevista.setPontuacaoSaude(calcularPontuacaoSaude(aluno));
+            entrevista.setPontuacaoSituacaoOcupacional(calcularPontuacaoSituacaoOcupacional(aluno));
+      
+            salvar(entrevista);
+           
+       }
+     
+    }
+    public Float getPontuacao(Aluno aluno){
+       Float pontuacao = 0F; 
+       Entrevista entrevista = buscarPorAluno(aluno.getAluno());
+       
+       if(entrevista != null){
+            pontuacao += entrevista.getPontuacaoComposicaoFamiliar();
+            pontuacao += entrevista.getPontuacaoCondicaoEconomicaEstudante();
+            pontuacao += entrevista.getPontuacaoDespesaAnalise();
+            pontuacao += entrevista.getPontuacaoEscolaOrigem();
+            pontuacao += entrevista.getPontuacaoEtnia();
+            pontuacao += entrevista.getPontuacaoGenero();
+            pontuacao += entrevista.getPontuacaoLocalResidenciaFamilia();
+            pontuacao += entrevista.getPontuacaoMoradiaEstudante();
+            pontuacao += entrevista.getPontuacaoMoradiaFamilia();
+            pontuacao += entrevista.getPontuacaoProgramaSocial();
+            pontuacao += entrevista.getPontuacaoRendaPerCapita();
+            pontuacao += entrevista.getPontuacaoRendaPrincipalOrigem();
+            pontuacao += entrevista.getPontuacaoSaude();
+            pontuacao += entrevista.getPontuacaoSituacaoOcupacional();
+       }
+       
+       return pontuacao;
     }
     
     private Float calcularPontuacaoComposicaoFamiliar(Aluno aluno){
@@ -80,7 +84,7 @@ public class EntrevistaRN {
         DoencaRN doencaRN = new DoencaRN();
         FamiliaRN familiaRN = new FamiliaRN();
         Familia familia = familiaRN.buscarPorAluno(aluno.getAluno());
-        Doenca doenca = doencaRN.buscarPorFamilia(familia.getFamilia());
+        Doenca doenca = new Doenca();
         
         ComposicaoFamiliarRN composicaoFamiliarRN = new ComposicaoFamiliarRN();
         ComposicaoFamiliar composicaoFamiliar;
@@ -89,31 +93,36 @@ public class EntrevistaRN {
         
         int i, k;
         
-        if(membroFamiliars != null){
+        if(membroFamiliars != null && !membroFamiliars.isEmpty()){
             for(i=0; i<membroFamiliars.size(); i++){
-                if(membroFamiliars.get(i).getIdade() < 18){
+                if(membroFamiliars.get(i).getIdade() != null && membroFamiliars.get(i).getIdade() < 18){
                     composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("Crianças/Adolescentes");
                     pontuacao +=  composicaoFamiliar.getPontuacao();
                 }
-                if(membroFamiliars.get(i).getIdade() >= 18 && membroFamiliars.get(i).getIdade() < 60){
+                if(membroFamiliars.get(i).getIdade() != null && membroFamiliars.get(i).getIdade() >= 18 && membroFamiliars.get(i).getIdade() < 60){
                     composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("Adulto");
                     pontuacao +=  composicaoFamiliar.getPontuacao();
                 }
 // Idade do Idoso?                
-                if(membroFamiliars.get(i).getIdade() >= 60){
+                if(membroFamiliars.get(i).getIdade() != null && membroFamiliars.get(i).getIdade() >= 60){
                     composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("Idosos");
                     pontuacao +=  composicaoFamiliar.getPontuacao();
-                }
-                if(doenca.getPossuiDoenca()){
-                    composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("PDC/Doença incapacitante");
-                    pontuacao +=  composicaoFamiliar.getPontuacao();                    
                 }
             }
             
         }
-        if(familia.getPossuiGestante()){
-            composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("Gestantes");
-            pontuacao += composicaoFamiliar.getPontuacao();
+        if(familia != null){
+            if(familia.getPossuiGestante() != null && familia.getPossuiGestante()){
+                composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("Gestantes");
+                pontuacao += composicaoFamiliar.getPontuacao();
+            }            
+            doenca = doencaRN.buscarPorFamilia(familia.getFamilia());
+        }
+        if(doenca != null){
+            if(doenca.getPossuiDoenca() != null && doenca.getPossuiDoenca()){
+                composicaoFamiliar = composicaoFamiliarRN.buscarPorAspectoEmAvaliacao("PDC/Doença incapacitante");
+                pontuacao +=  composicaoFamiliar.getPontuacao();                    
+            }            
         }
 
         return pontuacao;
@@ -138,25 +147,25 @@ public class EntrevistaRN {
         
         Float pontuacao = 0F;
         
-        if(despesa.getAgua()){
+        if(despesa.getAgua() != null && despesa.getAgua()){
             despesaAnalise = despesaAnaliseRN.buscarPorAspectoEmAvaliacao("Água");
             pontuacao += despesaAnalise.getPontuacao();
         }
-        if(despesa.getLuz()){
+        if(despesa.getLuz() != null && despesa.getLuz()){
             despesaAnalise = despesaAnaliseRN.buscarPorAspectoEmAvaliacao("Energia");
             pontuacao += despesaAnalise.getPontuacao();
         }
-        if(despesa.getEndividamento()){
+        if(despesa.getEndividamento() != null && despesa.getEndividamento()){
             despesaAnalise = despesaAnaliseRN.buscarPorAspectoEmAvaliacao("Endividamento (financiamento, consórcio, crédito e/ou 1 empréstimo)");
             pontuacao += despesaAnalise.getPontuacao();
         }
 // O plano de saude representa toda a despesa com saúde, não é melhor definir a despesa como apenas saúde?        
-        if(despesa.getPlanoSaude()){
+        if(despesa.getPlanoSaude() != null && despesa.getPlanoSaude()){
             despesaAnalise = despesaAnaliseRN.buscarPorAspectoEmAvaliacao("Saúde");
             pontuacao += despesaAnalise.getPontuacao();
         }
 // Tanto o investimento como as mensalidades computam despesas com educação?
-        if(despesa.getInvestimentosEducacao() || despesa.getMensalidadeEscolar()){
+        if((despesa.getInvestimentosEducacao() != null && despesa.getInvestimentosEducacao()) || (despesa.getMensalidadeEscolar() != null && despesa.getMensalidadeEscolar())){
             despesaAnalise = despesaAnaliseRN.buscarPorAspectoEmAvaliacao("Educação");
             pontuacao += despesaAnalise.getPontuacao();
         }
@@ -205,7 +214,7 @@ public class EntrevistaRN {
         return pontuacao;
     }
     private Float calcularPontuacaoGenero(Aluno aluno){
-// Como saber se a mulher é chefe?        
+// Como saber se a mulher é chefe? Se a renda dela for a maior é chefe? Tem que por um atributo sexo no membro familiar     
         Float pontuacao = 0F;
         
         return pontuacao;
@@ -306,7 +315,7 @@ public class EntrevistaRN {
         
         Float pontuacao = 0F;
 // Não pode ter varios desses?        
-        if(familia.getPossuiProgramaSocial()){
+        if(familia.getPossuiProgramaSocial() != null && familia.getPossuiProgramaSocial()){
             if("BCP".equals(familia.getProgramaSocial())){
                 programaSocial = programaSocialRN.buscarPorAspectoEmAvaliacao("BCP");
                 pontuacao += programaSocial.getPontuacao();

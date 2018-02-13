@@ -2,8 +2,80 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <ui:composition>
-               
+        <h:form>
+            <p:outputPanel id="painel">
+                <p:panel header="Dados cadastrais" rendered="#{usuarioBean.mostrarDados}">
+                        <h5>Login</h5>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Nome: #{usuarioBean.usuario.nome}"/>
+                        <p:outputLabel value="CPF: #{usuarioBean.usuario.login}"/>
+                    </h:panelGrid>
+                        <h5>Contato</h5>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Telefone: #{usuarioBean.formularioAluno.aluno.telefone}"/>
+                        <p:outputLabel value="Celular: #{usuarioBean.formularioAluno.aluno.celular}"/>
+                        <p:outputLabel value="Email: #{usuarioBean.formularioAluno.aluno.email}"/>
+                    </h:panelGrid>
+                        <h5>Endereço</h5>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel value="Rua: #{usuarioBean.formularioAluno.endereco.rua}"/>
+                        <p:outputLabel value="Número: #{usuarioBean.formularioAluno.endereco.numero}"/>
+                        <p:outputLabel value="Bairro: #{usuarioBean.formularioAluno.endereco.bairro}"/>
+                        <p:outputLabel value="Cidade: #{usuarioBean.formularioAluno.endereco.cidade}"/>
+                        <p:outputLabel value="Estado: #{usuarioBean.formularioAluno.endereco.estado}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="Editar dados" update="@form" actionListener="#{usuarioBean.changeToEditarDados()}"/>
+
+                </p:panel>
+
+                <p:panel header=" Editar dados" rendered="#{usuarioBean.editarDados}">
+                    <h5>Login</h5>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Nome" for="nome"/>
+                        <p:inputText id="nome" value="#{usuarioBean.usuario.nome}"/>
+                        <p:outputLabel value="CPF" for="cpf"/>
+                        <p:inputText id="cpf" value="#{usuarioBean.usuario.login}"/>                            
+                    </h:panelGrid>
+
+                    <h5>Contato</h5>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Telefone" for="telefone"/>
+                        <p:inputText id="telefone" value="#{usuarioBean.formularioAluno.aluno.telefone}"/>
+                        <p:outputLabel value="Celular" for="celular"/>
+                        <p:inputText id="celular" value="#{usuarioBean.formularioAluno.aluno.celular}"/>
+                        <p:outputLabel value="Email" for="email"/>
+                        <p:inputText id="email" value="#{usuarioBean.formularioAluno.aluno.email}"/>
+                    </h:panelGrid>
+
+                    <h5>Endereço</h5>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Rua" for="rua"/>
+                        <p:inputText id="rua" value="#{usuarioBean.formularioAluno.endereco.rua}"/>
+                        <p:outputLabel value="Número" for="numero"/>
+                        <p:inputText id="numero" value="#{usuarioBean.formularioAluno.endereco.numero}"/>
+                        <p:outputLabel value="Bairro" for="bairro"/>
+                        <p:inputText id="bairro" value="#{usuarioBean.formularioAluno.endereco.bairro}"/>
+                        <p:outputLabel value="Cidade" for="cidade"/>
+                        <p:inputText id="cidade" value="#{usuarioBean.formularioAluno.endereco.cidade}"/>
+                        <p:outputLabel value="Estado" for="estado"/>
+                        <p:inputText id="estado" value="#{usuarioBean.formularioAluno.endereco.estado}"/>
+                    </h:panelGrid>
+                    
+                    <h5>Senha</h5>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Senha antiga" for="senha"/>
+                        <p:password id="senha" value="#{usuarioBean.confirmacaoSenha}"/>
+                        <p:outputLabel value="Nova senha" for="novaSenha"/>
+                        <p:password id="novaSenha" value="#{usuarioBean.novaSenha}"/>
+                    </h:panelGrid>
+                    <p:commandButton value="Salvar dados" update="@form" actionListener="#{usuarioBean.salvar()}"/>
+
+                </p:panel>                
+            </p:outputPanel>
+            
+        </h:form>
     </ui:composition>
 </html>

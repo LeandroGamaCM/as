@@ -1,119 +1,98 @@
 package br.edu.ifba.paae.bean;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
-import br.edu.ifba.paae.entidades.formulario.Turma;
-import br.edu.ifba.paae.logica.AlunoTabela;
+import br.edu.ifba.paae.logica.FormularioAluno;
+import br.edu.ifba.paae.rn.analise.EntrevistaRN;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
-import br.edu.ifba.paae.rn.formulario.TurmaRN;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-@ManagedBean
+@ManagedBean(name = "telaEntrevistaBean")
 @ViewScoped
 public class TelaEntrevistaBean implements Serializable{
 
     private String estadoTela = "entrevistasFeitas";
     private String pesquisa = "";
     
-    private String filtroCurso = "todos";
-    private String filtroModalidade = "todos";
-    
+    private List<FormularioAluno> formularioAlunos = new ArrayList<>();
+    private FormularioAluno formularioAluno;
 
-    private List<Aluno> alunos;
-    private List<AlunoTabela> alunosTabela = new ArrayList<>();
-    private Set<String> modalidades;
-    private Set<String> cursos;
-    private List<Turma> turmas;
+    private Aluno aluno;
     
     @PostConstruct
     public void init(){
-        TurmaRN turmaRN = new TurmaRN();
-        listarFichas();
-        turmas = turmaRN.listar();
+        listarEntrevistas(true);
+
     }     
-    public void listarFichas(){
+    public void listarEntrevistas(boolean tipo){
         AlunoRN alunoRN = new AlunoRN();
-        TurmaRN turmaRN = new TurmaRN();
-        List<String> auxMod = turmaRN.listarModalidades();
-        List<String> auxCur = turmaRN.listarCursos();
-        if(auxMod != null){
-            modalidades = new HashSet<>(auxMod);        
-        }
-        if(auxCur != null){
-            cursos = new HashSet<>(auxCur);
-        }
-        alunosTabela = new ArrayList<>();
-        alunos = new ArrayList<>();
         int i;
 
+        formularioAlunos = new ArrayList<>();
         
-        if(filtroModalidade == null || "todos".equals(filtroModalidade)){
-            if(filtroCurso == null || "todos".equals(filtroCurso)){
-                alunos = alunoRN.listar();
-                if(alunos != null || !alunos.isEmpty()){
-                    for(i = 0; i < alunos.size(); i++){
-                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                        alunosTabela.add(alunoTabela);
-                    }
-                }
-            }else{
-                alunos = alunoRN.listarPorCurso(filtroCurso);
-                if(alunos != null || !alunos.isEmpty()){
-                    for(i = 0; i < alunos.size(); i++){
-                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                        alunosTabela.add(alunoTabela);
-                    }
-                }                
-            }
-        }else{
-            if(filtroCurso == null || "todos".equals(filtroCurso)){
-                alunos = alunoRN.listarPorModalidade(filtroModalidade);
-                if(alunos != null || !alunos.isEmpty()){
-                    for(i = 0; i < alunos.size(); i++){
-                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                        alunosTabela.add(alunoTabela);
-                    }
-                }
-            }else{
-                alunos = alunoRN.listarPorModalidadeCurso(filtroModalidade, filtroCurso);
-                if(alunos != null || !alunos.isEmpty()){
-                    for(i = 0; i < alunos.size(); i++){
-                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                        alunosTabela.add(alunoTabela);
-                    }
+        if(tipo){
+            List<Aluno> alunos = alunoRN.alunosEntrevistados();
+            
+            if(alunos != null || !alunos.isEmpty()){
+                for(i = 0; i < alunos.size(); i++){
+                    formularioAluno = new FormularioAluno(alunos.get(i));
+                    formularioAlunos.add(formularioAluno);
                 }
             }            
         }
-
+        if(!tipo){
+            List<Aluno> alunos = alunoRN.alunosNAOEntrevistados();
+            System.out.println("Entrevistas NÂO feitas");
+            if(alunos != null || !alunos.isEmpty()){
+                System.out.println("alunos.size:"+ alunos.size());
+                for(i = 0; i < alunos.size(); i++){
+                    formularioAluno = new FormularioAluno(alunos.get(i));
+                    formularioAlunos.add(formularioAluno);
+                }
+            }            
+        }
+       
     }
         
-    
     public void buscar(){
         AlunoRN alunoRN = new AlunoRN();
         int i;
-        alunosTabela = new ArrayList<>();
-        alunos = alunoRN.buscarCPFNomeRG(pesquisa);
+        List<Aluno> alunos = alunoRN.buscarCPFNomeRG(pesquisa);
+        System.out.println("\tPesquisa: " + pesquisa);
+        formularioAlunos = new ArrayList<>();
+        
         if(alunos != null || !alunos.isEmpty()){
             for(i = 0; i < alunos.size(); i++){
-                AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                alunosTabela.add(alunoTabela);
+                if(alunos.get(i).getStatus() != null && alunos.get(i).getStatus().equals("Inscrição realizada")){
+                    FormularioAluno formAluno = new FormularioAluno(alunos.get(i));
+                    formularioAlunos.add(formAluno);                    
+                }
             }
         }           
         pesquisa = "";
         changeToPesquisar();
     }
-    
+  
+    public void salvarEntrevista(){
+        EntrevistaRN entrevistaRN = new EntrevistaRN();
+        if(formularioAluno.getEntrevista() != null){
+            formularioAluno.getEntrevista().setStatus("Feita");
+            entrevistaRN.salvar(formularioAluno.getEntrevista());
+        }
+
+        changeToEntrevistasNaoFeitas();
+    }
+
 // Controle de Tela    
     public boolean isEntrevistasFeitas(){
         return "entrevistasFeitas".equals(this.estadoTela);
     }
     public void changeToEntrevistasFeitas(){
+        listarEntrevistas(true);
         this.estadoTela = "entrevistasFeitas";
     }
     
@@ -121,6 +100,7 @@ public class TelaEntrevistaBean implements Serializable{
         return "entrevistasNaoFeitas".equals(this.estadoTela);
     }
     public void changeToEntrevistasNaoFeitas(){
+        listarEntrevistas(false);
         this.estadoTela = "entrevistasNaoFeitas";
     }
         
@@ -129,6 +109,21 @@ public class TelaEntrevistaBean implements Serializable{
     }
     public void changeToPesquisar(){
         this.estadoTela = "pesquisar";
+    }
+        
+    public boolean isEntrevistarAluno(){
+        return "entrevistarAluno".equals(this.estadoTela);
+    }
+    public void changeToEntrevistarAluno(Aluno aluno){
+        this.formularioAluno = new FormularioAluno(aluno);
+        this.estadoTela = "entrevistarAluno";
+    }
+    public boolean isVerEntrevista(){
+        return "verEntrevista".equals(this.estadoTela);
+    }
+    public void changeToVerEntrevista(Aluno aluno){
+        this.formularioAluno = new FormularioAluno(aluno);
+        this.estadoTela = "verEntrevista";
     }
 
     
@@ -150,63 +145,31 @@ public class TelaEntrevistaBean implements Serializable{
         this.pesquisa = pesquisa;
     }
 
-    public String getFiltroCurso() {
-        return filtroCurso;
+    public List<FormularioAluno> getFormularioAlunos() {
+        return formularioAlunos;
     }
 
-    public void setFiltroCurso(String filtroCurso) {
-        this.filtroCurso = filtroCurso;
+    public void setFormularioAlunos(List<FormularioAluno> formularioAlunos) {
+        this.formularioAlunos = formularioAlunos;
     }
 
-    public String getFiltroModalidade() {
-        return filtroModalidade;
+    public FormularioAluno getFormularioAluno() {
+        return formularioAluno;
     }
 
-    public void setFiltroModalidade(String filtroModalidade) {
-        this.filtroModalidade = filtroModalidade;
+    public void setFormularioAluno(FormularioAluno formularioAluno) {
+        this.formularioAluno = formularioAluno;
     }
 
-    public List<Aluno> getAlunos() {
-        return alunos;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
-    public List<AlunoTabela> getAlunosTabela() {
-        return alunosTabela;
-    }
 
-    public void setAlunosTabela(List<AlunoTabela> alunosTabela) {
-        this.alunosTabela = alunosTabela;
-    }
-
-    public Set<String> getModalidades() {
-        return modalidades;
-    }
-
-    public void setModalidades(Set<String> modalidades) {
-        this.modalidades = modalidades;
-    }
-
-    public Set<String> getCursos() {
-        return cursos;
-    }
-
-    public void setCursos(Set<String> cursos) {
-        this.cursos = cursos;
-    }
-
-    public List<Turma> getTurmas() {
-        return turmas;
-    }
-
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
-    }
-
-    
     
     
 }

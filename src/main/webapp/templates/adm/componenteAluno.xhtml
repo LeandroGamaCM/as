@@ -61,9 +61,10 @@
                             <p:cellEditor>
                                 <f:facet name="output"><p:outputLabel value="#{turma.nome}"/></f:facet>
                                 <f:facet name="input"><p:inputText value="#{turma.nome}"/></f:facet>
-                            </p:cellEditor>                        </p:column>
-                        <p:column>
-                            <p:commandButton value="Deletar" action="#{telaAlunosBean.excluirTurma(turma)}"/>
+                            </p:cellEditor>                        
+                        </p:column>
+                        <p:column headerText="Apagar">
+                            <p:commandButton update="@form" value="Deletar" action="#{telaAlunosBean.excluirTurma(turma)}"/>
                         </p:column>
                     </p:dataTable>
                 </p:panel>
@@ -92,8 +93,8 @@
                                     <h:outputText value="Alunos" />
                             </f:facet>
                             <p:headerRow>
-                                <p:column colspan="2">
-                                    <h:outputText value="#{aluno.turma.nome}" />
+                                <p:column colspan="3">
+                                    <h:outputText value="#{aluno.turma.nome} #{aluno.turma.curso}" />
                                 </p:column>
                             </p:headerRow>    
 
@@ -102,6 +103,9 @@
                             </p:column>
                             <p:column headerText="Cpf">
                                 <h:outputText value="#{aluno.aluno.cpf}"/>
+                            </p:column>
+                            <p:column headerText="Staus de inscrição">
+                                <h:outputText value="#{aluno.aluno.status}"/>
                             </p:column>
 
                         </p:dataTable>

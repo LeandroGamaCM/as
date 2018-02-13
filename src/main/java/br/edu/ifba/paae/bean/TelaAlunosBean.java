@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "telaAlunosBean")
-@SessionScoped
+@ViewScoped
 public class TelaAlunosBean implements Serializable{
     private Aluno aluno = new Aluno();
     private Aluno novoAluno = new Aluno();
@@ -45,30 +45,46 @@ public class TelaAlunosBean implements Serializable{
     }    
     
     public void preCadastro(){
-        System.out.println("PreCadastro");
-        System.out.println("Alno.cpf: " + novoAluno.getCpf());
-        Usuario usuario = new Usuario();
         AlunoRN alunoRN = new AlunoRN();
         UsuarioRN usuarioRN = new UsuarioRN();
         
-        usuario.setAtivo(Boolean.FALSE);
-        usuario.setLogin(novoAluno.getCpf());
-//        usuario.getPermissao().add("ROLE_ADMINISTRADOR");
-        usuarioRN.salvar(usuario);
-        System.out.println("Salvou usuario");
-        novoAluno.setUsuario(usuario);
-        alunoRN.salvar(novoAluno);
-        System.out.println("Aluno pré-cadastrado");
-// Mostrar mensagem        
+        Usuario usuario = usuarioRN.buscarPorLogin(novoAluno.getCpf());
+        
+        if(usuario == null){
+            usuario = new Usuario();
+            usuario.setAtivo(Boolean.FALSE);
+            usuario.setLogin(novoAluno.getCpf());
+//            usuario.getPermissao().add("ROLE_ADMINISTRADOR");
+            usuarioRN.salvar(usuario);
+ 
+            novoAluno.setUsuario(usuario);
+            novoAluno.setStatus("Pré-cadastrado");
+            alunoRN.salvar(novoAluno);
+// Mostrar mensagem Salvou!
+
+            System.out.println("\tAluno pré-cadastrado");
+        }else{ 
+            System.out.println("\tEsse usuario já está cadastrado!");
+// Mostrar mensagem Já existe esse usuario
+        }
         novoAluno = new Aluno();
     }
     
     public void cadastrarTurma(){
         TurmaRN turmaRN = new TurmaRN();
-        turmaRN.salvar(novaTurma);
-        System.out.println("Turma cadastrada"); 
+        Turma verificaTurma = turmaRN.buscarTurma(novaTurma.getModalidade(), novaTurma.getCurso(), novaTurma.getNome());
+        
+        if(verificaTurma == null){
+            turmaRN.salvar(novaTurma);
+            System.out.println("Turma cadastrada");      
+// Mostrar mensagem Salvou!            
+        }else{
+            System.out.println("Essa turma já está cadastrada");
+// Mostrar mensagem já existe            
+        }
+        
         novaTurma = new Turma();
-// Mostrar mensagem        
+        turmas = turmaRN.listar();
     }
 
     public void excluirTurma(Turma turma){
@@ -76,14 +92,25 @@ public class TelaAlunosBean implements Serializable{
         if(turma != null) {
             turmaRN.excluir(turma);
         }
+        turmas = turmaRN.listar();
     }
     
     public void editarTurma(Turma turma) {
         TurmaRN turmaRN = new TurmaRN();
          
         if(turma != null) {
-            turmaRN.salvar(turma);
+            Turma verificaTurma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
+
+            if(verificaTurma == null){
+                turmaRN.salvar(turma);
+                System.out.println("Dados alterados");      
+    // Mostrar mensagem Salvou!            
+            }else{
+                System.out.println("Já existe uma turma com esses dados");
+    // Mostrar mensagem já existe            
+            }
         }
+        turmas = turmaRN.listar();
     }
     
     public void listarFichas(){

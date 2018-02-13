@@ -24,8 +24,12 @@ public class RendaPerCapitaRN {
     public List<RendaPerCapita> listar(){
         return this.rendaPerCapitaDAO.listar();
     }    
+    public Double buscarSalario(){
+        return this.rendaPerCapitaDAO.buscarSalario();
+    }
     public void definirPadroes(){
 // Aqui inicializa o banco colocando todas os objetos pre-definidos  
+        Double salario = 954.0;
         RendaPerCapita limite1 = new RendaPerCapita();
         RendaPerCapita limite2 = new RendaPerCapita();
         RendaPerCapita limite3 = new RendaPerCapita();
@@ -37,16 +41,35 @@ public class RendaPerCapitaRN {
         RendaPerCapita limite9 = new RendaPerCapita();
         RendaPerCapita limite10 = new RendaPerCapita();
         
-        limite1.setLimite(0.0);
-        limite2.setLimite(0.0);
-        limite3.setLimite(0.0);
-        limite4.setLimite(0.0);
-        limite5.setLimite(0.0);
-        limite6.setLimite(0.0);
-        limite7.setLimite(0.0);
-        limite8.setLimite(0.0);
-        limite9.setLimite(0.0);
-        limite10.setLimite(0.0);
+        limite1.setLimite("Até R$ " + String.valueOf(salario*1.5*0.1));
+        limite1.setSalario(salario);
+
+        limite2.setLimite("Até R$ " + String.valueOf(salario*0.2*1.5));
+        limite2.setSalario(salario);
+
+        limite3.setLimite("Até R$ " + String.valueOf(salario*0.3*1.5));
+        limite3.setSalario(salario);
+
+        limite4.setLimite("Até R$ " + String.valueOf(salario*0.4*1.5));
+        limite4.setSalario(salario);
+
+        limite5.setLimite("Até R$ " + String.valueOf(salario*0.5*1.5));
+        limite5.setSalario(salario);
+
+        limite6.setLimite("Até R$ " + String.valueOf(salario*0.6*1.5));
+        limite6.setSalario(salario);
+
+        limite7.setLimite("Até R$ " + String.valueOf(salario*0.7*1.5));
+        limite7.setSalario(salario);
+
+        limite8.setLimite("Até R$ " + String.valueOf(salario*0.8*1.5));
+        limite8.setSalario(salario);
+
+        limite9.setLimite("Até R$ " + String.valueOf(salario*0.9*1.5));
+        limite9.setSalario(salario);
+
+        limite10.setLimite("Até R$ " + String.valueOf(salario*1.5));
+        limite10.setSalario(salario);
 
         this.rendaPerCapitaDAO.salvar(limite1);
         this.rendaPerCapitaDAO.salvar(limite2);
@@ -72,4 +95,15 @@ public class RendaPerCapitaRN {
     public RendaPerCapita buscarPorAspectoEmAvaliacao(String tipo){
         return this.rendaPerCapitaDAO.buscarPorAspectoEmAvaliacao(tipo);
     }    
+    public void editarSalario(Double salario){
+        salario += salario*0.5;
+        List<RendaPerCapita> rendaPerCapitas = listar();
+        int i;
+        
+        for(i=0; i<rendaPerCapitas.size(); i++){
+            RendaPerCapita rendaPerCapita = rendaPerCapitas.get(i);
+            rendaPerCapita.setLimite("Até R$ " + String.valueOf(salario*0.1 * i));
+            salvar(rendaPerCapita);
+        }
+    }
 }

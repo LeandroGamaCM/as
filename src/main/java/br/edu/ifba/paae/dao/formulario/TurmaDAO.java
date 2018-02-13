@@ -1,5 +1,6 @@
 package br.edu.ifba.paae.dao.formulario;
 
+import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.formulario.Turma;
 import java.util.List;
 import org.hibernate.Query;
@@ -16,6 +17,17 @@ public class TurmaDAO {
         sessao.saveOrUpdate(turma);
     }
     public void excluir(Turma turma){
+//        AlunoDAO alunoDAO = new AlunoDAO();
+//        System.out.println("Turma.id: " + turma.getTurma());
+//        List<Aluno> alunos = alunoDAO.buscarPorTurma(turma.getTurma());
+//        int i=0;
+//        if(alunos != null && !alunos.isEmpty()){
+//            while(i<alunos.size()){
+//                Aluno aluno = alunos.get(i);
+//                aluno.setTurma(null);
+//                alunoDAO.salvar(aluno);
+//            }
+//        }
         sessao.delete(turma);
     }
 

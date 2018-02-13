@@ -4,7 +4,6 @@ import br.edu.ifba.paae.entidades.formulario.Aluno;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 public class AlunoDAO{
     private Session sessao;
@@ -41,7 +40,6 @@ public class AlunoDAO{
         return (Aluno) c.uniqueResult();
     }    
 
-// cod_turma ou codTurma?
     public List<Aluno> buscarPorTurma(Integer codTurma){
         String hql = "select a from Aluno a, Turma t where t.turma = a.turma AND t.turma = :codTurma";
         Query c = this.sessao.createQuery(hql);
@@ -69,11 +67,33 @@ public class AlunoDAO{
         return c.list();        
     }
     public List<Aluno> buscarCPFNomeRG(String valor){
-        String hql = "select a from Aluno a where a.cpf = :valor OR a.rg = :valor OR a.nome like :valor";
+        String hql = "select a from Aluno a where a.cpf like :valor OR a.rg like :valor OR a.nome like :valor";
         Query c = this.sessao.createQuery(hql);
-        c.setString("valor", valor);
-        c.setString("valor", valor);
         c.setString("valor", valor+"%");
+        c.setString("valor", valor+"%");
+        c.setString("valor", valor+"%");
+        
         return c.list();        
     }
+    public List<Aluno> alunosCadastrados(){
+        String hql = "select a from Aluno a where a.status = 'Inscrição pendente' OR a.status = 'Inscrição realizada'";
+        Query c = this.sessao.createQuery(hql);
+        return c.list();          
+    }
+    public List<Aluno> alunosInscritos(){
+        String hql = "select a from Aluno a where a.status = 'Inscrição realizada'";
+        Query c = this.sessao.createQuery(hql);
+        return c.list();         
+    }
+    public List<Aluno> alunosEntrevistados(){
+        String hql = "select a from Aluno a, Entrevista e where a.entrevista = e.entrevista AND e.status = 'Feita'";
+        Query c = this.sessao.createQuery(hql);
+        return c.list();         
+    }
+    public List<Aluno> alunosNAOEntrevistados(){
+        String hql = "select a from Aluno a, Entrevista e where a.entrevista = e.entrevista AND e.status = 'Não feita'";
+        Query c = this.sessao.createQuery(hql);
+        return c.list();         
+    }
+    
 }

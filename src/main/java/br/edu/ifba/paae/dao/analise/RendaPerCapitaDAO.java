@@ -28,5 +28,13 @@ public class RendaPerCapitaDAO {
         return (RendaPerCapita) this.sessao.createCriteria(RendaPerCapita.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
         
     }
+    public Double buscarSalario(){
+        if(listar() != null){
+            System.out.println("\tTamanho lista: " + listar().size());
+            System.out.println("\tSalario: " + listar().get(0).getSalario());
+            return listar().get(0).getSalario();
+        }
+        return 0.0;
+    }
 
 }

@@ -7,1013 +7,1065 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
         <h:form prependId="false">
-            <p:growl id="growl" sticky="true" showDetail="true"/>               
-            <div class="card card-w-title">
-                <p:panel header="Provisório, apenas pra facilitar a alternancia das telas">
-                    <p:toolbar>
-                        <p:toolbarGroup>
-                            <p:commandButton value="Mudar pra formulário" update="chefao" actionListener="#{alunoBean.changeToFormulario()}"/>
-                            <p:commandButton value="Mudar pra confirmar dados" update="chefao" actionListener="#{alunoBean.changeToTelaDados()}"/>
-                        </p:toolbarGroup>
-                    </p:toolbar>
+            <p:outputPanel rendered="#{!alunoBean.inscricao.periodoInscricao}">
+                <p:panel>
+                    <h5>O período de inscrição acabou!</h5>
                 </p:panel>
-                <p:outputPanel id="chefao">
-                    <p:panel rendered="#{alunoBean.telaFormulario}">
-                <h1>Formulário de Inscrição</h1>
-                <p:wizard nextLabel="Próximo" onnext="return onnext();" onback="return onback();" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
+            </p:outputPanel>
+            <p:outputPanel rendered="#{alunoBean.inscricao.periodoInscricao}">
+                <p:growl id="growl" sticky="true" showDetail="true"/>               
+                <div class="card card-w-title">
+                    <p:panel header="Provisório, apenas pra facilitar a alternancia das telas">
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton value="Mudar pra formulário" update="chefao" actionListener="#{alunoBean.changeToFormulario()}"/>
+                                <p:commandButton value="Mudar pra confirmar dados" update="chefao" actionListener="#{alunoBean.changeToTelaDados()}"/>
+                            </p:toolbarGroup>
+                        </p:toolbar>
+                    </p:panel>
+                    <p:outputPanel id="chefao">
+                        <p:panel rendered="#{alunoBean.telaFormulario}">
+                    <h1>Formulário de Inscrição</h1>
+                            <p:commandButton value="(Provisorio) Salvar" actionListener="#{alunoBean.salvar()}"/>
+                    <p:wizard nextLabel="Próximo" onnext="return onnext();" onback="return onback();" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
+                        <p:tab id="parte1" titleStyleClass="tab1" title="Dados Pessoais">
+                            <p:messages /> 
+                            <p:panel header="Dados Pessoais">
+                                <div class="ui-g ui-fluid">
+                                <h:panelGrid id="pg" columns="4" columnClasses="col1, col2, col3, col4">
+                                    <p:outputLabel value="Nome Completo: " for="nome" />
+                                    <p:inputText id="nome" value="#{alunoBean.aluno.nome}" label="name"/>                               
 
-                    <p:tab id="parte1" titleStyleClass="tab1" title="Dados Pessoais">
-                        <p:panel header="Dados Pessoais">
-                            <p:messages />                              
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="4" columnClasses="label1, value1, label2, value2">
-                                <p:outputLabel style="width: 100%" value="Nome Completo: " for="nome" />
-                                <p:inputText style="width: 100%" id="nome" value="#{alunoBean.aluno.nome}" label="name"/>                               
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" for="cpf" value="CPF: "/>
-                                <p:inputText style="width: 100%" id="cpf" value="#{alunoBean.aluno.cpf}" label="CPF"/>
-                            </h:panelGrid>
-
-                            <h:panelGrid style="margin-top: 7px" width="100%" columns="6" columnClasses="col10, col11, col12, col13, col14, col15">
-                                <p:outputLabel style="width: 100%" value="Apelido: " for="apelido" />
-                                <p:inputText style="width: 100%" id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
-
-                                <p:outputLabel style="margin-left: 20px" value="Sexo:" />
-                                <p:selectOneRadio value="#{alunoBean.aluno.sexo}">
-                                    <f:selectItem itemLabel="Feminino" itemValue="Feminino" />                                   
-                                    <f:selectItem itemLabel="Masculino" itemValue="Masculino" />                                   
-                                </p:selectOneRadio>   
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" value="Data de Nascimento: " for="date" />                                    
-                                <p:inputMask style="width: 100%" id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
-                                    <f:convertDateTime dateStyle="medium"/>
-                                </p:inputMask>                               
-                            </h:panelGrid>
-
-                            <h:panelGrid style="margin-top: 7px" width="100%" columns="6">
-                                <p:outputLabel style="width: 100%" for="rg" value="RG: "/>
-                                <p:inputMask style="width: 100%" id="rg"  mask="" value="#{alunoBean.aluno.rg}" label="RG"/>
-
-                                <p:outputLabel style="margin-left: 20px" value="Etnia: "/>
-                                <p:selectOneMenu value="#{alunoBean.aluno.etnia}">
-                                    <f:selectItem itemLabel="Selecione..."/>
-                                    <f:selectItem itemLabel="Negro(a)" itemValue="Negro(a)" />                                   
-                                    <f:selectItem itemLabel="Indigena(a)" itemValue="Indigena(a)" />                                   
-                                    <f:selectItem itemLabel="Pardo(a)" itemValue="Pardo(a)" />                                   
-                                    <f:selectItem itemLabel="Branco(a)" itemValue="Branco(a)" />                                   
-                                    <f:selectItem itemLabel="Amarelo(a)" itemValue="Amarelo(a)" />                                  
-                                    <f:selectItem itemLabel="Outro(a)" itemValue="Outro(a)" />                                  
-                                </p:selectOneMenu>                                
-
-                                <p:outputLabel style="margin-left: 20px" value="Estado Civil: "/>
-                                <p:selectOneMenu value="#{alunoBean.aluno.estadoCivil}">
-                                    <f:selectItem itemLabel="Selecione..."/>
-                                    <f:selectItem itemLabel="Solteiro(a)" itemValue="Solteiro(a)" />                                   
-                                    <f:selectItem itemLabel="Casado(a)" itemValue="Casado(a)" />                                   
-                                    <f:selectItem itemLabel="Uniao Estável" itemValue="Uniao Estável" />                                   
-                                    <f:selectItem itemLabel="Separado(a)" itemValue="Separado(a)" />                                   
-                                    <f:selectItem itemLabel="Viúvo(a)" itemValue="Viúvo(a)" />                                  
-                                </p:selectOneMenu>                                
-                            </h:panelGrid>  
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="6" columnClasses="label8, value8, label9, value9, label10, value10" >
-                                <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Modalidade: " for="modalidade" />
-                                <p:selectOneMenu style="width: 100%" id="modalidade" value="#{alunoBean.turma.modalidade}">
-                                    <f:selectItem itemLabel="Selecione..."/>
-                                    <f:selectItems value="#{alunoBean.modalidades}"/>                                  
-                                    <p:ajax update="curAjax,turAjax" event="change" listener="#{alunoBean.selecaoModalidade()}"/>
-                                </p:selectOneMenu> 
-
-                                <p:outputPanel id="curAjax" >
-                                    <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Curso: " for="curso" />
-                                    <p:selectOneMenu style="width: 100%" id="curso" value="#{alunoBean.turma.curso}" disabled="#{!alunoBean.selectedModalidade}">
-                                        <f:selectItem itemLabel="Selecione..." />
-                                        <f:selectItems value="#{alunoBean.cursos}"/>                                  
-                                        <p:ajax update="turAjax" event="change" listener="#{alunoBean.selecaoCurso()}"/>
-                                    </p:selectOneMenu>
-                                </p:outputPanel>
-
-                                <p:outputPanel id="turAjax">
-                                    <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Turma: " for="turma" />
-                                    <p:selectOneMenu style="width: 100%" id="turma" value="#{alunoBean.turma.nome}" disabled="#{!alunoBean.selectedCurso}">
-                                        <f:selectItem itemLabel="Selecione..."/>
-                                        <f:selectItems value="#{alunoBean.turmas}"/>                                   
-                                    </p:selectOneMenu>  
-                                </p:outputPanel>
-                            </h:panelGrid>
-                        </p:panel>
-                        <p:panel header="Contato">
-                            <h:panelGrid style="margin-top: 7px" width="100%" columns="6" columnClasses="coluna10, coluna20, coluna30, coluna40">                               
-                                <p:outputLabel style="width: 100%" for="tele" value="Telefone: "/>
-                                <p:inputMask mask="(99) 99999-9999" style="width: 100%" id="tele" label="telefone: " value="#{alunoBean.aluno.telefone}"/>
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px" for="celular" value="Celular "/>
-                                <p:inputMask mask="(99) 99999-9999" style="width: 100%" id="celular" label="celular" value="#{alunoBean.aluno.celular}"/>
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px" for="Lemail" value="Email: "/>
-                                <p:inputText style="width: 100%" id="Lemail" label="Email" value="#{alunoBean.aluno.email}"/>
-                            </h:panelGrid>
-                        </p:panel>
-
-                        <p:panel header="Endereço">                            
-                            <h:panelGrid style="margin-top: 7px" width="100%" columns="1" columnClasses="col155, col16, col21, col22, col17, col18, col19, col20">
-                                <select id="estado"></select>
-                                <select  id="cidade"></select>                                
+                                    <p:outputLabel for="cpf" value="CPF: "/>
+                                    <p:inputText id="cpf" value="#{alunoBean.aluno.cpf}" label="CPF"/>
+                                </h:panelGrid>
                                 
-                                <p:outputLabel style="width: 100%" for="cidad" value="Cidade: "/>
-                                <p:inputText value="#{alunoBean.endereco.cidade}" style="width: 100%" id="cidad" label="Cidade"/>   
 
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" for="bairro" value="Bairro: "/>
-                                <p:inputText value="#{alunoBean.endereco.bairro}" style="width: 100%" id="bairro" label="Bairro"/>
+                                <h:panelGrid id="pg" columns="6" columnClasses="col5, col6, col7, col8, col9, col10">
+                                    <p:outputLabel value="Apelido: " for="apelido" />
+                                    <p:inputText id="apelido" value="#{alunoBean.aluno.apelido}" label="Apelido"/>
 
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" for="rua" value="Rua: "/>
-                                <p:inputText style="width: 100%" value="#{alunoBean.endereco.rua}" id="rua" label="Rua"/>
+                                    <p:outputLabel value="Sexo:" />
+                                    <p:selectOneRadio value="#{alunoBean.aluno.sexo}">
+                                        <f:selectItem itemLabel="Feminino" itemValue="Feminino" />                                   
+                                        <f:selectItem itemLabel="Masculino" itemValue="Masculino" />                                   
+                                    </p:selectOneRadio>   
 
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" for="numb" value="Número: "/>
-                                <p:inputText value="#{alunoBean.endereco.numero}" style="width: 100%" id="numb" label="Numero"/>                                   
-                            </h:panelGrid>
-                        </p:panel>
-
-                        <p:panel header="Preferências de bolsa">
-                            <h:panelGrid columns="1">
-                                <p:outputLabel value="Quais suas preferências dentre as bolsas oferecidas:"/>
-                                <p:outputLabel value="Primeira opção:"/>
-                                <p:selectOneMenu value="#{alunoBean.formulario.primeiraPreferencia}">
-                                    <f:selectItem itemLabel="Selecione"/>
-                                    <f:selectItems value="#{alunoBean.listaBolsas}"/>
-                                </p:selectOneMenu>
-                                <p:outputLabel value="Segunda opção:"/>
-                                <p:selectOneMenu value="#{alunoBean.formulario.segundaPreferencia}">
-                                    <f:selectItem itemLabel="Selecione"/>
-                                    <f:selectItems value="#{alunoBean.listaBolsas}"/>
-                                </p:selectOneMenu>
-                            </h:panelGrid>
-                        </p:panel>
-
-                        <!--Colocar Mascaras nos inputs-->
-                        <p:panel header="Dados Bancários">
-                            <p:messages />                              
-                            <h:panelGrid width="100%" columns="2" columnClasses="col1, col2">
-                                <p:outputLabel value="Possui conta bancária própria?"/>
-                                <p:selectOneRadio id="conta" value="#{alunoBean.conta.possuiConta}" layout="responsive" columns="1">
-                                    <f:selectItem itemLabel="Não" itemValue="false"/>  
-                                    <f:selectItem itemLabel="Sim" itemValue="true" />  
-                                    <p:ajax update="contaAjax" event="change"/>
-                                </p:selectOneRadio> 
-                            </h:panelGrid>
-                            <p:outputPanel id="contaAjax">  
-                                <h:panelGrid rendered="#{alunoBean.conta.possuiConta}" width="100%" columns="8" columnClasses="label11, value11, label12, value12,label13, value13, label14, value14">
-                                    <p:outputLabel style="width: 100%" value="Banco: " for="banco" />
-                                    <p:inputText style="width: 100%" id="banco" value="#{alunoBean.conta.nomeBanco}" label="Banco"/>
-
-                                    <p:outputLabel style="width: 100%; margin-left: 20px" value="Agência: " for="agencia" />
-                                    <p:inputText style="width: 100%" id="agencia" value="#{alunoBean.conta.agencia}" label="Agência"/>
-                                    
-                                    <p:outputLabel value="Tipo de conta"/>
-                                    <p:selectOneMenu value="#{alunoBean.conta.tipo}">
-                                        <f:selectItem itemLabel="Conta corrente" itemValue="Conta corrente"/>
-                                        <f:selectItem itemLabel="Poupança" itemValue="Poupança"/>
-                                    </p:selectOneMenu>
-                                    
-                                    <p:outputLabel style="width: 100%; margin-left: 20px" value="Número da conta: " for="numeroConta" />
-                                    <p:inputText style="width: 100%" id="numeroConta" value="#{alunoBean.conta.numero}" label="Numero"/>
-
-                                    <p:outputLabel style="width: 100%; margin-left: 20px" value="Operação: " for="operacao" />
-                                    <p:inputText style="width: 100%" id="operacao" value="#{alunoBean.conta.operacao}" label="Operação"/>
-                                </h:panelGrid>   
-                            </p:outputPanel>
-                        </p:panel> 
-                    </p:tab>
-                    <p:tab id="parte2" titleStyleClass="tab2" title="Vida Acadêmica">
-
-                        <p:panel header="Para ingressar no IFBA você fez algum curso preparatório?">
-                            <p:messages />                              
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="3" columnClasses="value15, label16, value16">                              
-                                <p:selectOneRadio value="#{alunoBean.informacoesCurriculares.cursoPreparatorio}"  columns="1">
-                                    <f:selectItem itemLabel="Não" itemValue="false" />  
-                                    <f:selectItem itemLabel="Sim:" itemValue="true" />  
-                                    <p:ajax update="cursoAjax" event="change"/>
-                                </p:selectOneRadio>
-                            </h:panelGrid>
-
-                            <p:outputPanel id="cursoAjax">
-                                <h:panelGrid columns="2" rendered="#{alunoBean.informacoesCurriculares.cursoPreparatorio}">
-                                    <p:outputLabel style="width: 100%" value="Qual? " for="curPre" />
-                                    <p:inputText style="width: 100%" id="curPre" value="#{alunoBean.informacoesCurriculares.nomeCursoPreparatorio}" label="Lastname"/>
+                                    <p:outputLabel value="Data de Nascimento: " for="date" />                                    
+                                    <p:inputMask id="date" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
+                                        <f:convertDateTime dateStyle="medium"/>
+                                    </p:inputMask>                               
                                 </h:panelGrid>
-                            </p:outputPanel>
-                        </p:panel> 
 
+                                <h:panelGrid id="pg" columns="6">
+                                    <p:outputLabel for="rg" value="RG: "/>
+                                    <p:inputText id="rg" value="#{alunoBean.aluno.rg}" label="RG"/>
 
-                        <p:panel header="Onde você estudou?">
-                            <p:messages />                                                           
-                            <p:selectOneRadio  value="#{alunoBean.informacoesCurriculares.ondeEstudou}" layout="responsive" columns="1">
-                                <f:selectItem itemLabel="Escola pública" itemValue="Escola pública" />  
-                                <f:selectItem itemLabel="Escola particular com bolsa" itemValue="Escola particular com bolsa" />  
-                                <f:selectItem itemLabel="Escola particular sem bolsa" itemValue="Escola particular sem bolsa" />  
-                                <f:selectItem itemLabel="Parte em escola pública e parte em escola particular com bolsa" itemValue="Parte em escola pública e parte em escola particular com bolsa" />  
-                                <f:selectItem itemLabel="Parte em escola pública e parte em escola particular sem bolsa" itemValue="Parte em escola pública e parte em escola particular sem bolsa" />   
-                            </p:selectOneRadio>                                                                  
-                        </p:panel> 
+                                    <p:outputLabel value="Etnia: "/>
+                                    <p:selectOneMenu value="#{alunoBean.aluno.etnia}">
+                                        <f:selectItem itemLabel="Selecione..."/>
+                                        <f:selectItem itemLabel="Negro(a)" itemValue="Negro(a)" />                                   
+                                        <f:selectItem itemLabel="Indigena(a)" itemValue="Indigena(a)" />                                   
+                                        <f:selectItem itemLabel="Pardo(a)" itemValue="Pardo(a)" />                                   
+                                        <f:selectItem itemLabel="Branco(a)" itemValue="Branco(a)" />                                   
+                                        <f:selectItem itemLabel="Amarelo(a)" itemValue="Amarelo(a)" />                                  
+                                        <f:selectItem itemLabel="Outro(a)" itemValue="Outro(a)" />                                  
+                                    </p:selectOneMenu>                                
 
-                        <p:panel header="Houve interrupção dos estudos em algum momento da sua vida acadêmica?">
-                            <p:messages />                              
-                            <p:selectOneRadio style="margin-top: 3px" value="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="interrupcaoAjax" event="change"/>
-                            </p:selectOneRadio>  
+                                    <p:outputLabel value="Estado Civil: "/>
+                                    <p:selectOneMenu value="#{alunoBean.aluno.estadoCivil}">
+                                        <f:selectItem itemLabel="Selecione..."/>
+                                        <f:selectItem itemLabel="Solteiro(a)" itemValue="Solteiro(a)" />                                   
+                                        <f:selectItem itemLabel="Casado(a)" itemValue="Casado(a)" />                                   
+                                        <f:selectItem itemLabel="Uniao Estável" itemValue="Uniao Estável" />                                   
+                                        <f:selectItem itemLabel="Separado(a)" itemValue="Separado(a)" />                                   
+                                        <f:selectItem itemLabel="Viúvo(a)" itemValue="Viúvo(a)" />                                  
+                                    </p:selectOneMenu>                                
+                                </h:panelGrid>  
+                                <h:panelGrid id="pg" columns="6" columnClasses="col11, col12, col13, col14, col15, col16">
+                                    <p:outputLabel  value="Modalidade: " for="modalidade" />
+                                    <p:selectOneMenu id="modalidade" value="#{alunoBean.turma.modalidade}">
+                                        <f:selectItem itemLabel="Selecione..."/>
+                                        <f:selectItems value="#{alunoBean.modalidades}"/>                                  
+                                        <p:ajax update="curAjax" event="change" listener="#{alunoBean.selecaoModalidade()}"/>
+                                    </p:selectOneMenu> 
 
-                            <p:outputPanel id="interrupcaoAjax">
-                                <h:panelGrid rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}">
-                                    <h:panelGrid width="100%" style="margin-top: 5px" columns="2" columnClasses="label17, value17"> 
-                                        <p:outputLabel style="width: 100%; margin-right: 4px" value="Por qual motivo? " for="intEst" />
-                                        <p:inputText style="width: 100%" id="intEst" value="#{alunoBean.informacoesCurriculares.motivoInterrupcao}" label="Interrupcao"/>
-                                    </h:panelGrid> 
+                                    <p:outputPanel id="curAjax" >
+                                        <p:outputLabel  value="Curso: " for="curso" />
+                                        <p:selectOneMenu id="curso" value="#{alunoBean.turma.curso}" disabled="#{!alunoBean.selectedModalidade}">
+                                            <f:selectItem itemLabel="Selecione..." />
+                                            <f:selectItems value="#{alunoBean.cursos}"/>                                  
+                                            <p:ajax update="turAjax" event="change" listener="#{alunoBean.selecaoCurso()}"/>
+                                        </p:selectOneMenu>
 
-                                    <h:panelGrid width="100%" style="margin-top: 7px" columns="4" columnClasses="label18, value18, label19, value19">                              
-                                        <p:outputLabel style="width: 100%; margin-top: 4px" for="IntAconteceu" value="Quando aconteceu? " />
-                                        <p:inputMask style="width: 100%" id="IntAconteceu" value="#{alunoBean.informacoesCurriculares.dataInterrupcao}" mask="99/99/9999">
-                                            <f:convertDateTime dateStyle="medium"/>
-                                        </p:inputMask>
-
-                                        <p:outputLabel style="width: 100%; margin-right: 4px; margin-left: 20px" value="Por quanto tempo? " for="tempoInter" />
-                                        <p:inputText style="width: 100%" id="tempoInter" value="#{alunoBean.informacoesCurriculares.tempoInterrupcao}" label="Tempo Interrupção"/>
-                                    </h:panelGrid>  
-                                </h:panelGrid>
-                            </p:outputPanel>
-                        </p:panel> 
-
-                        <p:panel header="Você possui alguma das bolsas abaixo?">
-                            <p:messages />   
-                            <h:panelGrid columns="1">
-                                <p:selectManyCheckbox style="width: 100%" id="auxilio" value="#{alunoBean.selectedBolsasAuxilio}" layout="responsive" columns="1">
-                                    <f:selectItem itemLabel="Bolsa de Programa de Extensão" itemValue="e" />
-                                    <f:selectItem itemLabel="Bolsa PIBIC/Jr." itemValue="j" />
-                                    <f:selectItem itemLabel="Bolsa PIBID" itemValue="d" />
-                                    <f:selectItem itemLabel="Bolsa PIBIC" itemValue="c" />
-                                    <f:selectItem itemLabel="Bolsa de Monitoria" itemValue="m" />
-                                    <p:ajax event="change" listener="#{alunoBean.setBolsasAuxilioProperties()}"/>
-                                </p:selectManyCheckbox>
-                            </h:panelGrid>
-                        </p:panel>
-
-                        <p:panel header="Você possui estágio remunerado?">
-                            <p:messages />        
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="3" columnClasses="label60, label61, value62"> 
-                                <p:selectOneRadio value="#{alunoBean.ocupacao.possuiEstagio}" columns="2">
-                                    <f:selectItem itemLabel="Não" itemValue="false" />  
-                                    <f:selectItem itemLabel="Sim" itemValue="true" />
-                                    <p:ajax update="estAjax" event="change"/>
-                                </p:selectOneRadio>  
-                                <p:outputPanel id="estAjax">
-                                    <p:panelGrid rendered="#{alunoBean.ocupacao.possuiEstagio}">
-                                        <p:outputLabel style="width: 100%" value="Qual a instituição? " for="aux402" />
-                                        <p:inputText style="width: 100%" id="aux402" value="#{alunoBean.ocupacao.instiruicaoEstagio}" label="Instituição"/>
-                                    </p:panelGrid>
-                                </p:outputPanel>
-                            </h:panelGrid>   
-                        </p:panel>
-
-                    </p:tab>
-
-
-                    <p:tab id="parte3" titleStyleClass="tab3" title="Parte 3">
-                        <p:panel header="Qual a sua condição de manutenção?">
-                            <p:outputPanel id="manutAjax">
-                                <p:messages /> 
-                                <h:panelGrid width="100%" columns="2" columnClasses="label25, value25" >                              
-                                    <p:selectManyCheckbox value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
-                                        <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
-                                        <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Sustentado por outros parentes" itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Outros Meios" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                        <f:selectItem itemLabel="Nenhuma das opções" itemValue="n" />
-                                        <p:ajax update="manutAjax" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
-                                    </p:selectManyCheckbox>  
-
-                                    <h:panelGrid width="100%" style="margin-top: 104px" columns="2" columnClasses="label27, value27, label28, value28" >       
-                                        <p:panelGrid rendered="#{alunoBean.verificaSelectedSustentadoresOP() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}">
-                                            <p:outputLabel style="width: 100%" value="Qual o parentesco? " for="par" />
-                                            <p:inputText style="width: 100%" id="par" value="#{alunoBean.condicaoManutencao.parentesco}" label="Parentesco"/>
-                                        </p:panelGrid>
-                                        <p:panelGrid rendered="#{alunoBean.verificaSelectedSustentadoresOM() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}">
-                                            <p:outputLabel style="width: 100%; margin-top: 7px" value="Quais são eles? " for="om" />
-                                            <p:inputText style="width: 100%" id="om" value="#{alunoBean.condicaoManutencao.nomeOutrosMeios}" label="Outros Meios"/>
-                                        </p:panelGrid>
-                                    </h:panelGrid>
-                                </h:panelGrid>
-                            </p:outputPanel>
-                        </p:panel>
-
-                        <p:panel header="Atualmente, você trabalha?">
-                            <p:messages />                               
-                            <h:panelGrid columns="1" columnClasses="label, value"> 
-                                <p:selectOneRadio value="#{alunoBean.ocupacao.possuiTrabalho}" layout="responsive" columns="1">
-                                    <f:selectItem itemLabel="Não" itemValue="false" />  
-                                    <f:selectItem itemLabel="Sim" itemValue="true" /> 
-                                    <p:ajax update="trabalhoAjax" event="change"/>
-                                </p:selectOneRadio>                                   
-                            </h:panelGrid>
-
-                            <p:outputPanel id="trabalhoAjax">
-                                <p:panelGrid rendered="#{alunoBean.ocupacao.possuiTrabalho}">
-                                    <h:panelGrid width="100%" columns="2" columnClasses="label20, value20">  
-                                        <p:outputLabel value="Profissão: " for="prof" />
-                                        <p:inputText style="width: 100%"  id="prof" value="#{alunoBean.ocupacao.profissao}" label="Profissão"/>
-                                    </h:panelGrid>
-
-                                    <h:panelGrid columns="2" style="margin-top: 7px" columnClasses="label, value">
-                                        <p:outputLabel value="Tipo de Profissão: "/>
-
-                                        <p:selectOneRadio value="#{alunoBean.ocupacao.trabalho}" layout="responsive" columns="5">
-                                            <f:selectItem itemLabel="Carteira Assinada" itemValue="Carteira Assinada"/>
-                                            <f:selectItem itemLabel="Trabalho Informal" itemValue="Trabalho Informal"/>
-                                            <f:selectItem itemLabel="Trabalho Rural" itemValue="Trabalho Rural"/>
-                                            <f:selectItem itemLabel="Autônomo" itemValue="Autônomo"/>
-                                            <f:selectItem itemLabel="Servidor Público" itemValue="Servidor Público"/>
-                                        </p:selectOneRadio>   
-                                    </h:panelGrid>
-
-
-                                    <h5>Dados complementares da atividade laboral</h5>
-                                    <h:panelGrid width="100%" columns="4" columnClasses="label21, value21, label22, value22">                                
-                                        <p:outputLabel style="width: 100%" value="Nome do empregador e/ou da empresa: " for="nomeEmp" />
-                                        <p:inputText style="width: 100%" id="nomeEmp" value="#{alunoBean.ocupacao.nomeEmpregador}" label="Nome Empregador"/>
-
-                                        <p:outputLabel style="width: 100%" value="Telefone do empregador ou da empresa: "  for="tel"/>
-                                        <p:inputText style="width: 100%" id="tel" value="#{alunoBean.ocupacao.telefoneEmpregador}" label="Telefone"/>
-                                    </h:panelGrid>
-
-                                    <h:panelGrid width="100%" style="margin-top: 7px" columns="4" columnClasses="label23, value23, label24, value24">                                
-                                        <p:outputLabel style="width: 100%; margin-left: 35px;" value="Tempo de serviço: " for="tempoServico" />
-                                        <p:inputText style="width: 100%" id="tempoServico" value="#{alunoBean.ocupacao.tempoServico}" label="Tempo Serviço"/>
-
-                                        <p:outputLabel style="width: 100%; margin-left: 35px;" value="Salário Mensal: R$ " for="sal" />
-                                        <p:inputText style="width: 100%" id="sal" value="#{alunoBean.ocupacao.salarioMensal}" label="Lastname"/>
-                                    </h:panelGrid>                             
-                                </p:panelGrid>
-                            </p:outputPanel>
-                        </p:panel> 
-
-                        <p:panel header="Dependentes">
-                            <h:panelGrid columns="7">
-                                <p:outputLabel value="Possui dependentes?" />
-                                <p:selectOneRadio id="city2" value="#{alunoBean.dependentes.possuiDependente}" layout="responsive" columns="2">
-                                    <f:selectItem itemLabel="Não" itemValue="false" />  
-                                    <f:selectItem itemLabel="Sim:" itemValue="true" />
-                                    <p:ajax update="depAjax" event="change"/>
-                                </p:selectOneRadio> 
-                            </h:panelGrid>
-                            <p:outputPanel id="depAjax">
-                                <h:panelGrid rendered="#{alunoBean.dependentes.possuiDependente}" columns="5" columnClasses="label5, label6, value6, label7, value7">
-                                    <p:outputLabel style="width: 100%" for="basic" value="Quantos? " />
-                                    <p:inputText style="width: 100%" id="basic" value="#{alunoBean.dependentes.quantos}"/>                                         
-                                    <p:outputLabel value="Tipo de dependentes:"/>
-                                    <p:selectManyCheckbox style="float: right; margin-left: 20px; width: 100%"  id="basic2" value="#{alunoBean.selectedDependentes}">
-                                        <f:selectItem itemLabel="Companheiro" itemValue="c"/>
-                                        <f:selectItem itemLabel="Filho" itemValue="f" />
-                                        <f:selectItem itemLabel="Idoso" itemValue="i" />
-                                        <f:selectItem itemLabel="Outro:" itemValue="o" />
-                                        <p:ajax update="depOutro" event="change" listener="#{alunoBean.setDependentesProperties()}"/>
-                                    </p:selectManyCheckbox>
-                                    <p:outputPanel id="depOutro">
-                                        <p:inputText  rendered="#{alunoBean.selectedDependenteOutro()}" style="width: 100%" value="#{alunoBean.dependentes.outroDependente}" label="outro"/>
+                                        <p:outputPanel id="turAjax">
+                                            <p:outputLabel  value="Turma: " for="turma" />
+                                            <p:selectOneMenu id="turma" value="#{alunoBean.turma.nome}" disabled="#{!alunoBean.selectedCurso}">
+                                                <f:selectItem itemLabel="Selecione..."/>
+                                                <f:selectItems value="#{alunoBean.turmas}"/>                                   
+                                            </p:selectOneMenu>  
+                                        </p:outputPanel>
                                     </p:outputPanel>
-                                </h:panelGrid>   
-                            </p:outputPanel>
-                        </p:panel>  
+                                </h:panelGrid>
+                                    </div>
+                            </p:panel>
+                            <p:panel header="Contato">
+                                <div class="ui-g ui-fluid">
+                                <h:panelGrid id="pg" columns="6" columnClasses="col17, col18, col19, col20">                               
+                                    <p:outputLabel for="tele" value="Telefone: "/>
+                                    <p:inputMask mask="(99) 99999-9999" id="tele" label="telefone: " value="#{alunoBean.aluno.telefone}"/>
 
-                        <p:panel header="Caso tenha despesas no campus, indica o valor">
-                            <p:messages /> 
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="2" columnClasses="label29, value29">                              
-                                <p:outputLabel style="width: 100%" value="Alimentação: R$ " for="ali" />
-                                <p:inputText style="width: 100%" id="ali" placeholder="Exemplo: 215,00" value="#{alunoBean.despesasCampus.alimentacao}" label="Alimentação"/>
-                            </h:panelGrid>
+                                    <p:outputLabel for="celular" value="Celular "/>
+                                    <p:inputMask mask="(99) 99999-9999" id="celular" label="celular" value="#{alunoBean.aluno.celular}"/>
 
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="2" columnClasses="label30, value30"> 
-                                <p:outputLabel style="width: 100%" value="Trabalhos/xerox: R$ " for="tra" />
-                                <p:inputText style="width: 100%" placeholder="Exemplo: 46,00" id="tra" value="#{alunoBean.despesasCampus.trabalhos}" label="Trabalhos"/>
-                            </h:panelGrid>
+                                    <p:outputLabel for="Lemail" value="Email: "/>
+                                    <p:inputText style="width: 100%" id="Lemail" label="Email" value="#{alunoBean.aluno.email}"/>
+                                </h:panelGrid>
+                                </div>
+                            </p:panel>
 
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="2" columnClasses="label31, value31"> 
-                                <p:outputLabel style="width: 100%" value="Materiais escolares: R$ " for="mat" />
-                                <p:inputText style="width: 100%" placeholder="Exemplo: 149,00" id="mat" value="#{alunoBean.despesasCampus.materiaisEscolares}" label="Materiais escolares"/>
-                            </h:panelGrid>
-                        </p:panel>
+                            <p:panel header="Endereço">   
+                                <div class="ui-g ui-fluid">
+                                <h:panelGrid id="pg" columns="1" columnClasses="col21, col22, col23, col24, col25, col26, col27, col28">
+                                    <h:selectOneMenu id="estado" value="#{alunoBean.endereco.estado}"></h:selectOneMenu>
+                                    <h:selectOneMenu id="cidade" value="#{alunoBean.endereco.cidade}"></h:selectOneMenu>                               
 
-                        <p:panel header="No momento, com quem você mora?">
-                            <p:messages /> 
-                            <h:panelGrid width="100%" columns="2" columnClasses="label34, value34">                                
-                                <h:panelGrid width="100%" columns="1" columnClasses="label32, value32"> 
-                                    <p:selectOneRadio value="#{alunoBean.situacaoResidencial.comQuemMora}" layout="responsive" columns="3">
-                                        <f:selectItem itemLabel="Sozinho" itemValue="Sozinho"/>
-                                        <f:selectItem itemLabel="Com os pais" itemValue="Com os pais"/>                                        
-                                        <f:selectItem itemLabel="Somente com a mãe" itemValue="Mae"/>
-                                        <f:selectItem itemLabel="Somente com o pai" itemValue="Pai"/>
-                                        <f:selectItem itemLabel="Com os avós" itemValue="Com os avós"/>
-                                        <f:selectItem itemLabel="Com outro Familiar" itemValue="Outro Familiar"/>
-                                        <f:selectItem itemLabel="Em república" itemValue="Em república"/>
-                                        <f:selectItem itemLabel="Em pensão" itemValue="Em pensão"/>
-                                        <f:selectItem itemLabel="Outra Situação" itemValue="Outra Situação"/>
-                                        <p:ajax update="moraAjax" event="change"/>
+                                    <p:outputLabel for="cidad" value="Cidade: "/>
+                                    <p:inputText value="#{alunoBean.endereco.cidade}" id="cidad" label="Cidade"/>   
+
+                                    <p:outputLabel for="bairro" value="Bairro: "/>
+                                    <p:inputText value="#{alunoBean.endereco.bairro}" id="bairro" label="Bairro"/>
+
+                                    <p:outputLabel for="rua" value="Rua: "/>
+                                    <p:inputText value="#{alunoBean.endereco.rua}" id="rua" label="Rua"/>
+
+                                    <p:outputLabel for="numb" value="Número: "/>
+                                    <p:inputText value="#{alunoBean.endereco.numero}" id="numb" label="Numero"/>                                   
+                                </h:panelGrid>
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="Preferências de bolsa">
+                                <div class="ui-g ui-fluid">
+                                <h:panelGrid id="pg" columns="1">
+                                    <p:outputLabel value="Quais suas preferências dentre as bolsas oferecidas:"/>
+                                    <p:outputLabel value="Primeira opção:"/>
+                                    <p:selectOneMenu value="#{alunoBean.formulario.primeiraPreferencia}">
+                                        <f:selectItem itemLabel="Selecione"/>
+                                        <f:selectItem itemLabel="Bolsa de estudos" itemValue="Bolsa de estudos"/>
+                                        <f:selectItem itemLabel="Auxílio moradia" itemValue="Auxílio moradia"/>
+                                        <f:selectItem itemLabel="Auxílio transporte" itemValue="Auxílio transporte"/>
+                                        <f:selectItem itemLabel="Auxílio alimentação" itemValue="Auxílio alimentação"/>
+                                        <f:selectItem itemLabel="Auxílio cópia e impressão" itemValue="Auxílio cópia e impressão"/>
+                                        <f:selectItem itemLabel="Auxílio para aquisições e viagens" itemValue="Auxílio para aquisições e viagens"/>
+                                        <f:selectItem itemLabel="Bolsa de projeto de incentivo a aprendizagem - PINA" itemValue="Bolsa de projeto de incentivo a aprendizagem - PINA"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Segunda opção:"/>
+                                    <p:selectOneMenu value="#{alunoBean.formulario.segundaPreferencia}">
+                                        <f:selectItem itemLabel="Selecione"/>
+                                        <f:selectItem itemLabel="Bolsa de estudos" itemValue="Bolsa de estudos"/>
+                                        <f:selectItem itemLabel="Auxílio moradia" itemValue="Auxílio moradia"/>
+                                        <f:selectItem itemLabel="Auxílio transporte" itemValue="Auxílio transporte"/>
+                                        <f:selectItem itemLabel="Auxilio alimentação" itemValue="Auxilio alimentação"/>
+                                        <f:selectItem itemLabel="Auxílio cópia e impressao" itemValue="Auxílio cópia e impressao"/>
+                                        <f:selectItem itemLabel="Auxilio para aquisições e viagens" itemValue="Auxilio para aquisições e viagens"/>
+                                        <f:selectItem itemLabel="Bolsa de projeto de incentivo a aprendizagem - PINA" itemValue="Bolsa de projeto de incentivo a aprendizagem - PINA"/>
+                                    </p:selectOneMenu>
+                                </h:panelGrid>
+                                </div>
+                            </p:panel>
+
+                            <!--Colocar Mascaras nos inputs-->
+                            <p:panel header="Dados Bancários">  
+                                <div class="ui-g ui-fluid">
+                                <h:panelGrid id="pg" columns="2" columnClasses="col29, col30">
+                                    <p:outputLabel value="Possui conta bancária própria?"/>
+                                    <p:selectOneRadio id="conta" value="#{alunoBean.conta.possuiConta}" layout="responsive" columns="1">
+                                        <f:selectItem itemLabel="Não" itemValue="false"/>  
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />  
+                                        <p:ajax update="contaAjax" event="change"/>
                                     </p:selectOneRadio> 
                                 </h:panelGrid>
-                                <p:outputPanel id="moraAjax">
-                                    <h:panelGrid rendered="#{alunoBean.verificaMoraComOutro()}" width="100%" style="margin-top: 78px" columns="2" columnClasses="label33, value33">                                
-                                        <p:outputLabel style="width: 100%" value="Qual? " for="outro" />
-                                        <p:inputText style="width: 100%" id="outro"  value="#{alunoBean.situacaoResidencial.moraComQuemOutro}" label="Outro"/>
+                                
+                                <p:outputPanel id="contaAjax">  
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.conta.possuiConta}" columns="8" columnClasses="col31, col32, col33, col34,col35, col36, col37, col38">
+                                        <p:outputLabel value="Banco: " for="banco" />
+                                        <p:inputText id="banco" value="#{alunoBean.conta.nomeBanco}" label="Banco"/>
+
+                                        <p:outputLabel value="Agência: " for="agencia" />
+                                        <p:inputText id="agencia" value="#{alunoBean.conta.agencia}" label="Agência"/>
+
+                                        <p:outputLabel value="Tipo de conta"/>
+                                        <p:selectOneMenu value="#{alunoBean.conta.tipo}">
+                                            <f:selectItem itemLabel="Conta corrente" itemValue="Conta corrente"/>
+                                            <f:selectItem itemLabel="Poupança" itemValue="Poupança"/>
+                                        </p:selectOneMenu>
+
+                                        <p:outputLabel value="Número da conta: " for="numeroConta" />
+                                        <p:inputText id="numeroConta" value="#{alunoBean.conta.numero}" label="Numero"/>
+
+                                        <p:outputLabel value="Operação: " for="operacao" />
+                                        <p:inputText id="operacao" value="#{alunoBean.conta.operacao}" label="Operação"/>
+                                    </h:panelGrid>   
+                                </p:outputPanel>
+                                </div>
+                            </p:panel>   
+                        </p:tab>
+                        
+                        
+                        <p:tab id="parte2" titleStyleClass="tab2" title="Vida Acadêmica">
+                            <p:messages /> 
+                            <p:panel header="Para ingressar no IFBA você fez algum curso preparatório?">
+                                <div class="ui-g ui-fluid">                             
+                                <h:panelGrid id="pg" columns="3" columnClasses="col39, col40, col41">                              
+                                    <p:selectOneRadio value="#{alunoBean.informacoesCurriculares.cursoPreparatorio}"  columns="1">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />  
+                                        <f:selectItem itemLabel="Sim:" itemValue="true" />  
+                                        <p:ajax update="cursoAjax" event="change"/>
+                                    </p:selectOneRadio>
+                                </h:panelGrid>
+
+                                <p:outputPanel id="cursoAjax">
+                                    <h:panelGrid id="pg" columns="2" rendered="#{alunoBean.informacoesCurriculares.cursoPreparatorio}">
+                                        <p:outputLabel value="Qual? " for="curPre" />
+                                        <p:inputText id="curPre" value="#{alunoBean.informacoesCurriculares.nomeCursoPreparatorio}" label="Lastname"/>
                                     </h:panelGrid>
                                 </p:outputPanel>
-                            </h:panelGrid>
+                                </div>
+                            </p:panel> 
 
-                            <h5>No caso de NÃO residir com a família e possuir despesas extras com moradia, favor revelar o valor gasto:</h5>
-                            <h:panelGrid width="100%" columns="2" columnClasses="label40, value40">
-                                <p:outputLabel value="Valor: R$ " for="despesasExtra" />
-                                <p:inputText style="width: 100%" id="despesasExtra" placeholder="Exemplo: 464,00" value="#{alunoBean.situacaoResidencial.despesasExtra}" label="Despesas Extra"/>
-                            </h:panelGrid>                            
 
-                            <h5 id="bordah4">Reside em:</h5>
-                            <h:panelGrid width="100%" columns="2" columnClasses="label35, value35">
-                                <h:panelGrid width="100%" columns="1" columnClasses="label36">
-                                    <p:selectOneRadio value="#{alunoBean.situacaoResidencial.situacaoCasa}" layout="responsive" columns="1">
+                            <p:panel header="Onde você estudou?">
+                                <div class="ui-g ui-fluid">                                                      
+                                <p:selectOneRadio  value="#{alunoBean.informacoesCurriculares.ondeEstudou}" layout="responsive" columns="1">
+                                    <f:selectItem itemLabel="Escola pública" itemValue="Escola pública" />  
+                                    <f:selectItem itemLabel="Escola particular com bolsa" itemValue="Escola particular com bolsa" />  
+                                    <f:selectItem itemLabel="Escola particular sem bolsa" itemValue="Escola particular sem bolsa" />  
+                                    <f:selectItem itemLabel="Parte em escola pública e parte em escola particular com bolsa" itemValue="Parte em escola pública e parte em escola particular com bolsa" />  
+                                    <f:selectItem itemLabel="Parte em escola pública e parte em escola particular sem bolsa" itemValue="Parte em escola pública e parte em escola particular sem bolsa" />   
+                                </p:selectOneRadio>    
+                                </div>
+                            </p:panel> 
+
+                            <p:panel header="Houve interrupção dos estudos em algum momento da sua vida acadêmica?">
+                                <div class="ui-g ui-fluid">
+                                <p:selectOneRadio value="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="interrupcaoAjax" event="change"/>
+                                </p:selectOneRadio>  
+
+                                <p:outputPanel id="interrupcaoAjax">
+                                    <h:panelGrid rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}">
+                                        <h:panelGrid id="pg" columns="2" columnClasses="label17, value17"> 
+                                            <p:outputLabel value="Por qual motivo? " for="intEst" />
+                                            <p:inputText id="intEst" value="#{alunoBean.informacoesCurriculares.motivoInterrupcao}" label="Interrupcao"/>
+                                        </h:panelGrid> 
+
+                                        <h:panelGrid id="pg" columns="4" columnClasses="label18, value18, label19, value19">                              
+                                            <p:outputLabel for="IntAconteceu" value="Quando aconteceu? " />
+                                            <p:inputMask id="IntAconteceu" value="#{alunoBean.informacoesCurriculares.dataInterrupcao}" mask="99/99/9999">
+                                                <f:convertDateTime dateStyle="medium"/>
+                                            </p:inputMask>
+
+                                            <p:outputLabel value="Por quanto tempo? " for="tempoInter" />
+                                            <p:inputText id="tempoInter" value="#{alunoBean.informacoesCurriculares.tempoInterrupcao}" label="Tempo Interrupção"/>
+                                        </h:panelGrid>  
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                                </div>
+                            </p:panel> 
+
+                            <p:panel header="Você possui alguma das bolsas abaixo?">
+                                <div class="ui-g ui-fluid"> 
+                                <h:panelGrid id="pg" columns="1">
+                                    <p:selectManyCheckbox id="auxilio" value="#{alunoBean.selectedBolsasAuxilio}" layout="responsive" columns="1">
+                                        <f:selectItem itemLabel="Bolsa de Programa de Extensão" itemValue="e" />
+                                        <f:selectItem itemLabel="Bolsa PIBIC/Jr." itemValue="j" />
+                                        <f:selectItem itemLabel="Bolsa PIBID" itemValue="d" />
+                                        <f:selectItem itemLabel="Bolsa PIBIC" itemValue="c" />
+                                        <f:selectItem itemLabel="Bolsa de Monitoria" itemValue="m" />
+                                        <p:ajax event="change" listener="#{alunoBean.setBolsasAuxilioProperties()}"/>
+                                    </p:selectManyCheckbox>
+                                </h:panelGrid>
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="Você possui estágio remunerado?">
+                                <div class="ui-g ui-fluid">       
+                                <h:panelGrid id="pg" columns="3" columnClasses="label60, label61, value62"> 
+                                    <p:selectOneRadio value="#{alunoBean.ocupacao.possuiEstagio}" columns="2">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />  
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                                        <p:ajax update="estAjax" event="change"/>
+                                    </p:selectOneRadio>  
+                                    <p:outputPanel id="estAjax">
+                                        <p:panelGrid rendered="#{alunoBean.ocupacao.possuiEstagio}">
+                                            <p:outputLabel value="Qual a instituição? " for="aux402" />
+                                            <p:inputText id="aux402" value="#{alunoBean.ocupacao.instiruicaoEstagio}" label="Instituição"/>
+                                        </p:panelGrid>
+                                    </p:outputPanel>
+                                </h:panelGrid>   
+                                </div>
+                            </p:panel>
+                        </p:tab>
+
+
+                        <p:tab id="parte3" titleStyleClass="tab3" title="Parte 3">
+                            <p:messages /> 
+                            <p:panel header="Qual a sua condição de manutenção?">
+                                <div class="ui-g ui-fluid">
+                                <p:outputPanel id="manutAjax">
+                                    <h:panelGrid id="pg" columns="2" columnClasses="label25, value25" >                              
+                                        <p:selectManyCheckbox value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
+                                            <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
+                                            <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
+                                            <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
+                                            <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                            <f:selectItem itemLabel="Sustentado por outros parentes" itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                            <f:selectItem itemLabel="Outros Meios" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                            <f:selectItem itemLabel="Nenhuma das opções" itemValue="n" />
+                                            <p:ajax update="manutAjax" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
+                                        </p:selectManyCheckbox>  
+
+                                        <h:panelGrid id="pg" columns="2" columnClasses="label27, value27, label28, value28" >       
+                                            <p:panelGrid rendered="#{alunoBean.verificaSelectedSustentadoresOP() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}">
+                                                <p:outputLabel value="Qual o parentesco? " for="par" />
+                                                <p:inputText id="par" value="#{alunoBean.condicaoManutencao.parentesco}" label="Parentesco"/>
+                                            </p:panelGrid>
+                                            <p:panelGrid rendered="#{alunoBean.verificaSelectedSustentadoresOM() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}">
+                                                <p:outputLabel value="Quais são eles? " for="om" />
+                                                <p:inputText id="om" value="#{alunoBean.condicaoManutencao.nomeOutrosMeios}" label="Outros Meios"/>
+                                            </p:panelGrid>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="Atualmente, você trabalha?">
+                                <div class="ui-g ui-fluid">                              
+                                <h:panelGrid id="pg" columns="1" columnClasses="label, value"> 
+                                    <p:selectOneRadio value="#{alunoBean.ocupacao.possuiTrabalho}" layout="responsive" columns="1">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />  
+                                        <f:selectItem itemLabel="Sim" itemValue="true" /> 
+                                        <p:ajax update="trabalhoAjax" event="change"/>
+                                    </p:selectOneRadio>                                   
+                                </h:panelGrid>
+
+                                <p:outputPanel id="trabalhoAjax">
+                                    <p:panelGrid rendered="#{alunoBean.ocupacao.possuiTrabalho}">
+                                        <h:panelGrid width="100%" columns="2" columnClasses="label20, value20">  
+                                            <p:outputLabel value="Profissão: " for="prof" />
+                                            <p:inputText id="prof" value="#{alunoBean.ocupacao.profissao}" label="Profissão"/>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid id="pg" columns="2" columnClasses="label, value">
+                                            <p:outputLabel value="Tipo de Profissão: "/>
+
+                                            <p:selectOneRadio value="#{alunoBean.ocupacao.trabalho}" layout="responsive" columns="5">
+                                                <f:selectItem itemLabel="Carteira Assinada" itemValue="Carteira Assinada"/>
+                                                <f:selectItem itemLabel="Trabalho Informal" itemValue="Trabalho Informal"/>
+                                                <f:selectItem itemLabel="Trabalho Rural" itemValue="Trabalho Rural"/>
+                                                <f:selectItem itemLabel="Autônomo" itemValue="Autônomo"/>
+                                                <f:selectItem itemLabel="Servidor Público" itemValue="Servidor Público"/>
+                                            </p:selectOneRadio>   
+                                        </h:panelGrid>
+
+
+                                        <h5>Dados complementares da atividade laboral</h5>
+                                        <h:panelGrid id="pg" columns="4" columnClasses="label21, value21, label22, value22">                                
+                                            <p:outputLabel value="Nome do empregador e/ou da empresa: " for="nomeEmp" />
+                                            <p:inputText id="nomeEmp" value="#{alunoBean.ocupacao.nomeEmpregador}" label="Nome Empregador"/>
+
+                                            <p:outputLabel value="Telefone do empregador ou da empresa: "  for="tel"/>
+                                            <p:inputText id="tel" value="#{alunoBean.ocupacao.telefoneEmpregador}" label="Telefone"/>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid id="pg" columns="4" columnClasses="label23, value23, label24, value24">                                
+                                            <p:outputLabel value="Tempo de serviço: " for="tempoServico" />
+                                            <p:inputText id="tempoServico" value="#{alunoBean.ocupacao.tempoServico}" label="Tempo Serviço"/>
+
+                                            <p:outputLabel value="Salário Mensal: R$ " for="sal" />
+                                            <p:inputText id="sal" value="#{alunoBean.ocupacao.salarioMensal}" label="Lastname"/>
+                                        </h:panelGrid>                             
+                                    </p:panelGrid>
+                                </p:outputPanel>
+                                </div>
+                            </p:panel> 
+
+                            <p:panel header="Dependentes">
+                                <div class="ui-g ui-fluid">
+                                <h:panelGrid id="pg" columns="7">
+                                    <p:outputLabel value="Possui dependentes?" />
+                                    <p:selectOneRadio id="city2" value="#{alunoBean.dependentes.possuiDependente}" layout="responsive" columns="2">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />  
+                                        <f:selectItem itemLabel="Sim:" itemValue="true" />
+                                        <p:ajax update="depAjax" event="change"/>
+                                    </p:selectOneRadio> 
+                                </h:panelGrid>
+                                <p:outputPanel id="depAjax">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.dependentes.possuiDependente}" columns="5" columnClasses="label5, label6, value6, label7, value7">
+                                        <p:outputLabel for="basic" value="Quantos? " />
+                                        <p:inputText id="basic" value="#{alunoBean.dependentes.quantos}"/>                                         
+                                        <p:outputLabel value="Tipo de dependentes:"/>
+                                        <p:selectManyCheckbox style="float: right; margin-left: 20px; width: 100%"  id="basic2" value="#{alunoBean.selectedDependentes}">
+                                            <f:selectItem itemLabel="Companheiro" itemValue="c"/>
+                                            <f:selectItem itemLabel="Filho" itemValue="f" />
+                                            <f:selectItem itemLabel="Idoso" itemValue="i" />
+                                            <f:selectItem itemLabel="Outro:" itemValue="o" />
+                                            <p:ajax update="depOutro" event="change" listener="#{alunoBean.setDependentesProperties()}"/>
+                                        </p:selectManyCheckbox>
+                                        <p:outputPanel id="depOutro">
+                                            <p:inputText  rendered="#{alunoBean.selectedDependenteOutro()}" value="#{alunoBean.dependentes.outroDependente}" label="outro"/>
+                                        </p:outputPanel>
+                                    </h:panelGrid>   
+                                </p:outputPanel>
+                                </div>
+                            </p:panel>  
+
+                            <p:panel header="Caso tenha despesas no campus, indica o valor">
+                                <div class="ui-g ui-fluid"> 
+                                <h:panelGrid id="pg" columns="2" columnClasses="label29, value29">                              
+                                    <p:outputLabel value="Alimentação: R$ " for="ali" />
+                                    <p:inputText id="ali" placeholder="Exemplo: 215,00" value="#{alunoBean.despesasCampus.alimentacao}" label="Alimentação"/>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="pg" columns="2" columnClasses="label30, value30"> 
+                                    <p:outputLabel value="Trabalhos/xerox: R$ " for="tra" />
+                                    <p:inputText placeholder="Exemplo: 46,00" id="tra" value="#{alunoBean.despesasCampus.trabalhos}" label="Trabalhos"/>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="pg" columns="2" columnClasses="label31, value31"> 
+                                    <p:outputLabel value="Materiais escolares: R$ " for="mat" />
+                                    <p:inputText placeholder="Exemplo: 149,00" id="mat" value="#{alunoBean.despesasCampus.materiaisEscolares}" label="Materiais escolares"/>
+                                </h:panelGrid>
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="No momento, com quem você mora?">
+                                <div class="ui-g ui-fluid"> 
+                                <h:panelGrid id="pg" columns="2" columnClasses="label34, value34">                                
+                                    <h:panelGrid id="pg" columns="1" columnClasses="label32, value32"> 
+                                        <p:selectOneRadio value="#{alunoBean.situacaoResidencial.comQuemMora}" layout="responsive" columns="3">
+                                            <f:selectItem itemLabel="Sozinho" itemValue="Sozinho"/>
+                                            <f:selectItem itemLabel="Com os pais" itemValue="Com os pais"/>                                        
+                                            <f:selectItem itemLabel="Somente com a mãe" itemValue="Mae"/>
+                                            <f:selectItem itemLabel="Somente com o pai" itemValue="Pai"/>
+                                            <f:selectItem itemLabel="Com os avós" itemValue="Com os avós"/>
+                                            <f:selectItem itemLabel="Com outro Familiar" itemValue="Outro Familiar"/>
+                                            <f:selectItem itemLabel="Em república" itemValue="Em república"/>
+                                            <f:selectItem itemLabel="Em pensão" itemValue="Em pensão"/>
+                                            <f:selectItem itemLabel="Outra Situação" itemValue="Outra Situação"/>
+                                            <p:ajax update="moraAjax" event="change"/>
+                                        </p:selectOneRadio> 
+                                    </h:panelGrid>
+                                    <p:outputPanel id="moraAjax">
+                                        <h:panelGrid id="pg" rendered="#{alunoBean.verificaMoraComOutro()}" style="margin-top: 78px" columns="2" columnClasses="label33, value33">                                
+                                            <p:outputLabel value="Qual? " for="outro" />
+                                            <p:inputText id="outro"  value="#{alunoBean.situacaoResidencial.moraComQuemOutro}" label="Outro"/>
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </h:panelGrid>
+
+                                <h5>No caso de NÃO residir com a família e possuir despesas extras com moradia, favor revelar o valor gasto:</h5>
+                                <h:panelGrid id="pg" columns="2" columnClasses="label40, value40">
+                                    <p:outputLabel value="Valor: R$ " for="despesasExtra" />
+                                    <p:inputText id="despesasExtra" placeholder="Exemplo: 464,00" value="#{alunoBean.situacaoResidencial.despesasExtra}" label="Despesas Extra"/>
+                                </h:panelGrid>                            
+
+                                <h5 id="bordah4">Reside em:</h5>
+                                <h:panelGrid id="pg" columns="2" columnClasses="label35, value35">
+                                    <h:panelGrid id="pg" columns="1" columnClasses="label36">
+                                        <p:selectOneRadio value="#{alunoBean.situacaoResidencial.situacaoCasa}" layout="responsive" columns="1">
+                                            <f:selectItem itemLabel="Casa própria" itemValue="Casa própria"/>    
+                                            <f:selectItem itemLabel="Casa alugada" itemValue="Casa alugada"/>    
+                                            <f:selectItem itemLabel="Casa cedida" itemValue="Casa cedida"/>    
+                                            <f:selectItem itemLabel="Casa financiada" itemValue="Casa financiada"/>    
+                                            <f:selectItem itemLabel="Outra situação" itemValue="Outro"/>
+                                            <p:ajax update="casaAjax" event="change"/>
+                                        </p:selectOneRadio> 
+                                    </h:panelGrid>
+                                    <p:outputPanel id="casaAjax">
+                                        <h:panelGrid id="pg" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa alugada'}" columns="1" columnClasses="labelCol1, labelCol2, labelCol3">
+                                            <p:outputLabel value="Valor: R$ " for="aluguel" />
+                                            <p:inputText id="aluguel" value="#{alunoBean.situacaoResidencial.valorAluguel}" label="Aluguel"/>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid id="pg" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa cedida'}" width="100%" style="margin-top: 1px" columns="2" columnClasses="label38, value38">
+                                            <p:outputLabel value="Por quem? " for="QuemEmprestou" />
+                                            <p:inputText id="QuemEmprestou" value="#{alunoBean.situacaoResidencial.casaQuemEmprestou}" label="Quem Emprestou"/>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid id="pg" rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Outro'}" width="100%" style="margin-top: 1px" columns="2" columnClasses="label39, value38">
+                                            <p:outputLabel value="Qual? " for="outraSituacao" />
+                                            <p:inputText id="outraSituacao"  value="#{alunoBean.situacaoResidencial.casaSituacaoOutro}" label="Outra Situação"/>   
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </h:panelGrid>
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="Marque as características que melhor descrevem a SUA casa">
+                                <div class="ui-g ui-fluid"> 
+                                <h:panelGrid id="pg" columns="2" columnClasses="label, value">                              
+                                    <p:selectOneRadio value="#{alunoBean.residencia.acabamento}" layout="responsive" columns="1">
+                                        <f:selectItem itemLabel="Residência com acabamento" itemValue="true" />  
+                                        <f:selectItem itemLabel="Residência sem acabamento (sem reboco, pintura, piso, banheiros inacabados, etc)" itemValue="false" />   
+                                    </p:selectOneRadio> 
+                                </h:panelGrid>
+
+                                <h:panelGrid id="pg" columns="2" columnClasses="label, value">
+                                    <h5>Possui:</h5>
+                                    <h:panelGrid id="pg" columns="1" columnClasses="label, value">
+                                        <p:selectManyCheckbox value="#{alunoBean.selectedResidencia}" columns="6" >
+                                            <f:selectItem itemLabel="Rede de esgoto" itemValue="e" />
+                                            <f:selectItem itemLabel="Fossa" itemValue="f" />
+                                            <f:selectItem itemLabel="Banheiro" itemValue="b" />
+                                            <f:selectItem itemLabel="Chuveiro" itemValue="c" />
+                                            <f:selectItem itemLabel="Água" itemValue="a" />
+                                            <f:selectItem itemLabel="Luz" itemValue="l" />
+                                            <p:ajax event="change" listener="#{alunoBean.setResidenciaFamilaProperties()}"/>
+                                        </p:selectManyCheckbox>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="pg" columns="2" columnClasses="label, value">
+                                    <h:outputText value="COBERTURA: " />
+                                    <p:selectOneRadio value="#{alunoBean.residencia.cobertura}" columns="3" >
+                                        <f:selectItem itemLabel="Laje" itemValue="Laje" />
+                                        <f:selectItem itemLabel="Telha" itemValue="Telha" />
+                                        <f:selectItem itemLabel="Outro" itemValue="Outro" />
+                                    </p:selectOneRadio>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="pg" columns="2" columnClasses="label, value">
+                                    <h:outputText value="PISO: " />
+                                    <p:selectOneRadio value="#{alunoBean.residencia.piso}" columns="4" >
+                                        <f:selectItem itemLabel="Cimento" itemValue="Cimento" />
+                                        <f:selectItem itemLabel="Taco" itemValue="Taco" />
+                                        <f:selectItem itemLabel="Cerâmica" itemValue="Cerâmica" />
+                                        <f:selectItem itemLabel="Outro" itemValue="Outro" />
+                                    </p:selectOneRadio>
+                                </h:panelGrid>
+
+                                <h:panelGrid id="pg" columns="2" columnClasses="label52, value52">
+                                    <p:outputLabel value="Número de cômodos: " for="comodos" />
+                                    <p:inputText id="comodos"  value="#{alunoBean.residencia.qtdeComodos}" label="Lastname"/>
+                                </h:panelGrid>
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="Onde você tem acesso a internet?">
+                                <div class="ui-g ui-fluid">
+                                <p:selectOneRadio id="itensInt"  layout="responsive" value="#{alunoBean.situacaoResidencial.acessoInternet}" columns="4" >
+                                    <f:selectItem itemLabel="Em Casa" itemValue="Em Casa"/>
+                                    <f:selectItem itemLabel="Na Lan house" itemValue="Na Lan house"/>
+                                    <f:selectItem itemLabel="No Infocentro" itemValue="No Infocentro"/>
+                                    <f:selectItem itemLabel="Na Escola" itemValue="Na Escola"/>
+                                    <f:selectItem itemLabel="Na Casa de Parentes" itemValue="Na Casa de Parentes"/>
+                                    <f:selectItem itemLabel="Outro Local" itemValue="Outro Local"/>
+                                    <f:selectItem itemLabel="Não Acessa a Internet" itemValue="Não Acessa a Internet"/>
+                                </p:selectOneRadio>      
+                                </div>
+                            </p:panel> 
+                        </p:tab>
+
+                        
+                        <p:tab id="parte4" titleStyleClass="tab4" title="Dados Familiares">
+                            <p:messages /> 
+                            <p:panel header="Enumere os membros da família que moram na mesma casa">
+                                <div class="ui-g ui-fluid">
+                                <p:outputPanel id="tabelaMembro">                                
+                                    <p:dataTable var="membroFamiliar" value="#{alunoBean.membrosFamiliares}" editable="true" editMode="cell">                            
+                                        <f:facet name="header">
+                                            Membros Familiares
+                                        </f:facet>
+
+                                        <p:column width="37%" headerText="Nome">
+                                            <p:cellEditor>
+                                                <f:facet name="output"><p:outputLabel value="#{membroFamiliar.nome}"/></f:facet>
+                                                <f:facet name="input"><p:inputText value="#{membroFamiliar.nome}"/></f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column width="13%" headerText="Parentesco">
+                                            <p:cellEditor>
+                                                <f:facet name="output"><p:outputLabel value="#{membroFamiliar.parentesco}"/></f:facet>
+                                                <f:facet name="input"><p:inputText value="#{membroFamiliar.parentesco}"/></f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column width="9%" headerText="Idade">
+                                            <p:cellEditor>
+                                                <f:facet name="output"><p:outputLabel value="#{membroFamiliar.idade}"/></f:facet>
+                                                <f:facet name="input"><p:inputText value="#{membroFamiliar.idade}"/></f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column headerText="Escolaridade">
+                                            <p:cellEditor>
+                                                <f:facet name="output"><p:outputLabel value="#{membroFamiliar.escolaridade}"/></f:facet>
+                                                <f:facet name="input"><p:inputText value="#{membroFamiliar.escolaridade}"/></f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column width="12%" headerText="Salário">
+                                            <p:cellEditor>
+                                                <f:facet name="output"><p:outputLabel value="#{membroFamiliar.salario}"/></f:facet>
+                                                <f:facet name="input"><p:inputText value="#{membroFamiliar.salario}"/></f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+                                        <f:facet name="footer">
+                                            <p:commandButton value="Adicionar Outro" actionListener="#{alunoBean.addMembroFamiliar()}" update="tabelaMembro"/>
+                                        </f:facet>                                
+                                    </p:dataTable>
+                                </p:outputPanel>
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="Algum membro da sua família possui doenças graves e/ou faz uso de medicamento contínuo, que gere gastos com saúde que possam ser comprovados?">
+                                <div class="ui-g ui-fluid">
+                                <p:selectOneRadio value="#{alunoBean.doenca.possuiDoenca}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax event="change" update="doencas"/>
+                                </p:selectOneRadio> 
+
+                                <p:outputPanel id="doencas">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.doenca.possuiDoenca}" columns="4" columnClasses="label, value">
+                                        <p:outputLabel value="Quem? " for="aux67" />
+                                        <p:inputText id="aux67"  value="#{alunoBean.doenca.doente}" label="Quem"/>
+
+                                        <p:outputLabel value="Que doença(s)? " for="aux68" />
+                                        <p:inputText id="aux68"  value="#{alunoBean.doenca.doencas}" label="Doenças"/>
+                                        <p:outputLabel value="Onde e realizado o tratamento"/>
+                                        <p:selectOneMenu value="#{alunoBean.doenca.tratamento}">
+                                            <f:selectItem itemLabel="Selecione"/>
+                                            <f:selectItem itemLabel="No mesmo município do domicílio" itemValue="No mesmo município do domicílio"/>
+                                            <f:selectItem itemLabel="Em município diferente do domicílio" itemValue="Em município diferente do domicílio"/>
+                                        </p:selectOneMenu>
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                                </div>
+                            </p:panel>
+
+                             <p:panel header="Dentre os membros da sua família há alguma gestante">
+                                 <div class="ui-g ui-fluid">
+                                <p:selectOneRadio value="#{alunoBean.familia.possuiGestante}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                </p:selectOneRadio>    
+                                 </div>
+                            </p:panel>
+
+                            <p:panel header="Caso possua, informa as demais rendas da sua família.">
+                                <div class="ui-g ui-fluid">
+                                <p:outputLabel value="Renda por aluguel:"/>
+                                <p:selectOneRadio value="#{alunoBean.renda.aluguel}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiRendaAluguel" event="change"/>
+                                </p:selectOneRadio>                            
+                                <p:outputPanel id="possuiRendaAluguel">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.renda.aluguel}" columns="2">
+                                        <p:outputLabel value="Valor da renda: "/>
+                                        <p:inputText value="#{alunoBean.renda.valorAluguel}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Renda por pensao por morte:"/>
+                                <p:selectOneRadio value="#{alunoBean.renda.pensaoMorte}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiRendaPensaoMorte" event="change"/>
+                                </p:selectOneRadio>                            
+                                <p:outputPanel id="possuiRendaPensaoMorte">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.renda.pensaoMorte}" columns="2">
+                                        <p:outputLabel value="Valor da renda: "/>
+                                        <p:inputText value="#{alunoBean.renda.valorPensaoMorte}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>                        
+
+                                <p:outputLabel value="Renda por pensao por alimentícia:"/>
+                                <p:selectOneRadio value="#{alunoBean.renda.pensaoAlimenticia}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiRendaPensaoAlimenticia" event="change"/>
+                                </p:selectOneRadio>                            
+                                <p:outputPanel id="possuiRendaPensaoAlimenticia">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.renda.pensaoAlimenticia}" columns="2">
+                                        <p:outputLabel value="Valor da renda: "/>
+                                        <p:inputText value="#{alunoBean.renda.valorPensaoAlimenticia}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Renda por ajuda de terceiros:"/>
+                                <p:selectOneRadio value="#{alunoBean.renda.ajuda}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiRendaAjuda" event="change"/>
+                                </p:selectOneRadio>                            
+                                <p:outputPanel id="possuiRendaAjuda">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.renda.ajuda}" columns="2">
+                                        <p:outputLabel value="Valor da renda: "/>
+                                        <p:inputText value="#{alunoBean.renda.valorAjuda}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui alguma outra renda que não esteja listada acima:"/>
+                                <p:selectOneRadio value="#{alunoBean.renda.outros}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiOutraRenda" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiOutraRenda">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.renda.outros}" columns="4">
+                                        <p:outputLabel value="Qual(is): "/>
+                                        <p:inputText value="#{alunoBean.renda.nomeOutros}"/>                                
+                                        <p:outputLabel value="Valor da renda: "/>
+                                        <p:inputText value="#{alunoBean.renda.valorOutros}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                                </div>
+                            </p:panel>                        
+
+                            <p:panel header="Resumo das Despesas Mensais Fixas na Família">
+                                <div class="ui-g ui-fluid">
+                                <p:outputLabel value="Possui despesa com aluguel:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.aluguel}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiAluguel" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiAluguel">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.aluguel}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorAluguel}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com água:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.agua}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiAgua" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiAgua">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.agua}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorAgua}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com luz:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.luz}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiLuz" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiLuz">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.luz}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorLuz}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com medicamentos:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.medicamentos}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiMedicamentos" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiMedicamentos">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.medicamentos}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorMedicamentos}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com mensalidade escolar:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.mensalidadeEscolar}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiMensalidadeEscolar" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiMensalidadeEscolar">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.mensalidadeEscolar}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorMensalidadeEscolar}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com finananciamentos:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.financiamentos}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiFinanciamentos" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiFinanciamentos">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.financiamentos}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorFinanciamentos}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com internet:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.internet}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiInternet" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiInternet">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.internet}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorInternet}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com investimentos escolares:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.investimentosEducacao}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiInvestimentos" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiInvestimentos">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.investimentosEducacao}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorInvestimentosEducacao}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com plano de saúde:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.planoSaude}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiPlanoSaude" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiPlanoSaude">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.planoSaude}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorPlanoSaude}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com endividamento:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.endividamento}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="possuiEndividamento" event="change"/>
+                                </p:selectOneRadio>
+                                <p:outputPanel id="possuiEndividamento">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.endividamento}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorEndividamento}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com telefone:"/>
+                                    <p:selectOneRadio value="#{alunoBean.despesa.telefone}" layout="responsive" columns="2">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />  
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                                        <p:ajax update="possuiTelefone" event="change"/>
+                                    </p:selectOneRadio>
+                                <p:outputPanel id="possuiTelefone">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.telefone}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorTelefone}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui despesa com transporte:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.transporte}" layout="responsive" columns="2">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />  
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                                        <p:ajax update="possuiTransporte" event="change"/>
+                                    </p:selectOneRadio>
+                                <p:outputPanel id="possuiTransporte">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.transporte}" columns="2">
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorTransporte}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                                <p:outputLabel value="Possui alguma outra despesa que não esteja listada acima:"/>
+                                <p:selectOneRadio value="#{alunoBean.despesa.outros}" layout="responsive" columns="2">
+                                        <f:selectItem itemLabel="Não" itemValue="false" />  
+                                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                                        <p:ajax update="possuiOutraDespesa" event="change"/>
+                                    </p:selectOneRadio>
+                                <p:outputPanel id="possuiOutraDespesa">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.despesa.outros}" columns="4">
+                                        <p:outputLabel value="Qual(is): "/>
+                                        <p:inputText value="#{alunoBean.despesa.nomeOutros}"/>                                
+                                        <p:outputLabel value="Valor da despesa: "/>
+                                        <p:inputText value="#{alunoBean.despesa.valorOutros}"/>                                
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="Sua família reside:">
+                                <div class="ui-g ui-fluid">
+                                <h:panelGrid id="pg" columns="1" columnClasses="label49">                              
+                                    <p:selectOneRadio value="#{alunoBean.residenciaFamilia.zona}" layout="responsive" columns="1">
+                                        <f:selectItem itemLabel="Zona urbana" itemValue="Zona urbana" />  
+                                        <f:selectItem itemLabel="Zona rural" itemValue="Zona rural" />   
+                                        <p:ajax update="zonaAjax" event="change"/>
+                                    </p:selectOneRadio> 
+                                </h:panelGrid>
+
+                                <p:outputPanel id="zonaAjax">
+                                    <h:panelGrid id="pg" rendered="#{alunoBean.residenciaFamilia.zona == 'Zona rural'}" width="100%" columns="3" columnClasses="label50, value51"> 
+                                        <p:outputLabel value="A quantos quilômetros do campus? " for="km" />
+                                        <p:inputText id="km"  value="#{alunoBean.residenciaFamilia.distanciaCampus}" label="Lastname"/>
+                                    </h:panelGrid>                                    
+                                </p:outputPanel>
+
+                                <h5 id="bordah4">Reside em:</h5>
+                                <h:panelGrid id="pg" columns="1" columnClasses="label36">
+                                    <p:selectOneRadio value="#{alunoBean.residenciaFamilia.situacaoCasa}" layout="responsive" columns="1">
                                         <f:selectItem itemLabel="Casa própria" itemValue="Casa própria"/>    
                                         <f:selectItem itemLabel="Casa alugada" itemValue="Casa alugada"/>    
                                         <f:selectItem itemLabel="Casa cedida" itemValue="Casa cedida"/>    
                                         <f:selectItem itemLabel="Casa financiada" itemValue="Casa financiada"/>    
-                                        <f:selectItem itemLabel="Outra situação" itemValue="Outro"/>
-                                        <p:ajax update="casaAjax" event="change"/>
+                                        <f:selectItem itemLabel="Outra situação" itemValue="Outra situação"/>
                                     </p:selectOneRadio> 
-                                </h:panelGrid>
-                                <p:outputPanel id="casaAjax">
-                                    <h:panelGrid rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa alugada'}" width="100%" columns="1" columnClasses="labelCol1, labelCol2, labelCol3">
-                                        <p:outputLabel style="width: 100%" value="Valor: R$ " for="aluguel" />
-                                        <p:inputText style="width: 100%" id="aluguel" value="#{alunoBean.situacaoResidencial.valorAluguel}" label="Aluguel"/>
-                                    </h:panelGrid>
+                                </h:panelGrid> 
+                                </div>
+                            </p:panel>
 
-                                    <h:panelGrid rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Casa cedida'}" width="100%" style="margin-top: 1px" columns="2" columnClasses="label38, value38">
-                                        <p:outputLabel style="width: 100%" value="Por quem? " for="QuemEmprestou" />
-                                        <p:inputText style="width: 100%" id="QuemEmprestou" value="#{alunoBean.situacaoResidencial.casaQuemEmprestou}" label="Quem Emprestou"/>
-                                    </h:panelGrid>
+                            <p:panel header="A família possui outros imóveis além do que habita?">
+                                <div class="ui-g ui-fluid">
+                                <p:selectOneRadio value="#{alunoBean.imovel.possuiImovel}" layout="responsive" columns="1">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />  
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />  
+                                    <p:ajax update="imovelAjax" event="change"/>
+                                </p:selectOneRadio> 
 
-                                    <h:panelGrid rendered="#{alunoBean.situacaoResidencial.situacaoCasa == 'Outro'}" width="100%" style="margin-top: 1px" columns="2" columnClasses="label39, value38">
-                                        <p:outputLabel style="width: 100%" value="Qual? " for="outraSituacao" />
-                                        <p:inputText style="width: 100%" id="outraSituacao"  value="#{alunoBean.situacaoResidencial.casaSituacaoOutro}" label="Outra Situação"/>   
-                                    </h:panelGrid>
+                                <p:outputPanel id="imovelAjax">
+                                    <p:panelGrid id="pg" rendered="#{alunoBean.imovel.possuiImovel}">
+                                        <p:selectManyCheckbox value="#{alunoBean.selectedImoveis}" layout="responsive" columns="4" >
+                                            <f:selectItem itemLabel="Casa de Praia" itemValue="p" />
+                                            <f:selectItem itemLabel="Apartamentos" itemValue="a" />
+                                            <f:selectItem itemLabel="Salas comerciais" itemValue="sc" />
+                                            <f:selectItem itemLabel="Lotes" itemValue="l" />
+                                            <f:selectItem itemLabel="Terras" itemValue="t" />
+                                            <f:selectItem itemLabel="Sítios" itemValue="s" />
+                                            <f:selectItem itemLabel="Fazenda" itemValue="f" />
+                                            <f:selectItem itemLabel="Outros" itemValue="o" />
+                                            <p:ajax listener="#{alunoBean.setImovelProperties()}" event="change" update="outroImovelAjax"/>
+                                        </p:selectManyCheckbox>
+
+                                        <p:outputPanel id="outroImovelAjax">
+                                            <h:panelGrid id="pg" rendered="#{alunoBean.imovel.outroImovel}">
+                                                <p:outputLabel value="Quais: "/>
+                                                <p:inputText id="auxn7"  value="#{alunoBean.imovel.nomeOutroImovel}" label="Lastname"/>
+                                            </h:panelGrid>
+                                        </p:outputPanel>
+
+                                        <h:panelGrid id="pg" columns="2" columnClasses="label, value">
+                                            <p:outputLabel value="Especificaque o número de hectares: " for="auxo9" />
+                                            <p:inputText id="auxo9"  value="#{alunoBean.imovel.hectares}" label="Lastname"/>
+                                        </h:panelGrid>
+
+                                    </p:panelGrid>
                                 </p:outputPanel>
-                            </h:panelGrid>
-                        </p:panel>
+                                </div>
+                            </p:panel>                        
 
-                        <p:panel header="Marque as características que melhor descrevem a SUA casa">
-                            <p:messages /> 
-                            <h:panelGrid columns="2" columnClasses="label, value">                              
-                                <p:selectOneRadio value="#{alunoBean.residencia.acabamento}" layout="responsive" columns="1">
-                                    <f:selectItem itemLabel="Residência com acabamento" itemValue="true" />  
-                                    <f:selectItem itemLabel="Residência sem acabamento (sem reboco, pintura, piso, banheiros inacabados, etc)" itemValue="false" />   
-                                </p:selectOneRadio> 
-                            </h:panelGrid>
+                            <p:panel header="Em relação à casa de sua família, especificar a quantidade de: ">
+                                <div class="ui-g ui-fluid">
+                                <h:panelGrid id="pg" columns="6" columnClasses="label53, value53, label54, value54, label55, value55">
+                                    <p:outputLabel value="Quartos: " for="tex1" />
+                                    <p:inputText id="tex1"  value="#{alunoBean.residenciaFamilia.qtdeQuartos}" label="Quartos"/>
 
-                            <h:panelGrid columns="2" columnClasses="label, value">
-                                <h5>Possui:</h5>
-                                <h:panelGrid columns="1" columnClasses="label, value">
-                                    <p:selectManyCheckbox value="#{alunoBean.selectedResidencia}" columns="6" >
-                                        <f:selectItem itemLabel="Rede de esgoto" itemValue="e" />
-                                        <f:selectItem itemLabel="Fossa" itemValue="f" />
-                                        <f:selectItem itemLabel="Banheiro" itemValue="b" />
-                                        <f:selectItem itemLabel="Chuveiro" itemValue="c" />
-                                        <f:selectItem itemLabel="Água" itemValue="a" />
-                                        <f:selectItem itemLabel="Luz" itemValue="l" />
-                                        <p:ajax event="change" listener="#{alunoBean.setResidenciaFamilaProperties()}"/>
-                                    </p:selectManyCheckbox>
+                                    <p:outputLabel value="Geladeiras: " for="tex2" />
+                                    <p:inputText id="tex2"  value="#{alunoBean.residenciaFamilia.qtdeGeladeiras}" label="Geladeiras"/>
+
+                                    <p:outputLabel value="Automóveis: " for="tex3" />
+                                    <p:inputText id="tex3"  value="#{alunoBean.residenciaFamilia.qtdeAutomoveis}" label="Automóveis"/>
                                 </h:panelGrid>
-                            </h:panelGrid>
 
-                            <h:panelGrid style="margin-top: 7px" columns="2" columnClasses="label, value">
-                                <h:outputText value="COBERTURA: " />
-                                <p:selectOneRadio value="#{alunoBean.residencia.cobertura}" columns="3" >
-                                    <f:selectItem itemLabel="Laje" itemValue="Laje" />
-                                    <f:selectItem itemLabel="Telha" itemValue="Telha" />
-                                    <f:selectItem itemLabel="Outro" itemValue="Outro" />
-                                </p:selectOneRadio>
-                            </h:panelGrid>
+                                <h:panelGrid id="pg" columns="8" columnClasses="label56, value56, label57, value57, label58, value58, label59, value59">
+                                    <p:outputLabel value="Banheiros: " for="tex4" />
+                                    <p:inputText id="tex4"  value="#{alunoBean.residenciaFamilia.qtdeBanheiros}" label="Banheiros"/>
 
-                            <h:panelGrid style="margin-top: 12px" columns="2" columnClasses="label, value">
-                                <h:outputText value="PISO: " />
-                                <p:selectOneRadio value="#{alunoBean.residencia.piso}" columns="4" >
-                                    <f:selectItem itemLabel="Cimento" itemValue="Cimento" />
-                                    <f:selectItem itemLabel="Taco" itemValue="Taco" />
-                                    <f:selectItem itemLabel="Cerâmica" itemValue="Cerâmica" />
-                                    <f:selectItem itemLabel="Outro" itemValue="Outro" />
-                                </p:selectOneRadio>
-                            </h:panelGrid>
+                                    <p:outputLabel value="Computadores: " for="tex5" />
+                                    <p:inputText id="tex5"  value="#{alunoBean.residenciaFamilia.qtdeComputadores}" label="Computadores"/>
 
-                            <h:panelGrid width="100%" style="margin-top: 12px" columns="2" columnClasses="label52, value52">
-                                <p:outputLabel style="width: 100%" value="Número de cômodos: " for="comodos" />
-                                <p:inputText style="width: 100%" id="comodos"  value="#{alunoBean.residencia.qtdeComodos}" label="Lastname"/>
-                            </h:panelGrid>
-                        </p:panel>
+                                    <p:outputLabel value="Televisões: " for="tex6" />
+                                    <p:inputText id="tex6"  value="#{alunoBean.residenciaFamilia.qtdeTelevisores}" label="Televisores"/>
 
-                        <p:panel header="Onde você tem acesso a internet?">
-                            <p:messages />                              
-                            <p:selectOneRadio id="itensInt"  layout="responsive" value="#{alunoBean.situacaoResidencial.acessoInternet}" columns="4" >
-                                <f:selectItem itemLabel="Em Casa" itemValue="Em Casa"/>
-                                <f:selectItem itemLabel="Na Lan house" itemValue="Na Lan house"/>
-                                <f:selectItem itemLabel="No Infocentro" itemValue="No Infocentro"/>
-                                <f:selectItem itemLabel="Na Escola" itemValue="Na Escola"/>
-                                <f:selectItem itemLabel="Na Casa de Parentes" itemValue="Na Casa de Parentes"/>
-                                <f:selectItem itemLabel="Outro Local" itemValue="Outro Local"/>
-                                <f:selectItem itemLabel="Não Acessa a Internet" itemValue="Não Acessa a Internet"/>
-                            </p:selectOneRadio>                              
-                        </p:panel> 
-
-                    </p:tab>
-
-                    <p:tab id="parte4" titleStyleClass="tab4" title="Dados Familiares">
-                        <p:panel header="Enumere os membros da família que moram na mesma casa">
-                            <p:messages /> 
-                            <p:outputPanel id="tabelaMembro">                                
-                                <p:dataTable style="margin-top: 7px" var="membroFamiliar" value="#{alunoBean.membrosFamiliares}" editable="true" editMode="cell">                            
-                                    <f:facet name="header">
-                                        Membros Familiares
-                                    </f:facet>
-
-                                    <p:column width="37%" headerText="Nome">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><p:outputLabel value="#{membroFamiliar.nome}"/></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.nome}"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-
-                                    <p:column width="13%" headerText="Parentesco">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><p:outputLabel value="#{membroFamiliar.parentesco}"/></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.parentesco}"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-
-                                    <p:column width="9%" headerText="Idade">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><p:outputLabel value="#{membroFamiliar.idade}"/></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.idade}"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-
-                                    <p:column headerText="Escolaridade">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><p:outputLabel value="#{membroFamiliar.escolaridade}"/></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.escolaridade}"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-
-                                    <p:column width="12%" headerText="Salário">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><p:outputLabel value="#{membroFamiliar.salario}"/></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.salario}"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-                                    <f:facet name="footer">
-                                        <p:commandButton value="Adicionar Outro" actionListener="#{alunoBean.addMembroFamiliar()}" update="tabelaMembro"/>
-                                    </f:facet>                                
-                                </p:dataTable>
-                            </p:outputPanel>
-                        </p:panel>
-
-                        <p:panel header="Algum membro da sua família possui doenças graves e/ou faz uso de medicamento contínuo, que gere gastos com saúde que possam ser comprovados?">
-                            <p:messages /> 
-                            <p:selectOneRadio value="#{alunoBean.doenca.possuiDoenca}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax event="change" update="doencas"/>
-                            </p:selectOneRadio> 
-                            
-                            <p:outputPanel id="doencas">
-                                <h:panelGrid rendered="#{alunoBean.doenca.possuiDoenca}" columns="4" columnClasses="label, value">
-                                    <p:outputLabel value="Quem? " for="aux67" />
-                                    <p:inputText id="aux67"  value="#{alunoBean.doenca.doente}" label="Quem"/>
-
-                                    <p:outputLabel value="Que doença(s)? " for="aux68" />
-                                    <p:inputText id="aux68"  value="#{alunoBean.doenca.doencas}" label="Doenças"/>
-                                    <p:outputLabel value="Onde e realizado o tratamento"/>
-                                    <p:selectOneMenu value="#{alunoBean.doenca.tratamento}">
-                                        <f:selectItem itemLabel="Selecione"/>
-                                        <f:selectItem itemLabel="No mesmo município do domicílio" itemValue="No mesmo município do domicílio"/>
-                                        <f:selectItem itemLabel="Em município diferente do domicílio" itemValue="Em município diferente do domicílio"/>
-                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Máquinas de lavar: " for="tex7" />
+                                    <p:inputText id="tex7"  value="#{alunoBean.residenciaFamilia.qtdeMaquinaLavar}" label="Maquina de Lavar"/>
                                 </h:panelGrid>
-                            </p:outputPanel>
-                        </p:panel>
-                        
-                         <p:panel header="Dentre os membros da sua família há alguma gestante">
-                            <p:selectOneRadio value="#{alunoBean.familia.possuiGestante}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                            </p:selectOneRadio>                             
-                        </p:panel>
+                                </div>
+                            </p:panel>
 
-                        <p:panel header="Caso possua, informa as demais rendas da sua família.">
-                            <p:messages />
-                            <p:outputLabel value="Renda por aluguel:"/>
-                            <p:selectOneRadio value="#{alunoBean.renda.aluguel}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiRendaAluguel" event="change"/>
-                            </p:selectOneRadio>                            
-                            <p:outputPanel id="possuiRendaAluguel">
-                                <h:panelGrid rendered="#{alunoBean.renda.aluguel}" columns="2">
-                                    <p:outputLabel value="Valor da renda: "/>
-                                    <p:inputText value="#{alunoBean.renda.valorAluguel}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
 
-                            <p:outputLabel value="Renda por pensao por morte:"/>
-                            <p:selectOneRadio value="#{alunoBean.renda.pensaoMorte}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiRendaPensaoMorte" event="change"/>
-                            </p:selectOneRadio>                            
-                            <p:outputPanel id="possuiRendaPensaoMorte">
-                                <h:panelGrid rendered="#{alunoBean.renda.pensaoMorte}" columns="2">
-                                    <p:outputLabel value="Valor da renda: "/>
-                                    <p:inputText value="#{alunoBean.renda.valorPensaoMorte}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>                        
+                            <p:panel header="Você ou algum membro da sua família são beneficiários de Programas Sociais?">
+                                <div class="ui-g ui-fluid"> 
+                                <h:panelGrid id="pg" columns="2" columnClasses="label41, label42">
+                                    <h:panelGrid id="pg" columns="1" columnClasses="label43">
+                                        <p:selectOneRadio id="ps" value="#{alunoBean.familia.possuiProgramaSocial}" layout="responsive" columns="1">
+                                            <f:selectItem itemLabel="Não" itemValue="false" />  
+                                            <f:selectItem itemLabel="Sim" itemValue="true" />
+                                            <p:ajax update="progAjax" event="change"/>
+                                        </p:selectOneRadio>                             
+                                    </h:panelGrid>
+                                    <p:outputPanel id="pg" id="progAjax">
+                                        <h:panelGrid id="pg" rendered="#{alunoBean.familia.possuiProgramaSocial}" width="100%" style="margin-top: 38.5px" columns="3" columnClasses="label44, label45, value45">
+                                            <p:selectOneRadio value="#{alunoBean.familia.programaSocial}" columns="3" >
+                                                <f:selectItem itemLabel="Bolsa Família" itemValue="Bolsa Família"/>
+                                                <f:selectItem itemLabel="BCP" itemValue="BCP"/>
+                                                <f:selectItem itemLabel="Jovem Aprendiz" itemValue="Jovem Aprendiz"/>
+                                                <f:selectItem itemLabel="Projovem" itemValue="Projovem"/>
+                                                <f:selectItem itemLabel="Atendimento no CRAS" itemValue="Atendimento no CRAS"/>
+                                                <f:selectItem itemLabel="Atendimento no CAPS" itemValue="Atendimento no CAPS"/>
+                                                <f:selectItem itemLabel="Prouni" itemValue="Prouni"/>
+                                                <f:selectItem itemLabel="Fies" itemValue="Fies"/>
+                                                <f:selectItem itemLabel="Outro" itemValue="Outro"/>
+                                            </p:selectOneRadio>
 
-                            <p:outputLabel value="Renda por pensao por alimentícia:"/>
-                            <p:selectOneRadio value="#{alunoBean.renda.pensaoAlimenticia}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiRendaPensaoAlimenticia" event="change"/>
-                            </p:selectOneRadio>                            
-                            <p:outputPanel id="possuiRendaPensaoAlimenticia">
-                                <h:panelGrid rendered="#{alunoBean.renda.pensaoAlimenticia}" columns="2">
-                                    <p:outputLabel value="Valor da renda: "/>
-                                    <p:inputText value="#{alunoBean.renda.valorPensaoAlimenticia}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Renda por ajuda de terceiros:"/>
-                            <p:selectOneRadio value="#{alunoBean.renda.ajuda}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiRendaAjuda" event="change"/>
-                            </p:selectOneRadio>                            
-                            <p:outputPanel id="possuiRendaAjuda">
-                                <h:panelGrid rendered="#{alunoBean.renda.ajuda}" columns="2">
-                                    <p:outputLabel value="Valor da renda: "/>
-                                    <p:inputText value="#{alunoBean.renda.valorAjuda}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui alguma outra renda que não esteja listada acima:"/>
-                            <p:selectOneRadio value="#{alunoBean.renda.outros}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiOutraRenda" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiOutraRenda">
-                                <h:panelGrid rendered="#{alunoBean.renda.outros}" columns="4">
-                                    <p:outputLabel value="Qual(is): "/>
-                                    <p:inputText value="#{alunoBean.renda.nomeOutros}"/>                                
-                                    <p:outputLabel value="Valor da renda: "/>
-                                    <p:inputText value="#{alunoBean.renda.valorOutros}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                        </p:panel>                        
-
-                        <p:panel header="Resumo das Despesas Mensais Fixas na Família">
-                            <p:messages />
-                            <p:outputLabel value="Possui despesa com aluguel:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.aluguel}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiAluguel" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiAluguel">
-                                <h:panelGrid rendered="#{alunoBean.despesa.aluguel}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorAluguel}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com água:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.agua}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiAgua" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiAgua">
-                                <h:panelGrid rendered="#{alunoBean.despesa.agua}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorAgua}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com luz:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.luz}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiLuz" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiLuz">
-                                <h:panelGrid rendered="#{alunoBean.despesa.luz}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorLuz}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com medicamentos:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.medicamentos}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiMedicamentos" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiMedicamentos">
-                                <h:panelGrid rendered="#{alunoBean.despesa.medicamentos}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorMedicamentos}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com mensalidade escolar:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.mensalidadeEscolar}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiMensalidadeEscolar" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiMensalidadeEscolar">
-                                <h:panelGrid rendered="#{alunoBean.despesa.mensalidadeEscolar}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorMensalidadeEscolar}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com finananciamentos:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.financiamentos}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiFinanciamentos" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiFinanciamentos">
-                                <h:panelGrid rendered="#{alunoBean.despesa.financiamentos}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorFinanciamentos}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com internet:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.internet}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiInternet" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiInternet">
-                                <h:panelGrid rendered="#{alunoBean.despesa.internet}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorInternet}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com investimentos escolares:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.investimentosEducacao}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiInvestimentos" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiInvestimentos">
-                                <h:panelGrid rendered="#{alunoBean.despesa.investimentosEducacao}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorInvestimentosEducacao}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com plano de saúde:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.planoSaude}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiPlanoSaude" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiPlanoSaude">
-                                <h:panelGrid rendered="#{alunoBean.despesa.planoSaude}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorPlanoSaude}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com endividamento:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.endividamento}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="possuiEndividamento" event="change"/>
-                            </p:selectOneRadio>
-                            <p:outputPanel id="possuiEndividamento">
-                                <h:panelGrid rendered="#{alunoBean.despesa.endividamento}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorEndividamento}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com telefone:"/>
-                                <p:selectOneRadio value="#{alunoBean.despesa.telefone}" layout="responsive" columns="2">
-                                    <f:selectItem itemLabel="Não" itemValue="false" />  
-                                    <f:selectItem itemLabel="Sim" itemValue="true" />
-                                    <p:ajax update="possuiTelefone" event="change"/>
-                                </p:selectOneRadio>
-                            <p:outputPanel id="possuiTelefone">
-                                <h:panelGrid rendered="#{alunoBean.despesa.telefone}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorTelefone}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui despesa com transporte:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.transporte}" layout="responsive" columns="2">
-                                    <f:selectItem itemLabel="Não" itemValue="false" />  
-                                    <f:selectItem itemLabel="Sim" itemValue="true" />
-                                    <p:ajax update="possuiTransporte" event="change"/>
-                                </p:selectOneRadio>
-                            <p:outputPanel id="possuiTransporte">
-                                <h:panelGrid rendered="#{alunoBean.despesa.transporte}" columns="2">
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorTransporte}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                            <p:outputLabel value="Possui alguma outra despesa que não esteja listada acima:"/>
-                            <p:selectOneRadio value="#{alunoBean.despesa.outros}" layout="responsive" columns="2">
-                                    <f:selectItem itemLabel="Não" itemValue="false" />  
-                                    <f:selectItem itemLabel="Sim" itemValue="true" />
-                                    <p:ajax update="possuiOutraDespesa" event="change"/>
-                                </p:selectOneRadio>
-                            <p:outputPanel id="possuiOutraDespesa">
-                                <h:panelGrid rendered="#{alunoBean.despesa.outros}" columns="4">
-                                    <p:outputLabel value="Qual(is): "/>
-                                    <p:inputText value="#{alunoBean.despesa.nomeOutros}"/>                                
-                                    <p:outputLabel value="Valor da despesa: "/>
-                                    <p:inputText value="#{alunoBean.despesa.valorOutros}"/>                                
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            
-                        </p:panel>
-
-                        <p:panel header="Sua família reside:">
-                            <p:messages /> 
-                            <h:panelGrid width="100%" columns="1" columnClasses="label49">                              
-                                <p:selectOneRadio value="#{alunoBean.residenciaFamilia.zona}" layout="responsive" columns="1">
-                                    <f:selectItem itemLabel="Zona urbana" itemValue="Zona urbana" />  
-                                    <f:selectItem itemLabel="Zona rural" itemValue="Zona rural" />   
-                                    <p:ajax update="zonaAjax" event="change"/>
-                                </p:selectOneRadio> 
-                            </h:panelGrid>
-
-                            <p:outputPanel id="zonaAjax">
-                                <h:panelGrid rendered="#{alunoBean.residenciaFamilia.zona == 'Zona rural'}" width="100%" columns="3" columnClasses="label50, value51"> 
-                                    <p:outputLabel style="width: 100%" value="A quantos quilômetros do campus? " for="km" />
-                                    <p:inputText style="width: 100%" id="km"  value="#{alunoBean.residenciaFamilia.distanciaCampus}" label="Lastname"/>
-                                </h:panelGrid>                                    
-                            </p:outputPanel>
-                            
-                            <h5 id="bordah4">Reside em:</h5>
-                            <h:panelGrid width="100%" columns="1" columnClasses="label36">
-                                <p:selectOneRadio value="#{alunoBean.residenciaFamilia.situacaoCasa}" layout="responsive" columns="1">
-                                    <f:selectItem itemLabel="Casa própria" itemValue="Casa própria"/>    
-                                    <f:selectItem itemLabel="Casa alugada" itemValue="Casa alugada"/>    
-                                    <f:selectItem itemLabel="Casa cedida" itemValue="Casa cedida"/>    
-                                    <f:selectItem itemLabel="Casa financiada" itemValue="Casa financiada"/>    
-                                    <f:selectItem itemLabel="Outra situação" itemValue="Outra situação"/>
-                                </p:selectOneRadio> 
-                            </h:panelGrid>                            
-                        </p:panel>
-
-                        <p:panel header="A família possui outros imóveis além do que habita?">
-                            <p:messages /> 
-
-                            <p:selectOneRadio value="#{alunoBean.imovel.possuiImovel}" layout="responsive" columns="1">
-                                <f:selectItem itemLabel="Não" itemValue="false" />  
-                                <f:selectItem itemLabel="Sim" itemValue="true" />  
-                                <p:ajax update="imovelAjax" event="change"/>
-                            </p:selectOneRadio> 
-
-                            <p:outputPanel id="imovelAjax">
-                                <p:panelGrid rendered="#{alunoBean.imovel.possuiImovel}">
-                                    <p:selectManyCheckbox value="#{alunoBean.selectedImoveis}" layout="responsive" columns="4" >
-                                        <f:selectItem itemLabel="Casa de Praia" itemValue="p" />
-                                        <f:selectItem itemLabel="Apartamentos" itemValue="a" />
-                                        <f:selectItem itemLabel="Salas comerciais" itemValue="sc" />
-                                        <f:selectItem itemLabel="Lotes" itemValue="l" />
-                                        <f:selectItem itemLabel="Terras" itemValue="t" />
-                                        <f:selectItem itemLabel="Sítios" itemValue="s" />
-                                        <f:selectItem itemLabel="Fazenda" itemValue="f" />
-                                        <f:selectItem itemLabel="Outros" itemValue="o" />
-                                        <p:ajax listener="#{alunoBean.setImovelProperties()}" event="change" update="outroImovelAjax"/>
-                                    </p:selectManyCheckbox>
-                                    
-                                    <p:outputPanel id="outroImovelAjax">
-                                        <h:panelGrid rendered="#{alunoBean.imovel.outroImovel}">
-                                            <p:outputLabel value="Quais: "/>
-                                            <p:inputText id="auxn7"  value="#{alunoBean.imovel.nomeOutroImovel}" label="Lastname"/>
+                                            <p:outputLabel value="Qual? " for="ProgramaSocial" />
+                                            <p:inputText id="ProgramaSocial"  value="#{alunoBean.familia.outroProgramaSocial}" label="Programa Social"/>
                                         </h:panelGrid>
                                     </p:outputPanel>
-
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        <p:outputLabel value="Especificaque o número de hectares: " for="auxo9" />
-                                        <p:inputText id="auxo9"  value="#{alunoBean.imovel.hectares}" label="Lastname"/>
-                                    </h:panelGrid>
-
-                                </p:panelGrid>
-                            </p:outputPanel>
-                        </p:panel>                        
-
-                        <p:panel header="Em relação à casa de sua família, especificar a quantidade de: ">
-                            <p:messages /> 
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="6" columnClasses="label53, value53, label54, value54, label55, value55">
-                                <p:outputLabel style="width: 100%" value="Quartos: " for="tex1" />
-                                <p:inputText style="width: 100%" id="tex1"  value="#{alunoBean.residenciaFamilia.qtdeQuartos}" label="Quartos"/>
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" value="Geladeiras: " for="tex2" />
-                                <p:inputText style="width: 100%" id="tex2"  value="#{alunoBean.residenciaFamilia.qtdeGeladeiras}" label="Geladeiras"/>
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" value="Automóveis: " for="tex3" />
-                                <p:inputText style="width: 100%" id="tex3"  value="#{alunoBean.residenciaFamilia.qtdeAutomoveis}" label="Automóveis"/>
-                            </h:panelGrid>
-
-                            <h:panelGrid width="100%" style="margin-top: 7px" columns="8" columnClasses="label56, value56, label57, value57, label58, value58, label59, value59">
-                                <p:outputLabel style="width: 100%" value="Banheiros: " for="tex4" />
-                                <p:inputText style="width: 100%" id="tex4"  value="#{alunoBean.residenciaFamilia.qtdeBanheiros}" label="Banheiros"/>
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" value="Computadores: " for="tex5" />
-                                <p:inputText style="width: 100%" id="tex5"  value="#{alunoBean.residenciaFamilia.qtdeComputadores}" label="Computadores"/>
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" value="Televisões: " for="tex6" />
-                                <p:inputText style="width: 100%" id="tex6"  value="#{alunoBean.residenciaFamilia.qtdeTelevisores}" label="Televisores"/>
-
-                                <p:outputLabel style="width: 100%; margin-left: 20px;" value="Máquinas de lavar: " for="tex7" />
-                                <p:inputText style="width: 100%" id="tex7"  value="#{alunoBean.residenciaFamilia.qtdeMaquinaLavar}" label="Maquina de Lavar"/>
-                            </h:panelGrid>
-                        </p:panel>
-
-
-                        <p:panel header="Você ou algum membro da sua família são beneficiários de Programas Sociais?">
-                            <p:messages /> 
-                            <h:panelGrid width="100%" columns="2" columnClasses="label41, label42">
-                                <h:panelGrid width="100%" columns="1" columnClasses="label43">
-                                    <p:selectOneRadio id="ps" value="#{alunoBean.familia.possuiProgramaSocial}" layout="responsive" columns="1">
-                                        <f:selectItem itemLabel="Não" itemValue="false" />  
-                                        <f:selectItem itemLabel="Sim" itemValue="true" />
-                                        <p:ajax update="progAjax" event="change"/>
-                                    </p:selectOneRadio>                             
                                 </h:panelGrid>
-                                <p:outputPanel id="progAjax">
-                                    <h:panelGrid rendered="#{alunoBean.familia.possuiProgramaSocial}" width="100%" style="margin-top: 38.5px" columns="3" columnClasses="label44, label45, value45">
-                                        <p:selectOneRadio value="#{alunoBean.familia.programaSocial}" columns="3" >
-                                            <f:selectItem itemLabel="Bolsa Família" itemValue="Bolsa Família"/>
-                                            <f:selectItem itemLabel="BCP" itemValue="BCP"/>
-                                            <f:selectItem itemLabel="Jovem Aprendiz" itemValue="Jovem Aprendiz"/>
-                                            <f:selectItem itemLabel="Projovem" itemValue="Projovem"/>
-                                            <f:selectItem itemLabel="Atendimento no CRAS" itemValue="Atendimento no CRAS"/>
-                                            <f:selectItem itemLabel="Atendimento no CAPS" itemValue="Atendimento no CAPS"/>
-                                            <f:selectItem itemLabel="Prouni" itemValue="Prouni"/>
-                                            <f:selectItem itemLabel="Fies" itemValue="Fies"/>
-                                            <f:selectItem itemLabel="Outro" itemValue="Outro"/>
-                                        </p:selectOneRadio>
+                                </div>
+                            </p:panel>
 
-                                        <p:outputLabel style="width: 100%" value="Qual? " for="ProgramaSocial" />
-                                        <p:inputText style="width: 100%" id="ProgramaSocial"  value="#{alunoBean.familia.outroProgramaSocial}" label="Programa Social"/>
-                                    </h:panelGrid>
-                                </p:outputPanel>
-                            </h:panelGrid>
+                            <p:panel header="Em se tratando de atendimento de saúde, a qual serviço você recorre?">
+                                <div class="ui-g ui-fluid">
+                                <p:selectOneRadio value="#{alunoBean.familia.servicoSaude}" layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="SUS" itemValue="SUS"/>
+                                    <f:selectItem itemLabel="Serviços Particulares" itemValue="Serviços Particulares"/>
+                                    <f:selectItem itemLabel="Plano de saude de Empresa/Grupo" itemValue="Plano de saude de Empresa/Grupo"/>
+                                    <f:selectItem itemLabel="Plano de saude individual" itemValue="Plano de saude individual"/>
+                                </p:selectOneRadio> 
+                                </div>
+                            </p:panel>
+
+                            <p:panel header="Outros esclarecimentos que você considera necessários (opcional)">
+                                <div class="ui-g ui-fluid" style="margin-top: 7px">
+                                    <p:inputTextarea value="#{alunoBean.formulario.esclarecimentos}" placeholder="Esclarecimentos..." rows="5" counter="display" maxlength="800" counterTemplate="{0} caracteres restantes." autoResize="true" />
+                                    <h:outputText id="display" />
+                                </div>
+                                <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
+                                <p:commandButton value="Enviar Dados" update="chefao" actionListener="#{alunoBean.changeToTelaDados()}"/>
+                            </p:panel>                         
+                        </p:tab>
+                    </p:wizard>
                         </p:panel>
 
-                        <p:panel header="Em se tratando de atendimento de saúde, a qual serviço você recorre?">
-                            <p:messages /> 
-                            <p:selectOneRadio value="#{alunoBean.familia.servicoSaude}" layout="responsive" columns="2">
-                                <f:selectItem itemLabel="SUS" itemValue="SUS"/>
-                                <f:selectItem itemLabel="Serviços Particulares" itemValue="Serviços Particulares"/>
-                                <f:selectItem itemLabel="Plano de saude de Empresa/Grupo" itemValue="Plano de saude de Empresa/Grupo"/>
-                                <f:selectItem itemLabel="Plano de saude individual" itemValue="Plano de saude individual"/>
-                            </p:selectOneRadio> 
+                        <p:panel rendered="#{alunoBean.telaDados}">
+                            Comfirme os dados
+                            <ui:include src="componenteDadosInscricao.xhtml"/>
                         </p:panel>
-
-                        <p:panel header="Outros esclarecimentos que você considera necessários (opcional)">
-                            <p:messages />   
-                            <div class="ui-g ui-fluid" style="margin-top: 7px">
-                                <p:inputTextarea value="#{alunoBean.formulario.esclarecimentos}" placeholder="Esclarecimentos..." rows="5" counter="display" maxlength="800" counterTemplate="{0} caracteres restantes." autoResize="true" />
-                                <h:outputText id="display" />
-                            </div>
-                            <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
-                            <p:commandButton value="Enviar Dados" update="chefao" actionListener="#{alunoBean.changeToTelaDados()}"/>
-                        </p:panel>
-
-                    </p:tab>
-                </p:wizard>
-                    </p:panel>
-                
-                    <p:panel rendered="#{alunoBean.telaDados}">
-                        Comfirme os dados
-                        <ui:include src="componenteDadosInscricao.xhtml"/>
-                    </p:panel>
-                </p:outputPanel>
-            </div>
+                    </p:outputPanel>
+                </div>
+            </p:outputPanel>
         </h:form>    
     </ui:composition>
 <!--                    <p:tab id="confirmar" title="Confirmar">

@@ -37,7 +37,7 @@ public class LoginBean implements Serializable{
         }
     }
     
-    public void salvar(){
+    public String salvar(){
 // Exibir mensagem e voltar pra tela de Login
         if(verificaExistencia()){
             atribuirProperties();
@@ -45,7 +45,9 @@ public class LoginBean implements Serializable{
             
             usuarioRN.salvar(usuario);
             System.out.println("\n\tSalvo com Sucesso!\n");
+            return "loginEntrar";
         }    
+        return "loginCadastro";
     }
     
     public void atribuirProperties(){
@@ -53,12 +55,13 @@ public class LoginBean implements Serializable{
         Aluno aluno = alunoRN.buscarPorCPF(cpfPagina);
         if(aluno != null){
             aluno.setNome(nomePagina);
+            aluno.setStatus("Inscrição pendente");
             alunoRN.salvar(aluno);
         }
         UsuarioRN usuarioRN = new UsuarioRN();
         this.usuario.setAtivo(Boolean.TRUE);
         this.usuario.setSenha(senhaPagina);
-        
+        this.usuario.setNome(nomePagina);
 // Esse email deve ser uma variavel diferente do formulario? Porque ele é pra recuperação e lá pra contato
 //        usuario.setEmail(emailPagina);
     }

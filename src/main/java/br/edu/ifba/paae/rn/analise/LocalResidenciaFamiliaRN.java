@@ -32,9 +32,16 @@ public class LocalResidenciaFamiliaRN {
         LocalResidenciaFamilia mesmoMunicipio = new LocalResidenciaFamilia();
         
         ruralMunicipioDiferente.setTipo("Na zona rural de município diferente do campus");
+        ruralMunicipioDiferente.setPontuacao(4F);
+        
         municipioDiferente.setTipo("Em município diferente do campus");
+        municipioDiferente.setPontuacao(2F);
+        
         ruralMesmoMunicipio.setTipo("Na zona rural do município do campus");
+        ruralMesmoMunicipio.setPontuacao(1F);
+        
         mesmoMunicipio.setTipo("No município do campus");
+        mesmoMunicipio.setPontuacao(0F);
         
         this.localResidenciaFamiliaDAO.salvar(ruralMunicipioDiferente);
         this.localResidenciaFamiliaDAO.salvar(municipioDiferente);

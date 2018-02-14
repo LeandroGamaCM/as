@@ -1,4 +1,3 @@
-// Obs: pode ser mais de um. Sem ENUM
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
@@ -19,6 +18,9 @@ public class Imovel implements Serializable {
     
     @OneToOne(mappedBy = "imovel")
     private Familia familia;
+    
+    @Column(name = "arquivo_imovel")
+    private String arquivoImovel;
     
     private Float hectares;
     
@@ -56,6 +58,14 @@ public class Imovel implements Serializable {
 
     public void setFamilia(Familia familia) {
         this.familia = familia;
+    }
+
+    public String getArquivoImovel() {
+        return arquivoImovel;
+    }
+
+    public void setArquivoImovel(String arquivoImovel) {
+        this.arquivoImovel = arquivoImovel;
     }
 
     public Float getHectares() {
@@ -148,20 +158,21 @@ public class Imovel implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.imovel);
-        hash = 29 * hash + Objects.hashCode(this.familia);
-        hash = 29 * hash + Objects.hashCode(this.hectares);
-        hash = 29 * hash + Objects.hashCode(this.nomeOutroImovel);
-        hash = 29 * hash + Objects.hashCode(this.possuiImovel);
-        hash = 29 * hash + Objects.hashCode(this.terras);
-        hash = 29 * hash + Objects.hashCode(this.lotes);
-        hash = 29 * hash + Objects.hashCode(this.fazendas);
-        hash = 29 * hash + Objects.hashCode(this.sitios);
-        hash = 29 * hash + Objects.hashCode(this.apartamentos);
-        hash = 29 * hash + Objects.hashCode(this.outroImovel);
-        hash = 29 * hash + Objects.hashCode(this.casaPraia);
-        hash = 29 * hash + Objects.hashCode(this.salasComerciais);
+        int hash = 3;
+        hash = 71 * hash + Objects.hashCode(this.imovel);
+        hash = 71 * hash + Objects.hashCode(this.familia);
+        hash = 71 * hash + Objects.hashCode(this.arquivoImovel);
+        hash = 71 * hash + Objects.hashCode(this.hectares);
+        hash = 71 * hash + Objects.hashCode(this.nomeOutroImovel);
+        hash = 71 * hash + Objects.hashCode(this.possuiImovel);
+        hash = 71 * hash + Objects.hashCode(this.terras);
+        hash = 71 * hash + Objects.hashCode(this.lotes);
+        hash = 71 * hash + Objects.hashCode(this.fazendas);
+        hash = 71 * hash + Objects.hashCode(this.sitios);
+        hash = 71 * hash + Objects.hashCode(this.apartamentos);
+        hash = 71 * hash + Objects.hashCode(this.outroImovel);
+        hash = 71 * hash + Objects.hashCode(this.casaPraia);
+        hash = 71 * hash + Objects.hashCode(this.salasComerciais);
         return hash;
     }
 
@@ -177,6 +188,9 @@ public class Imovel implements Serializable {
             return false;
         }
         final Imovel other = (Imovel) obj;
+        if (!Objects.equals(this.arquivoImovel, other.arquivoImovel)) {
+            return false;
+        }
         if (!Objects.equals(this.nomeOutroImovel, other.nomeOutroImovel)) {
             return false;
         }

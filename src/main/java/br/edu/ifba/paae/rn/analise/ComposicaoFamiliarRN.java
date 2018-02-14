@@ -33,10 +33,19 @@ public class ComposicaoFamiliarRN {
         ComposicaoFamiliar adulto = new ComposicaoFamiliar();
 
         gestante.setTipo("Gestantes");
+        gestante.setPontuacao(1.5F);
+        
         idoso.setTipo("Idosos");
+        idoso.setPontuacao(1.5F);
+        
         doente.setTipo("PDC/Doença incapacitante");
+        doente.setPontuacao(2F);
+        
         criancaAdolescente.setTipo("Crianças/Adolescentes");
+        criancaAdolescente.setPontuacao(1F);
+        
         adulto.setTipo("Adulto");
+        adulto.setPontuacao(0.5F);
         
         this.composicaoFamiliarDAO.salvar(gestante);
         this.composicaoFamiliarDAO.salvar(idoso);

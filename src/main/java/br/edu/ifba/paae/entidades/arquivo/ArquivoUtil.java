@@ -1,4 +1,4 @@
-package br.edu.ifba.paae.logica;
+package br.edu.ifba.paae.entidades.arquivo;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,8 +38,8 @@ public class ArquivoUtil {
     public static File diretorioRaiz() {
         // Estamos utilizando um diretório dentro da pasta temporária. 
         // No seu projeto, imagino que queira mudar isso para algo como:
-        // File dir = new File(System.getProperty("user.home"), "algaworks");
-        File dir = new File(System.getProperty("java.io.tmpdir"), "algaworks");
+         File dir = new File(System.getProperty("user.home"), "Arquivos PAAE");
+//        File dir = new File(System.getProperty("java.io.tmpdir"), "algaworks");
 
         if (!dir.exists()) {
             dir.mkdirs();

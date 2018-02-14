@@ -19,12 +19,18 @@ public class Doenca implements Serializable {
     @OneToOne(mappedBy = "doenca")
     private Familia familia;
     
+    @Column(name = "arquivo_doenca")
+    private String arquivoDoenca;
+    
     @Column(name = "possui_doenca")
     private Boolean possuiDoenca;
     
     private String doente;
     private String doencas;
     private String tratamento;
+
+
+// Getters e Setters
 
     public Integer getDoenca() {
         return doenca;
@@ -40,6 +46,14 @@ public class Doenca implements Serializable {
 
     public void setFamilia(Familia familia) {
         this.familia = familia;
+    }
+
+    public String getArquivoDoenca() {
+        return arquivoDoenca;
+    }
+
+    public void setArquivoDoenca(String arquivoDoenca) {
+        this.arquivoDoenca = arquivoDoenca;
     }
 
     public Boolean getPossuiDoenca() {
@@ -76,13 +90,14 @@ public class Doenca implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.doenca);
-        hash = 83 * hash + Objects.hashCode(this.familia);
-        hash = 83 * hash + Objects.hashCode(this.possuiDoenca);
-        hash = 83 * hash + Objects.hashCode(this.doente);
-        hash = 83 * hash + Objects.hashCode(this.doencas);
-        hash = 83 * hash + Objects.hashCode(this.tratamento);
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.doenca);
+        hash = 17 * hash + Objects.hashCode(this.familia);
+        hash = 17 * hash + Objects.hashCode(this.arquivoDoenca);
+        hash = 17 * hash + Objects.hashCode(this.possuiDoenca);
+        hash = 17 * hash + Objects.hashCode(this.doente);
+        hash = 17 * hash + Objects.hashCode(this.doencas);
+        hash = 17 * hash + Objects.hashCode(this.tratamento);
         return hash;
     }
 
@@ -98,6 +113,9 @@ public class Doenca implements Serializable {
             return false;
         }
         final Doenca other = (Doenca) obj;
+        if (!Objects.equals(this.arquivoDoenca, other.arquivoDoenca)) {
+            return false;
+        }
         if (!Objects.equals(this.doente, other.doente)) {
             return false;
         }
@@ -118,6 +136,5 @@ public class Doenca implements Serializable {
         }
         return true;
     }
-
-        
+    
 }

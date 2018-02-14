@@ -37,14 +37,31 @@ public class SituacaoOcupacionalRN {
         SituacaoOcupacional trabalhadorFormal = new SituacaoOcupacional();
         
         desempregado.setTipo("Desempregado(a)");
+        desempregado.setPontuacao(5F);
+        
         avisoPrevio.setTipo("Aviso Prévio/Seguro desemprego");
+        avisoPrevio.setPontuacao(4F);
+        
         trabalhadorInformal.setTipo("Trabalhador(a) informal");
+        trabalhadorInformal.setPontuacao(3F);
+        
         bpc.setTipo("Beneficiário do BPC");
+        bpc.setPontuacao(2F);
+        
         aposentadoPensionista.setTipo("Aposentado(a)/Pensionista");
+        aposentadoPensionista.setPontuacao(1F);
+        
         autonomo.setTipo("Autônomo(a)");
+        autonomo.setPontuacao(0.7F);
+        
         estagiario.setTipo("Estagiário remunerado");
+        estagiario.setPontuacao(0.5F);
+        
         estudante.setTipo("Apenas estudando");
+        estudante.setPontuacao(0.25F);
+        
         trabalhadorFormal.setTipo("Trabalhador(a) formal");
+        trabalhadorFormal.setPontuacao(0.1F);
         
         this.situacaoOcupacionalDAO.salvar(desempregado);
         this.situacaoOcupacionalDAO.salvar(avisoPrevio);

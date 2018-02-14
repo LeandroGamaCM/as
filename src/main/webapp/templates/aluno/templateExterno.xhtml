@@ -18,7 +18,6 @@
         <h:outputScript library="js" name="responsivo.js"/>
         <h:outputScript library="js" name="submenus.js"/>
         <h:outputScript library="js" name="validar.js" />
-        <h:outputScript library="js" name="cidades-estados-utf8.js" />
         <title><ui:insert name="titulo">Título</ui:insert></title>  
     </h:head>
     <h:body onload="removerClass1()" class="hidden-overflow">        
@@ -64,12 +63,6 @@
             obj2 = new resp2();
             obj3 = new submenu();
             obj4 = new submenu2();
-        </script>
-        <script language="JavaScript" type="text/javascript" charset="utf-8">
-            new dgCidadesEstados({
-              cidade: document.getElementById('cidade'),
-              estado: document.getElementById('estado')
-            });
         </script>
         
         <noscript>

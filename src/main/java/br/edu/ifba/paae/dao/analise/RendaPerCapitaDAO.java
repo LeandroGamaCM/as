@@ -24,13 +24,11 @@ public class RendaPerCapitaDAO {
     public void excluir(RendaPerCapita rendaPerCapita){
         sessao.delete(rendaPerCapita);
     }    
-    public RendaPerCapita buscarPorAspectoEmAvaliacao(String tipo){
-        return (RendaPerCapita) this.sessao.createCriteria(RendaPerCapita.class).add(Restrictions.eq("tipo", tipo)).uniqueResult();
-        
+    public RendaPerCapita buscarPorLimite(Double limite){
+        return (RendaPerCapita)this.sessao.createCriteria(RendaPerCapita.class).add(Restrictions.eq("limite", limite)).uniqueResult();
     }
     public Double buscarSalario(){
         if(listar() != null){
-            System.out.println("\tTamanho lista: " + listar().size());
             System.out.println("\tSalario: " + listar().get(0).getSalario());
             return listar().get(0).getSalario();
         }

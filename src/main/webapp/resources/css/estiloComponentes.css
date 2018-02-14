@@ -152,241 +152,838 @@ body .ui-panelgrid .ui-panelgrid-cell {
 .corh5{
     color:midnightblue;
 }
-
-
-
-
-
-/*.label1{
-    width: 117px;
+tr.ui-widget-content.ui-datatable-even{
+    height: 29px !important;
+    cursor: pointer;
 }
-.label2{
-    width: 62px;
+tr.ui-widget-content.ui-datatable-odd{
+    height: 29px !important;
+    cursor: pointer;
 }
-.value2{
-    width: 224px;
+.pgTam{
+    width: 100%;
 }
-.col10{
-    width: 116px;
+#pg1{
+    margin-top: 7px;
 }
-.col12{
-    width: 61px;
+#pg2{
+    margin-top: 10px;
 }
-.col14{
+#pg3{
+    margin-top: 10px;
+}
+#pg4{
+    border-collapse: collapse;
+    margin-top: 4px;
+}
+#pg04{
+    border-collapse: collapse;
+}
+#pg5{
+    margin-top: 7px;
+}
+#pg6{
+    margin-top: 7px;
+}
+#pg06{
+    margin-top: 10px;
+}
+#pg8{
+    border-collapse: collapse;
+}
+#pg10{
+    margin-top: 4px;
+}
+#pg12{
+    margin-top: 10px;
+}
+#pg13{
+    margin-top: 5px;
+}
+#pg14{
+    white-space: nowrap;
+}
+#pg015{
+    margin-bottom: 10px;
+}
+#pg16{
+    margin-top: 144px;
+    position: absolute;
+    margin-left: 270px;
+}
+#pg17{
+    margin-top: 178px;
+    position: absolute;
+    margin-left: 145px;
+}
+#pg18{
+    white-space: nowrap;
+}
+#pg20{
+    margin-top: 10px;
+}
+#pg22{
+    margin-top: 10px;
+}
+#pg24{
+    white-space: nowrap
+}
+#pg25{
+    white-space: nowrap;
+}
+#pg26{
+    margin-top: 7px;
+}
+#pg31{
+    margin-top: 78px;
+}
+#pg35{
+    padding-bottom: 79px;
+}
+#pg37{
+    padding-top: 159px;
+}
+#pg41{
+    margin-top: 3px;
+}
+#pg42{
+    margin-top: 15px;
+}
+#pg43{
+    margin-top: 15px;
+}
+#pg50{
+    padding-top: 5px;
+}
+#pg65{
+    padding-top: 40px;
+}
+#pg69{
+    margin-top: 120px;
+    position: relative;
+}
+#pg70{
+    margin-top: 7px;
+}
+#pg71{
+    margin-top: 10px;
+}
+#pg75{
+    float: right;
+}
+#pd01{
+    margin-bottom: 7px;
+}
+#pd02{
+    margin-bottom: 7px;
+}
+#pd03{
+    margin-bottom: 7px;
+}
+#pd04{
+    margin-bottom: 7px;
+}
+#pd05{
+    margin-bottom: 7px;
+}
+#pd06{
+    margin-bottom: 7px;
+}
+#pd07{
+    margin-bottom: 7px;
+}
+#pd08{
+    margin-bottom: 7px;
+}
+#pd09{
+    margin-bottom: 7px;
+}
+#pd10{
+    margin-bottom: 7px;
+}
+#pd11{
+    margin-bottom: 7px;
+}
+#pd12{
+    margin-bottom: 7px;
+}
+#pd13{
+    margin-bottom: 7px;
+}
+#pd14{
+    margin-bottom: 7px;
+}
+#pd15{
+    margin-bottom: 7px;
+}
+#pd16{
+    margin-bottom: 7px;
+}
+#wsONE1{
+    white-space: nowrap;
+}
+#wsONE2{
+    white-space: nowrap;
+}
+#wsONE3{
+    width: 100%;
+    white-space: nowrap;
+}
+#respMC{
+    float: left;
+    white-space: nowrap;
+    margin-top: 5px;
+}
+#uiFluid{
+    position: relative;
+}
+#uiFluid2{
+    margin-top: 7px;
+}
+#conta{
+    border-collapse: collapse;
+    margin-left: 29px;
+}
+#depAjax{
+    width: 100%;
+}
+#itensInt{
+    white-space: nowrap;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#DTmembros{
+    margin-top: 7px;
+}
+#outCpf{
+    margin-left: 40px;
+}
+#outDN{
+    margin-left: 20px;
+}
+#outSexo{
+    margin-left: 40px;
+}
+#outEtnia{
+    margin-left: 40px;
+}
+#outEC{
+    margin-left: 40px;
+}
+#outCurso{
+    margin-left: 40px;
+}
+#outTurma{
+    margin-left: 40px;
+}
+#outCel{
+    margin-left: 40px;
+}
+#outEmail{
+    margin-left: 40px;
+}
+#outEstado{
+    margin-left: 40px;
+}
+#outRua{
+    margin-left: 40px;
+}
+#outNum{
+    margin-left: 40px;
+}
+#outRenda{
+    margin-left: 40px;
+}
+#outDespesa{
+    margin-left: 40px;
+}
+#interrupcaoAjax{
+    width: 100%;
+}
+#doencas{
+    width: 100%;
+}
+#inputOutroD{
     width: 170px;
 }
-.col15{
-    width: 116px;
+#outPQT{
+    margin-left: 40px;
 }
-.col16{
-    width: 140px;
+#outTservico{
+    margin-left: 40px;
 }
-.col17{
-    width: 58px;
+#outDepen{
+    margin-left: 40px;
 }
-.col19{
-    width: 84px;
-}
-.col155{
-    width: 58px;
-}
-.col20{
-    width: 60px;
-}
-.col21{
-    width: 70px;
-}
-.col22{
-    width: 140px;
-}
-.coluna10{
-    width: 116px;
-}
-.coluna30{
-    width: 69px;
-}
-.label3{
+.col1{
     width: 1px;
+    white-space: nowrap;
 }
-.value3{
-    width: 200px;
-}
-.label4{
-    width: 1px;
-}
-.value4{
-    width: 100px;
-}
-.value6{
-    width: 50px;
-}
-.label5{
-    width: 177px;
-}
-.label6{
-    width: 69px;
-}
-.value6{
-    width: 80px;
-}
-.label7{
-    float: right;
-    margin-left: 20px;
-    margin-top: 9px;
-    width: 394px;
-}
-.value7{
-    width: 219px;
-}
-.label8{
-    width: 1px;
-}
-.value8{
-    width: 235px;
-}
-.label9{
-    margin-left: 55px;
-    float: left;
-    margin-top: 6px;
-}
-.value9{
-    float: left;
-    width: 235px;
-}
-.label10{
-    float: left;
-    margin-left: 55px;
-    margin-top: 6px;
-}
-.value10{
-    float: left;
-    width: 234px;
-}
-.label13{
-   width: 130px;
+.col2{
+    width: 52%;
 }
 .col3{
-    width: 123px;
-}
-.value15{
-    width: 150px;
-}
-.label16{
-    float: left;
-    margin-top: 6px;
-    margin-right: 4px;
-}
-.value16{
-    float: left;
-    width: 770px;
-}
-.label17{
-    width: 142px;
-}
-.label18{
-    width: 142px;
-}
-.label19{
-    margin-left: 20px;
-    margin-top: 5px;
-    width: 155px;
-}
-.label20{
-    width: 72px;
-}
-.label21{
-    width: 280px;
-}
-.label22{
-    width: 167px;
-}
-.label23{
-    width: 280px;
-}
-.label24{
-    width: 172px;
-}
-.label25{
-    width: 340px;
-}
-.value21{
-    width: 351px;
-}
-.label27{
-    width: 138px;
-}
-.label29{
-    width: 117px;
-}
-.label30{
-    width: 143px;
-}
-.label31{
-    width: 166px;
-}
-.label32{
-    width: 700px;
-}
-.label33{
-    width: 45px;
-}
-.label34{
-    width: 610px;
-}
-.label35{
-    width: 170px;
-}
-.label36{
     width: 1px;
 }
-.label37{
-    width: 80px;
+.col4{
+    width: 30%;
 }
-.label38{
-    width: 80px;
+.col5{
+    width: 1px;
 }
-.label39{
-    width: 80px;
+.col6{
+    width: 35%
 }
-.label40{
-    width: 67px;
+.col7{
+    width: 1px;
 }
-.label41{
-    width: 94px;
+.col8{
+    white-space: nowrap;
 }
-.label44{
-    width: 310px;
+.col9{
+    width: 1px;
+    white-space: nowrap;
 }
-.label45{
-    width: 45px;
+.col10{
+    width: 25%;
 }
-.label49{
-    width: 95px;
+.col11{
+    width: 1px;
 }
-.label50{
-    width: 247px;
+.col12{
+    width: 25%;
 }
-.label52{
+.col13{
+    width: 1px;
+}
+.col14{
+    width: 25%;
+}
+.col15{
+    white-space: nowrap;
+    width: 1px;
+}
+.col16{
+    width: 25%;
+}
+.col17{
+    width: 32%;
+}
+.col18{
+    width: 65%;
+}
+.col19{
+    width: 1px;
+}
+.col21{
+    width: 50%;
+}
+.col22{
+    width: 50%;
+}
+.col23{
+    width: 1px;
+}
+.col25{
+    width: 1px;
+}
+.col27{
+    width: 1px;
+}
+.col28{
+    width: 30%;
+}
+.col29{
+    width: 1px;
+}
+.col30{
+    width: 30%;
+}
+.col31{
+    width: 1px;
+}
+.col32{
+    width: 30%;
+}
+.col33{
+    width: 1px;
+}
+.col34{
+    width: 50%;
+}
+.col35{
+    width: 1px;
+}
+.col36{
+    width: 50%;
+}
+.col37{
+    width: 1px;
+}
+.col38{
+    width: 40%;
+}
+.col39{
+    width: 1px;
+}
+.col40{
+    width: 50%;
+}
+.col41{
+    width: 1px;
+}
+.col42{
+    width: 15%;
+}
+.col43{
+    width: 1px;
+    white-space: nowrap;
+    padding-top: 10px;
+}
+.col44{
+    width: 100%;
+    padding-top: 10px;
+}
+.col45{
+    width: 1px;
+    white-space: nowrap;
+}
+.col47{
+    width: 1px;
+    white-space: nowrap;
+}
+.col49{
+    width: 10%;
+    white-space: nowrap;
+}
+.col51{
+    width: 1px;
+}
+.col53{
+    width: 1px;
+    white-space: nowrap;
+}
+.col54{
+    width: 100%;
+}
+.col55{
+    width: 1px;
+    white-space: nowrap;
+}
+.col57{
+    width: 1px;
+    white-space: nowrap;
+}
+.col59{
+    width: 1px;
+    white-space: nowrap;
+}
+.col62{
+    width: 1px;
+    white-space: nowrap;
+}
+.col63{
+    width: 100%;
+}
+.col64{
+    width: 1px;
+    white-space: nowrap;
+}
+.col65{
+    width: 100%;
+}
+.col66{
+    width: 1px;
+    white-space: nowrap;
+}
+.col67{
+    width: 100%;
+}
+.col69{
+    width: 1px;
+    white-space: nowrap;
+}
+.col70{
+    width: 100%;
+}
+.col71{
+    width: 1px;
+    white-space: nowrap;
+}
+.col72{
+    white-space: nowrap;
+}
+.col73{
+    width: 279px;
+    white-space: nowrap;
+}
+.col75{
+    width: 1px;
+    white-space: nowrap;
+}
+.col76{
+    width: 17%;
+}
+.col77{
+    width: 1px;
+    white-space: nowrap;
+}
+.col78{
+    width: 100%;
+}
+.col79{
+    width: 1px;
+    white-space: nowrap;
+}
+.col80{
+    width: 149px;
+    float: left;
+}
+.col81{
+    width: 1px;
+}
+.col82{
+    float: left;
+}
+.col83{
+    width: 1px;
+    white-space: nowrap;
+}
+.col84{
+    width: 100%;
+}
+.col85{
+    width: 1px;
+    white-space: nowrap;
+}
+.col89{
+    width: 1px;
+    white-space: nowrap;
+}
+.col91{
+    width: 1px;
+    white-space: nowrap;
+    padding-top: 10px;
+}
+.col92{
+    padding-top: 10px;
+}
+.col93{
+    width: 1px;
+    white-space: nowrap;
+    padding-top: 10px;
+}
+.col94{
+    padding-top: 10px;
+}
+.col97{
+    white-space: nowrap;
+}
+.col100{
+    width: 1px;
+    white-space: nowrap;
+}
+.col102{
+    width: 190px;
+}
+.col104{
+    white-space: nowrap;
+}
+.col105{
+    width: 1px;
+    white-space: nowrap;
+}
+.col107{
+    width: 1px;
+    white-space: nowrap;
+}
+.col109{
+    width: 1px;
+    white-space: nowrap;
+}
+.col111{
+    white-space: nowrap;
+}
+.col112{
+    width: 1px;
+}
+.col114{
+    white-space: nowrap;
+}
+.col115{
+    width: 1px;
+}
+.col116{
+    white-space: nowrap;
+}
+.col117{
+    width: 73px;
+}
+.col118{
+    white-space: nowrap;
+}
+.col119{
+    width: 1px;
+    white-space: nowrap;
+}
+.col120{
+    width: 280px;
+    float: left;
+}
+.col121{
+    white-space: nowrap;
+}
+.col123{
+    width: 1px;
+    white-space: nowrap;
+}
+.col124{
+    width: 100%;
+}
+.col125{
+    width: 1px;
+    white-space: nowrap;
+}
+.col126{
+    width: 100%;
+}
+.col127{
+    width: 1px;
+    white-space: nowrap;
+}
+.col128{
+    width: 100%;
+}
+.col00{
+    white-space: nowrap;
+}
+.col129{
+    width: 1px;
+    white-space: nowrap;
+}
+.col130{
+    float: left;
+    width: 200px;
+}
+.col131{
+    width: 1px;
+    white-space: nowrap;
+}
+.col132{
+    float: left;
+    width: 200px;
+}
+.col133{
+    width: 1px;
+    white-space: nowrap;
+}
+.col134{
+    float: left;
+    width: 200px;
+}
+.col135{
+    width: 1px;
+    white-space: nowrap;
+}
+.col136{
+    float: left;
+    width: 200px;
+}
+.col137{
+    width: 1px;
+    white-space: nowrap;
+}
+.col138{
+    width: 70%;
+}
+.col139{
+    width: 1px;
+    white-space: nowrap;
+}
+.col140{
+    width: 20%;
+}
+.col141{
+    width: 1px;
+    white-space: nowrap;
+}
+.col142{
+    float: left;
+    width: 200px;
+}
+.col143{
+    width: 1px;
+    white-space: nowrap;
+}
+.col144{
+    float: left;
+    width: 200px;
+}
+.col145{
+    width: 1px;
+    white-space: nowrap;
+}
+.col146{
+    float: left;
+    width: 200px;
+}
+.col147{
+    width: 1px;
+    white-space: nowrap;
+}
+.col148{
+    float: left;
+    width: 200px;
+}
+.col149{
+    width: 1px;
+    white-space: nowrap;
+}
+.col150{
+    float: left;
+    width: 200px;
+}
+.col151{
+    width: 1px;
+    white-space: nowrap;
+}
+.col152{
+    float: left;
+    width: 200px;
+}
+.col153{
+    width: 1px;
+    white-space: nowrap;
+}
+.col154{
+    float: left;
+    width: 200px;
+}
+.col155{
+    width: 1px;
+    white-space: nowrap;
+}
+.col156{
+    float: left;
+    width: 200px;
+}
+.col157{
+    width: 1px;
+    white-space: nowrap;
+}
+.col158{
+    float: left;
+    width: 200px;
+}
+.col159{
+    width: 1px;
+    white-space: nowrap;
+}
+.col160{
+    float: left;
+    width: 200px;
+}
+.col161{
+    width: 1px;
+    white-space: nowrap;
+}
+.col162{
+    float: left;
+    width: 200px;
+}
+.col163{
+    width: 1px;
+    white-space: nowrap;
+}
+.col164{
+    float: left;
+    width: 200px;
+}
+.col165{
+    width: 1px;
+    white-space: nowrap;
+}
+.col166{
+    width: 70%;
+}
+.col167{
+    width: 1px;
+    white-space: nowrap;
+}
+.col168{
+    width: 20%;
+}
+.col169{
+    width: 1px;
+    white-space: nowrap;
+}
+.col171{
+    width: 1px;
+    white-space: nowrap;
+}
+.col175{
+    white-space: nowrap;
+}
+.col176{
+    position: absolute;
+    white-space: nowrap;
+}
+.col177 {
+    width: 650px;
+    white-space: nowrap;
+    margin-top: 75px;
+    position: absolute;
+    margin-left: 270px;
+}
+.col178{
+    width: 1px;
+}
+.col180{
+    width: 1px;
+    white-space: nowrap;
+}
+.col181{
+    width: 100%;
+}
+.col182{
+    width: 1px;
+    white-space: nowrap;
+}
+.col182{
+    width: 1px;
+    white-space: nowrap;
+}
+.col182{
+    width: 1px;
+    white-space: nowrap;
+    padding-top: 10px;
+}
+.col183{
     width: 150px;
+    float: left;
+    padding-top: 10px;
 }
-.label53{
-    width: 75px;
+.col185{
+    white-space: nowrap;
 }
-.label56{
-    width: 75px;
+.col186{
+    white-space: nowrap;
 }
-.label59{
-    width: 152px;
+.col187{
+    position: relative;
 }
-.label54{
-    width: 100px;
+.col188{
+    position: absolute;
+    margin-top: 50px;
+    margin-left: -430px;
 }
-.label55{
-    width: 100px;
+.col189{
+    white-space: nowrap;
 }
-.label60{
-    width: 150px;
+.col190{
+    width: 1px;
+    white-space: nowrap;
 }
-.label61{
-    width: 132px;
-}*/
+.col191{
+    width: 383px;
+}

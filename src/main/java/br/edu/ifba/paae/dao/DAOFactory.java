@@ -1,6 +1,7 @@
 package br.edu.ifba.paae.dao;
 
 import br.edu.ifba.paae.dao.analise.*;
+import br.edu.ifba.paae.dao.arquivo.ArquivoDAO;
 import br.edu.ifba.paae.dao.usuario.UsuarioDAO;
 import br.edu.ifba.paae.dao.formulario.*;
 import br.edu.ifba.paae.dao.inscricao.InscricaoDAO;
@@ -16,6 +17,11 @@ public class DAOFactory {
         InscricaoDAO inscricaoDAO = new InscricaoDAO();
         inscricaoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return inscricaoDAO;
+    }
+    public static ArquivoDAO criarArquivoDAO(){
+        ArquivoDAO arquivoDAO = new ArquivoDAO();
+        arquivoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return arquivoDAO;
     }
 
 // Formulário    

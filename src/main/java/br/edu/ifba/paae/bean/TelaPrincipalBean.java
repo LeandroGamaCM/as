@@ -46,7 +46,7 @@ public class TelaPrincipalBean implements Serializable{
         
         if(usuario == null){
             usuario = new Usuario();
-            usuario.setNome("Niguém está logado");
+            usuario.setNome("Ninguém está logado");
         }        
     }
 

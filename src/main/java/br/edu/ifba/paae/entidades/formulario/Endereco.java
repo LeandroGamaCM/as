@@ -22,7 +22,6 @@ public class Endereco implements Serializable {
     
     private String rua;
     private Integer numero;
-    private Integer cep;
     private String bairro;
     private String cidade;
     private String estado;
@@ -59,14 +58,6 @@ public class Endereco implements Serializable {
         this.numero = numero;
     }
 
-    public Integer getCep() {
-        return cep;
-    }
-
-    public void setCep(Integer cep) {
-        this.cep = cep;
-    }
-
     public String getBairro() {
         return bairro;
     }
@@ -94,14 +85,13 @@ public class Endereco implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.endereco);
-        hash = 79 * hash + Objects.hashCode(this.aluno);
-        hash = 79 * hash + Objects.hashCode(this.rua);
-        hash = 79 * hash + Objects.hashCode(this.numero);
-        hash = 79 * hash + Objects.hashCode(this.cep);
-        hash = 79 * hash + Objects.hashCode(this.bairro);
-        hash = 79 * hash + Objects.hashCode(this.cidade);
-        hash = 79 * hash + Objects.hashCode(this.estado);
+        hash = 29 * hash + Objects.hashCode(this.endereco);
+        hash = 29 * hash + Objects.hashCode(this.aluno);
+        hash = 29 * hash + Objects.hashCode(this.rua);
+        hash = 29 * hash + Objects.hashCode(this.numero);
+        hash = 29 * hash + Objects.hashCode(this.bairro);
+        hash = 29 * hash + Objects.hashCode(this.cidade);
+        hash = 29 * hash + Objects.hashCode(this.estado);
         return hash;
     }
 
@@ -138,11 +128,7 @@ public class Endereco implements Serializable {
         if (!Objects.equals(this.numero, other.numero)) {
             return false;
         }
-        if (!Objects.equals(this.cep, other.cep)) {
-            return false;
-        }
         return true;
     }
 
-    
 }

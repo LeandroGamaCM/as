@@ -1,0 +1,752 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+		<h:form>
+                    <p:panel header="Documentos Anexos de comprovação dos dados">
+			<p:growl showDetail="true" autoUpdate="true" />
+                        
+                        <h5>Atenção o não envio dos comprovantes ou envio de documentos indevidos acarretará na perda direta da disputa das bolsas</h5>
+
+                        <h:panelGrid columns="1" rendered="#{comprovanteBean.formularioAluno.ocupacao.possuiTrabalho}">
+                            <p:outputLabel value="Comprovante ou declaração de vínculo de trabalho (informando o salário):"/>
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoOcupacao}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>
+			</h:panelGrid>
+                      
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.ambosPais or comprovanteBean.formularioAluno.condicaoManutencao.apenasPai}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do PAI:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoRendaPai}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.ambosPais or comprovanteBean.formularioAluno.condicaoManutencao.apenasMae}">
+                            <p:outputLabel value="Comprovante ou declaração de renda da MÂE:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoRendaMae}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.avos}">
+                            <p:outputLabel value="Comprovante ou declaração de renda dos avós:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoRendaAvos}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.outrosParentes}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do(s) parente(s) (#{comprovanteBean.formularioAluno.condicaoManutencao.parentesco}):"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoRendaParentes}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.outrosMeios}">
+                            <p:outputLabel value="Comprovante ou declaração de renda proveniente de outros meios (#{comprovanteBean.formularioAluno.condicaoManutencao.nomeOutrosMeios}):"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoRendaOutrosMeios}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.situacaoResidencial.despesasExtra > 0}">
+                            <p:outputLabel value="Comprovante de despesas extras com moradia:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesasExtra}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.doenca.possuiDoenca}">
+                            <p:outputLabel value="Comprovante de doença grave e/ou uso de medicação contínua por membro(s) familiar(es):"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDoenca}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.familia.possuiProgramaSocial}">
+                            <p:outputLabel value="Comprovante de recebimento de programa social:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoProgramaSocial}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar1.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar1.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar1}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar2.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar2.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar2}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar3.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar3.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar3}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar4.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar4.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar4}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar5.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar5.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar5}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar6.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar6.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar6}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar7.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar7.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar7}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar8.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar8.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar8}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar9.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar9.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar9}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar10.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar10.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar10}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar11.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar11.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar11}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar12.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar12.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar12}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar13.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar13.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar13}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar14.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar14.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar14}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar15.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar15.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar15}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar16.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar16.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar16}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar17.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar17.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar17}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar18.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar18.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar18}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar19.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar19.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar19}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar20.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar20.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar20}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar21.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar21.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar21}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar22.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar22.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar22}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar23.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar23.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar23}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar24.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar24.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar24}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar25.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar25.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar25}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar26.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar26.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar26}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar27.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar27.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar27}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar28.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar28.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar28}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar29.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar29.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar29}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar30.salario > 0}">
+                            <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar30.nome}"/>
+
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar30}" update="@form" 
+                                     label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                     allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                     invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                     sizeLimit="1048576"
+                                     fileLimit="1"
+                                     invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                             ></p:fileUpload>           
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.imovel.possuiImovel}">
+                            <p:outputLabel value="Comprovante de posse de imóvel(is):"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoImovel}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.residenciaFamilia.qtdeAutomoveis > 0}">
+                            <p:outputLabel value="Comprovante de posse de imóvel(is):"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoAutomovel}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.agua}">
+                            <p:outputLabel value="Comprovante de despesa com água:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaAgua}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.aluguel}">
+                            <p:outputLabel value="Comprovante de despesa com aluguel:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaAluguel}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.endividamento}">
+                            <p:outputLabel value="Comprovante de despesa com endividamento:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaEndividamento}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.financiamentos}">
+                            <p:outputLabel value="Comprovante de despesa com financiamentos:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaFinanciamentos}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.internet}">
+                            <p:outputLabel value="Comprovante de despesa com internet:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaInternet}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.investimentosEducacao}">
+                            <p:outputLabel value="Comprovante de despesa com investimentos em educação:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaInvestimentosEducacao}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.luz}">
+                            <p:outputLabel value="Comprovante de despesa com luz:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaLuz}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.medicamentos}">
+                            <p:outputLabel value="Comprovante de despesa com medicamentos:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaMedicamentos}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.mensalidadeEscolar}">
+                            <p:outputLabel value="Comprovante de despesa com mensalidade escolar:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaMensalidadeEscolar}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.planoSaude}">
+                            <p:outputLabel value="Comprovante de despesa com plano de saúde:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaPlanoSaude}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.telefone}">
+                            <p:outputLabel value="Comprovante de despesa com telefone:"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaTelefone}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.transporte}">
+                            <p:outputLabel value="Comprovante de despesa com transporte"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaTransporte}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.outros}">
+                            <p:outputLabel value="Comprovante de outras despesas (#{comprovanteBean.formularioAluno.despesa.nomeOutros}):"/>
+                           <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoDespesaOutros(event)}" update="@form" 
+                                    label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
+                                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
+                                    invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
+                                    sizeLimit="1048576"
+                                    invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
+                                    fileLimit="1"
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
+
+                        
+                    </p:panel>
+		</h:form>
+
+    </ui:composition>
+</html>

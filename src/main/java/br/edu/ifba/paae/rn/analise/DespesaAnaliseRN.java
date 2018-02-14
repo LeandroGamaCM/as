@@ -34,11 +34,22 @@ public class DespesaAnaliseRN {
         DespesaAnalise outros = new DespesaAnalise();
         
         endividamento.setTipo("Endividamento (financiamento, consórcio, crédito e/ou 1 empréstimo)");
+        endividamento.setPontuacao(1F);
+        
         saude.setTipo("Saúde ");
+        saude.setPontuacao(2F);
+        
         educacao.setTipo("Educação");
+        educacao.setPontuacao(2F);
+        
         energia.setTipo("Energia");
+        energia.setPontuacao(0.6F);
+        
         agua.setTipo("Água");
+        agua.setPontuacao(0.6F);
+        
         outros.setTipo("Outro(s) de relevância");
+        outros.setPontuacao(0.8F);
         
         this.despesaAnaliseDAO.salvar(endividamento);
         this.despesaAnaliseDAO.salvar(saude);

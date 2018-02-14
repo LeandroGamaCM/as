@@ -19,6 +19,9 @@ public class SituacaoResidencial implements Serializable {
     @OneToOne(mappedBy = "situacao_residencial")
     private Aluno aluno;    
 
+    @Column(name = "arquivo_despesas_extras")
+    private String arquivoDespesasExtras;    
+    
     @Column(name = "mora_com_quem_outro")
     private String moraComQuemOutro;
     
@@ -65,6 +68,14 @@ public class SituacaoResidencial implements Serializable {
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public String getArquivoDespesasExtras() {
+        return arquivoDespesasExtras;
+    }
+
+    public void setArquivoDespesasExtras(String arquivoDespesasExtras) {
+        this.arquivoDespesasExtras = arquivoDespesasExtras;
     }
 
     public String getMoraComQuemOutro() {
@@ -149,19 +160,20 @@ public class SituacaoResidencial implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.situacaoResidencial);
-        hash = 89 * hash + Objects.hashCode(this.aluno);
-        hash = 89 * hash + Objects.hashCode(this.moraComQuemOutro);
-        hash = 89 * hash + Objects.hashCode(this.casaQuemEmprestou);
-        hash = 89 * hash + Objects.hashCode(this.casaSituacaoOutro);
-        hash = 89 * hash + Objects.hashCode(this.acessoInternetOutro);
-        hash = 89 * hash + Objects.hashCode(this.gastoMoradia);
-        hash = 89 * hash + Objects.hashCode(this.valorAluguel);
-        hash = 89 * hash + Objects.hashCode(this.despesasExtra);
-        hash = 89 * hash + Objects.hashCode(this.comQuemMora);
-        hash = 89 * hash + Objects.hashCode(this.situacaoCasa);
-        hash = 89 * hash + Objects.hashCode(this.acessoInternet);
+        int hash = 5;
+        hash = 61 * hash + Objects.hashCode(this.situacaoResidencial);
+        hash = 61 * hash + Objects.hashCode(this.aluno);
+        hash = 61 * hash + Objects.hashCode(this.arquivoDespesasExtras);
+        hash = 61 * hash + Objects.hashCode(this.moraComQuemOutro);
+        hash = 61 * hash + Objects.hashCode(this.casaQuemEmprestou);
+        hash = 61 * hash + Objects.hashCode(this.casaSituacaoOutro);
+        hash = 61 * hash + Objects.hashCode(this.acessoInternetOutro);
+        hash = 61 * hash + Objects.hashCode(this.gastoMoradia);
+        hash = 61 * hash + Objects.hashCode(this.valorAluguel);
+        hash = 61 * hash + Objects.hashCode(this.despesasExtra);
+        hash = 61 * hash + Objects.hashCode(this.comQuemMora);
+        hash = 61 * hash + Objects.hashCode(this.situacaoCasa);
+        hash = 61 * hash + Objects.hashCode(this.acessoInternet);
         return hash;
     }
 
@@ -177,6 +189,9 @@ public class SituacaoResidencial implements Serializable {
             return false;
         }
         final SituacaoResidencial other = (SituacaoResidencial) obj;
+        if (!Objects.equals(this.arquivoDespesasExtras, other.arquivoDespesasExtras)) {
+            return false;
+        }
         if (!Objects.equals(this.moraComQuemOutro, other.moraComQuemOutro)) {
             return false;
         }
@@ -215,6 +230,5 @@ public class SituacaoResidencial implements Serializable {
         }
         return true;
     }
-
 
 }

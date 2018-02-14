@@ -15,7 +15,7 @@ public class RendaPerCapita implements Serializable {
     @GeneratedValue
     private Integer id;
     
-    private String limite;
+    private Double limite;
     private Float pontuacao;
     private Double salario;
 
@@ -27,11 +27,11 @@ public class RendaPerCapita implements Serializable {
         this.id = id;
     }
 
-    public String getLimite() {
+    public Double getLimite() {
         return limite;
     }
 
-    public void setLimite(String limite) {
+    public void setLimite(Double limite) {
         this.limite = limite;
     }
 
@@ -53,11 +53,11 @@ public class RendaPerCapita implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.limite);
-        hash = 29 * hash + Objects.hashCode(this.pontuacao);
-        hash = 29 * hash + Objects.hashCode(this.salario);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.limite);
+        hash = 23 * hash + Objects.hashCode(this.pontuacao);
+        hash = 23 * hash + Objects.hashCode(this.salario);
         return hash;
     }
 
@@ -87,7 +87,7 @@ public class RendaPerCapita implements Serializable {
         }
         return true;
     }
-    
 
+    
     
 }

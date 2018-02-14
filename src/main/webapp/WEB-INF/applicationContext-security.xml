@@ -22,6 +22,7 @@
 
     <authentication-manager>
         <authentication-provider>
+            <password-encoder hash="md5"/>
             <jdbc-user-service data-source-ref="asbdDataSource"
             authorities-by-username-query="SELECT u.login, p.permissao
                                         FROM Usuario u, usuario_permissao p

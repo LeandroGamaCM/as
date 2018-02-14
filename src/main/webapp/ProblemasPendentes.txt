@@ -5,8 +5,6 @@
 
 - Tem que puxar apenas os alunos do ano
 
-- Criptografar a senha
-
 - Ver o componente dados do aluno do adm
 
 - A linha de membro familiar nao pode ficar vazia tem que ter um botao para excluir

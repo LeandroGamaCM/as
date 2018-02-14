@@ -40,12 +40,12 @@
                     
                 </p:panel>
                 <p:panel rendered="#{telaAlunosBean.preCadastro}">
-                    <p:dataTable var="turma" value="#{telaAlunosBean.turmas}" editable="true" editMode="cell">
+                    <p:dataTable var="turma" value="#{telaAlunosBean.turmas}" editable="true" editMode="cell" id="dataTable">
                         <f:facet name="header">
                                 <h:outputText value="Turmas cadastradas" />
                         </f:facet>
-                        <p:ajax event="cellEdit" listener="#{telaAlunosBean.editarTurma(turma)}"/>                        
-                        <p:column headerText="Modalidade" sortBy="#{turma.modalidade}">
+                        <p:ajax event="cellEdit" update="dataTable" listener="#{telaAlunosBean.editarTurma(turma)}"/>                        
+                        <p:column headerText="Modalidade" sortBy="#{turma.modalidade}" groupRow="true" colspan="1">
                             <p:cellEditor>
                                 <f:facet name="output"><p:outputLabel value="#{turma.modalidade}"/></f:facet>
                                 <f:facet name="input"><p:inputText value="#{turma.modalidade}"/></f:facet>

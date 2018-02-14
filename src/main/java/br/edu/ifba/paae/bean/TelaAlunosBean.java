@@ -9,6 +9,7 @@ import br.edu.ifba.paae.rn.formulario.TurmaRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,6 +52,7 @@ public class TelaAlunosBean implements Serializable{
         Usuario usuario = usuarioRN.buscarPorLogin(novoAluno.getCpf());
         
         if(usuario == null){
+            Calendar cal = Calendar.getInstance();
             usuario = new Usuario();
             usuario.setAtivo(Boolean.FALSE);
             usuario.setLogin(novoAluno.getCpf());
@@ -59,6 +61,7 @@ public class TelaAlunosBean implements Serializable{
  
             novoAluno.setUsuario(usuario);
             novoAluno.setStatus("Pré-cadastrado");
+            novoAluno.setAno(cal.getTime().getYear());
             alunoRN.salvar(novoAluno);
 // Mostrar mensagem Salvou!
 
@@ -99,6 +102,9 @@ public class TelaAlunosBean implements Serializable{
         TurmaRN turmaRN = new TurmaRN();
          
         if(turma != null) {
+            System.out.println("Modalidade: " + turma.getModalidade());
+            System.out.println("Curso: " + turma.getCurso());
+            System.out.println("Turma: " + turma.getNome());
             Turma verificaTurma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
 
             if(verificaTurma == null){

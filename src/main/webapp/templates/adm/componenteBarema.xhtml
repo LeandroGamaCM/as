@@ -20,7 +20,7 @@
             <p:outputPanel id="tabelaBarema">
                 <p:dataTable var="parametro" value="#{baremaBean.parametros}" sortBy="#{parametro.categoria}" editable="true" editMode="cell">
                     <p:ajax event="cellEdit" listener="#{baremaBean.editarBarema(parametro)}"/>   
-                    <p:column headerText="Categoria de Análise">
+                    <p:column headerText="Categoria de Análise" groupRow="true">
                         <h:outputLabel value="#{parametro.categoria} (Peso = #{parametro.peso})" />
                     </p:column>
                     <p:column headerText="Aspectos em Avalição" groupRow="true">

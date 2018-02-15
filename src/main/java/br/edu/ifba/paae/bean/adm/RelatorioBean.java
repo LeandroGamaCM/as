@@ -25,7 +25,7 @@ public class RelatorioBean {
     @PostConstruct
     public void init(){        
         AlunoRN alunoRN = new AlunoRN();
-        alunos = alunoRN.alunosInscritos();
+        alunos = alunoRN.alunosAtuais(alunoRN.alunosInscritos());
         int i;
         
         for(i=0; i<alunos.size(); i++){
@@ -49,17 +49,17 @@ public class RelatorioBean {
         int inscricaoPendente = 0;
 
         
-        if(alunoRN.alunosCadastrados() != null)
-            cadastrados = alunoRN.alunosCadastrados().size();
+        if(alunoRN.alunosAtuais(alunoRN.alunosCadastrados()) != null)
+            cadastrados = alunoRN.alunosAtuais(alunoRN.alunosCadastrados()).size();
         
-        if(alunoRN.alunosInscritos() != null)
-            inscricaoFeita = alunoRN.alunosInscritos().size();
+        if(alunoRN.alunosAtuais(alunoRN.alunosInscritos()) != null)
+            inscricaoFeita = alunoRN.alunosAtuais(alunoRN.alunosInscritos()).size();
         
-        if(alunoRN.listar() != null){
+        if(alunoRN.alunosAtuais(alunoRN.listar()) != null){
             int i;
-            List<Aluno> list = alunoRN.listar();
+            List<Aluno> list = alunoRN.alunosAtuais(alunoRN.listar());
 
-            preCadastrados = alunoRN.listar().size() - cadastrados;
+            preCadastrados = alunoRN.alunosAtuais(alunoRN.listar()).size() - cadastrados;
             
             for(i=0; i<list.size(); i++){
                 if(list.get(i).getStatus() != null){

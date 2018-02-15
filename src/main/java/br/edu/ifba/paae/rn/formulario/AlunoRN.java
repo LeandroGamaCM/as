@@ -8,6 +8,7 @@ import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AlunoRN {
     private AlunoDAO alunoDAO;
@@ -52,14 +53,24 @@ public class AlunoRN {
     public List<Aluno> alunosAtuais(List<Aluno> lista){
         List<Aluno> alunos = new ArrayList<>();
         PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
+        PeriodoInscricao periodoInscricaoAluno;
         PeriodoInscricao periodoInscricao;
+        
         int i = 0;
+        LocalDateTime now = LocalDateTime.now();
+        Integer ano;
+        
+        periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
+        
+        if(periodoInscricao == null){
+            periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear()-1);
+        }
+        ano = periodoInscricao.getAno();
         
         if(lista != null){
-            LocalDateTime now = LocalDateTime.now();
             while (i < lista.size()){
-                periodoInscricao = periodoInscricaoRN.buscarPorAluno(lista.get(i).getAluno());
-                if(now.getYear() == periodoInscricao.getAno()){
+                periodoInscricaoAluno = periodoInscricaoRN.buscarPorAluno(lista.get(i).getAluno());
+                if(Objects.equals(ano, periodoInscricaoAluno.getAno())){
                     alunos.add(lista.get(i));
                 }
                 i++;

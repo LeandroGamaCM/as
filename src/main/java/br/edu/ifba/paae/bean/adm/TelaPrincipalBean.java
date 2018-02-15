@@ -30,23 +30,19 @@ public class TelaPrincipalBean implements Serializable{
         LocalDateTime now = LocalDateTime.now();
         periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
         if(periodoInscricao == null){
-            periodoInscricao = new PeriodoInscricao();
-            periodoInscricao.setAno(now.getYear());
-            periodoInscricao.setAtivado(Boolean.FALSE);
-            
-            periodoInscricaoRN.salvar(periodoInscricao);
+            periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear()-1);
         }
         
         AlunoRN alunoRN = new AlunoRN();
         
-        if(alunoRN.alunosCadastrados() != null)
-            alunosCadastrados = alunoRN.alunosCadastrados().size();
+        if(alunoRN.alunosAtuais(alunoRN.alunosCadastrados()) != null)
+            alunosCadastrados = alunoRN.alunosAtuais(alunoRN.alunosCadastrados()).size();
         
-        if(alunoRN.alunosInscritos() != null)
-            alunosInscritos = alunoRN.alunosInscritos().size();
+        if(alunoRN.alunosAtuais(alunoRN.alunosInscritos()) != null)
+            alunosInscritos = alunoRN.alunosAtuais(alunoRN.alunosInscritos()).size();
         
-        if(alunoRN.alunosEntrevistados() != null){
-            entrevistas = alunoRN.alunosEntrevistados().size();
+        if(alunoRN.alunosAtuais(alunoRN.alunosEntrevistados()) != null){
+            entrevistas = alunoRN.alunosAtuais(alunoRN.alunosEntrevistados()).size();
         }
         
         
@@ -63,8 +59,21 @@ public class TelaPrincipalBean implements Serializable{
 
     public void ativarDesativar(){
         PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
+        LocalDateTime now = LocalDateTime.now();
+        PeriodoInscricao periodoInscricaoAtual;
         
         if(periodoInscricao != null){
+            periodoInscricaoAtual = periodoInscricaoRN.buscarPorAno(now.getYear());
+
+            if(periodoInscricaoAtual == null){
+                periodoInscricaoAtual = new PeriodoInscricao();
+                periodoInscricaoAtual.setAno(now.getYear());
+                periodoInscricaoAtual.setAtivado(periodoInscricao.getAtivado());
+
+                periodoInscricaoRN.salvar(periodoInscricaoAtual);
+                periodoInscricao = periodoInscricaoAtual;
+            }
+
             if(periodoInscricao.getAtivado()){
                 periodoInscricao.setAtivado(Boolean.FALSE);
             }else{

@@ -80,7 +80,7 @@ public class AlunoBean implements Serializable{
         UsuarioRN usuarioRN = new UsuarioRN();
         TurmaRN turmaRN = new TurmaRN();
         LocalDateTime now = LocalDateTime.now();
-        periodoInscricao = periodoInscricaoRN.buscarPorAno(2019);
+        periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
 
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();

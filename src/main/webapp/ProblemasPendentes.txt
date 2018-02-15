@@ -1,5 +1,7 @@
 - Fazer a função do Esqueci a senha
 
+- A linha de membro familiar nao pode ficar vazia tem que ter um botao para excluir
+
 - Quando a sessao inspirar tem que recarregar a pagina automaticamente ou 
     mostrar mensagem e forcar o recarregamento (Javascript?)
 
@@ -7,10 +9,7 @@
 
 - Ver o componente dados do aluno do adm
 
-- A linha de membro familiar nao pode ficar vazia tem que ter um botao para excluir
-
 - Ver os valores que estão sumindo no condicaoManutencao na tela alunoInscricao
-
 
 - Falar com Mirela:
     PontuacaoProgramaSocial

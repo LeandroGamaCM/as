@@ -51,6 +51,8 @@ public class UsuarioDAO{
             usuario.setPermissao(usuarioPermissao.getPermissao());
             this.sessao.evict(usuarioPermissao);
         }
+        if(usuario.getSenha() != null)
+            usuario.setSenha(md5(usuario.getSenha()));
         this.sessao.update(usuario);
     }
     public void excluir(Usuario usuario){

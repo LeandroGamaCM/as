@@ -2,9 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>       
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="estiloPrincipal.css" />
@@ -15,14 +14,16 @@
         <h:outputStylesheet library="css" name="estiloMenu.css" />
         <h:outputStylesheet library="css" name="estiloConteudo.css" />
         <h:outputStylesheet library="css" name="estiloRodape.css" />
-        <h:outputStylesheet library="css" name="temaPrimefaces.css" />
+        <h:outputStylesheet library="css" name="temaPrimefaces.css" />        
+        <h:outputStylesheet library="css" name="estiloCadastroAdm.css" />       
         <h:outputScript library="js" name="responsivo.js"/>
         <h:outputScript library="js" name="submenus.js"/>
         <h:outputScript library="js" name="validar.js" />
+        <h:outputScript library="js" name="vanilla-masker.min.js" />
         <title><ui:insert name="titulo">Título</ui:insert></title>  
     </h:head>
-    <h:body  class="hidden-overflow">        
-        <div class="layout-wrapper layout-wrapper-static layout-wrapper-active">
+    <h:body onload="removerClass2()" class="hidden-overflow">        
+        <div id="scriptD" class="layout-wrapper layout-wrapper-static layout-wrapper-active layout">
             <div class="layout-sidebar layout-sidebar-active" id="menu-lateral">                
                 <div class="sidebar-logo">
                     <ui:insert name="logotipo">
@@ -65,6 +66,41 @@
             obj3 = new submenu();
             obj4 = new submenu2();
         </script>
+        <script type="text/javascript">            
+            function inputHandler(masks, max, event) {
+              var c = event.target;
+              var v = c.value.replace(/\D/g, '');
+              var m = c.value.length > max ? 1 : 0;
+              VMasker(c).unMask();
+              VMasker(c).maskPattern(masks[m]);
+              c.value = VMasker.toPattern(v, masks[m]);
+            }
+            
+            function limpaCampo(event) {
+                var value = event.target.value;                
+                //<![CDATA[
+                    if (value.length < 14) {
+                        event.target.value = '';
+                        this.classList.remove('ui-state-filled');
+                    }
+                //]]>
+            }
+                      
+            var docMask = ['999.999.999-99'];
+            var doc = document.querySelector('#cpfAdm');
+            
+            VMasker(doc).maskPattern(docMask[0]);
+            
+            doc.addEventListener('input', inputHandler.bind(undefined, docMask, 15), false);
+            
+            doc.addEventListener('blur', limpaCampo);
+        </script> 
+        
+        <noscript>
+            Para completa funcionalidade deste site é necessário habilitar o JavaScript.<br/>
+            Aqui estão as <a href="https://www.enable-javascript.com/pt/" target="_blank">
+            instruções de como habilitar o JavaScript no seu navegador</a>.
+        </noscript>
     </h:body>
 </html>
 

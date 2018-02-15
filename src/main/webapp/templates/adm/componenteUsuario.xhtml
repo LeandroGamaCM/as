@@ -2,8 +2,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <ui:composition>
-             
+        <div class="card card-w-title">
+            <h1>Cadastrar outro usuário administrador </h1>
+            <div class="login-panel-content">
+                <h:form id="formCadastroAdm" prependId="false">
+                    <div class="ui-g">
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admNome">Nome Completo:</p:outputLabel>
+                                <p:inputText id="nomeAdm" onkeypress="return letras(event)" autocomplete="off" class="tamInputAdm" /> 
+                            </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admCpf">CPF:</p:outputLabel>
+                                <p:inputText id="cpfAdm" autocomplete="off" class="tamInputAdm" /> 
+                            </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admEmail">Email:</p:outputLabel>
+                                <p:inputText id="emailAdm" autocomplete="off" class="tamInputAdm" /> 
+                            </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admSenha">Senha:</p:outputLabel>                                
+                                <p:inputText type="password" id="senhaAdm" autocomplete="off" class="tamInputAdm" />                                
+                            </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admConfirma">Confirmar Senha:</p:outputLabel>                                
+                                <p:inputText type="password" id="confirmaAdm" autocomplete="off" class="tamInputAdm" />                                
+                            </span>
+                        </div>
+                        <div id="botaoAdm" class="ui-g-4">
+                            <p:commandButton id="admBotao" onclick="return validarAdm();" action="#" value="Cadastrar" type="submit" styleClass="ui-priority-primary" />                            
+                        </div>
+                    </div>
+                </h:form>
+                <div style="width: 38.93%">
+                    <p id="aviso2">Informe uma senha segura de no mínino 6 caracteres.</p>
+                </div>
+            </div>
+        </div>
     </ui:composition>
 </html>

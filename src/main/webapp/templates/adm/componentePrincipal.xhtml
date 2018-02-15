@@ -1,3 +1,5 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -13,11 +15,11 @@
                         </div>
                         <div class="task-box-content">
                             <h3>Período de inscrição</h3>
-                            <p:outputLabel value="Ativado" rendered="#{telaPrincipalBean.periodoInscricao.ativado}"/>
-                            <p:outputLabel value="Desativado" rendered="#{!telaPrincipalBean.periodoInscricao.ativado}"/>
+                            <p:outputLabel class="estiloP" value="Ativado" rendered="#{telaPrincipalBean.periodoInscricao.ativado}"/>
+                            <p:outputLabel class="estiloP" value="Desativado" rendered="#{!telaPrincipalBean.periodoInscricao.ativado}"/>
                         </div>
                         <div class="task-box-footer">
-                            <p:commandButton value="Ativar/Desativar" actionListener="#{telaPrincipalBean.ativarDesativar()}" update="periodoInscricao"/>
+                            <p:commandButton class="task-status estilo-task" value="Ativar/Desativar" actionListener="#{telaPrincipalBean.ativarDesativar()}" update="periodoInscricao" />
                         </div>
                     </div>                    
                 </p:outputPanel>
@@ -93,12 +95,6 @@
                     </div>
                 </div>
             </div>
-            <div class="ui-g-12 schedule">
-                <h:panelGrid columnClasses="value">
-
-
-                </h:panelGrid>
-            </div>
-        </div>
+        </div>           
     </ui:composition>        
 </html>

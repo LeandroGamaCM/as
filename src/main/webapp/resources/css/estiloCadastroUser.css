@@ -1,3 +1,32 @@
+.avisoMSG{
+   position: absolute;
+   display: block;
+   white-space: nowrap;
+   padding: 5px;
+   border-radius: 3px;
+   top: 50%;
+   left: 101%;
+   background: #f30;
+   color: #fff;
+   z-index: 9;
+   -webkit-transform: translateY(-50%);
+   -moz-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent; 
+  border-right: 5px solid #f30;
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  margin-top: -5px;
+}
+.layout{
+  display: none;
+}
 .login-body {
     height: 100%;
     background-position: center;
@@ -30,6 +59,18 @@ body {
     -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14);
     -moz-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14);
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14);
+}
+.cadastro{
+    width: 450px !important;
+    height: 560px !important;
+    margin-left: -225px !important;
+    margin-top: -280px !important; 
+}
+.recuperar{
+    width: 410px !important;
+    height: 460px !important;
+    margin-left: -205px !important;
+    margin-top: -230px !important; 
 }
 .login-body .login-panel .login-panel-header {
     text-align: center;

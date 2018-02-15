@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/as" reloadable="true">
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/asbd" password="banco" type="javax.sql.DataSource" url="jdbc:mysql://localhost/asbd?autoReconnect=true&amp;useSSL=false" username="root"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" name="jdbc/asbd" password="banco" type="javax.sql.DataSource" url="jdbc:mysql://localhost/asbd?autoReconnect=true&amp;useSSL=false" username="root"/>
 </Context>

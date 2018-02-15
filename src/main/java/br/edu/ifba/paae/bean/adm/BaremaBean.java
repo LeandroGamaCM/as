@@ -1,4 +1,4 @@
-package br.edu.ifba.paae.bean;
+package br.edu.ifba.paae.bean.adm;
 
 
 import br.edu.ifba.paae.logica.Barema;

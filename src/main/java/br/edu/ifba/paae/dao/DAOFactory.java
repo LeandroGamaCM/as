@@ -5,6 +5,7 @@ import br.edu.ifba.paae.dao.arquivo.ArquivoDAO;
 import br.edu.ifba.paae.dao.usuario.UsuarioDAO;
 import br.edu.ifba.paae.dao.formulario.*;
 import br.edu.ifba.paae.dao.inscricao.InscricaoDAO;
+import br.edu.ifba.paae.dao.inscricao.PeriodoInscricaoDAO;
 import br.edu.ifba.paae.util.HibernateUtil;
 
 public class DAOFactory {
@@ -17,6 +18,11 @@ public class DAOFactory {
         InscricaoDAO inscricaoDAO = new InscricaoDAO();
         inscricaoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
         return inscricaoDAO;
+    }
+    public static PeriodoInscricaoDAO criarPeriodoInscricaoDAO(){
+        PeriodoInscricaoDAO periodoInscricaoDAO = new PeriodoInscricaoDAO();
+        periodoInscricaoDAO.setSessao(HibernateUtil.getSessionFactory().getCurrentSession());
+        return periodoInscricaoDAO;
     }
     public static ArquivoDAO criarArquivoDAO(){
         ArquivoDAO arquivoDAO = new ArquivoDAO();

@@ -3,10 +3,12 @@ package br.edu.ifba.paae.rn.formulario;
 import br.edu.ifba.paae.dao.DAOFactory;
 import br.edu.ifba.paae.dao.formulario.AlunoDAO;
 import br.edu.ifba.paae.entidades.formulario.Aluno;
-import br.edu.ifba.paae.entidades.formulario.Formulario;
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class AlunoRN {
     private AlunoDAO alunoDAO;
@@ -46,22 +48,30 @@ public class AlunoRN {
         return this.alunoDAO.listarPorModalidadeCurso(modalidade, curso);
     }
     public List<Aluno> buscarCPFNomeRG(String valor){
-        return  this.alunoDAO.buscarCPFNomeRG(valor);
+        return this.alunoDAO.buscarCPFNomeRG(valor);
     }    
     public List<Aluno> alunosAtuais(List<Aluno> lista){
-        FormularioRN formularioRN = new FormularioRN();
-        Formulario formulario;
         List<Aluno> alunos = new ArrayList<>();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
+        PeriodoInscricao periodoInscricaoAluno;
+        PeriodoInscricao periodoInscricao;
         
         int i = 0;
+        LocalDateTime now = LocalDateTime.now();
+        Integer ano;
+        
+        periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
+        
+        if(periodoInscricao == null){
+            periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear()-1);
+        }
+        ano = periodoInscricao.getAno();
+        
         if(lista != null){
             while (i < lista.size()){
-                formulario = formularioRN.buscarPorAluno(lista.get(i).getAluno());
-                Calendar cal = Calendar.getInstance();
-                if(formulario != null && formulario.getDataInscricao() != null){
-                    if(cal.getTime().getYear() == formulario.getDataInscricao().getYear()){
-                        alunos.add(lista.get(i));
-                    }
+                periodoInscricaoAluno = periodoInscricaoRN.buscarPorAluno(lista.get(i).getAluno());
+                if(Objects.equals(ano, periodoInscricaoAluno.getAno())){
+                    alunos.add(lista.get(i));
                 }
                 i++;
             }

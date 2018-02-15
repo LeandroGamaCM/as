@@ -1,4 +1,4 @@
-package br.edu.ifba.paae.bean;
+package br.edu.ifba.paae.bean.adm;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.logica.FormularioAluno;
@@ -35,7 +35,7 @@ public class TelaEntrevistaBean implements Serializable{
         formularioAlunos = new ArrayList<>();
         
         if(tipo){
-            List<Aluno> alunos = alunoRN.alunosEntrevistados();
+            List<Aluno> alunos = alunoRN.alunosAtuais(alunoRN.alunosEntrevistados());
             
             if(alunos != null || !alunos.isEmpty()){
                 for(i = 0; i < alunos.size(); i++){
@@ -45,7 +45,7 @@ public class TelaEntrevistaBean implements Serializable{
             }            
         }
         if(!tipo){
-            List<Aluno> alunos = alunoRN.alunosNAOEntrevistados();
+            List<Aluno> alunos = alunoRN.alunosAtuais(alunoRN.alunosNAOEntrevistados());
             System.out.println("Entrevistas NÂO feitas");
             if(alunos != null || !alunos.isEmpty()){
                 System.out.println("alunos.size:"+ alunos.size());
@@ -57,7 +57,7 @@ public class TelaEntrevistaBean implements Serializable{
         }
        
     }
-        
+// Na busca permitir que mostre os alunos de todos os anos e coloca um campo 'ano' na tabela
     public void buscar(){
         AlunoRN alunoRN = new AlunoRN();
         int i;
@@ -65,7 +65,7 @@ public class TelaEntrevistaBean implements Serializable{
         System.out.println("\tPesquisa: " + pesquisa);
         formularioAlunos = new ArrayList<>();
         
-        if(alunos != null || !alunos.isEmpty()){
+        if(alunos != null && !alunos.isEmpty()){
             for(i = 0; i < alunos.size(); i++){
                 if(alunos.get(i).getStatus() != null && alunos.get(i).getStatus().equals("Inscrição realizada")){
                     FormularioAluno formAluno = new FormularioAluno(alunos.get(i));

@@ -1,13 +1,17 @@
-package br.edu.ifba.paae.bean;
+package br.edu.ifba.paae.bean.adm;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.formulario.Turma;
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.logica.AlunoTabela;
+import br.edu.ifba.paae.logica.FormularioAluno;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.formulario.TurmaRN;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +36,7 @@ public class TelaAlunosBean implements Serializable{
     
 
     private List<Aluno> alunos;
-    private List<AlunoTabela> alunosTabela = new ArrayList<>();
+    private List<FormularioAluno> formularioAlunos = new ArrayList<>();
     private Set<String> modalidades;
     private Set<String> cursos;
     private List<Turma> turmas;
@@ -51,7 +55,11 @@ public class TelaAlunosBean implements Serializable{
         Usuario usuario = usuarioRN.buscarPorLogin(novoAluno.getCpf());
         
         if(usuario == null){
+            LocalDateTime now = LocalDateTime.now();
+            PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
+            PeriodoInscricao periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
             usuario = new Usuario();
+
             usuario.setAtivo(Boolean.FALSE);
             usuario.setLogin(novoAluno.getCpf());
 //            usuario.getPermissao().add("ROLE_ADMINISTRADOR");
@@ -59,6 +67,8 @@ public class TelaAlunosBean implements Serializable{
  
             novoAluno.setUsuario(usuario);
             novoAluno.setStatus("Pré-cadastrado");
+            novoAluno.setPeriodoInscricao(periodoInscricao);
+            
             alunoRN.salvar(novoAluno);
 // Mostrar mensagem Salvou!
 
@@ -99,6 +109,9 @@ public class TelaAlunosBean implements Serializable{
         TurmaRN turmaRN = new TurmaRN();
          
         if(turma != null) {
+            System.out.println("Modalidade: " + turma.getModalidade());
+            System.out.println("Curso: " + turma.getCurso());
+            System.out.println("Turma: " + turma.getNome());
             Turma verificaTurma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
 
             if(verificaTurma == null){
@@ -124,44 +137,44 @@ public class TelaAlunosBean implements Serializable{
         if(auxCur != null){
             cursos = new HashSet<>(auxCur);
         }
-        alunosTabela = new ArrayList<>();
+        formularioAlunos = new ArrayList<>();
         alunos = new ArrayList<>();
         int i;
 
         
         if(filtroModalidade == null || "todos".equals(filtroModalidade)){
             if(filtroCurso == null || "todos".equals(filtroCurso)){
-                alunos = alunoRN.listar();
+                alunos = alunoRN.alunosAtuais(alunoRN.listar());
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
-                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                        alunosTabela.add(alunoTabela);
+                        FormularioAluno formularioAluno = new FormularioAluno(alunos.get(i));
+                        formularioAlunos.add(formularioAluno);
                     }
                 }
             }else{
-                alunos = alunoRN.listarPorCurso(filtroCurso);
+                alunos = alunoRN.alunosAtuais(alunoRN.listarPorCurso(filtroCurso));
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
-                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                        alunosTabela.add(alunoTabela);
+                        FormularioAluno formularioAluno = new FormularioAluno(alunos.get(i));
+                        formularioAlunos.add(formularioAluno);
                     }
                 }                
             }
         }else{
             if(filtroCurso == null || "todos".equals(filtroCurso)){
-                alunos = alunoRN.listarPorModalidade(filtroModalidade);
+                alunos = alunoRN.alunosAtuais(alunoRN.listarPorModalidade(filtroModalidade));
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
-                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                        alunosTabela.add(alunoTabela);
+                        FormularioAluno formularioAluno = new FormularioAluno(alunos.get(i));
+                        formularioAlunos.add(formularioAluno);
                     }
                 }
             }else{
-                alunos = alunoRN.listarPorModalidadeCurso(filtroModalidade, filtroCurso);
+                alunos = alunoRN.alunosAtuais(alunoRN.listarPorModalidadeCurso(filtroModalidade, filtroCurso));
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
-                        AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                        alunosTabela.add(alunoTabela);
+                        FormularioAluno formularioAluno = new FormularioAluno(alunos.get(i));
+                        formularioAlunos.add(formularioAluno);
                     }
                 }
             }            
@@ -173,12 +186,12 @@ public class TelaAlunosBean implements Serializable{
     public void buscar(){
         AlunoRN alunoRN = new AlunoRN();
         int i;
-        alunosTabela = new ArrayList<>();
+        formularioAlunos = new ArrayList<>();
         alunos = alunoRN.buscarCPFNomeRG(pesquisa);
         if(alunos != null || !alunos.isEmpty()){
             for(i = 0; i < alunos.size(); i++){
-                AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
-                alunosTabela.add(alunoTabela);
+                FormularioAluno formularioAluno = new FormularioAluno(alunos.get(i));
+                formularioAlunos.add(formularioAluno);
             }
         }           
         pesquisa = "";
@@ -290,14 +303,6 @@ public class TelaAlunosBean implements Serializable{
         this.alunos = alunos;
     }
 
-    public List<AlunoTabela> getAlunosTabela() {
-        return alunosTabela;
-    }
-
-    public void setAlunosTabela(List<AlunoTabela> alunosTabela) {
-        this.alunosTabela = alunosTabela;
-    }
-
     public Set<String> getModalidades() {
         return modalidades;
     }
@@ -314,6 +319,13 @@ public class TelaAlunosBean implements Serializable{
         this.cursos = cursos;
     }
 
+    public List<FormularioAluno> getFormularioAlunos() {
+        return formularioAlunos;
+    }
+
+    public void setFormularioAlunos(List<FormularioAluno> formularioAlunos) {
+        this.formularioAlunos = formularioAlunos;
+    }
 
 
 }

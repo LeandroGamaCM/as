@@ -1,4 +1,4 @@
-package br.edu.ifba.paae.bean;
+package br.edu.ifba.paae.bean.aluno;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.rn.arquivo.ArquivoRN;

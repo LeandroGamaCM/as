@@ -547,7 +547,7 @@ public class EntrevistaRN {
             rendaTotal = rendaTotal/(membroFamiliars.size()+1);
         System.out.println("-Renda perCapita: " + rendaTotal);
         
-        for (int j = limites.size(); j > 0; j--) {
+        for (int j = limites.size()-1; j >= 0; j--) {
             if(rendaTotal < limites.get(j)){
                 limite = limites.get(j);
             }

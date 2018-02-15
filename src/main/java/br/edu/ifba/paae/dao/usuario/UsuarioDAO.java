@@ -2,6 +2,9 @@ package br.edu.ifba.paae.dao.usuario;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -38,6 +41,8 @@ public class UsuarioDAO{
         return this.sessao.createCriteria(Usuario.class).list();
     }
     public void salvar(Usuario usuario){
+        if(usuario.getSenha() != null)
+            usuario.setSenha(md5(usuario.getSenha()));
         sessao.save(usuario);
     }
     public void atualizar(Usuario usuario){
@@ -46,9 +51,24 @@ public class UsuarioDAO{
             usuario.setPermissao(usuarioPermissao.getPermissao());
             this.sessao.evict(usuarioPermissao);
         }
+        if(usuario.getSenha() != null)
+            usuario.setSenha(md5(usuario.getSenha()));
         this.sessao.update(usuario);
     }
     public void excluir(Usuario usuario){
         sessao.delete(usuario);
     }    
+    
+    public static String md5(String senha) {
+        String sen = "";
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
+        sen = hash.toString(16);
+        return sen;
+    }
 }

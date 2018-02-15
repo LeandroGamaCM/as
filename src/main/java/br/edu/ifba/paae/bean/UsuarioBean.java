@@ -47,8 +47,11 @@ public class UsuarioBean implements Serializable{
 
     public void salvar(){
         UsuarioRN usuarioRN = new UsuarioRN();
+        System.out.println("\t(Criptografada)Usuario.getSenha: " +usuario.getSenha());
+        String senha = usuarioRN.md5(confirmacaoSenha);
+        System.out.println("\t(Criptografada)Senha: " + senha);
         
-        if(usuario.getSenha().equals(confirmacaoSenha)){
+        if(usuario.getSenha().equals(senha)){
             if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
                 AlunoRN alunoRN = new AlunoRN();
                 EnderecoRN enderecoRN = new EnderecoRN();

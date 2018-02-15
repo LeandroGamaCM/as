@@ -21,6 +21,7 @@ import br.edu.ifba.paae.entidades.formulario.Residencia;
 import br.edu.ifba.paae.entidades.formulario.ResidenciaFamilia;
 import br.edu.ifba.paae.entidades.formulario.SituacaoResidencial;
 import br.edu.ifba.paae.entidades.formulario.Turma;
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.formulario.BolsasAuxilioRN;
@@ -44,6 +45,7 @@ import br.edu.ifba.paae.rn.formulario.SituacaoResidencialRN;
 import br.edu.ifba.paae.rn.formulario.TurmaRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import br.edu.ifba.paae.rn.analise.EntrevistaRN;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,9 +73,9 @@ public class FormularioAluno {
     private Turma turma = new Turma();
     private Usuario usuario = new Usuario();
     private Entrevista entrevista = new Entrevista();
-
+    private PeriodoInscricao periodoInscricao = new PeriodoInscricao();
+    
     public FormularioAluno(Aluno aluno) {
-        AlunoRN alunoRN = new AlunoRN();
         BolsasAuxilioRN bolsasAuxilioRN = new BolsasAuxilioRN();
         CondicaoManutencaoRN condicaoManutencaoRN = new CondicaoManutencaoRN();
         ContaRN contaRN = new ContaRN();
@@ -95,6 +97,7 @@ public class FormularioAluno {
         TurmaRN turmaRN = new TurmaRN();
         UsuarioRN usuarioRN = new UsuarioRN();
         EntrevistaRN entrevistaRN = new EntrevistaRN();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         
         this.aluno = aluno;
         this.bolsasAuxilio = bolsasAuxilioRN.buscarPorAluno(aluno.getAluno());
@@ -118,7 +121,7 @@ public class FormularioAluno {
         this.turma = turmaRN.buscarPorAluno(aluno.getAluno());
         this.usuario = usuarioRN.buscarPorAluno(aluno.getAluno());
         this.entrevista = entrevistaRN.buscarPorAluno(aluno.getAluno());
-
+        this.periodoInscricao = periodoInscricaoRN.buscarPorAluno(aluno.getAluno());
     }
 
     public Aluno getAluno() {
@@ -296,7 +299,13 @@ public class FormularioAluno {
     public void setEntrevista(Entrevista entrevista) {
         this.entrevista = entrevista;
     }
-    
-    
+
+    public PeriodoInscricao getPeriodoInscricao() {
+        return periodoInscricao;
+    }
+
+    public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
+        this.periodoInscricao = periodoInscricao;
+    }
     
 }

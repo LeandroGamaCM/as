@@ -40,12 +40,12 @@
                     
                 </p:panel>
                 <p:panel rendered="#{telaAlunosBean.preCadastro}">
-                    <p:dataTable var="turma" value="#{telaAlunosBean.turmas}" editable="true" editMode="cell">
+                    <p:dataTable var="turma" value="#{telaAlunosBean.turmas}" editable="true" editMode="cell" id="dataTable">
                         <f:facet name="header">
                                 <h:outputText value="Turmas cadastradas" />
                         </f:facet>
-                        <p:ajax event="cellEdit" listener="#{telaAlunosBean.editarTurma(turma)}"/>                        
-                        <p:column headerText="Modalidade" sortBy="#{turma.modalidade}">
+                        <p:ajax event="cellEdit" update="dataTable" listener="#{telaAlunosBean.editarTurma(turma)}"/>                        
+                        <p:column headerText="Modalidade" sortBy="#{turma.modalidade}" groupRow="true" colspan="1">
                             <p:cellEditor>
                                 <f:facet name="output"><p:outputLabel value="#{turma.modalidade}"/></f:facet>
                                 <f:facet name="input"><p:inputText value="#{turma.modalidade}"/></f:facet>
@@ -88,24 +88,23 @@
 <!--Ver Expansion  (primefaces datatable)-->
                     <p:outputPanel id="tabela">
 
-                        <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}" sortBy="#{aluno.turma.nome}">
+                        <p:dataTable var="formularioAluno" value="#{telaAlunosBean.formularioAlunos}" sortBy="#{formularioAluno.turma.nome}">
                             <f:facet name="header">
                                     <h:outputText value="Alunos" />
                             </f:facet>
                             <p:headerRow>
                                 <p:column colspan="3">
-                                    <h:outputText value="#{aluno.turma.nome} #{aluno.turma.curso}" />
+                                    <h:outputText value="#{formularioAluno.turma.nome} #{formularioAluno.turma.curso}" />
                                 </p:column>
                             </p:headerRow>    
-
                             <p:column headerText="Nome">
-                                <h:outputText value="#{aluno.aluno.nome}"/>
+                                <h:outputText value="#{formularioAluno.aluno.nome}"/>
                             </p:column>
                             <p:column headerText="Cpf">
-                                <h:outputText value="#{aluno.aluno.cpf}"/>
+                                <h:outputText value="#{formularioAluno.aluno.cpf}"/>
                             </p:column>
                             <p:column headerText="Staus de inscrição">
-                                <h:outputText value="#{aluno.aluno.status}"/>
+                                <h:outputText value="#{formularioAluno.aluno.status}"/>
                             </p:column>
 
                         </p:dataTable>
@@ -150,17 +149,25 @@
 
 <!--OBS.:Só pesquisa o cpf se digitar o numero completo-->
                 <p:panel rendered="#{telaAlunosBean.pesquisar}" header="Resultados da busca">
-                        <p:dataTable var="aluno" value="#{telaAlunosBean.alunosTabela}">
+                    <p:dataTable var="formularioAluno" value="#{telaAlunosBean.formularioAlunos}">
                             <f:facet name="header">
                                     <h:outputText value="Alunos" />
                             </f:facet>  
                             <p:column headerText="Nome">
-                                <h:outputText value="#{aluno.aluno.nome}"/>
+                                <h:outputText value="#{formularioAluno.aluno.nome}"/>
                             </p:column>
                             <p:column headerText="Cpf">
-                                <h:outputText value="#{aluno.aluno.cpf}"/>
+                                <h:outputText value="#{formularioAluno.aluno.cpf}"/>
                             </p:column>
-
+                            <p:column headerText="Turma">
+                                <h:outputText value="#{formularioAluno.turma.nome} #{formularioAluno.turma.curso}" />
+                            </p:column>                        
+                            <p:column headerText="Staus de inscrição">
+                                <h:outputText value="#{formularioAluno.aluno.status}"/>
+                            </p:column>                        
+                            <p:column headerText="Ano de inscrição">
+                                <p:outputLabel value="#{formularioAluno.periodoInscricao.ano}"/>
+                            </p:column>
                         </p:dataTable>                    
                     
                 </p:panel>

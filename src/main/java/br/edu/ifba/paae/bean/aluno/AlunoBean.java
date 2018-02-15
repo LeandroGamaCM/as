@@ -1,18 +1,20 @@
-package br.edu.ifba.paae.bean;
+package br.edu.ifba.paae.bean.aluno;
 
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.analise.Entrevista;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.rn.formulario.*;
 import br.edu.ifba.paae.entidades.formulario.*;
-import br.edu.ifba.paae.entidades.inscricao.Inscricao;
 import br.edu.ifba.paae.rn.analise.EntrevistaRN;
-import br.edu.ifba.paae.rn.inscricao.InscricaoRN;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.*;
@@ -24,7 +26,7 @@ import org.primefaces.event.FlowEvent;
 @ViewScoped
 public class AlunoBean implements Serializable{
     private String estadoTela = "telaFormulario";
-    private Inscricao inscricao;
+    private PeriodoInscricao periodoInscricao;
     
     private Aluno aluno = new Aluno();
     private BolsasAuxilio bolsasAuxilio = new BolsasAuxilio();
@@ -74,12 +76,11 @@ public class AlunoBean implements Serializable{
     
     @PostConstruct
     public void init(){
-        InscricaoRN inscricaoRN = new InscricaoRN();        
-        AlunoRN alunoRN = new AlunoRN();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         UsuarioRN usuarioRN = new UsuarioRN();
         TurmaRN turmaRN = new TurmaRN();
-        
-        inscricao = inscricaoRN.carregar();
+        LocalDateTime now = LocalDateTime.now();
+        periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
 
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();
@@ -88,7 +89,8 @@ public class AlunoBean implements Serializable{
         
         if(usuario != null){
             if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
-                aluno = alunoRN.buscarPorCPF(cpf);
+                aluno = usuarioRN.buscarAluno(usuario.getUsuario());
+                
                 inicializar();
             }else
                 System.out.println("\n\tADM!\n");            
@@ -276,6 +278,7 @@ public class AlunoBean implements Serializable{
         
         aluno.setTurma(turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome()));
         aluno.setStatus("Inscrição realizada");
+        aluno.setPeriodoInscricao(periodoInscricao);
         
         alunoRN.salvar(this.aluno);
         salvarDependenciasAluno(aluno);
@@ -917,20 +920,20 @@ public class AlunoBean implements Serializable{
         this.estadoTela = estadoTela;
     }
 
-    public Inscricao getInscricao() {
-        return inscricao;
-    }
-
-    public void setInscricao(Inscricao inscricao) {
-        this.inscricao = inscricao;
-    }
-
     public Entrevista getEntrevista() {
         return entrevista;
     }
 
     public void setEntrevista(Entrevista entrevista) {
         this.entrevista = entrevista;
+    }
+
+    public PeriodoInscricao getPeriodoInscricao() {
+        return periodoInscricao;
+    }
+
+    public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
+        this.periodoInscricao = periodoInscricao;
     }
 
 

@@ -13,6 +13,17 @@ body {
 div {
     display: block;
 }
+.estiloP{
+    color: #757575;
+    margin: 0 0 28px 0;
+    padding: 0;     
+}
+.estilo-task{
+    border: 1px solid #cccccc !important;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf !important;
+    background-image: none !important;
+    outline: 0 !important;    
+}
 /*Barra de rolagem*/
 ::-webkit-scrollbar-track {
     background-color: #ffffff;

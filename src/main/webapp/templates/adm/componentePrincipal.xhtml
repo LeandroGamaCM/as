@@ -14,12 +14,12 @@
                             <i class="fa fa-calendar"></i>
                         </div>
                         <div class="task-box-content">
-                            <h3>Período de inscrição</h3>
+                            <h3>Período de Inscrição</h3>
                             <p:outputLabel class="estiloP" value="Ativado" rendered="#{telaPrincipalBean.inscricao.periodoInscricao}"/>
                             <p:outputLabel class="estiloP" value="Desativado" rendered="#{!telaPrincipalBean.inscricao.periodoInscricao}"/>
                         </div>
-                        <div class="task-box-footer">
-                            <p:commandButton class="task-status estilo-task" value="Ativar/Desativar" actionListener="#{telaPrincipalBean.ativarDesativar()}" update="periodoInscricao" />
+                        <div class="task-box-footer" id="task01">
+                            <p:commandButton class="task-status estilo-task" id="ativa" value="Ativar/Desativar" actionListener="#{telaPrincipalBean.ativarDesativar()}" update="periodoInscricao" />
                         </div>
                     </div>                    
                 </p:outputPanel>
@@ -34,8 +34,8 @@
                         <h3>Relatórios</h3>
                         <p>Acesse os relatórios gerados</p>
                     </div>
-                    <div class="task-box-footer">
-                        <a href="#{request.contextPath}/paginas/adm/relatorios.jsf"><span class="task-status">Acessar</span></a>
+                    <div class="task-box-footer" id="sp3">
+                        <a href="#{request.contextPath}/paginas/adm/relatorios.jsf"><span class="task-status" id="sp1">Acessar</span></a>
                     </div>
                 </div>
             </div>
@@ -49,8 +49,8 @@
                         <h3>Entrevistas</h3>
                         <p>Realize um entrevista</p>
                     </div>
-                    <div class="task-box-footer">
-                        <a href="#{request.contextPath}/paginas/adm/entrevistas.jsf"><span class="task-status">Realizar</span></a>
+                    <div class="task-box-footer" id="sp4">
+                        <a href="#{request.contextPath}/paginas/adm/entrevistas.jsf"><span class="task-status" id="sp2">Realizar</span></a>
                     </div>
                 </div>
             </div>

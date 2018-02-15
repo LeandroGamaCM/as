@@ -18,6 +18,7 @@
         <h:outputScript library="js" name="responsivo.js"/>
         <h:outputScript library="js" name="submenus.js"/>
         <h:outputScript library="js" name="validar.js" />
+        <h:outputScript library="js" name="vanilla-masker.min.js" />
         <title><ui:insert name="titulo">Título</ui:insert></title>  
     </h:head>
     <h:body onload="removerClass1()" class="hidden-overflow">        
@@ -57,7 +58,76 @@
                 </div>
             </div>
         </div>
+        
+        <script type="text/javascript">            
+            function inputHandler(masks, max, event) {
+              var c = event.target;
+              var v = c.value.replace(/\D/g, '');
+              var m = c.value.length > max ? 1 : 0;
+              VMasker(c).unMask();
+              VMasker(c).maskPattern(masks[m]);
+              c.value = VMasker.toPattern(v, masks[m]);
+            }
+            
+            function limpaCampo(event) {
+                var value = event.target.value;                
+                //<![CDATA[
+                    if (value.length < 14) {
+                        event.target.value = '';                        
+                    }
+                //]]>
+            }
+            
+            function limpaCampo2(event) {
+                var value = event.target.value;                
+                //<![CDATA[
+                    if (value.length < 14) {
+                        event.target.value = '';                        
+                    }
+                //]]>
+            }
+            
+            var telMask = ['(99) 9999-9999', '(99) 99999-9999'];
+            var tel = document.querySelector('#tele');            
+            var tel2 = document.querySelector('#celular');
+            VMasker(tel).maskPattern(telMask[0]);
+            VMasker(tel2).maskPattern(telMask[0]);
+            tel.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
+            tel2.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
+            tel.addEventListener('blur', limpaCampo2);
+            tel2.addEventListener('blur', limpaCampo2);
                 
+            var docMask = ['999.999.999-99'];
+            var doc = document.querySelector('#cpf');            
+            VMasker(doc).maskPattern(docMask[0]);            
+            doc.addEventListener('input', inputHandler.bind(undefined, docMask, 15), false);            
+            doc.addEventListener('blur', limpaCampo);
+        </script>
+        <script type="text/javascript">            
+            function inputHandler(masks, max, event) {
+              var c = event.target;
+              var v = c.value.replace(/\D/g, '');
+              var m = c.value.length > max ? 1 : 0;
+              VMasker(c).unMask();
+              VMasker(c).maskPattern(masks[m]);
+              c.value = VMasker.toPattern(v, masks[m]);
+            }
+                        
+            function limpaCampo(event) {
+                var value = event.target.value;                
+                //<![CDATA[
+                    if (value.length < 14) {
+                        event.target.value = '';                        
+                    }
+                //]]>
+            }
+            
+            var telMask = ['(99) 9999-9999', '(99) 99999-9999'];
+            var tel = document.querySelector('#tel');          
+            VMasker(tel).maskPattern(telMask[0]);
+            tel.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
+            tel.addEventListener('blur', limpaCampo);            
+        </script>  
         <script type="text/javascript">
             obj = new resp();
             obj2 = new resp2();

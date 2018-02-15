@@ -63,6 +63,20 @@ function letras(e){
         return true;
     }
 }
+//permite apenas numeros no campo rg
+function numeros(e){
+    var expressao;
+    expressao = /[a-z]/;
+
+    if(expressao.test(String.fromCharCode(e.keyCode)))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
 //formulario de cadastro de usuarios
 function validar() {
@@ -160,7 +174,7 @@ function onnext(){
     $('html, body').animate({scrollTop:0}, 'medium');
     
     //validar formulário
-  if ($(".tab1").hasClass("ui-state-highlight")) {
+//  if ($(".tab1").hasClass("ui-state-highlight")) {
 //      var nome = document.getElementById('nome');
 //      var cpf = document.getElementById('cpf');
 //      
@@ -174,9 +188,11 @@ function onnext(){
 //        cpf.focus;
 //        return false;
 //    }
-//    return true;
- 
-    }
+//    else{       
+//        return true;
+//    }
+// 
+//    }
 }
 
 //botao voltar do wizard

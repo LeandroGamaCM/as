@@ -1,11 +1,12 @@
-package br.edu.ifba.paae.bean;
+package br.edu.ifba.paae.bean.adm;
 
-import br.edu.ifba.paae.entidades.inscricao.Inscricao;
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
-import br.edu.ifba.paae.rn.inscricao.InscricaoRN;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -15,7 +16,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "telaPrincipalBean")
 @ViewScoped
 public class TelaPrincipalBean implements Serializable{
-    private Inscricao inscricao;
+    private PeriodoInscricao periodoInscricao;
     private Usuario usuario;
     private Integer alunosCadastrados = 0;
     private Integer alunosInscritos = 0;
@@ -23,9 +24,19 @@ public class TelaPrincipalBean implements Serializable{
     
     @PostConstruct
     public void init(){
-        InscricaoRN inscricaoRN = new InscricaoRN();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         UsuarioRN usuarioRN = new UsuarioRN();
-        inscricao = inscricaoRN.carregar();
+        
+        LocalDateTime now = LocalDateTime.now();
+        periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
+        if(periodoInscricao == null){
+            periodoInscricao = new PeriodoInscricao();
+            periodoInscricao.setAno(now.getYear());
+            periodoInscricao.setAtivado(Boolean.FALSE);
+            
+            periodoInscricaoRN.salvar(periodoInscricao);
+        }
+        
         AlunoRN alunoRN = new AlunoRN();
         
         if(alunoRN.alunosCadastrados() != null)
@@ -51,26 +62,25 @@ public class TelaPrincipalBean implements Serializable{
     }
 
     public void ativarDesativar(){
-        InscricaoRN inscricaoRN = new InscricaoRN();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         
-        if(inscricao != null){
-            if(inscricao.getPeriodoInscricao()){
-                inscricao.setPeriodoInscricao(Boolean.FALSE);
-                inscricaoRN.atualizar(Boolean.FALSE);
+        if(periodoInscricao != null){
+            if(periodoInscricao.getAtivado()){
+                periodoInscricao.setAtivado(Boolean.FALSE);
             }else{
-                inscricao.setPeriodoInscricao(Boolean.TRUE);
-                inscricaoRN.atualizar(Boolean.TRUE);
+                periodoInscricao.setAtivado(Boolean.TRUE);
             }            
+                periodoInscricaoRN.salvar(periodoInscricao);
         }
         
     }
-    
-    public Inscricao getInscricao() {
-        return inscricao;
+
+    public PeriodoInscricao getPeriodoInscricao() {
+        return periodoInscricao;
     }
 
-    public void setInscricao(Inscricao inscricao) {
-        this.inscricao = inscricao;
+    public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
+        this.periodoInscricao = periodoInscricao;
     }
 
     public Usuario getUsuario() {
@@ -104,6 +114,7 @@ public class TelaPrincipalBean implements Serializable{
     public void setEntrevistas(Integer entrevistas) {
         this.entrevistas = entrevistas;
     }
+    
     
     
 }

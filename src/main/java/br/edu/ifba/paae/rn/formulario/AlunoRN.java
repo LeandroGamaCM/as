@@ -3,8 +3,10 @@ package br.edu.ifba.paae.rn.formulario;
 import br.edu.ifba.paae.dao.DAOFactory;
 import br.edu.ifba.paae.dao.formulario.AlunoDAO;
 import br.edu.ifba.paae.entidades.formulario.Aluno;
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class AlunoRN {
@@ -49,12 +51,15 @@ public class AlunoRN {
     }    
     public List<Aluno> alunosAtuais(List<Aluno> lista){
         List<Aluno> alunos = new ArrayList<>();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
+        PeriodoInscricao periodoInscricao;
         int i = 0;
         
         if(lista != null){
-            Calendar cal = Calendar.getInstance();
+            LocalDateTime now = LocalDateTime.now();
             while (i < lista.size()){
-                if(cal.getTime().getYear() == lista.get(i).getAno()){
+                periodoInscricao = periodoInscricaoRN.buscarPorAluno(lista.get(i).getAluno());
+                if(now.getYear() == periodoInscricao.getAno()){
                     alunos.add(lista.get(i));
                 }
                 i++;

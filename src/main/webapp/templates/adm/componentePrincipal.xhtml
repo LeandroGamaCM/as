@@ -13,8 +13,8 @@
                         </div>
                         <div class="task-box-content">
                             <h3>Período de inscrição</h3>
-                            <p:outputLabel value="Ativado" rendered="#{telaPrincipalBean.inscricao.periodoInscricao}"/>
-                            <p:outputLabel value="Desativado" rendered="#{!telaPrincipalBean.inscricao.periodoInscricao}"/>
+                            <p:outputLabel value="Ativado" rendered="#{telaPrincipalBean.periodoInscricao.ativado}"/>
+                            <p:outputLabel value="Desativado" rendered="#{!telaPrincipalBean.periodoInscricao.ativado}"/>
                         </div>
                         <div class="task-box-footer">
                             <p:commandButton value="Ativar/Desativar" actionListener="#{telaPrincipalBean.ativarDesativar()}" update="periodoInscricao"/>

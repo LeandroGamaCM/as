@@ -41,7 +41,8 @@ public class UsuarioDAO{
         return this.sessao.createCriteria(Usuario.class).list();
     }
     public void salvar(Usuario usuario){
-        usuario.setSenha(md5(usuario.getSenha()));
+        if(usuario.getSenha() != null)
+            usuario.setSenha(md5(usuario.getSenha()));
         sessao.save(usuario);
     }
     public void atualizar(Usuario usuario){

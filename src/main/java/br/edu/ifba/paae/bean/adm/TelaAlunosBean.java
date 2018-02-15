@@ -1,15 +1,17 @@
-package br.edu.ifba.paae.bean;
+package br.edu.ifba.paae.bean.adm;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.formulario.Turma;
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.logica.AlunoTabela;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.formulario.TurmaRN;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,8 +54,11 @@ public class TelaAlunosBean implements Serializable{
         Usuario usuario = usuarioRN.buscarPorLogin(novoAluno.getCpf());
         
         if(usuario == null){
-            Calendar cal = Calendar.getInstance();
+            LocalDateTime now = LocalDateTime.now();
+            PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
+            PeriodoInscricao periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
             usuario = new Usuario();
+
             usuario.setAtivo(Boolean.FALSE);
             usuario.setLogin(novoAluno.getCpf());
 //            usuario.getPermissao().add("ROLE_ADMINISTRADOR");
@@ -61,7 +66,8 @@ public class TelaAlunosBean implements Serializable{
  
             novoAluno.setUsuario(usuario);
             novoAluno.setStatus("Pré-cadastrado");
-            novoAluno.setAno(cal.getTime().getYear());
+            novoAluno.setPeriodoInscricao(periodoInscricao);
+            
             alunoRN.salvar(novoAluno);
 // Mostrar mensagem Salvou!
 
@@ -137,7 +143,7 @@ public class TelaAlunosBean implements Serializable{
         
         if(filtroModalidade == null || "todos".equals(filtroModalidade)){
             if(filtroCurso == null || "todos".equals(filtroCurso)){
-                alunos = alunoRN.listar();
+                alunos = alunoRN.alunosAtuais(alunoRN.listar());
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
                         AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
@@ -145,7 +151,7 @@ public class TelaAlunosBean implements Serializable{
                     }
                 }
             }else{
-                alunos = alunoRN.listarPorCurso(filtroCurso);
+                alunos = alunoRN.alunosAtuais(alunoRN.listarPorCurso(filtroCurso));
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
                         AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
@@ -155,7 +161,7 @@ public class TelaAlunosBean implements Serializable{
             }
         }else{
             if(filtroCurso == null || "todos".equals(filtroCurso)){
-                alunos = alunoRN.listarPorModalidade(filtroModalidade);
+                alunos = alunoRN.alunosAtuais(alunoRN.listarPorModalidade(filtroModalidade));
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
                         AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));
@@ -163,7 +169,7 @@ public class TelaAlunosBean implements Serializable{
                     }
                 }
             }else{
-                alunos = alunoRN.listarPorModalidadeCurso(filtroModalidade, filtroCurso);
+                alunos = alunoRN.alunosAtuais(alunoRN.listarPorModalidadeCurso(filtroModalidade, filtroCurso));
                 if(alunos != null || !alunos.isEmpty()){
                     for(i = 0; i < alunos.size(); i++){
                         AlunoTabela alunoTabela = new AlunoTabela(alunos.get(i));

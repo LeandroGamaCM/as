@@ -9,6 +9,8 @@
 
 - A linha de membro familiar nao pode ficar vazia tem que ter um botao para excluir
 
+- Ver os valores que estão sumindo no condicaoManutencao na tela alunoInscricao
+
 
 - Falar com Mirela:
     PontuacaoProgramaSocial

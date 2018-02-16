@@ -93,7 +93,7 @@ public class UsuarioBean implements Serializable{
                     System.out.println("A nova senha é: " + newSenha);
                     
                     try {
-                        EmailUtils.redefinirSenha(user.getLogin(), a.getEmail(), "senha");
+                        EmailUtils.redefinirSenha(user.getLogin(), a.getEmail(), newSenha);
                     } catch (MessagingException ex) {
                         System.out.println("\tErro!");
                         Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);

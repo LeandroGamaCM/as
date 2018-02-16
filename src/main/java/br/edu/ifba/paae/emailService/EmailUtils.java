@@ -26,7 +26,7 @@ public class EmailUtils{
         //Aqui que substitui o meu email por uma variável que recebe o email do aluno
         email.setRecipient(Message.RecipientType.TO, new InternetAddress(emailUsuario));
         email.setFrom(new InternetAddress(EMAIL));
-        email.setSubject("Redefinição de senha do PAAE");       
+        email.setSubject("Redefinição de senha do PAAE");              
         
         //Aqui que substitui o corpo da mensagem pelas credenciais do aluno (CPF e nova senha do aluno)
         String corpoMensagem = "Sua nova senha para login no Sistema PAAE é ";

@@ -23,15 +23,13 @@
                             <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="logoPaae.png"/></h2>
                         </div>                        
                         <div class="ui-g-12">
-                            <span class="md-inputfield">
-                                <p:inputText value="#{usuarioBean.cpfRedefinirSenha}"/>
-<!--                                <input type="text" id="cpfRecuperar" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/>-->
+                            <span class="md-inputfield">                                
+                                <p:inputText value="#{usuarioBean.cpfRedefinirSenha}" id="cpfRecuperar" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>CPF</p:outputLabel>
                             </span>
                         </div>                       
                         <div class="ui-g-12">
-                            <p:commandButton value="Recuperar senha" action="#{usuarioBean.redefinirSenha()}"/>
-<!--                            <input type="submit" value="Recuperar Senha" onclick="return validarRecu();" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />     -->
+                            <p:commandButton icon="fa fa-check" action="#{usuarioBean.redefinirSenha()}" onclick="return validarRecu();" value="Recuperar Senha" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
                         </div>
                     </div>
                 </h:form>

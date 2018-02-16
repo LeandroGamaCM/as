@@ -12,7 +12,7 @@
     transition: margin-left 0.3s;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;       
+    box-sizing: border-box;
 }
 .layout-wrapper .layout-main .layout-content {
     padding: 17px 17px 24px 17px;

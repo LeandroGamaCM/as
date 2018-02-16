@@ -6,7 +6,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
-        <h:form>
+        <h:form prependId="false">
             <p:outputPanel id="toolbar" rendered="#{!telaEntrevistaBean.entrevistarAluno and !telaEntrevistaBean.verEntrevista}">
                     <p:toolbar>
                         <p:toolbarGroup align="right">
@@ -15,7 +15,7 @@
                         </p:toolbarGroup>
                         <p:toolbarGroup align="left">
                             <p:commandButton value="Entrevistas realizadas" update="painel" action="#{telaEntrevistaBean.changeToEntrevistasFeitas()}"/>
-                            <p:commandButton value="Entrevistas NÃO realizadas  " update="painel" action="#{telaEntrevistaBean.changeToEntrevistasNaoFeitas()}"/>
+                            <p:commandButton value="Realizar Entrevista" update="painel" action="#{telaEntrevistaBean.changeToEntrevistasNaoFeitas()}"/>
                         </p:toolbarGroup>
                     </p:toolbar>
             </p:outputPanel>
@@ -48,7 +48,7 @@
                     </p:outputPanel>
                 </p:panel>
                 
-                <p:panel header="Entrevistas NÃO realizadas" rendered="#{telaEntrevistaBean.entrevistasNaoFeitas}">
+                <p:panel header="Realizar Entrevista" rendered="#{telaEntrevistaBean.entrevistasNaoFeitas}">
                     <p:outputPanel id="tabelaNaoFeitas">
                         <p:dataTable var="formularioAluno" value="#{telaEntrevistaBean.formularioAlunos}">
                             <f:facet name="header">

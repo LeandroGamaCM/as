@@ -1,17 +1,25 @@
 /*Código CSS para template*/
+html{
+    position: relative;
+    min-height: 100%;
+}
 body {
     font-family: "Roboto", "Helvetica Neue", sans-serif;
     font-size: 14px;
     color: #212121;
     -webkit-font-smoothing: antialiased;
     padding: 0;
-    margin: 0;
+    margin: 0 0 75px;
     min-height: 100%;
     background-color: #F5F5F5;
     display: block;
+    overflow-x: hidden;
 } 
 div {
     display: block;
+}
+.iconTam{
+    font-size: 24px;
 }
 .estiloP{
     color: #757575;
@@ -999,4 +1007,34 @@ tr.ui-widget-content.ui-datatable-odd{
 }
 .col191{
     width: 383px;
+}
+.controller{
+    color: #fff;
+    background-color: #3b9c7f;
+    padding: 10px 16px;
+    font-size: 17px;
+    line-height: 1.33;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+.controller:hover{
+    background-color: #19b083;
+}
+.controller a{
+    color: #ffffff;
+}
+#conlle{
+    margin-top: 5px;    
+}
+.card-todo{
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: #ffffff;
+    padding: 163px 105px 163px 105px;
+    box-sizing: border-box;
 }

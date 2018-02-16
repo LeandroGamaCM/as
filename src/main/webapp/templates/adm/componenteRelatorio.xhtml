@@ -7,31 +7,43 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
         <h:form>
-            <p:panel header="Informações">
-                <p:chart type="pie" model="#{relatorioBean.graficoPreferenciaBolsa}" />
-                <p:chart type="pie" model="#{relatorioBean.graficoAlunos}" />
-            </p:panel>
+           <p:outputPanel id="toolbar">
+                  <p:toolbar>
+                    <p:toolbarGroup align="left">
+                        <p:commandButton value="Informações" update="panel" action="#{relatorioBean.changeToInformacoes()}"/>
+                        <p:commandButton value="Classificação dos alunos" update="panel" action="#{relatorioBean.changeToClassificacao()}"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </p:outputPanel>  
             
-            <p:panel header="Lista de alunos com inscrição efetuada">
-                <p:dataTable var="formulario" value="#{relatorioBean.formularioAlunos}">
-                    <p:column headerText="Aluno">
-                        <p:outputLabel value="#{formulario.aluno.nome}"/>
-                    </p:column>
-                    <p:column headerText="Turma">
-                        <p:outputLabel value="#{formulario.turma.nome} #{formulario.turma.curso}"/>
-                    </p:column>
-                    <p:column headerText="1ª Preferência de bolsa">
-                        <p:outputLabel value="#{formulario.formulario.primeiraPreferencia}"/>
-                    </p:column>
-                    <p:column headerText="2ª Preferência de bolsa">
-                        <p:outputLabel value="#{formulario.formulario.segundaPreferencia}"/>
-                    </p:column>
-                    <p:column headerText="Pontuação por Barema">
-                        <p:outputLabel value="#{formulario.entrevista.pontuacaoComposicaoFamiliar}"/>
-                    </p:column>
+            <p:outputPanel id="panel">
+                
+                <p:panel header="Informações" rendered="#{relatorioBean.informacoes}">
+                    <p:chart type="pie" model="#{relatorioBean.graficoPreferenciaBolsa}" />
+                    <p:chart type="pie" model="#{relatorioBean.graficoAlunos}" />
+                </p:panel>
 
-                </p:dataTable>                
-            </p:panel>
+                <p:panel header="Lista de alunos com inscrição efetuada" rendered="#{relatorioBean.classificacao}">
+                    <p:dataTable var="formulario" value="#{relatorioBean.formularioAlunos}">
+                        <p:column headerText="Aluno">
+                            <p:outputLabel value="#{formulario.aluno.nome}"/>
+                        </p:column>
+                        <p:column headerText="Turma">
+                            <p:outputLabel value="#{formulario.turma.nome} #{formulario.turma.curso}"/>
+                        </p:column>
+                        <p:column headerText="1ª Preferência de bolsa">
+                            <p:outputLabel value="#{formulario.formulario.primeiraPreferencia}"/>
+                        </p:column>
+                        <p:column headerText="2ª Preferência de bolsa">
+                            <p:outputLabel value="#{formulario.formulario.segundaPreferencia}"/>
+                        </p:column>
+                        <p:column headerText="Pontuação por Barema">
+                            <p:outputLabel value="#{formulario.entrevista.pontuacaoComposicaoFamiliar}"/>
+                        </p:column>
+
+                    </p:dataTable>                
+                </p:panel>
+            </p:outputPanel>            
 
         </h:form>
     </ui:composition>

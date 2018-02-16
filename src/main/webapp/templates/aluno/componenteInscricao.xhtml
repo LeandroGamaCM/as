@@ -642,8 +642,8 @@
                                                             <f:facet name="input"><p:inputText onkeypress="return numeros(event)" value="#{membroFamiliar.idade}"/></f:facet>
                                                         </p:cellEditor>
                                                     </p:column>
-
-                                                    <p:column width="13%" headerText="Sexo">
+<!--
+-->                                                    <p:column width="13%" headerText="Sexo">
                                                         <p:cellEditor>
                                                             <f:facet name="output"><p:outputLabel value="#{membroFamiliar.sexo}"/></f:facet>
                                                             <f:facet name="input"><p:selectOneMenu value="#{membroFamiliar.sexo}">
@@ -684,10 +684,14 @@
 
                                                     <p:column width="12%" headerText="Salário">
                                                         <p:cellEditor>
-                                                            <f:facet name="output"><p:outputLabel value="#{membroFamiliar.salario}"/></f:facet>
+                                                            <f:facet name="output"><p:outputLabel value="#{membroFamiliar.salario}" /></f:facet>
                                                             <f:facet name="input"><p:inputText onkeypress="return numeros(event)" value="#{membroFamiliar.salario}"/></f:facet>
                                                         </p:cellEditor>
                                                     </p:column>
+                                                    <p:column headerText="Deletar">
+                                                        <p:commandButton update="tabelaMembro" value="icone" actionListener="#{alunoBean.excluirMembroFamiliar(membroFamiliar)}"/>
+                                                    </p:column>
+                                                    
                                                     <f:facet name="footer">
                                                         <p:commandButton value="Adicionar Outro" actionListener="#{alunoBean.addMembroFamiliar()}" update="tabelaMembro"/>
                                                     </f:facet>                                

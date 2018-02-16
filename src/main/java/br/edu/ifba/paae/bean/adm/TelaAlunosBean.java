@@ -6,6 +6,7 @@ import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.logica.AlunoTabela;
 import br.edu.ifba.paae.logica.FormularioAluno;
+import br.edu.ifba.paae.logica.Mensagem;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.formulario.TurmaRN;
 import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
@@ -17,12 +18,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "telaAlunosBean")
 @ViewScoped
 public class TelaAlunosBean implements Serializable{
+    private Mensagem mensagem = new Mensagem();
     private Aluno aluno = new Aluno();
     private Aluno novoAluno = new Aluno();
     private Turma turma = new Turma();
@@ -70,12 +73,11 @@ public class TelaAlunosBean implements Serializable{
             novoAluno.setPeriodoInscricao(periodoInscricao);
             
             alunoRN.salvar(novoAluno);
-// Mostrar mensagem Salvou!
-
+            mensagem.addMensagem("Aluno pré-cadastrado!", FacesMessage.SEVERITY_INFO);
             System.out.println("\tAluno pré-cadastrado");
         }else{ 
+            mensagem.addMensagem("Já existe um usuário com este CPF!", FacesMessage.SEVERITY_ERROR);
             System.out.println("\tEsse usuario já está cadastrado!");
-// Mostrar mensagem Já existe esse usuario
         }
         novoAluno = new Aluno();
     }
@@ -86,11 +88,11 @@ public class TelaAlunosBean implements Serializable{
         
         if(verificaTurma == null){
             turmaRN.salvar(novaTurma);
+            mensagem.addMensagem("Turma cadastrada!", FacesMessage.SEVERITY_INFO);
             System.out.println("Turma cadastrada");      
-// Mostrar mensagem Salvou!            
         }else{
+            mensagem.addMensagem("Esta turma já está cadastrada!", FacesMessage.SEVERITY_ERROR);            
             System.out.println("Essa turma já está cadastrada");
-// Mostrar mensagem já existe            
         }
         
         novaTurma = new Turma();
@@ -116,11 +118,12 @@ public class TelaAlunosBean implements Serializable{
 
             if(verificaTurma == null){
                 turmaRN.salvar(turma);
-                System.out.println("Dados alterados");      
-    // Mostrar mensagem Salvou!            
+                mensagem.addMensagem("Dados alterados!", FacesMessage.SEVERITY_INFO);
+                System.out.println("Dados alterados");
+                
             }else{
+                mensagem.addMensagem("Esta turma já está cadastrada!", FacesMessage.SEVERITY_ERROR);            
                 System.out.println("Já existe uma turma com esses dados");
-    // Mostrar mensagem já existe            
             }
         }
         turmas = turmaRN.listar();

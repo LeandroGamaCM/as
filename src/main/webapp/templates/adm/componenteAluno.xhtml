@@ -16,13 +16,14 @@
                 </p:toolbar>
                 <p:toolbar>
                     <p:toolbarGroup align="left">
-                        <p:commandButton value="Pre cadastrar alunos" update="panel" action="#{telaAlunosBean.changeToPreCadastro()}"/>
+                        <p:commandButton value="Pré-cadastrar alunos" update="panel" action="#{telaAlunosBean.changeToPreCadastro()}"/>
                         <p:commandButton value="Fichas de inscrição" update="panel" action="#{telaAlunosBean.listarFichas()}"/>
                     </p:toolbarGroup>
                 </p:toolbar>
             </p:outputPanel>
 
             <p:outputPanel id="panel">
+                <p:messages autoUpdate="true"></p:messages>
                 <p:panel rendered="#{telaAlunosBean.preCadastro}" header="Pré-cadastrar Alunos">
                     <p:outputLabel value="CPF do Aluno"/>
                     <p:inputText value="#{telaAlunosBean.novoAluno.cpf}"/>
@@ -30,17 +31,17 @@
                 </p:panel>
                 <p:panel rendered="#{telaAlunosBean.preCadastro}" header="Cadastrar turmas">
                     <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Modalidade: " for="modalidade" />
-                    <p:inputText id="modalidade" placeholder="Integrado, Superior, Subsequente..." value="#{telaAlunosBean.novaTurma.modalidade}"/>                       
+                    <p:inputText id="modalidade" placeholder="Integrado, Superior..." value="#{telaAlunosBean.novaTurma.modalidade}"/>                       
                     <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Curso: " for="curso" />
-                    <p:inputText id="curso" placeholder="ADS, Informática, Biocombustíveis..." value="#{telaAlunosBean.novaTurma.curso}"/>
+                    <p:inputText id="curso" placeholder="ADS, Informática..." value="#{telaAlunosBean.novaTurma.curso}"/>
                     
-                    <p:outputLabel value="Turma"/>
-                    <p:inputText placeholder="1º ano b, 3º ano..." value="#{telaAlunosBean.novaTurma.nome}"/>
+                    <p:outputLabel style="" value="Turma:"/>
+                    <p:inputText placeholder="1º ano a, 3º ano..." value="#{telaAlunosBean.novaTurma.nome}"/>
                     <p:commandButton value="Salvar turma" update="panel" action="#{telaAlunosBean.cadastrarTurma()}"/>
                     
                 </p:panel>
                 <p:panel rendered="#{telaAlunosBean.preCadastro}">
-                    <p:dataTable var="turma" value="#{telaAlunosBean.turmas}" editable="true" editMode="cell" id="dataTable">
+                    <p:dataTable var="turma" value="#{telaAlunosBean.turmas}" editable="true" editMode="cell" id="dataTable" emptyMessage="Nada cadastrado">
                         <f:facet name="header">
                                 <h:outputText value="Turmas cadastradas" />
                         </f:facet>
@@ -88,7 +89,7 @@
 <!--Ver Expansion  (primefaces datatable)-->
                     <p:outputPanel id="tabela">
 
-                        <p:dataTable var="formularioAluno" value="#{telaAlunosBean.formularioAlunos}" sortBy="#{formularioAluno.turma.nome}">
+                        <p:dataTable var="formularioAluno" value="#{telaAlunosBean.formularioAlunos}" sortBy="#{formularioAluno.turma.nome}" emptyMessage="Nada cadastrado">
                             <f:facet name="header">
                                     <h:outputText value="Alunos" />
                             </f:facet>
@@ -110,46 +111,10 @@
                         </p:dataTable>
                     </p:outputPanel>
 
-<!--                    <p:dataTable var="modalidade" value="#{telaAlunosBean.modalidades}">
-                        <f:facet name="header">
-                                <h:outputText value="Alunos" />
-                        </f:facet>
-                        <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}" update=":form:msgs" />
-                        <p:ajax event="rowUnselect" listener="#{dtSelectionView.onRowUnselect}" update=":form:msgs" />
-                        <p:subTable var="curso" value="#{modalidade.cursos}">
-                            <f:facet name="header">
-                                <h:outputText value="#{curso.modalidade}" />
-                            </f:facet>-->
-<!--                            <p:column headerText="Nome">
-                                <h:outputText value="" />                        
-                            </p:column>-->
-                             
-<!--                            <p:column headerText="CPF">
-                                <h:outputText value="" />
-                            </p:column>-->
-                             
-<!--                            <p:column headerText="C                            <p:column headerText="Bolsa Escolhida">
-                                <h:outputText value="" />
-                            </p:column>
-                        </p:subTable>urso">
-                                <h:outputText value="#{aluno}" />                        
-                            </p:column>
-                             
-                            <p:column headerText="Ano">
-                                <h:outputText value="#{aluno}º ano" />
-                            </p:column>-->
-
-<!--                            <p:column headerText="Bolsa Escolhida">
-                                <h:outputText value="" />
-                            </p:column>-->
-<!--                        </p:subTable>
-                    </p:dataTable>-->
-
                 </p:panel>
 
-<!--OBS.:Só pesquisa o cpf se digitar o numero completo-->
                 <p:panel rendered="#{telaAlunosBean.pesquisar}" header="Resultados da busca">
-                    <p:dataTable var="formularioAluno" value="#{telaAlunosBean.formularioAlunos}">
+                    <p:dataTable var="formularioAluno" value="#{telaAlunosBean.formularioAlunos}" emptyMessage="Nenhum resultado">
                             <f:facet name="header">
                                     <h:outputText value="Alunos" />
                             </f:facet>  

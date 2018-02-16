@@ -14,7 +14,7 @@ public class PeriodoInscricaoRN {
     
     public void salvar(PeriodoInscricao periodoInscricao){
         this.periodoInscricaoDAO.salvar(periodoInscricao);
-    }
+    }    
     public void excluir(PeriodoInscricao periodoInscricao){
         this.periodoInscricaoDAO.excluir(periodoInscricao);
     }

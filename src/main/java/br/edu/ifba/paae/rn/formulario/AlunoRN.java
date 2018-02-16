@@ -71,7 +71,7 @@ public class AlunoRN {
             if(lista != null){
                 while (i < lista.size()){
                     periodoInscricaoAluno = periodoInscricaoRN.buscarPorAluno(lista.get(i).getAluno());
-                    if(Objects.equals(ano, periodoInscricaoAluno.getAno())){
+                    if(periodoInscricaoAluno != null && Objects.equals(ano, periodoInscricaoAluno.getAno())){
                         alunos.add(lista.get(i));
                     }
                     i++;

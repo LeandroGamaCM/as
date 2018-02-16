@@ -16,7 +16,7 @@ public class LoginBean implements Serializable{
     private String cpfPagina;
     private String nomePagina;
     private String senhaPagina;
-//    private String emailPagina;
+    private String emailPagina;
 
     
     public boolean verificaExistencia(){
@@ -62,8 +62,7 @@ public class LoginBean implements Serializable{
         this.usuario.setAtivo(Boolean.TRUE);
         this.usuario.setSenha(senhaPagina);
         this.usuario.setNome(nomePagina);
-// Esse email deve ser uma variavel diferente do formulario? Porque ele é pra recuperação e lá pra contato
-//        usuario.setEmail(emailPagina);
+        this.usuario.setEmail(emailPagina);
     }
 
 // Getters e Setters
@@ -100,4 +99,13 @@ public class LoginBean implements Serializable{
         this.senhaPagina = senhaPagina;
     }
 
+    public String getEmailPagina() {
+        return emailPagina;
+    }
+
+    public void setEmailPagina(String emailPagina) {
+        this.emailPagina = emailPagina;
+    }
+    
+    
 }

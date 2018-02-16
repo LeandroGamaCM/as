@@ -64,7 +64,7 @@ public class UsuarioBean implements Serializable{
                 EnderecoRN enderecoRN = new EnderecoRN();
 
                 alunoRN.salvar(formularioAluno.getAluno());
-                enderecoRN.salvar(formularioAluno.getEndereco());
+//                enderecoRN.salvar(formularioAluno.getEndereco());
             }
             usuario.setSenha(novaSenha);
             usuarioRN.atualizar(usuario);

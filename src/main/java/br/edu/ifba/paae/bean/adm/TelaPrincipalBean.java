@@ -61,19 +61,21 @@ public class TelaPrincipalBean implements Serializable{
         PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         LocalDateTime now = LocalDateTime.now();
         PeriodoInscricao periodoInscricaoAtual;
+        System.out.println("/tEntrou em AtivarDesativar");
         
+        periodoInscricaoAtual = periodoInscricaoRN.buscarPorAno(now.getYear());
+
+        if(periodoInscricaoAtual == null){
+            System.out.println("Atual = nulo");
+            periodoInscricaoAtual = new PeriodoInscricao();
+            periodoInscricaoAtual.setAno(now.getYear());
+            periodoInscricaoAtual.setAtivado(Boolean.FALSE);
+
+            periodoInscricaoRN.salvar(periodoInscricaoAtual);
+            periodoInscricao = periodoInscricaoAtual;
+        }
         if(periodoInscricao != null){
-            periodoInscricaoAtual = periodoInscricaoRN.buscarPorAno(now.getYear());
-
-            if(periodoInscricaoAtual == null){
-                periodoInscricaoAtual = new PeriodoInscricao();
-                periodoInscricaoAtual.setAno(now.getYear());
-                periodoInscricaoAtual.setAtivado(periodoInscricao.getAtivado());
-
-                periodoInscricaoRN.salvar(periodoInscricaoAtual);
-                periodoInscricao = periodoInscricaoAtual;
-            }
-
+            System.out.println("Id periodoInscricao = "+periodoInscricao);
             if(periodoInscricao.getAtivado()){
                 periodoInscricao.setAtivado(Boolean.FALSE);
             }else{

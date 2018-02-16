@@ -34,12 +34,10 @@
                                         <div class="ui-g ui-fluid">
                                             <h:panelGrid id="pg1" class="pgTam" columns="4" columnClasses="col1, col2, col3, col4">
                                                 <p:outputLabel indicateRequired="false" value="Nome Completo: " for="nome" />
-                                                <p:inputText id="nome" value="#{alunoBean.aluno.nome}" required="false" requiredMessage="Nome Completo: Campo Obrigatório" validatorMessage="Informe seu nome completo!" onkeypress="return letras(event)" label="name">
-                                                    <f:validateLength  minimum="6" />
-                                                </p:inputText>                              
-
-                                                <p:outputLabel indicateRequired="false" id="outCpf" for="cpf" value="CPF: "/>
-                                                <p:inputText id="cpf" required="false" requiredMessage="CPF: Campo Obrigatório" value="#{alunoBean.aluno.cpf}" label="CPF"/>
+                                                <p:outputLabel id="nome" value="#{alunoBean.aluno.nome}"/>
+                                                
+                                                <p:outputLabel indicateRequired="false" id="outCpf" value="CPF: "/>
+                                                <p:outputLabel value="#{alunoBean.aluno.cpf}"/>
                                             </h:panelGrid>
 
 

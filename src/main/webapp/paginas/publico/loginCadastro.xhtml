@@ -36,7 +36,7 @@
                         </div>
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <p:inputText value="" id="inputEmail" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                <p:inputText value="#{loginBean.emailPagina}" id="inputEmail" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>Email</p:outputLabel>
                             </span>
                         </div>
@@ -61,7 +61,7 @@
             </div>
         </div>
         
-        <script type="text/javascript">            
+<!--        <script type="text/javascript">            
             function inputHandler(masks, max, event) {
               var c = event.target;
               var v = c.value.replace(/\D/g, '');
@@ -89,7 +89,7 @@
             doc.addEventListener('input', inputHandler.bind(undefined, docMask, 15), false);
             
             doc.addEventListener('blur', limpaCampo);
-        </script> 
+        </script> -->
 <!--    <script type="text/javascript">
             var els = document.querySelectorAll(".validar");
             for(var x=0; els.length>x; x++){

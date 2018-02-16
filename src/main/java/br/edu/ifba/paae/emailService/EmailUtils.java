@@ -27,10 +27,10 @@ public class EmailUtils{
         //Aqui que substitui o meu email por uma variável que recebe o email do aluno
         email.setRecipient(Message.RecipientType.TO, new InternetAddress("luansilva71@hotmail.com"));
         email.setFrom(new InternetAddress(EMAIL));
-        email.setSubject("Teste de Email");       
+        email.setSubject("PAAE - Teste de Email Usando EmailUtils");       
         
         //Aqui que substitui o corpo da mensagem pelas credenciais do aluno (CPF e nova senha do aluno) 
-        email.setContent("Corpo da Mensagem", "text/plain");
+        email.setContent("Credenciais PAAE - CPF: 071.567.095-98  /  Senha: beltrn71", "text/plain");
         email.setSentDate(new Date());
         Transport envio = session.getTransport("smtp");
         envio.connect(SERVIDOR_SMTP, EMAIL, SENHA);

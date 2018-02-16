@@ -28,22 +28,6 @@
 .dashboard .task-box .task-box-header i {
     color: #ffffff;
 }
-body .fa {
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    display: inline-block;
-    height: 1em;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: 'liga';
-}
 .dashboard .task-box .task-box-content {
     background-color: #ffffff;
     padding: 8px 14px;

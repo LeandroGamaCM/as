@@ -3,8 +3,13 @@
     padding: 16px 24px;
     border: 1px solid #dbdbdb;
     background: #ffffff;
+    bottom: 0;
+    position: absolute;
+    width: 78.8vw;
 }
-
+.novoRodape{
+    width: 91.9vw !important;
+}
 
 /*Código CSS para componente*/
 body a {
@@ -22,27 +27,6 @@ body a {
 .layout-wrapper .layout-main .layout-footer .footer-text-right {
     vertical-align: middle;
 }
-body .ui-icon {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 20px;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    text-indent: 0;
-    overflow: visible;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: 'liga';
-}
 .ui-icon {
     display: block;
     text-indent: -99999px;
@@ -59,4 +43,7 @@ body .ui-icon {
     content: " ";
     display: block;
     clear: both;
+}
+.commons{
+    font-size: 24px;
 }

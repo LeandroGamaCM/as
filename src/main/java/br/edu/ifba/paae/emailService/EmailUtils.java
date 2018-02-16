@@ -1,6 +1,5 @@
 package br.edu.ifba.paae.emailService;
 
-
 import java.util.Date;
 import java.util.Properties;
 import javax.mail.Message;
@@ -18,19 +17,21 @@ public class EmailUtils{
     private static final String EMAIL = "suportepaae@gmail.com";
     private static final String SENHA = "sistemastrong71";
     
-    public static void main(String[] args) throws AddressException, MessagingException{
+    public static void redefinirSenha(String cpfUsuario, String emailUsuario, String senhaUsuario) throws AddressException, MessagingException{
         Autenticacao autenticacao = new Autenticacao(EMAIL, SENHA);
         Session session = Session.getDefaultInstance(getPropriedades(), autenticacao);
         session.setDebug(true);
         MimeMessage email = new MimeMessage(session);        
         
         //Aqui que substitui o meu email por uma variável que recebe o email do aluno
-        email.setRecipient(Message.RecipientType.TO, new InternetAddress("luansilva71@hotmail.com"));
+        email.setRecipient(Message.RecipientType.TO, new InternetAddress(emailUsuario));
         email.setFrom(new InternetAddress(EMAIL));
-        email.setSubject("Teste de Email");       
+        email.setSubject("Redefinição de senha do PAAE");       
         
-        //Aqui que substitui o corpo da mensagem pelas credenciais do aluno (CPF e nova senha do aluno) 
-        email.setContent("Corpo da Mensagem", "text/plain");
+        //Aqui que substitui o corpo da mensagem pelas credenciais do aluno (CPF e nova senha do aluno)
+        String corpoMensagem = "Sua nova senha para login no Sistema PAAE é ";
+        
+        email.setContent(corpoMensagem + senhaUsuario, "text/plain");
         email.setSentDate(new Date());
         Transport envio = session.getTransport("smtp");
         envio.connect(SERVIDOR_SMTP, EMAIL, SENHA);

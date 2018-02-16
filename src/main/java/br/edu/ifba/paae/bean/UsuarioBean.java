@@ -1,5 +1,6 @@
 package br.edu.ifba.paae.bean;
 
+import br.edu.ifba.paae.emailService.EmailUtils;
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.logica.FormularioAluno;
@@ -7,11 +8,15 @@ import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.formulario.EnderecoRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import java.io.Serializable;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.mail.MessagingException;
 
 @ManagedBean(name = "usuarioBean")
 @ViewScoped
@@ -24,6 +29,8 @@ public class UsuarioBean implements Serializable{
     private String novaSenha;
     
     private String telaPerfil = "mostrarDados";
+    
+    private String cpfRedefinirSenha;
     
     @PostConstruct
     public void init(){
@@ -67,6 +74,39 @@ public class UsuarioBean implements Serializable{
         }
 // Mensagem
         changeToMostrarDados();
+    }
+    
+    public void redefinirSenha(){
+        UsuarioRN usuarioRN = new UsuarioRN();
+        if(cpfRedefinirSenha != null){
+            Usuario user = usuarioRN.buscarPorLogin(cpfRedefinirSenha);
+            if(user != null){
+                System.out.println("/tAchou o usuário");
+                Aluno a = usuarioRN.buscarAluno(user.getUsuario());
+                if(a != null && a.getEmail() != null){
+                    Random random = new Random();
+                    Integer x = random.nextInt(1000000);
+                    String newSenha = x.toString();
+                    
+                    user.setSenha(newSenha);
+                    usuarioRN.atualizar(user);
+                    System.out.println("A nova senha é: " + newSenha);
+                    
+                    try {
+                        EmailUtils.redefinirSenha(user.getLogin(), a.getEmail(), "senha");
+                    } catch (MessagingException ex) {
+                        System.out.println("\tErro!");
+                        Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }                    
+                }else{
+                    System.out.println("/tNão tem nenhum aluno com esse email!");
+                }
+            }else{
+                System.out.println("/tNum tem usuario com esse login não");
+            }
+        }else{
+            System.out.println("/tO cpf tá nulo!");
+        }
     }
 
 // Controle de telaPerfil
@@ -135,8 +175,12 @@ public class UsuarioBean implements Serializable{
         this.telaPerfil = telaPerfil;
     }
 
+    public String getCpfRedefinirSenha() {
+        return cpfRedefinirSenha;
+    }
 
-    
-    
+    public void setCpfRedefinirSenha(String cpfRedefinirSenha) {
+        this.cpfRedefinirSenha = cpfRedefinirSenha;
+    }
     
 }

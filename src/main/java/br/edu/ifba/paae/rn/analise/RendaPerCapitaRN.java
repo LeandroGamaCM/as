@@ -128,9 +128,9 @@ public class RendaPerCapitaRN {
         
         if(rendaPerCapitas != null){
             for(i=0; i<rendaPerCapitas.size(); i++){
-                excluir(rendaPerCapitas.get(i));
+                rendaPerCapitas.get(i).setSalario(salario);
             }            
         }
-        definir(salario);
+
     }
 }

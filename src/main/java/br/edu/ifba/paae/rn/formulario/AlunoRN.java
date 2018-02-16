@@ -65,16 +65,18 @@ public class AlunoRN {
         if(periodoInscricao == null){
             periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear()-1);
         }
-        ano = periodoInscricao.getAno();
-        
-        if(lista != null){
-            while (i < lista.size()){
-                periodoInscricaoAluno = periodoInscricaoRN.buscarPorAluno(lista.get(i).getAluno());
-                if(Objects.equals(ano, periodoInscricaoAluno.getAno())){
-                    alunos.add(lista.get(i));
+        if(periodoInscricao != null){
+            ano = periodoInscricao.getAno();
+
+            if(lista != null){
+                while (i < lista.size()){
+                    periodoInscricaoAluno = periodoInscricaoRN.buscarPorAluno(lista.get(i).getAluno());
+                    if(Objects.equals(ano, periodoInscricaoAluno.getAno())){
+                        alunos.add(lista.get(i));
+                    }
+                    i++;
                 }
-                i++;
-            }
+            }            
         }
         return alunos;
     }

@@ -14,7 +14,7 @@ public class Barema {
     }
     
     public void salvar(Parametro parametro){
-        parametros = criarLista();
+//        parametros = criarLista();
         System.out.println("\nParametro: \n\tCategoria: " + parametro.getCategoria() + "\n\tAspectoAvaliacao: " + parametro.getAspectoAvaliacao() + "\n\tPontuacao: " + parametro.getPontuacao());
         
         int i;

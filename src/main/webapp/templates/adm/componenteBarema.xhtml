@@ -10,7 +10,7 @@
         <h:form>  
             <!--Rowspan-->
             <h:panelGrid columns="2">
-                <p:outputLabel value="Salario base de cálculo: R$"/>
+                <p:outputLabel value="Salario base de cálculo: R$ "/>
                 <p:inputText value="#{baremaBean.salario}">
                     <p:ajax event="blur" listener="#{baremaBean.editarSalario()}" update="tabelaBarema"/>
                 </p:inputText>
@@ -18,8 +18,8 @@
 
         <div class="ui-fluid">
             <p:outputPanel id="tabelaBarema">
-                <p:dataTable var="parametro" value="#{baremaBean.barema.parametros}" sortBy="#{parametro.categoria}" editable="true" editMode="cell">
-                    <p:ajax event="cellEdit" listener="#{baremaBean.editarBarema(parametro)}"/>   
+                <p:dataTable var="parametro" value="#{baremaBean.parametros}" sortBy="#{parametro.categoria}" editable="true" editMode="cell">
+                    <p:ajax event="cellEdit" update="@this" listener="#{baremaBean.editarBarema(parametro)}"/>   
                     <p:column headerText="Categoria de Análise">
                         <h:outputLabel value="#{parametro.categoria} (Peso = #{parametro.peso})" />
                     </p:column>

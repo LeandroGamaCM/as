@@ -55,12 +55,12 @@ public class ComposicaoFamiliarRN {
     }
     public Float getPeso(){
         int i = 0;
-        Float peso = 0.0F;
-        List<ComposicaoFamiliar> list = listar();
-        for(i=0; i<list.size(); i++){
-            if(list.get(i).getPontuacao() != null)
-            peso = peso + list.get(i).getPontuacao();
-        }
+        Float peso = 10.0F;
+//        List<ComposicaoFamiliar> list = listar();
+//        for(i=0; i<list.size(); i++){
+//            if(list.get(i).getPontuacao() != null)
+//            peso = peso + list.get(i).getPontuacao();
+//        }
         return peso;
     }
     public ComposicaoFamiliar buscarPorAspectoEmAvaliacao(String tipo){

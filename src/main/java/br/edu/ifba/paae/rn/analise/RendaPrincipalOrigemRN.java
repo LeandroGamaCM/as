@@ -79,8 +79,8 @@ public class RendaPrincipalOrigemRN {
         Float peso = 0.0F;
         List<RendaPrincipalOrigem> list = listar();
         for(i=0; i<list.size(); i++){
-            if(list.get(i).getPontuacao() != null)            
-            peso = peso + list.get(i).getPontuacao();
+            if(list.get(i).getPontuacao() != null && list.get(i).getPontuacao() > peso)            
+            peso = list.get(i).getPontuacao();
         }
         return peso;
     }    

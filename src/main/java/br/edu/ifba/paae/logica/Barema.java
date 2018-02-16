@@ -8,165 +8,6 @@ import java.util.List;
 public class Barema {
 
     private List<Parametro> parametros = criarLista();
-
-    public Barema() {
-        
-    }
-    
-    public void salvar(Parametro parametro){
-//        parametros = criarLista();
-        System.out.println("\nParametro: \n\tCategoria: " + parametro.getCategoria() + "\n\tAspectoAvaliacao: " + parametro.getAspectoAvaliacao() + "\n\tPontuacao: " + parametro.getPontuacao());
-        
-        int i;
-        for(i = 0; i<parametros.size(); i++){
-            if(parametro.getCategoria().equals(parametros.get(i).getCategoria())){
-                
-                if("Composição Familiar".equals(parametro.getCategoria())){
-                    ComposicaoFamiliarRN rn = new ComposicaoFamiliarRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        ComposicaoFamiliar aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Renda per capita".equals(parametro.getCategoria())){
-                    RendaPerCapitaRN rn = new RendaPerCapitaRN();
-    
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        RendaPerCapita aux = rn.buscarPorLimite(Double.valueOf(parametro.getAspectoAvaliacao()));
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Origem da principal renda do grupo familiar".equals(parametro.getCategoria())){
-                    RendaPrincipalOrigemRN rn = new RendaPrincipalOrigemRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        RendaPrincipalOrigem aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Despesas mensais do grupo familiar".equals(parametro.getCategoria())){
-                    DespesaAnaliseRN rn = new DespesaAnaliseRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        DespesaAnalise aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Condição economica do estudante".equals(parametro.getCategoria())){
-                    CondicaoEconomicaEstudanteRN rn = new CondicaoEconomicaEstudanteRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        CondicaoEconomicaEstudante aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Gênero".equals(parametro.getCategoria())){
-                    GeneroRN rn = new GeneroRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        Genero aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Etnia".equals(parametro.getCategoria())){
-                    EtniaRN rn = new EtniaRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        Etnia aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Moradia do estudante".equals(parametro.getCategoria())){
-                    MoradiaEstudanteRN rn = new MoradiaEstudanteRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        MoradiaEstudante aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Moradia da família".equals(parametro.getCategoria())){
-                    MoradiaFamiliaRN rn = new MoradiaFamiliaRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        MoradiaFamilia aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Local de residência da família".equals(parametro.getCategoria())){
-                    LocalResidenciaFamiliaRN rn = new LocalResidenciaFamiliaRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        LocalResidenciaFamilia aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Situação ocupacional do estudante".equals(parametro.getCategoria())){
-                    SituacaoOcupacionalRN rn = new SituacaoOcupacionalRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        SituacaoOcupacional aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Programas, projetos, serviços e benefícios governamentais".equals(parametro.getCategoria())){
-                    ProgramaSocialRN rn = new ProgramaSocialRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        ProgramaSocial aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Saúde".equals(parametro.getCategoria())){
-                    SaudeRN rn = new SaudeRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        Saude aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-                if("Escola de origem".equals(parametro.getCategoria())){
-                    EscolaOrigemRN rn = new EscolaOrigemRN();
-
-                    if(parametros.get(i).getAspectoAvaliacao().equals(parametro.getAspectoAvaliacao())){
-                        EscolaOrigem aux = rn.buscarPorAspectoEmAvaliacao(parametro.getAspectoAvaliacao());
-                        aux.setPontuacao(parametro.getPontuacao());
-                        rn.salvar(aux);
-                        break;
-                    }
-                }
-            }
-            
-        }
-    }
-    
     
     public List<Parametro> criarLista() {
         List<Parametro> ListParametros = new ArrayList<>();
@@ -203,7 +44,6 @@ public class Barema {
    
         int i;
 
-// Ver renda per capita - Como é impressa e editada na tela ----------------------------------------------------------
         for(i = 0; i < rendaPerCapitas.size(); i++){
             Parametro parametro = new Parametro();
             parametro.setCategoria("Renda per capita");
@@ -320,8 +160,6 @@ public class Barema {
         return ListParametros;
                 
     }
-
-
 
     
 // Getters e Setters

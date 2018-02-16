@@ -51,7 +51,6 @@ public class BaremaBean implements Serializable{
         RendaPerCapitaRN rendaPerCapitaRN = new RendaPerCapitaRN();
         parametros = barema.criarLista();
         salario = rendaPerCapitaRN.buscarSalario();
-        System.out.println("\tSalário: " + salario);
     }
 
     public void editarBarema(Parametro parametro) {
@@ -215,6 +214,8 @@ public class BaremaBean implements Serializable{
         RendaPerCapitaRN rendaPerCapitaRN = new RendaPerCapitaRN();
         if(salario != null){
             rendaPerCapitaRN.editarSalario(salario);
+            parametros = barema.criarLista();            
+            System.out.println("Salario = "+salario);
         }
     }
     

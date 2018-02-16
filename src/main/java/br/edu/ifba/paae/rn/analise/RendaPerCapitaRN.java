@@ -105,8 +105,8 @@ public class RendaPerCapitaRN {
         Float peso = 0.0F;
         List<RendaPerCapita> list = listar();
         for(i=0; i<list.size(); i++){
-            if(list.get(i).getPontuacao() != null)
-            peso = peso + list.get(i).getPontuacao();
+            if(list.get(i).getPontuacao() != null && list.get(i).getPontuacao() > peso)
+            peso = list.get(i).getPontuacao();
         }
         return peso;
     }
@@ -125,12 +125,15 @@ public class RendaPerCapitaRN {
     public void editarSalario(Double salario){
         List<RendaPerCapita> rendaPerCapitas = listar();
         int i;
-        
+
         if(rendaPerCapitas != null){
             for(i=0; i<rendaPerCapitas.size(); i++){
-                rendaPerCapitas.get(i).setSalario(salario);
+                RendaPerCapita rc = rendaPerCapitas.get(i);
+                rc.setSalario(salario);
+                rc.setLimite(Math.rint((salario*1.5*0.1*(i+1))));
+
+                salvar(rc);
             }            
         }
-
     }
 }

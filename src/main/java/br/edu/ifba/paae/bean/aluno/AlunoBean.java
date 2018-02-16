@@ -353,6 +353,14 @@ public class AlunoBean implements Serializable{
         membrosFamiliares.add(novoMembroFamiliar);
     }
     
+    public void excluirMembroFamiliar(MembroFamiliar membroFamiliar){
+        System.out.println("\tsize: " + membrosFamiliares.size());
+        if(membroFamiliar != null) {
+            membrosFamiliares.remove(membroFamiliar);
+            System.out.println("\tsize: " + membrosFamiliares.size());
+        }
+        
+    }    
     public void changeModalidade(){
         selecaoModalidade();
         selectedCurso = false;

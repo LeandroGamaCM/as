@@ -5,6 +5,7 @@ import br.edu.ifba.paae.entidades.formulario.Formulario;
 import br.edu.ifba.paae.logica.FormularioAluno;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.formulario.FormularioRN;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -15,12 +16,14 @@ import org.primefaces.model.chart.PieChartModel;
 
 @ManagedBean(name = "relatorioBean")
 @ViewScoped
-public class RelatorioBean {
+public class RelatorioBean implements Serializable{
     private List<Aluno> alunos = new ArrayList<>();
     private List<FormularioAluno> formularioAlunos = new ArrayList<>();
 
     private PieChartModel graficoPreferenciaBolsa;
     private PieChartModel graficoAlunos;
+    
+    private String estadoTela = "informacoes";
 
     @PostConstruct
     public void init(){        
@@ -33,6 +36,7 @@ public class RelatorioBean {
             formularioAlunos.add(formularioAluno);
         }
         createGraficos();
+        System.out.println("\tFim do init()");
     }
 
     private void createGraficos(){
@@ -135,6 +139,21 @@ public class RelatorioBean {
         graficoPreferenciaBolsa.setLegendPosition("w");
     }
     
+// Controle de Tela
+    public boolean isInformacoes(){
+        return "informacoes".equals(this.estadoTela);
+    }
+    public void changeToInformacoes(){
+        this.estadoTela = "informacoes";
+    }
+    
+    public boolean isClassificacao(){
+        return "classificacao".equals(this.estadoTela);
+    }
+    public void changeToClassificacao(){
+        this.estadoTela = "classificacao";
+    }    
+    
 // Getters e Setters    
     public List<Aluno> getAlunos() {
         return alunos;
@@ -163,7 +182,14 @@ public class RelatorioBean {
     public void setGraficoAlunos(PieChartModel graficoAlunos) {
         this.graficoAlunos = graficoAlunos;
     }
-    
+
+    public String getEstadoTela() {
+        return estadoTela;
+    }
+
+    public void setEstadoTela(String estadoTela) {
+        this.estadoTela = estadoTela;
+    }
     
     
 }

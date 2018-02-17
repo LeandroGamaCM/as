@@ -36,6 +36,7 @@
                         <p:outputLabel value="Nº: #{telaEntrevistaBean.formularioAluno.endereco.numero}"/>
                         <p:outputLabel value="Bairro: #{telaEntrevistaBean.formularioAluno.endereco.bairro}"/>
                         <p:outputLabel value="Cidade: #{telaEntrevistaBean.formularioAluno.endereco.cidade}"/>
+                        <p:outputLabel value="UF: #{telaEntrevistaBean.formularioAluno.endereco.estado}"/>
                     </h:panelGrid>
                 </p:panel>            
 
@@ -116,14 +117,15 @@
 
                 <p:panel header="Situação ocupacional">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui trabalho" rendered="#{!telaEntrevistaBean.formularioAluno.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional}"/>
                         
-                        <p:outputLabel value="Profissão: #{telaEntrevistaBean.formularioAluno.ocupacao.profissao}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Tipo de profissão: #{telaEntrevistaBean.formularioAluno.ocupacao.trabalho}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Nome do empregador e/ou da empresa: #{telaEntrevistaBean.formularioAluno.ocupacao.nomeEmpregador}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Tempo de serviço: #{telaEntrevistaBean.formularioAluno.ocupacao.tempoServico} anos" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Telefone do empregador ou da empresa: #{telaEntrevistaBean.formularioAluno.ocupacao.telefoneEmpregador}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.possuiTrabalho}"/>
-                        <p:outputLabel value="Salário Mensal: R$ #{telaEntrevistaBean.formularioAluno.ocupacao.salarioMensal}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.possuiTrabalho}"/>
+                        <p:outputLabel value="Profissão: #{telaEntrevistaBean.formularioAluno.ocupacao.profissao}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Tipo de profissão: #{telaEntrevistaBean.formularioAluno.ocupacao.trabalho}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Nome do empregador e/ou da empresa: #{telaEntrevistaBean.formularioAluno.ocupacao.nomeEmpregador}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Tempo de serviço: #{telaEntrevistaBean.formularioAluno.ocupacao.tempoServico} anos" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Telefone do empregador ou da empresa: #{telaEntrevistaBean.formularioAluno.ocupacao.telefoneEmpregador}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Salário Mensal: R$ #{telaEntrevistaBean.formularioAluno.ocupacao.salarioMensal}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        
                     </h:panelGrid>
                 </p:panel>
 
@@ -208,6 +210,9 @@
                             <p:column headerText="Escolaridade">
                                 <p:outputLabel value="#{membroFamiliar.escolaridade}"/>
                             </p:column>
+                            <p:column headerText="Situação Ocupacional">
+                                <p:outputLabel value="#{membroFamiliar.situacaoOcupacional}"/>
+                            </p:column>                            
                             <p:column headerText="Salário">
                                 <p:outputLabel value="#{membroFamiliar.salario}"/>
                             </p:column>

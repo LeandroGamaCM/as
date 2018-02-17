@@ -10,14 +10,13 @@
            <p:outputPanel id="toolbar">
                   <p:toolbar>
                     <p:toolbarGroup align="left">
-                        <p:commandButton value="Informações" update="panel" action="#{relatorioBean.changeToInformacoes()}"/>
                         <p:commandButton value="Classificação dos alunos" update="panel" action="#{relatorioBean.changeToClassificacao()}"/>
+                        <p:commandButton value="Informações" update="panel" action="#{relatorioBean.changeToInformacoes()}"/>
                     </p:toolbarGroup>
                 </p:toolbar>
             </p:outputPanel>  
-            
+
             <p:outputPanel id="panel">
-                
                 <p:panel header="Informações" rendered="#{relatorioBean.informacoes}">
                     <p:chart type="pie" model="#{relatorioBean.graficoPreferenciaBolsa}" />
                     <p:chart type="pie" model="#{relatorioBean.graficoAlunos}" />
@@ -48,3 +47,4 @@
         </h:form>
     </ui:composition>
 </html>
+

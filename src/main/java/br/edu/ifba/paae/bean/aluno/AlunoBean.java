@@ -9,12 +9,10 @@ import br.edu.ifba.paae.entidades.formulario.*;
 import br.edu.ifba.paae.rn.analise.EntrevistaRN;
 import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.*;
@@ -79,9 +77,10 @@ public class AlunoBean implements Serializable{
         PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         UsuarioRN usuarioRN = new UsuarioRN();
         TurmaRN turmaRN = new TurmaRN();
-        LocalDateTime now = LocalDateTime.now();
-        periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
 
+        periodoInscricao = periodoInscricaoRN.last();
+        if(periodoInscricao != null)
+            System.out.println("\t/tAno atual = " + periodoInscricao.getAno());
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();
         String cpf = external.getRemoteUser();
@@ -256,7 +255,6 @@ public class AlunoBean implements Serializable{
 
     }
     
-// Controle de Tela UK_3wpes15e0anbfaa4do0pey97k
     public boolean isTelaFormulario(){
         return "telaFormulario".equals(this.estadoTela);
     }
@@ -279,8 +277,9 @@ public class AlunoBean implements Serializable{
         aluno.setTurma(turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome()));
         aluno.setStatus("Inscrição realizada");
         aluno.setPeriodoInscricao(periodoInscricao);
+        System.out.println("\t/tAno atual na hora de salvar = " + periodoInscricao.getAno());
         
-        alunoRN.salvar(this.aluno);
+        alunoRN.salvar(aluno);
         salvarDependenciasAluno(aluno);
         
         entrevistaRN.setPontuacao(aluno);        

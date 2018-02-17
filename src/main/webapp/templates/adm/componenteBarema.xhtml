@@ -8,9 +8,10 @@
     <ui:composition>
             
         <h:form>  
+            <p:messages autoUpdate="true"/>
             <h:panelGrid columns="3">
                 <p:outputLabel value="Salário base de cálculo: R$ "/>
-                <p:inputText value="#{baremaBean.salario}"/>
+                <p:inputText value="#{baremaBean.salario}" required="true" requiredMessage="Este valor não pode ficar em branco!"/>
                 <p:commandButton value="Alterar" actionListener="#{baremaBean.editarSalario()}" update="@form"/>
             </h:panelGrid>
             <br/><br/>

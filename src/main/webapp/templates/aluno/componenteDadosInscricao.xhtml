@@ -10,12 +10,12 @@
             
             <h:form>
                 <p:panel header="Dados Pessoais">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid columns="2">
                         <p:outputLabel value="Nome Completo: #{alunoBean.aluno.nome}"/>
                         <p:outputLabel value="CPF: #{alunoBean.aluno.cpf}"/>
                         <p:outputLabel value="Apelido: #{alunoBean.aluno.apelido}"/>
                         <p:outputLabel value="Sexo: #{alunoBean.aluno.sexo}"/>
-                        <p:outputLabel value="Data de Nascimento: #{alunoBean.aluno.dataNascimento}"/>
+                        <p:outputLabel value="Data de Nascimento: #{alunoBean.aluno.dataNascimento}"/>                        
                         <p:outputLabel value="RG: #{alunoBean.aluno.rg}"/>
                         <p:outputLabel value="Estado civil: #{alunoBean.aluno.estadoCivil}"/>
                         <p:outputLabel value="Modalidade: #{alunoBean.turma.modalidade}"/>
@@ -38,6 +38,7 @@
                         <p:outputLabel value="Nº: #{alunoBean.endereco.numero}"/>
                         <p:outputLabel value="Bairro: #{alunoBean.endereco.bairro}"/>
                         <p:outputLabel value="Cidade: #{alunoBean.endereco.cidade}"/>
+                        <p:outputLabel value="UF #{alunoBean.endereco.estado}"/>
                     </h:panelGrid>
                 </p:panel>            
 
@@ -212,6 +213,9 @@
                             </p:column>
                             <p:column headerText="Escolaridade">
                                 <p:outputLabel value="#{membroFamiliar.escolaridade}"/>
+                            </p:column>
+                            <p:column headerText="Situação Ocupacional">
+                                <p:outputLabel value="#{membroFamiliar.situacaoOcupacional}"/>
                             </p:column>
                             <p:column headerText="Salário">
                                 <p:outputLabel value="#{membroFamiliar.salario}"/>

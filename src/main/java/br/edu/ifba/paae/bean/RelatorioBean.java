@@ -1,4 +1,4 @@
-package br.edu.ifba.paae.bean.adm;
+package br.edu.ifba.paae.bean;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.formulario.Formulario;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.model.chart.PieChartModel;
@@ -17,29 +18,36 @@ import org.primefaces.model.chart.PieChartModel;
 @ManagedBean(name = "relatorioBean")
 @ViewScoped
 public class RelatorioBean implements Serializable{
+
+    private static final long serialVersionUID = -5867084509700255178L;
+    
     private List<Aluno> alunos = new ArrayList<>();
     private List<FormularioAluno> formularioAlunos = new ArrayList<>();
 
     private PieChartModel graficoPreferenciaBolsa;
     private PieChartModel graficoAlunos;
     
-    private String estadoTela = "informacoes";
+    private String estadoTela = "classificacao";
 
     @PostConstruct
-    public void init(){        
+    public void init() {        
+        createGraficos();
+        listarclassificao();
+    }
+    public void listarclassificao(){
         AlunoRN alunoRN = new AlunoRN();
         alunos = alunoRN.alunosAtuais(alunoRN.alunosInscritos());
         int i;
+        formularioAlunos = new ArrayList<>();
         
         for(i=0; i<alunos.size(); i++){
             FormularioAluno formularioAluno = new FormularioAluno(alunos.get(i));
             formularioAlunos.add(formularioAluno);
-        }
-        createGraficos();
-        System.out.println("\tFim do init()");
+        }        
     }
 
     private void createGraficos(){
+        System.out.println("\tCriando graficos...");
         createGraficoPreferenciaBolsa();
         createGraficoAlunos();
     }
@@ -52,7 +60,6 @@ public class RelatorioBean implements Serializable{
         int inscricaoFeita = 0;
         int inscricaoPendente = 0;
 
-        
         if(alunoRN.alunosAtuais(alunoRN.alunosCadastrados()) != null)
             cadastrados = alunoRN.alunosAtuais(alunoRN.alunosCadastrados()).size();
         
@@ -144,6 +151,7 @@ public class RelatorioBean implements Serializable{
         return "informacoes".equals(this.estadoTela);
     }
     public void changeToInformacoes(){
+        createGraficos();
         this.estadoTela = "informacoes";
     }
     
@@ -151,6 +159,7 @@ public class RelatorioBean implements Serializable{
         return "classificacao".equals(this.estadoTela);
     }
     public void changeToClassificacao(){
+        listarclassificao();
         this.estadoTela = "classificacao";
     }    
     
@@ -190,6 +199,5 @@ public class RelatorioBean implements Serializable{
     public void setEstadoTela(String estadoTela) {
         this.estadoTela = estadoTela;
     }
-    
-    
+
 }

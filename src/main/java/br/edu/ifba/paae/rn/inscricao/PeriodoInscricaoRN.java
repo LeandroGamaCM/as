@@ -30,5 +30,21 @@ public class PeriodoInscricaoRN {
     public PeriodoInscricao buscarPorAluno(Integer codAluno){
         return this.periodoInscricaoDAO.buscarPorAluno(codAluno);
     }
-    
+    public PeriodoInscricao last(){
+        List<PeriodoInscricao> list = listar();
+        PeriodoInscricao periodoInscricao;
+        
+        if(list != null && !list.isEmpty()){
+            periodoInscricao = list.get(0);
+            
+            for (PeriodoInscricao pi : list) {
+                if(pi.getAno() > periodoInscricao.getAno()){
+                    periodoInscricao.setAno(pi.getAno());
+                }
+            }
+            return periodoInscricao;
+        }
+        
+        return null;
+    }
 }

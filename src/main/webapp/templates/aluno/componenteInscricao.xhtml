@@ -691,7 +691,7 @@
                                                     </p:column>
                                                     
                                                     <f:facet name="footer">
-                                                        <p:commandButton value="Adicionar Outro" actionListener="#{alunoBean.addMembroFamiliar()}" update="tabelaMembro"/>
+                                                        <p:commandButton immediate="true" value="Adicionar Outro" actionListener="#{alunoBean.addMembroFamiliar()}" update="tabelaMembro"/>
                                                     </f:facet>                                
                                                 </p:dataTable>
                                             </p:outputPanel>

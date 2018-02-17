@@ -12,7 +12,7 @@
                         
                         <h5>Atenção o não envio dos comprovantes ou envio de documentos indevidos acarretará na perda direta da disputa das bolsas</h5>
 
-                        <h:panelGrid columns="1" rendered="#{comprovanteBean.formularioAluno.ocupacao.possuiTrabalho}">
+                        <h:panelGrid columns="1" rendered="#{comprovanteBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}">
                             <p:outputLabel value="Comprovante ou declaração de vínculo de trabalho (informando o salário):"/>
                             <p:fileUpload
                                 fileUploadListener="#{comprovanteBean.uploadArquivoOcupacao}" update="@form" 

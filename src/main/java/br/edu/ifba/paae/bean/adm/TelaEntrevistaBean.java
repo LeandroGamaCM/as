@@ -1,10 +1,13 @@
 package br.edu.ifba.paae.bean.adm;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.logica.FormularioAluno;
 import br.edu.ifba.paae.rn.analise.EntrevistaRN;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,6 +20,7 @@ public class TelaEntrevistaBean implements Serializable{
 
     private String estadoTela = "entrevistasFeitas";
     private String pesquisa = "";
+    PeriodoInscricao periodoInscricao;
     
     private List<FormularioAluno> formularioAlunos = new ArrayList<>();
     private FormularioAluno formularioAluno;
@@ -25,37 +29,39 @@ public class TelaEntrevistaBean implements Serializable{
     
     @PostConstruct
     public void init(){
-        listarEntrevistas(true);
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
 
+        periodoInscricao = periodoInscricaoRN.last();
+        listarEntrevistasFeitas();
     }     
-    public void listarEntrevistas(boolean tipo){
+    
+    public void listarEntrevistasFeitas(){
+        listarEntrevistas(true);
+    }
+    public void listarEntrevistasNaoFeitas(){
+        listarEntrevistas(false);
+    }
+    private void listarEntrevistas(boolean tipo){
         AlunoRN alunoRN = new AlunoRN();
-        int i;
 
+        List<Aluno> alunos;
         formularioAlunos = new ArrayList<>();
         
         if(tipo){
-            List<Aluno> alunos = alunoRN.alunosAtuais(alunoRN.alunosEntrevistados());
-            
-            if(alunos != null || !alunos.isEmpty()){
-                for(i = 0; i < alunos.size(); i++){
-                    formularioAluno = new FormularioAluno(alunos.get(i));
-                    formularioAlunos.add(formularioAluno);
-                }
-            }            
+            System.out.println("\tListar entrevistas feitas");
+            alunos = alunoRN.alunosAtuais(alunoRN.alunosEntrevistados());
+        }else{
+            System.out.println("\tListar entrevistas NÃO feitas");
+            alunos = alunoRN.alunosAtuais(alunoRN.alunosNAOEntrevistados());
         }
-        if(!tipo){
-            List<Aluno> alunos = alunoRN.alunosAtuais(alunoRN.alunosNAOEntrevistados());
-            System.out.println("Entrevistas NÂO feitas");
-            if(alunos != null || !alunos.isEmpty()){
-                System.out.println("alunos.size:"+ alunos.size());
-                for(i = 0; i < alunos.size(); i++){
-                    formularioAluno = new FormularioAluno(alunos.get(i));
-                    formularioAlunos.add(formularioAluno);
-                }
-            }            
-        }
-       
+
+        if(alunos != null && !alunos.isEmpty()){
+            System.out.println("alunos.size:"+ alunos.size());
+            for (Aluno a : alunos) {
+                formularioAluno = new FormularioAluno(a);
+                formularioAlunos.add(formularioAluno);                
+            }
+        }       
     }
 // Na busca permitir que mostre os alunos de todos os anos e coloca um campo 'ano' na tabela
     public void buscar(){
@@ -92,7 +98,7 @@ public class TelaEntrevistaBean implements Serializable{
         return "entrevistasFeitas".equals(this.estadoTela);
     }
     public void changeToEntrevistasFeitas(){
-        listarEntrevistas(true);
+        listarEntrevistasFeitas();
         this.estadoTela = "entrevistasFeitas";
     }
     
@@ -100,7 +106,7 @@ public class TelaEntrevistaBean implements Serializable{
         return "entrevistasNaoFeitas".equals(this.estadoTela);
     }
     public void changeToEntrevistasNaoFeitas(){
-        listarEntrevistas(false);
+        listarEntrevistasNaoFeitas();
         this.estadoTela = "entrevistasNaoFeitas";
     }
         
@@ -167,6 +173,14 @@ public class TelaEntrevistaBean implements Serializable{
 
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
+    }
+
+    public PeriodoInscricao getPeriodoInscricao() {
+        return periodoInscricao;
+    }
+
+    public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
+        this.periodoInscricao = periodoInscricao;
     }
 
 

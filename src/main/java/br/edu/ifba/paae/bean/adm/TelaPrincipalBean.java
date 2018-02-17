@@ -27,11 +27,7 @@ public class TelaPrincipalBean implements Serializable{
         PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         UsuarioRN usuarioRN = new UsuarioRN();
         
-        LocalDateTime now = LocalDateTime.now();
-        periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
-        if(periodoInscricao == null){
-            periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear()-1);
-        }
+        periodoInscricao = periodoInscricaoRN.last();
         
         AlunoRN alunoRN = new AlunoRN();
         
@@ -60,22 +56,19 @@ public class TelaPrincipalBean implements Serializable{
     public void ativarDesativar(){
         PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         LocalDateTime now = LocalDateTime.now();
-        PeriodoInscricao periodoInscricaoAtual;
+
         System.out.println("/tEntrou em AtivarDesativar");
-        
-        periodoInscricaoAtual = periodoInscricaoRN.buscarPorAno(now.getYear());
 
-        if(periodoInscricaoAtual == null){
+        if(periodoInscricao == null || periodoInscricao.getAno() != now.getYear()){
             System.out.println("Atual = nulo");
-            periodoInscricaoAtual = new PeriodoInscricao();
-            periodoInscricaoAtual.setAno(now.getYear());
-            periodoInscricaoAtual.setAtivado(Boolean.FALSE);
+            periodoInscricao = new PeriodoInscricao();
+            periodoInscricao.setAno(now.getYear());
+            periodoInscricao.setAtivado(Boolean.TRUE);
 
-            periodoInscricaoRN.salvar(periodoInscricaoAtual);
-            periodoInscricao = periodoInscricaoAtual;
-        }
-        if(periodoInscricao != null){
-            System.out.println("Id periodoInscricao = "+periodoInscricao);
+            periodoInscricaoRN.salvar(periodoInscricao);
+        }else{
+            System.out.println("Id periodoInscricao = "+periodoInscricao.getId());
+            
             if(periodoInscricao.getAtivado()){
                 periodoInscricao.setAtivado(Boolean.FALSE);
             }else{

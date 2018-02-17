@@ -1,39 +1,14 @@
 package br.edu.ifba.paae.bean.adm;
 
-
-import br.edu.ifba.paae.entidades.analise.ComposicaoFamiliar;
-import br.edu.ifba.paae.entidades.analise.CondicaoEconomicaEstudante;
-import br.edu.ifba.paae.entidades.analise.DespesaAnalise;
-import br.edu.ifba.paae.entidades.analise.EscolaOrigem;
-import br.edu.ifba.paae.entidades.analise.Etnia;
-import br.edu.ifba.paae.entidades.analise.Genero;
-import br.edu.ifba.paae.entidades.analise.LocalResidenciaFamilia;
-import br.edu.ifba.paae.entidades.analise.MoradiaEstudante;
-import br.edu.ifba.paae.entidades.analise.MoradiaFamilia;
-import br.edu.ifba.paae.entidades.analise.ProgramaSocial;
-import br.edu.ifba.paae.entidades.analise.RendaPerCapita;
-import br.edu.ifba.paae.entidades.analise.RendaPrincipalOrigem;
-import br.edu.ifba.paae.entidades.analise.Saude;
-import br.edu.ifba.paae.entidades.analise.SituacaoOcupacional;
+import br.edu.ifba.paae.entidades.analise.*;
 import br.edu.ifba.paae.logica.Barema;
+import br.edu.ifba.paae.logica.Mensagem;
 import br.edu.ifba.paae.logica.Parametro;
-import br.edu.ifba.paae.rn.analise.ComposicaoFamiliarRN;
-import br.edu.ifba.paae.rn.analise.CondicaoEconomicaEstudanteRN;
-import br.edu.ifba.paae.rn.analise.DespesaAnaliseRN;
-import br.edu.ifba.paae.rn.analise.EscolaOrigemRN;
-import br.edu.ifba.paae.rn.analise.EtniaRN;
-import br.edu.ifba.paae.rn.analise.GeneroRN;
-import br.edu.ifba.paae.rn.analise.LocalResidenciaFamiliaRN;
-import br.edu.ifba.paae.rn.analise.MoradiaEstudanteRN;
-import br.edu.ifba.paae.rn.analise.MoradiaFamiliaRN;
-import br.edu.ifba.paae.rn.analise.ProgramaSocialRN;
-import br.edu.ifba.paae.rn.analise.RendaPerCapitaRN;
-import br.edu.ifba.paae.rn.analise.RendaPrincipalOrigemRN;
-import br.edu.ifba.paae.rn.analise.SaudeRN;
-import br.edu.ifba.paae.rn.analise.SituacaoOcupacionalRN;
+import br.edu.ifba.paae.rn.analise.*;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -43,6 +18,7 @@ public class BaremaBean implements Serializable{
     private Barema barema = new Barema();
     private List<Parametro> parametros;
     private Double salario;
+    private Mensagem mensagem = new Mensagem();
     
     private String estadoTela = "telaBarema";
     
@@ -54,7 +30,7 @@ public class BaremaBean implements Serializable{
     }
 
     public void editarBarema(Parametro parametro) {
-        if(parametro != null) {
+        if(parametro != null && parametro.getPontuacao() != null) {
 //            barema.salvar(parametro);
 
             System.out.println("\nParametro: \n\tCategoria: " + parametro.getCategoria() + "\n\tAspectoAvaliacao: " + parametro.getAspectoAvaliacao() + "\n\tPontuacao: " + parametro.getPontuacao());
@@ -206,6 +182,9 @@ public class BaremaBean implements Serializable{
                     }
                 }
             }
+            mensagem.addMensagem("Dados alterados!", FacesMessage.SEVERITY_INFO);
+        }else{
+            mensagem.addMensagem("A pontuação não pode ficar em branco!", FacesMessage.SEVERITY_ERROR);            
         }
 
     }    
@@ -216,6 +195,7 @@ public class BaremaBean implements Serializable{
             rendaPerCapitaRN.editarSalario(salario);
             parametros = barema.criarLista();            
             System.out.println("Salario = "+salario);
+            mensagem.addMensagem("Salário mínimo alterado!", FacesMessage.SEVERITY_INFO);
         }
     }
     

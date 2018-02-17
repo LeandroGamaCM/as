@@ -4,7 +4,6 @@ import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.formulario.Turma;
 import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
-import br.edu.ifba.paae.logica.AlunoTabela;
 import br.edu.ifba.paae.logica.FormularioAluno;
 import br.edu.ifba.paae.logica.Mensagem;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
@@ -31,8 +30,9 @@ public class TelaAlunosBean implements Serializable{
     private Turma turma = new Turma();
     private Turma novaTurma = new Turma();
 
+    private PeriodoInscricao periodoInscricao;
     
-    private String estadoTela = "listarFichas";
+    private String estadoTela = "telaAluno";
     private String pesquisa = "";
     private String filtroCurso = "todos";
     private String filtroModalidade = "todos";
@@ -47,6 +47,9 @@ public class TelaAlunosBean implements Serializable{
     @PostConstruct
     public void init(){
         TurmaRN turmaRN = new TurmaRN();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
+        
+        periodoInscricao = periodoInscricaoRN.last();
         listarFichas();
         turmas = turmaRN.listar();
     }    
@@ -58,9 +61,6 @@ public class TelaAlunosBean implements Serializable{
         Usuario usuario = usuarioRN.buscarPorLogin(novoAluno.getCpf());
         
         if(usuario == null){
-            LocalDateTime now = LocalDateTime.now();
-            PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
-            PeriodoInscricao periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
             usuario = new Usuario();
 
             usuario.setAtivo(Boolean.FALSE);
@@ -70,9 +70,9 @@ public class TelaAlunosBean implements Serializable{
  
             novoAluno.setUsuario(usuario);
             novoAluno.setStatus("Pré-cadastrado");
-            novoAluno.setPeriodoInscricao(periodoInscricao);
             
             alunoRN.salvar(novoAluno);
+
             mensagem.addMensagem("Aluno pré-cadastrado!", FacesMessage.SEVERITY_INFO);
             System.out.println("\tAluno pré-cadastrado");
         }else{ 
@@ -104,6 +104,7 @@ public class TelaAlunosBean implements Serializable{
         if(turma != null) {
             turmaRN.excluir(turma);
         }
+        mensagem.addMensagem("Turma deletada!", FacesMessage.SEVERITY_INFO);
         turmas = turmaRN.listar();
     }
     
@@ -111,9 +112,6 @@ public class TelaAlunosBean implements Serializable{
         TurmaRN turmaRN = new TurmaRN();
          
         if(turma != null) {
-            System.out.println("Modalidade: " + turma.getModalidade());
-            System.out.println("Curso: " + turma.getCurso());
-            System.out.println("Turma: " + turma.getNome());
             Turma verificaTurma = turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome());
 
             if(verificaTurma == null){
@@ -182,8 +180,6 @@ public class TelaAlunosBean implements Serializable{
                 }
             }            
         }
-
-        changeToListarFichas();
     }
 
     public void buscar(){
@@ -198,29 +194,33 @@ public class TelaAlunosBean implements Serializable{
             }
         }           
         pesquisa = "";
-        changeToPesquisar();
+        changeToTelaPesquisar();
     }
     
 // Controle de Tela
-    public boolean isPreCadastro(){
-        return "preCadastro".equals(this.estadoTela);
+    public boolean isTelaAluno(){
+        return "telaAluno".equals(this.estadoTela);
     }
-    public void changeToPreCadastro(){
-        this.estadoTela = "preCadastro";
-    }
-    
-    public boolean isListarFichas(){
-        return "listarFichas".equals(this.estadoTela);
-    }
-    public void changeToListarFichas(){
-        this.estadoTela = "listarFichas";
+    public void changeToTelaAluno(){
+        this.estadoTela = "telaAluno";
+        listarFichas();
     }
     
-    public boolean isPesquisar(){
-        return "pesquisar".equals(this.estadoTela);
+    public boolean isTelaTurma(){
+        return "telaTurma".equals(this.estadoTela);
     }
-    public void changeToPesquisar(){
-        this.estadoTela = "pesquisar";
+    public void changeToTelaTurma(){
+        TurmaRN turmaRN = new TurmaRN();
+        
+        this.estadoTela = "telaTurma";
+        turmas = turmaRN.listar();        
+    }
+    
+    public boolean isTelaPesquisar(){
+        return "telaPesquisar".equals(this.estadoTela);
+    }
+    public void changeToTelaPesquisar(){
+        this.estadoTela = "telaPesquisar";
     }
 
 
@@ -328,6 +328,22 @@ public class TelaAlunosBean implements Serializable{
 
     public void setFormularioAlunos(List<FormularioAluno> formularioAlunos) {
         this.formularioAlunos = formularioAlunos;
+    }
+
+    public Mensagem getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(Mensagem mensagem) {
+        this.mensagem = mensagem;
+    }
+
+    public PeriodoInscricao getPeriodoInscricao() {
+        return periodoInscricao;
+    }
+
+    public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
+        this.periodoInscricao = periodoInscricao;
     }
 
 

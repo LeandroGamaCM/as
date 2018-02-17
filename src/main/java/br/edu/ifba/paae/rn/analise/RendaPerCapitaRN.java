@@ -48,43 +48,43 @@ public class RendaPerCapitaRN {
         RendaPerCapita limite9 = new RendaPerCapita();
         RendaPerCapita limite10 = new RendaPerCapita();
         
-        limite1.setLimite(salario*1.5*0.1);
+        limite1.setLimite(Math.rint(salario*1.5*0.1));
         limite1.setSalario(salario);
         limite1.setPontuacao(30F);
 
-        limite2.setLimite(salario*0.2*1.5);
+        limite2.setLimite(Math.rint(salario*0.2*1.5));
         limite2.setSalario(salario);
         limite2.setPontuacao(27F);
 
-        limite3.setLimite(salario*0.3*1.5);
+        limite3.setLimite(Math.rint(salario*0.3*1.5));
         limite3.setSalario(salario);
         limite3.setPontuacao(24F);
 
-        limite4.setLimite(salario*0.4*1.5);
+        limite4.setLimite(Math.rint(salario*0.4*1.5));
         limite4.setSalario(salario);
         limite4.setPontuacao(21F);
 
-        limite5.setLimite(salario*0.5*1.5);
+        limite5.setLimite(Math.rint(salario*0.5*1.5));
         limite5.setSalario(salario);
         limite5.setPontuacao(15F);
 
-        limite6.setLimite(salario*0.6*1.5);
+        limite6.setLimite(Math.rint(salario*0.6*1.5));
         limite6.setSalario(salario);
         limite6.setPontuacao(9F);
 
-        limite7.setLimite(salario*0.7*1.5);
+        limite7.setLimite(Math.rint(salario*0.7*1.5));
         limite7.setSalario(salario);
         limite7.setPontuacao(6F);
 
-        limite8.setLimite(salario*0.8*1.5);
+        limite8.setLimite(Math.rint(salario*0.8*1.5));
         limite8.setSalario(salario);
         limite8.setPontuacao(3F);
 
-        limite9.setLimite(salario*0.9*1.5);
+        limite9.setLimite(Math.rint(salario*0.9*1.5));
         limite9.setSalario(salario);
         limite9.setPontuacao(2F);
 
-        limite10.setLimite(salario*1.5);
+        limite10.setLimite(Math.rint(salario*1.5));
         limite10.setSalario(salario);
         limite10.setPontuacao(1F);
 

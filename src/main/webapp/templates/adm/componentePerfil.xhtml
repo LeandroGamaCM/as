@@ -8,20 +8,25 @@
         <h:form>
             <p:outputPanel id="painel">
                 <p:panel header="Editar dados cadastrais">
+                    <p:messages autoUpdate="true"/>
                     <h5>Login</h5>
                     <h:panelGrid columns="2">
-                        <p:outputLabel value="Nome" for="nome"/>
-                        <p:inputText id="nome" value="#{usuarioBean.usuario.nome}"/>
-                        <p:outputLabel value="CPF" for="cpf"/>
-                        <p:inputText id="cpf" value="#{usuarioBean.usuario.login}"/>                            
+                        <p:outputLabel value="Nome: " for="nome" indicateRequired="false" />
+                        <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="Nome: Campo Obrigatório!"/>
+
+                        <p:outputLabel value="CPF: " for="cpf" indicateRequired="false" />
+                        <p:inputText id="cpf" value="#{usuarioBean.usuario.login}" required="true" requiredMessage="CPF: Campo Obrigatório"/>                            
+
+                        <p:outputLabel value="Email: " for="email" indicateRequired="false" />
+                        <p:inputText id="email" value="#{usuarioBean.usuario.email}" required="true" requiredMessage="Email: Campo Obrigatório"/>                            
                     </h:panelGrid>
                         
                     <h5>Senha</h5>
                     <h:panelGrid columns="2">
-                        <p:outputLabel value="Senha antiga" for="senha"/>
-                        <p:password id="senha" value="#{usuarioBean.confirmacaoSenha}"/>
-                        <p:outputLabel value="Nova senha" for="novaSenha"/>
-                        <p:password id="novaSenha" value="#{usuarioBean.novaSenha}"/>
+                        <p:outputLabel value="Senha antiga" for="senha" indicateRequired="false" />
+                        <p:password id="senha" value="#{usuarioBean.confirmacaoSenha}" required="true" requiredMessage="Senha antiga: Campo Obrigatório"/>
+                        <p:outputLabel value="Nova senha" for="novaSenha" indicateRequired="false" />
+                        <p:password id="novaSenha" value="#{usuarioBean.novaSenha}" required="true" requiredMessage="Nova senha: Campo Obrigatório"/>
                     </h:panelGrid>
                     <p:commandButton value="Salvar dados" update="@form" actionListener="#{usuarioBean.salvar()}"/> 
                 </p:panel>

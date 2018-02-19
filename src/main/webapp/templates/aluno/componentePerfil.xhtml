@@ -8,6 +8,7 @@
         <h:form>
             <p:outputPanel id="painel">
                 <p:panel header="Dados cadastrais" rendered="#{usuarioBean.mostrarDados}">
+                    <p:messages autoUpdate="true"/>
                         <h5>Login</h5>
                     <h:panelGrid columns="1">
                         <p:outputLabel value="Nome: #{usuarioBean.usuario.nome}"/>
@@ -32,42 +33,52 @@
                 </p:panel>
 
                 <p:panel header=" Editar dados" rendered="#{usuarioBean.editarDados}">
-                    <h5>Login</h5>
+                    <p:messages autoUpdate="true"/>
                     <h:panelGrid columns="2">
-                        <p:outputLabel value="Nome" for="nome"/>
-                        <p:inputText id="nome" value="#{usuarioBean.usuario.nome}"/>                            
+                        <p:outputLabel value="Nome" for="nome" indicateRequired="false"/>
+                        <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="Nome: Campo Obrigatório"/>                            
+
+                        <p:outputLabel value="Email para recuperação" for="emailRecu" indicateRequired="false"/>
+                        <p:inputText id="emailRecu" value="#{usuarioBean.usuario.email}" required="true" requiredMessage="Email: Campo Obrigatório"/>                            
                     </h:panelGrid>
 
                     <h5>Contato</h5>
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Telefone" for="telefone"/>
                         <p:inputText id="telefone" value="#{usuarioBean.formularioAluno.aluno.telefone}"/>
+                        
                         <p:outputLabel value="Celular" for="celular"/>
                         <p:inputText id="celular" value="#{usuarioBean.formularioAluno.aluno.celular}"/>
-                        <p:outputLabel value="Email" for="email"/>
+                        
+                        <p:outputLabel value="Email de contato" for="email"/>
                         <p:inputText id="email" value="#{usuarioBean.formularioAluno.aluno.email}"/>
                     </h:panelGrid>
 
-<!--                    <h5>Endereço</h5>
+                    <h5>Endereço</h5>
                     <h:panelGrid columns="2">
                         <p:outputLabel value="Rua" for="rua"/>
                         <p:inputText id="rua" value="#{usuarioBean.formularioAluno.endereco.rua}"/>
+                        
                         <p:outputLabel value="Número" for="numero"/>
                         <p:inputText id="numero" value="#{usuarioBean.formularioAluno.endereco.numero}"/>
                         <p:outputLabel value="Bairro" for="bairro"/>
+                        
                         <p:inputText id="bairro" value="#{usuarioBean.formularioAluno.endereco.bairro}"/>
                         <p:outputLabel value="Cidade" for="cidade"/>
+                        
                         <p:inputText id="cidade" value="#{usuarioBean.formularioAluno.endereco.cidade}"/>
                         <p:outputLabel value="Estado" for="estado"/>
+                        
                         <p:inputText id="estado" value="#{usuarioBean.formularioAluno.endereco.estado}"/>
                     </h:panelGrid>
-                    -->
+                    
                     <h5>Senha</h5>
                     <h:panelGrid columns="2">
-                        <p:outputLabel value="Senha antiga" for="senha"/>
-                        <p:password id="senha" value="#{usuarioBean.confirmacaoSenha}"/>
-                        <p:outputLabel value="Nova senha" for="novaSenha"/>
-                        <p:password id="novaSenha" value="#{usuarioBean.novaSenha}"/>
+                        <p:outputLabel value="Senha antiga" for="senha" indicateRequired="false"/>
+                        <p:password id="senha" value="#{usuarioBean.confirmacaoSenha}" required="true" requiredMessage="Senha antiga: Campo Obrigatório"/>
+                        
+                        <p:outputLabel value="Nova senha" for="novaSenha" indicateRequired="false"/>
+                        <p:password id="novaSenha" value="#{usuarioBean.novaSenha}" required="true" requiredMessage="Nova senha: Campo Obrigatório"/>
                     </h:panelGrid>
                     <p:commandButton value="Salvar dados" update="@form" actionListener="#{usuarioBean.salvar()}"/>
 

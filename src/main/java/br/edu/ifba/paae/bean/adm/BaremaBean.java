@@ -49,6 +49,7 @@ public class BaremaBean implements Serializable{
                             rn.salvar(aux);
                             break;
                         }
+                        
                     }
                     if("Renda per capita".equals(parametro.getCategoria())){
                         RendaPerCapitaRN rn = new RendaPerCapitaRN();
@@ -188,7 +189,7 @@ public class BaremaBean implements Serializable{
         }
 
     }    
-    
+        
     public void editarSalario(){
         RendaPerCapitaRN rendaPerCapitaRN = new RendaPerCapitaRN();
         if(salario != null){

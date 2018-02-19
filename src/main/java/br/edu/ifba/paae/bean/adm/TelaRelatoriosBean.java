@@ -1,4 +1,4 @@
-package br.edu.ifba.paae.bean;
+package br.edu.ifba.paae.bean.adm;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.formulario.Formulario;
@@ -17,9 +17,8 @@ import org.primefaces.model.chart.PieChartModel;
 
 @ManagedBean(name = "relatorioBean")
 @ViewScoped
-public class RelatorioBean implements Serializable{
-
-    private static final long serialVersionUID = -5867084509700255178L;
+public class TelaRelatoriosBean implements Serializable{
+    private static final long serialVersionUID = -4266294973616109853L;
     
     private List<Aluno> alunos = new ArrayList<>();
     private List<FormularioAluno> formularioAlunos = new ArrayList<>();
@@ -27,7 +26,7 @@ public class RelatorioBean implements Serializable{
     private PieChartModel graficoPreferenciaBolsa;
     private PieChartModel graficoAlunos;
     
-    private String estadoTela = "classificacao";
+    private String estadoTela = "informacoes";
 
     @PostConstruct
     public void init() {        
@@ -199,5 +198,5 @@ public class RelatorioBean implements Serializable{
     public void setEstadoTela(String estadoTela) {
         this.estadoTela = estadoTela;
     }
-
+    
 }

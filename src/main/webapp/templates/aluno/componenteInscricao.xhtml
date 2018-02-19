@@ -26,18 +26,20 @@
                     <p:outputPanel id="chefao">
                         <p:panel rendered="#{alunoBean.telaFormulario}">
                             <h1>Formulário de Inscrição</h1>
-                            <p:commandButton value="(Provisorio) Salvar" actionListener="#{alunoBean.salvar()}"/>
+                            <p:commandButton immediate="true" value="(Provisorio) Salvar" actionListener="#{alunoBean.salvar()}"/>
                             <p:wizard nextLabel="Próximo" onnext="return onnext();" onback="return onback();" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
                                 <p:tab id="parte1" titleStyleClass="tab1" title="Dados Pessoais">
                                     <p:messages /> 
                                     <p:panel header="Dados Pessoais">
                                         <div class="ui-g ui-fluid">
-                                            <h:panelGrid id="pg1" class="pgTam" columns="4" columnClasses="col1, col2, col3, col4">
+                                            <h:panelGrid id="pg1" class="pgTam" columns="3" columnClasses="col1, col2, col3, col4">
                                                 <p:outputLabel indicateRequired="false" value="Nome Completo: " for="nome" />
-                                                <p:outputLabel id="nome" value="#{alunoBean.aluno.nome}"/>
+                                                <p:inputText id="nome" value="#{alunoBean.aluno.nome}" required="false" requiredMessage="Nome Completo: Campo Obrigatório" validatorMessage="Informe seu nome completo!" onkeypress="return letras(event)" label="name">
+                                                    <f:validateLength  minimum="6" />
+                                                </p:inputText>
                                                 
-                                                <p:outputLabel indicateRequired="false" id="outCpf" value="CPF: "/>
-                                                <p:outputLabel value="#{alunoBean.aluno.cpf}"/>
+                                                <p:outputLabel id="outCpf" value="CPF: #{alunoBean.aluno.cpf}"/>
+<!--                                                <p:inputText id="cpf" required="false" requiredMessage="CPF: Campo Obrigatório" value="#alunoBean.aluno.cpf}" label="CPF"/>-->
                                             </h:panelGrid>
 
 
@@ -344,22 +346,22 @@
                                         <div id="uiFluid" class="ui-g ui-fluid"> 
                                             <p:outputPanel id="manutAjax">                                                
                                                 <p:selectManyCheckbox id="respMC" required="true" requiredMessage="Condição de Manutenção: Menu Obrigatório" value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
-                                                    <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                                    <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                                    <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
-                                                    <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                                    <f:selectItem itemLabel="Sustentado por outros parentes:" itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                                    <f:selectItem itemLabel="Outros Meios:" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                                    <f:selectItem itemLabel="Nenhuma das opções" itemValue="n" />
-                                                    <p:ajax update="manutAjax" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
+                                                    <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm"/>
+                                                    <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p"/>
+                                                    <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" />                                      
+                                                    <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.condicaoManutencao.sustentadoPorNinguem}"/>
+                                                    <f:selectItem itemLabel="Sustentado por outros parentes:" itemValue="op"/>
+                                                    <f:selectItem itemLabel="Outros Meios:" itemValue="om" />
+                                                    <f:selectItem itemLabel="Nenhuma das opções" itemValue="n"/>
+                                                    <p:ajax update="manutAjax" immediate="true" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
                                                 </p:selectManyCheckbox>  
 
-                                                <h:panelGrid id="pg16" rendered="#{alunoBean.verificaSelectedSustentadoresOP() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}" columns="2" columnClasses="col64, col65">
+                                                <h:panelGrid id="pg16" rendered="#{alunoBean.condicaoManutencao.outrosParentes}" columns="2" columnClasses="col64, col65">
                                                     <p:outputLabel indicateRequired="false" value="Qual o parentesco? " for="par" />
                                                     <p:inputText id="par" required="true" requiredMessage="Parentesco: Campo Obrigatório" value="#{alunoBean.condicaoManutencao.parentesco}" label="Parentesco"/>
                                                 </h:panelGrid>
 
-                                                <h:panelGrid id="pg17" rendered="#{alunoBean.verificaSelectedSustentadoresOM() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}" columns="2" columnClasses="col66, col67">
+                                                <h:panelGrid id="pg17" rendered="#{alunoBean.condicaoManutencao.outrosMeios}" columns="2" columnClasses="col66, col67">
                                                     <p:outputLabel indicateRequired="false" value="Quais são eles? " for="om" />
                                                     <p:inputText id="om" required="true" requiredMessage="Outros Meios: Campo Obrigatório" value="#{alunoBean.condicaoManutencao.nomeOutrosMeios}" label="Outros Meios"/>
                                                 </h:panelGrid>
@@ -615,7 +617,7 @@
                                     <p:panel header="Enumere os membros da família que moram na mesma casa">
                                         <div class="ui-g ui-fluid">
                                             <p:outputPanel id="tabelaMembro">                                
-                                                <p:dataTable id="DTmembros" var="membroFamiliar" value="#{alunoBean.membrosFamiliares}" editable="true" editMode="cell">                            
+                                                <p:dataTable id="DTmembros" var="membroFamiliar" value="#{alunoBean.membrosFamiliares}" editable="true" editMode="cell" emptyMessage="Nada cadastrado">                            
                                                     <f:facet name="header">
                                                         Membros Familiares
                                                     </f:facet>
@@ -623,28 +625,28 @@
                                                     <p:column width="25%" headerText="Nome">
                                                         <p:cellEditor>
                                                             <f:facet name="output"><p:outputLabel value="#{membroFamiliar.nome}"/></f:facet>
-                                                            <f:facet name="input"><p:inputText onkeypress="return letras(event)" value="#{membroFamiliar.nome}"/></f:facet>
+                                                            <f:facet name="input"><p:inputText onkeypress="return letras(event)" value="#{membroFamiliar.nome}" required="true" requiredMessage="Nome do membro familiar: Item Obrigatório"/></f:facet>
                                                         </p:cellEditor>
                                                     </p:column>
 
                                                     <p:column width="11%" headerText="Parentesco">
                                                         <p:cellEditor>
                                                             <f:facet name="output"><p:outputLabel value="#{membroFamiliar.parentesco}"/></f:facet>
-                                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.parentesco}"/></f:facet>
+                                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.parentesco}" required="true" requiredMessage="Parentesco do membro familiar: Item Obrigatório"/></f:facet>
                                                         </p:cellEditor>
                                                     </p:column>
 
                                                     <p:column width="7%" headerText="Idade">
                                                         <p:cellEditor>
                                                             <f:facet name="output"><p:outputLabel value="#{membroFamiliar.idade}"/></f:facet>
-                                                            <f:facet name="input"><p:inputText onkeypress="return numeros(event)" value="#{membroFamiliar.idade}"/></f:facet>
+                                                            <f:facet name="input"><p:inputText onkeypress="return numeros(event)" value="#{membroFamiliar.idade}" required="true" requiredMessage="Idade do membro familiar: Item Obrigatório"/></f:facet>
                                                         </p:cellEditor>
                                                     </p:column>
 <!--
 -->                                                    <p:column width="13%" headerText="Sexo">
                                                         <p:cellEditor>
                                                             <f:facet name="output"><p:outputLabel value="#{membroFamiliar.sexo}"/></f:facet>
-                                                            <f:facet name="input"><p:selectOneMenu value="#{membroFamiliar.sexo}">
+                                                            <f:facet name="input"><p:selectOneMenu value="#{membroFamiliar.sexo}" required="true" requiredMessage="Sexo do membro familiar: Item Obrigatório">
                                                                     <f:selectItem itemLabel="Selecione..."/>                                   
                                                                     <f:selectItem itemLabel="Feminino" itemValue="Feminino" />                                   
                                                                     <f:selectItem itemLabel="Masculino" itemValue="Masculino" />                                   
@@ -655,7 +657,7 @@
                                                     <p:column headerText="Escolaridade">
                                                         <p:cellEditor>
                                                             <f:facet name="output"><p:outputLabel value="#{membroFamiliar.escolaridade}"/></f:facet>
-                                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.escolaridade}"/></f:facet>
+                                                            <f:facet name="input"><p:inputText value="#{membroFamiliar.escolaridade}" required="true" requiredMessage="Escolaridade do membro familiar: Item Obrigatório"/></f:facet>
                                                         </p:cellEditor>
                                                     </p:column>
 
@@ -663,7 +665,7 @@
                                                         <p:cellEditor>
                                                             <f:facet name="output"><p:outputLabel value="#{membroFamiliar.situacaoOcupacional}"/></f:facet>
                                                             <f:facet name="input">
-                                                                <p:selectOneMenu value="#{membroFamiliar.situacaoOcupacional}">
+                                                                <p:selectOneMenu value="#{membroFamiliar.situacaoOcupacional}"  required="true" requiredMessage="Situaçao ocupacional do membro familiar: Item Obrigatório">
                                                                     <f:selectItem itemLabel="Selecione..." />  
                                                                     <f:selectItem itemLabel="Apenas estudando" itemValue="Apenas estudando" />  
                                                                     <f:selectItem itemLabel="Trabalhador rural/agricultura familiar" itemValue="Trabalhador rural/agricultura familiar" />  
@@ -687,7 +689,7 @@
                                                         </p:cellEditor>
                                                     </p:column>
                                                     <p:column headerText="Deletar">
-                                                        <p:commandButton update="tabelaMembro" value="icone" actionListener="#{alunoBean.excluirMembroFamiliar(membroFamiliar)}"/>
+                                                        <p:commandButton immediate="true" update="tabelaMembro" value="ícone" actionListener="#{alunoBean.excluirMembroFamiliar(membroFamiliar)}"/>
                                                     </p:column>
                                                     
                                                     <f:facet name="footer">
@@ -1117,7 +1119,7 @@
                                                                 <f:selectItem itemLabel="Terras" itemValue="t" />
                                                                 <f:selectItem itemLabel="Sítios" itemValue="s" />
                                                                 <f:selectItem itemLabel="Fazenda" itemValue="f" />
-                                                                <f:selectItem itemLabel="Outros:" itemValue="o" />
+                                                                <f:selectItem itemLabel="Outros" itemValue="o" />
                                                                 <p:ajax listener="#{alunoBean.setImovelProperties()}" event="change" update="outroImovelAjax"/>
                                                             </p:selectManyCheckbox>
 
@@ -1190,11 +1192,12 @@
                                                                 <f:selectItem itemLabel="Atendimento no CAPS" itemValue="Atendimento no CAPS"/>
                                                                 <f:selectItem itemLabel="Prouni" itemValue="Prouni"/>
                                                                 <f:selectItem itemLabel="Fies" itemValue="Fies"/>
-                                                                <f:selectItem itemLabel="Outro:" itemValue="Outro"/>
+                                                                <f:selectItem itemLabel="Outro" itemValue="Outro"/>
+                                                                <p:ajax event="change" update="progAjax"/>
                                                             </p:selectOneRadio>
                                                         </h:panelGrid>
 
-                                                        <h:panelGrid class="pgTam"  columns="2" columnClasses="col190, col191">
+                                                        <h:panelGrid class="pgTam"  columns="2" columnClasses="col190, col191" rendered="#{alunoBean.familia.programaSocial == 'Outro'}">
                                                             <p:outputLabel  indicateRequired="false" value="Qual? " for="ProgramaSocial" />
                                                             <p:inputText id="ProgramaSocial" required="true" requiredMessage="Outro Programa Social: Campo Obrigatório"  value="#{alunoBean.familia.outroProgramaSocial}" label="Programa Social"/>
                                                         </h:panelGrid>

@@ -1,9 +1,12 @@
 package br.edu.ifba.paae.bean;
 
+import br.edu.ifba.paae.emailService.EmailService;
 import br.edu.ifba.paae.emailService.EmailUtils;
 import br.edu.ifba.paae.entidades.formulario.Aluno;
+import br.edu.ifba.paae.entidades.formulario.Endereco;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.logica.FormularioAluno;
+import br.edu.ifba.paae.logica.Mensagem;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.formulario.EnderecoRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
@@ -12,6 +15,7 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -47,16 +51,21 @@ public class UsuarioBean implements Serializable{
             if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
                 aluno = alunoRN.buscarPorCPF(cpf);
                 formularioAluno = new FormularioAluno(aluno);
+                if(formularioAluno.getEndereco() == null){
+                    EnderecoRN enderecoRN = new EnderecoRN();
+                    Endereco endereco = new Endereco();
+                    endereco.setAluno(aluno);
+                    formularioAluno.setEndereco(endereco);
+                }
             }else
                 System.out.println("\n\tADM!\n");            
         }  
     }
 
     public void salvar(){
+        Mensagem mensagem = new Mensagem();
         UsuarioRN usuarioRN = new UsuarioRN();
-        System.out.println("\t(Criptografada)Usuario.getSenha: " +usuario.getSenha());
         String senha = usuarioRN.md5(confirmacaoSenha);
-        System.out.println("\t(Criptografada)Senha: " + senha);
         
         if(usuario.getSenha().equals(senha)){
             if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
@@ -68,12 +77,13 @@ public class UsuarioBean implements Serializable{
             }
             usuario.setSenha(novaSenha);
             usuarioRN.atualizar(usuario);
+            changeToMostrarDados();
+            mensagem.addMensagem("Dados atualizados!", FacesMessage.SEVERITY_INFO);
         }
         else{
+            mensagem.addMensagem("Senha antiga incorreta!", FacesMessage.SEVERITY_ERROR);
             System.out.println("\tSenha antiga incorreta!");
         }
-// Mensagem
-        changeToMostrarDados();
     }
     
     public void redefinirSenha(){
@@ -92,12 +102,11 @@ public class UsuarioBean implements Serializable{
                     usuarioRN.atualizar(user);
                     System.out.println("A nova senha é: " + newSenha);
                     
-                    try {
-                        EmailUtils.redefinirSenha(user.getLogin(), a.getEmail(), newSenha);
-                    } catch (MessagingException ex) {
-                        System.out.println("\tErro!");
-                        Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
-                    }                    
+                    String mensagem = "Sua nova senha de login no Sistema PAAE é: "+newSenha;
+                    String assunto = "Redefinição de senha do Sistema PAAE";
+                    
+                    EmailService emailService = new EmailService();
+                    emailService.enviarEmail(user.getEmail(), assunto, mensagem);
                 }else{
                     System.out.println("/tNão tem nenhum aluno com esse email!");
                 }

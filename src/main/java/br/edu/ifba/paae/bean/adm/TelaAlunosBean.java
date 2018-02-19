@@ -70,6 +70,7 @@ public class TelaAlunosBean implements Serializable{
  
             novoAluno.setUsuario(usuario);
             novoAluno.setStatus("Pré-cadastrado");
+            novoAluno.setPeriodoInscricao(periodoInscricao);
             
             alunoRN.salvar(novoAluno);
 
@@ -79,6 +80,7 @@ public class TelaAlunosBean implements Serializable{
             mensagem.addMensagem("Já existe um usuário com este CPF!", FacesMessage.SEVERITY_ERROR);
             System.out.println("\tEsse usuario já está cadastrado!");
         }
+        listarFichas();
         novoAluno = new Aluno();
     }
     

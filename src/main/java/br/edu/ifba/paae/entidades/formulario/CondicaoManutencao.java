@@ -50,6 +50,9 @@ public class CondicaoManutencao implements Serializable {
     
     @Column(name = "nome_outros_meios")
     private String nomeOutrosMeios;
+    
+    @Column(name = "sustentado_por_ninguem")
+    private Boolean sustentadoPorNinguem;
 
 // Getters Setters
 
@@ -173,24 +176,33 @@ public class CondicaoManutencao implements Serializable {
         this.nomeOutrosMeios = nomeOutrosMeios;
     }
 
+    public Boolean getSustentadoPorNinguem() {
+        return sustentadoPorNinguem;
+    }
+
+    public void setSustentadoPorNinguem(Boolean sustentadoPorNinguem) {
+        this.sustentadoPorNinguem = sustentadoPorNinguem;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.condicaoManutencao);
-        hash = 19 * hash + Objects.hashCode(this.aluno);
-        hash = 19 * hash + Objects.hashCode(this.ambosPais);
-        hash = 19 * hash + Objects.hashCode(this.apenasMae);
-        hash = 19 * hash + Objects.hashCode(this.arquivoRendaMae);
-        hash = 19 * hash + Objects.hashCode(this.apenasPai);
-        hash = 19 * hash + Objects.hashCode(this.arquivoRendaPai);
-        hash = 19 * hash + Objects.hashCode(this.avos);
-        hash = 19 * hash + Objects.hashCode(this.arquivoRendaAvos);
-        hash = 19 * hash + Objects.hashCode(this.outrosParentes);
-        hash = 19 * hash + Objects.hashCode(this.arquivoRendaParentes);
-        hash = 19 * hash + Objects.hashCode(this.parentesco);
-        hash = 19 * hash + Objects.hashCode(this.outrosMeios);
-        hash = 19 * hash + Objects.hashCode(this.arquivoRendaOutrosMeios);
-        hash = 19 * hash + Objects.hashCode(this.nomeOutrosMeios);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.condicaoManutencao);
+        hash = 17 * hash + Objects.hashCode(this.aluno);
+        hash = 17 * hash + Objects.hashCode(this.ambosPais);
+        hash = 17 * hash + Objects.hashCode(this.apenasMae);
+        hash = 17 * hash + Objects.hashCode(this.arquivoRendaMae);
+        hash = 17 * hash + Objects.hashCode(this.apenasPai);
+        hash = 17 * hash + Objects.hashCode(this.arquivoRendaPai);
+        hash = 17 * hash + Objects.hashCode(this.avos);
+        hash = 17 * hash + Objects.hashCode(this.arquivoRendaAvos);
+        hash = 17 * hash + Objects.hashCode(this.outrosParentes);
+        hash = 17 * hash + Objects.hashCode(this.arquivoRendaParentes);
+        hash = 17 * hash + Objects.hashCode(this.parentesco);
+        hash = 17 * hash + Objects.hashCode(this.outrosMeios);
+        hash = 17 * hash + Objects.hashCode(this.arquivoRendaOutrosMeios);
+        hash = 17 * hash + Objects.hashCode(this.nomeOutrosMeios);
+        hash = 17 * hash + Objects.hashCode(this.sustentadoPorNinguem);
         return hash;
     }
 
@@ -251,7 +263,12 @@ public class CondicaoManutencao implements Serializable {
         if (!Objects.equals(this.outrosMeios, other.outrosMeios)) {
             return false;
         }
+        if (!Objects.equals(this.sustentadoPorNinguem, other.sustentadoPorNinguem)) {
+            return false;
+        }
         return true;
     }
+
+
     
 }

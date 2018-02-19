@@ -50,11 +50,11 @@ public class AlunoBean implements Serializable{
     
     private List<String> listaBolsas = new ArrayList<>();
     
-    private String[] selectedDependentes;
-    private String[] selectedSustentadores;
-    private String[] selectedResidencia;
-    private String[] selectedBolsasAuxilio;
-    private String[] selectedImoveis;
+    private List<String> selectedDependentes = new ArrayList<>();
+    private List<String> selectedSustentadores = new ArrayList<>();
+    private List<String> selectedResidencia = new ArrayList<>();
+    private List<String> selectedBolsasAuxilio = new ArrayList<>();
+    private List<String> selectedImoveis = new ArrayList<>();
     
     private List<MembroFamiliar> membrosFamiliares = new ArrayList<>();
     private List<Renda> rendas;
@@ -79,8 +79,7 @@ public class AlunoBean implements Serializable{
         TurmaRN turmaRN = new TurmaRN();
 
         periodoInscricao = periodoInscricaoRN.last();
-        if(periodoInscricao != null)
-            System.out.println("\t/tAno atual = " + periodoInscricao.getAno());
+
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();
         String cpf = external.getRemoteUser();
@@ -95,8 +94,6 @@ public class AlunoBean implements Serializable{
                 System.out.println("\n\tADM!\n");            
         }
         
-        
-        addMembroFamiliar();
         List<String> aux = turmaRN.listarModalidades();
         if(aux != null){
             modalidades = new HashSet<>(aux);        
@@ -145,12 +142,16 @@ public class AlunoBean implements Serializable{
         if(bolsasAuxilio == null){
             bolsasAuxilio = new BolsasAuxilio();
             bolsasAuxilio.setAluno(aluno);
+        }else{
+            getBolsasAuxilioProperties(bolsasAuxilio);
         }
 
         condicaoManutencao = condicaoManutencaoRN.buscarPorAluno(aluno.getAluno());
         if(condicaoManutencao == null){
             condicaoManutencao = new CondicaoManutencao();
             condicaoManutencao.setAluno(aluno);
+        }else{
+            getCondicaoManutencaoProperties(condicaoManutencao);
         }
                 
         conta = contaRN.buscarPorAluno(aluno.getAluno());
@@ -163,6 +164,10 @@ public class AlunoBean implements Serializable{
         if(dependentes == null){
             dependentes = new Dependentes();
             dependentes.setAluno(aluno);
+        }else{
+            getDependentesProperties(dependentes);
+            if(dependentes.getFilho()!= null)
+                System.out.println("Tem filho = "+dependentes.getFilho());
         }
                 
         despesasCampus = despesasCampusRN.buscarPorAluno(aluno.getAluno());
@@ -188,6 +193,8 @@ public class AlunoBean implements Serializable{
         if(imovel == null){
             imovel = new Imovel();
             imovel.setFamilia(familia);
+        }else{
+            getImovelProperties(imovel);
         }
                 
         despesa = despesaRN.buscarPorFamilia(familia.getFamilia());
@@ -212,6 +219,8 @@ public class AlunoBean implements Serializable{
         if(residenciaFamilia == null){
             residenciaFamilia = new ResidenciaFamilia();
             residenciaFamilia.setFamilia(familia);
+        }else{
+            getResidenciaFamilaProperties(residencia);
         }
                 
         formulario = formularioRN.buscarPorAluno(aluno.getAluno());
@@ -239,6 +248,8 @@ public class AlunoBean implements Serializable{
         if(residencia == null){
             residencia = new Residencia();
             residencia.setAluno(aluno);
+        }else{
+            getResidenciaFamilaProperties(residencia);
         }
 
         situacaoResidencial = situacaoResidencialRN.buscarPorAluno(aluno.getAluno());
@@ -277,9 +288,9 @@ public class AlunoBean implements Serializable{
         aluno.setTurma(turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome()));
         aluno.setStatus("Inscrição realizada");
         aluno.setPeriodoInscricao(periodoInscricao);
-        System.out.println("\t/tAno atual na hora de salvar = " + periodoInscricao.getAno());
         
         alunoRN.salvar(aluno);
+
         salvarDependenciasAluno(aluno);
         
         entrevistaRN.setPontuacao(aluno);        
@@ -402,6 +413,7 @@ public class AlunoBean implements Serializable{
     public void setProperties(){
         setCondicaoManutencaoProperties();
         setBolsasAuxilioProperties();
+        setImovelProperties();
         setResidenciaFamilaProperties();
         setDependentesProperties();
             
@@ -431,21 +443,44 @@ public class AlunoBean implements Serializable{
         condicaoManutencao.setOutrosParentes(Boolean.FALSE);
         condicaoManutencao.setOutrosMeios(Boolean.FALSE);
         condicaoManutencao.setAvos(Boolean.FALSE);
-
-        if(selectedSustentadores != null){
-            for(i=0;i<selectedSustentadores.length;i++){
-                if("pm".equals(selectedSustentadores[i]))
-                    condicaoManutencao.setAmbosPais(Boolean.TRUE);
-                if("p".equals(selectedSustentadores[i]))
-                    condicaoManutencao.setApenasPai(Boolean.TRUE);
-                if("m".equals(selectedSustentadores[i]))
-                    condicaoManutencao.setApenasMae(Boolean.TRUE);
-                if("op".equals(selectedSustentadores[i]))
-                    condicaoManutencao.setOutrosParentes(Boolean.TRUE);
-                if("om".equals(selectedSustentadores[i]))
-                    condicaoManutencao.setOutrosMeios(Boolean.TRUE);
-                if("v".equals(selectedSustentadores[i]))
-                    condicaoManutencao.setAvos(Boolean.TRUE);
+        condicaoManutencao.setSustentadoPorNinguem(Boolean.FALSE);
+        
+        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
+            if(selectedSustentadores.contains("pm"))
+                condicaoManutencao.setAmbosPais(Boolean.TRUE);
+            if(selectedSustentadores.contains("p"))
+                condicaoManutencao.setApenasPai(Boolean.TRUE);
+            if(selectedSustentadores.contains("m"))
+                condicaoManutencao.setApenasMae(Boolean.TRUE);
+            if(selectedSustentadores.contains("op"))
+                condicaoManutencao.setOutrosParentes(Boolean.TRUE);
+            if(selectedSustentadores.contains("om"))
+                condicaoManutencao.setOutrosMeios(Boolean.TRUE);
+            if(selectedSustentadores.contains("v"))
+                condicaoManutencao.setAvos(Boolean.TRUE);
+            if(selectedSustentadores.contains("n"))
+                condicaoManutencao.setSustentadoPorNinguem(Boolean.TRUE);
+        }
+    }
+    public void getCondicaoManutencaoProperties(CondicaoManutencao condicaoManutencao){
+        if(condicaoManutencao != null){
+            if(condicaoManutencao.getAmbosPais() != null && condicaoManutencao.getAmbosPais()){
+                selectedSustentadores.add("pm");
+            }
+            if(condicaoManutencao.getApenasPai() != null && condicaoManutencao.getApenasPai()){
+                selectedSustentadores.add("p");
+            }
+            if(condicaoManutencao.getApenasMae() != null && condicaoManutencao.getApenasMae()){
+                selectedSustentadores.add("m");
+            }
+            if(condicaoManutencao.getOutrosParentes() != null && condicaoManutencao.getOutrosParentes()){
+                selectedSustentadores.add("op");
+            }
+            if(condicaoManutencao.getOutrosMeios() != null && condicaoManutencao.getOutrosMeios()){
+                selectedSustentadores.add("om");
+            }
+            if(condicaoManutencao.getAvos() != null && condicaoManutencao.getAvos()){
+                selectedSustentadores.add("v");
             }
         }
     }
@@ -458,18 +493,37 @@ public class AlunoBean implements Serializable{
         bolsasAuxilio.setPibid(Boolean.FALSE);
         bolsasAuxilio.setProgramaExtensao(Boolean.FALSE);
         
-        if(selectedBolsasAuxilio != null){
-            for(i=0;i<selectedBolsasAuxilio.length;i++){
-                if("m".equals(selectedBolsasAuxilio[i]))
+        if(selectedBolsasAuxilio != null && !selectedBolsasAuxilio.isEmpty()){
+            for(i=0;i<selectedBolsasAuxilio.size();i++){
+                if("m".equals(selectedBolsasAuxilio.get(i)))
                     bolsasAuxilio.setMonitoria(Boolean.TRUE);
-                if("c".equals(selectedBolsasAuxilio[i]))
+                if("c".equals(selectedBolsasAuxilio.get(i)))
                     bolsasAuxilio.setPibic(Boolean.TRUE);
-                if("j".equals(selectedBolsasAuxilio[i]))
+                if("j".equals(selectedBolsasAuxilio.get(i)))
                     bolsasAuxilio.setPibicjr(Boolean.TRUE);
-                if("d".equals(selectedBolsasAuxilio[i]))
+                if("d".equals(selectedBolsasAuxilio.get(i)))
                     bolsasAuxilio.setPibid(Boolean.TRUE);
-                if("e".equals(selectedBolsasAuxilio[i]))
+                if("e".equals(selectedBolsasAuxilio.get(i)))
                     bolsasAuxilio.setProgramaExtensao(Boolean.TRUE);
+            }
+        }
+    }
+    public void getBolsasAuxilioProperties(BolsasAuxilio bolsasAuxilio){
+        if(bolsasAuxilio != null){
+            if(bolsasAuxilio.getMonitoria() != null && bolsasAuxilio.getMonitoria()){
+                selectedBolsasAuxilio.add("m");
+            }
+            if(bolsasAuxilio.getPibic()!= null && bolsasAuxilio.getPibic()){
+                selectedBolsasAuxilio.add("c");
+            }
+            if(bolsasAuxilio.getPibicjr()!= null && bolsasAuxilio.getPibicjr()){
+                selectedBolsasAuxilio.add("j");
+            }
+            if(bolsasAuxilio.getPibid()!= null && bolsasAuxilio.getPibid()){
+                selectedBolsasAuxilio.add("d");
+            }
+            if(bolsasAuxilio.getProgramaExtensao()!= null && bolsasAuxilio.getProgramaExtensao()){
+                selectedBolsasAuxilio.add("e");
             }
         }
     }
@@ -483,22 +537,47 @@ public class AlunoBean implements Serializable{
         imovel.setSitios(Boolean.FALSE);
         imovel.setOutroImovel(Boolean.FALSE);
 
-        if(selectedImoveis != null){
-            for(i=0;i<selectedImoveis.length;i++){
-                if("p".equals(selectedImoveis[i]))
+        if(selectedImoveis != null && !selectedImoveis.isEmpty()){
+            for(i=0;i<selectedImoveis.size();i++){
+                if("p".equals(selectedImoveis.get(i)))
                     imovel.setCasaPraia(Boolean.TRUE);
-                if("a".equals(selectedImoveis[i]))
+                if("a".equals(selectedImoveis.get(i)))
                     imovel.setApartamentos(Boolean.TRUE);
-                if("sc".equals(selectedImoveis[i]))
+                if("sc".equals(selectedImoveis.get(i)))
                     imovel.setSalasComerciais(Boolean.TRUE);
-                if("l".equals(selectedImoveis[i]))
+                if("l".equals(selectedImoveis.get(i)))
                     imovel.setLotes(Boolean.TRUE);
-                if("t".equals(selectedImoveis[i]))
+                if("t".equals(selectedImoveis.get(i)))
                     imovel.setTerras(Boolean.TRUE);
-                if("s".equals(selectedImoveis[i]))
+                if("s".equals(selectedImoveis.get(i)))
                     imovel.setSitios(Boolean.TRUE);
-                if("o".equals(selectedImoveis[i]))
+                if("o".equals(selectedImoveis.get(i)))
                     imovel.setOutroImovel(Boolean.TRUE);
+            }
+        }
+    }
+    public void getImovelProperties(Imovel imovel){
+        if(imovel != null){
+            if(imovel.getCasaPraia() != null && imovel.getCasaPraia()){
+                selectedImoveis.add("p");
+            }
+            if(imovel.getApartamentos() != null && imovel.getApartamentos()){
+                selectedImoveis.add("a");
+            }
+            if(imovel.getSalasComerciais() != null && imovel.getSalasComerciais()){
+                selectedImoveis.add("sc");
+            }
+            if(imovel.getLotes() != null && imovel.getLotes()){
+                selectedImoveis.add("l");
+            }
+            if(imovel.getTerras() != null && imovel.getTerras()){
+                selectedImoveis.add("t");
+            }
+            if(imovel.getSitios() != null && imovel.getSitios()){
+                selectedImoveis.add("s");
+            }
+            if(imovel.getOutroImovel()!= null && imovel.getOutroImovel()){
+                selectedImoveis.add("o");
             }
         }
     }
@@ -511,25 +590,45 @@ public class AlunoBean implements Serializable{
         residencia.setLuz(Boolean.FALSE);
         residencia.setAgua(Boolean.FALSE);
 
-        if(selectedResidencia != null){
-            for(i=0;i<selectedResidencia.length;i++){
-                if("e".equals(selectedResidencia[i]))
+        if(selectedResidencia != null && !selectedResidencia.isEmpty()){
+            for(i=0;i<selectedResidencia.size();i++){
+                if("e".equals(selectedResidencia.get(i)))
                     residencia.setRedeEsgoto(Boolean.TRUE);
-                if("f".equals(selectedResidencia[i]))
+                if("f".equals(selectedResidencia.get(i)))
                     residencia.setFossa(Boolean.TRUE);
-                if("b".equals(selectedResidencia[i]))
+                if("b".equals(selectedResidencia.get(i)))
                     residencia.setBanheiro(Boolean.TRUE);
-                if("c".equals(selectedResidencia[i]))
+                if("c".equals(selectedResidencia.get(i)))
                     residencia.setChuveiro(Boolean.TRUE);
-                if("l".equals(selectedResidencia[i]))
+                if("l".equals(selectedResidencia.get(i)))
                     residencia.setLuz(Boolean.TRUE);
-                if("a".equals(selectedResidencia[i]))
+                if("a".equals(selectedResidencia.get(i)))
                     residencia.setAgua(Boolean.TRUE);
             }            
         }
-        
     }
-    
+    public void getResidenciaFamilaProperties(Residencia residencia){
+        if(residencia != null){
+            if(residencia.getRedeEsgoto()!= null && residencia.getRedeEsgoto()){
+                selectedResidencia.add("e");
+            }
+            if(residencia.getFossa()!= null && residencia.getFossa()){
+                selectedResidencia.add("f");
+            }
+            if(residencia.getBanheiro()!= null && residencia.getBanheiro()){
+                selectedResidencia.add("b");
+            }
+            if(residencia.getChuveiro()!= null && residencia.getChuveiro()){
+                selectedResidencia.add("c");
+            }
+            if(residencia.getLuz()!= null && residencia.getLuz()){
+                selectedResidencia.add("l");
+            }
+            if(residencia.getAgua()!= null && residencia.getAgua()){
+                selectedResidencia.add("a");
+            }
+        }
+    }
 
     public void setDependentesProperties(){
         int i;
@@ -538,25 +637,41 @@ public class AlunoBean implements Serializable{
         dependentes.setIdoso(Boolean.FALSE);
         dependentes.setOutro(Boolean.FALSE);
 
-        if(selectedDependentes != null){
-            for(i=0;i<selectedDependentes.length;i++){
-                if("c".equals(selectedDependentes[i]))
+        if(selectedDependentes != null && !selectedDependentes.isEmpty()){
+            for(i=0;i<selectedDependentes.size();i++){
+                if("c".equals(selectedDependentes.get(i)))
                     dependentes.setCompanheiro(Boolean.TRUE);
-                if("f".equals(selectedDependentes[i]))
+                if("f".equals(selectedDependentes.get(i)))
                     dependentes.setFilho(Boolean.TRUE);
-                if("i".equals(selectedDependentes[i]))
+                if("i".equals(selectedDependentes.get(i)))
                     dependentes.setIdoso(Boolean.TRUE);
-                if("o".equals(selectedDependentes[i]))
+                if("o".equals(selectedDependentes.get(i)))
                     dependentes.setOutro(Boolean.TRUE);
             }            
+        }
+    }
+    public void getDependentesProperties(Dependentes dependentes){
+        if(dependentes != null){
+            if(dependentes.getCompanheiro()!= null && dependentes.getCompanheiro()){
+                selectedDependentes.add("c");
+            }
+            if(dependentes.getFilho()!= null && dependentes.getFilho()){
+                selectedDependentes.add("f");
+            }
+            if(dependentes.getIdoso()!= null && dependentes.getIdoso()){
+                selectedDependentes.add("i");
+            }
+            if(dependentes.getOutro()!= null && dependentes.getOutro()){
+                selectedDependentes.add("o");
+            }
         }
     }
 
     public boolean selectedDependenteOutro(){
         int i;
-        if(selectedDependentes != null){
-            for(i=0;i<selectedDependentes.length;i++){
-                if("o".equals(selectedDependentes[i]))
+        if(selectedDependentes != null && !selectedDependentes.isEmpty()){
+            for(i=0;i<selectedDependentes.size();i++){
+                if("o".equals(selectedDependentes.get(i)))
                     return true;
             }
         }
@@ -565,9 +680,9 @@ public class AlunoBean implements Serializable{
         
     public boolean verificaSelectedSustentadoresPM(){
         int i;
-        if(selectedSustentadores != null){
-            for(i=0;i<selectedSustentadores.length;i++){
-                if("pm".equals(selectedSustentadores[i]))
+        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
+            for(i=0;i<selectedSustentadores.size();i++){
+                if("pm".equals(selectedSustentadores.get(i)))
                     return true;
             }
         }
@@ -576,9 +691,9 @@ public class AlunoBean implements Serializable{
     
     public boolean verificaSelectedSustentadoresP(){
         int i;
-        if(selectedSustentadores != null){
-            for(i=0;i<selectedSustentadores.length;i++){
-                if("p".equals(selectedSustentadores[i]))
+        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
+            for(i=0;i<selectedSustentadores.size();i++){
+                if("p".equals(selectedSustentadores.get(i)))
                     return true;
             }
         }
@@ -586,9 +701,9 @@ public class AlunoBean implements Serializable{
     }
     public boolean verificaSelectedSustentadoresM(){
         int i;
-        if(selectedSustentadores != null){
-            for(i=0;i<selectedSustentadores.length;i++){
-                if("m".equals(selectedSustentadores[i]))
+        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
+            for(i=0;i<selectedSustentadores.size();i++){
+                if("m".equals(selectedSustentadores.get(i)))
                     return true;
             }
         }
@@ -596,20 +711,23 @@ public class AlunoBean implements Serializable{
     }
     public boolean verificaSelectedSustentadoresN(){
         int i;
-        if(selectedSustentadores != null){
-            for(i=0;i<selectedSustentadores.length;i++){
-                if("n".equals(selectedSustentadores[i]))
-                    return true;
+        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
+            for(i=0;i<selectedSustentadores.size();i++){
+                if("n".equals(selectedSustentadores.get(i))){
+                    System.out.println("Nenhuma das opções = Ativado");
+                    return true;                    
+                }
             }
         }
+                    System.out.println("Nenhuma das opções = Desativado");
         return false;        
     }
 
     public boolean verificaSelectedSustentadoresOP(){
         int i;
-        if(selectedSustentadores != null){
-            for(i=0;i<selectedSustentadores.length;i++){
-                if("op".equals(selectedSustentadores[i]))
+        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
+            for(i=0;i<selectedSustentadores.size();i++){
+                if("op".equals(selectedSustentadores.get(i)))
                     return true;
             }
         }
@@ -618,9 +736,9 @@ public class AlunoBean implements Serializable{
 
     public boolean verificaSelectedSustentadoresOM(){
         int i;
-        if(selectedSustentadores != null){
-            for(i=0;i<selectedSustentadores.length;i++){
-                if("om".equals(selectedSustentadores[i]))
+        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
+            for(i=0;i<selectedSustentadores.size();i++){
+                if("om".equals(selectedSustentadores.get(i)))
                     return true;
             }
         }
@@ -638,6 +756,22 @@ public class AlunoBean implements Serializable{
     
 
 // Getters e Setters
+
+    public String getEstadoTela() {
+        return estadoTela;
+    }
+
+    public void setEstadoTela(String estadoTela) {
+        this.estadoTela = estadoTela;
+    }
+
+    public PeriodoInscricao getPeriodoInscricao() {
+        return periodoInscricao;
+    }
+
+    public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
+        this.periodoInscricao = periodoInscricao;
+    }
 
     public Aluno getAluno() {
         return aluno;
@@ -799,36 +933,60 @@ public class AlunoBean implements Serializable{
         this.turma = turma;
     }
 
-    public String[] getSelectedDependentes() {
+    public Entrevista getEntrevista() {
+        return entrevista;
+    }
+
+    public void setEntrevista(Entrevista entrevista) {
+        this.entrevista = entrevista;
+    }
+
+    public List<String> getListaBolsas() {
+        return listaBolsas;
+    }
+
+    public void setListaBolsas(List<String> listaBolsas) {
+        this.listaBolsas = listaBolsas;
+    }
+
+    public List<String> getSelectedDependentes() {
         return selectedDependentes;
     }
 
-    public void setSelectedDependentes(String[] selectedDependentes) {
+    public void setSelectedDependentes(List<String> selectedDependentes) {
         this.selectedDependentes = selectedDependentes;
     }
 
-    public String[] getSelectedSustentadores() {
+    public List<String> getSelectedSustentadores() {
         return selectedSustentadores;
     }
 
-    public void setSelectedSustentadores(String[] selectedSustentadores) {
+    public void setSelectedSustentadores(List<String> selectedSustentadores) {
         this.selectedSustentadores = selectedSustentadores;
     }
 
-    public String[] getSelectedResidencia() {
+    public List<String> getSelectedResidencia() {
         return selectedResidencia;
     }
 
-    public void setSelectedResidencia(String[] selectedResidencia) {
+    public void setSelectedResidencia(List<String> selectedResidencia) {
         this.selectedResidencia = selectedResidencia;
     }
 
-    public String[] getSelectedBolsasAuxilio() {
+    public List<String> getSelectedBolsasAuxilio() {
         return selectedBolsasAuxilio;
     }
 
-    public void setSelectedBolsasAuxilio(String[] selectedBolsasAuxilio) {
+    public void setSelectedBolsasAuxilio(List<String> selectedBolsasAuxilio) {
         this.selectedBolsasAuxilio = selectedBolsasAuxilio;
+    }
+
+    public List<String> getSelectedImoveis() {
+        return selectedImoveis;
+    }
+
+    public void setSelectedImoveis(List<String> selectedImoveis) {
+        this.selectedImoveis = selectedImoveis;
     }
 
     public List<MembroFamiliar> getMembrosFamiliares() {
@@ -903,45 +1061,6 @@ public class AlunoBean implements Serializable{
         this.dependenteOutro = dependenteOutro;
     }
 
-    public List<String> getListaBolsas() {
-        return listaBolsas;
-    }
-
-    public void setListaBolsas(List<String> listaBolsas) {
-        this.listaBolsas = listaBolsas;
-    }
-
-    public String[] getSelectedImoveis() {
-        return selectedImoveis;
-    }
-
-    public void setSelectedImoveis(String[] selectedImoveis) {
-        this.selectedImoveis = selectedImoveis;
-    }
-
-    public String getEstadoTela() {
-        return estadoTela;
-    }
-
-    public void setEstadoTela(String estadoTela) {
-        this.estadoTela = estadoTela;
-    }
-
-    public Entrevista getEntrevista() {
-        return entrevista;
-    }
-
-    public void setEntrevista(Entrevista entrevista) {
-        this.entrevista = entrevista;
-    }
-
-    public PeriodoInscricao getPeriodoInscricao() {
-        return periodoInscricao;
-    }
-
-    public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
-        this.periodoInscricao = periodoInscricao;
-    }
 
 
 

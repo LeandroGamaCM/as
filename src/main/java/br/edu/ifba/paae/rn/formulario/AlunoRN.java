@@ -57,14 +57,10 @@ public class AlunoRN {
         PeriodoInscricao periodoInscricao;
         
         int i = 0;
-        LocalDateTime now = LocalDateTime.now();
         Integer ano;
         
-        periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear());
+        periodoInscricao = periodoInscricaoRN.last();
         
-        if(periodoInscricao == null){
-            periodoInscricao = periodoInscricaoRN.buscarPorAno(now.getYear()-1);
-        }
         if(periodoInscricao != null){
             ano = periodoInscricao.getAno();
 
@@ -82,6 +78,9 @@ public class AlunoRN {
     }
     public List<Aluno> alunosCadastrados(){
         return this.alunoDAO.alunosCadastrados();
+    }
+    public List<Aluno> alunosPreCadastrados(){
+        return this.alunoDAO.alunosPreCadastrados();
     }
     public List<Aluno> alunosInscritos(){
         return this.alunoDAO.alunosInscritos();

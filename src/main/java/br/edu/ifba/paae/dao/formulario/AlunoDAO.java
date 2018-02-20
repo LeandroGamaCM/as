@@ -80,6 +80,11 @@ public class AlunoDAO{
         Query c = this.sessao.createQuery(hql);
         return c.list();          
     }
+    public List<Aluno> alunosPreCadastrados(){
+        String hql = "select a from Aluno a where a.status = 'Pré-cadastrado'";
+        Query c = this.sessao.createQuery(hql);
+        return c.list();          
+    }
     public List<Aluno> alunosInscritos(){
         String hql = "select a from Aluno a where a.status = 'Inscrição realizada'";
         Query c = this.sessao.createQuery(hql);

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>PAAE - Logar</title>
+        <h:outputStylesheet library="css" name="estiloCadastroUser.css" />
+        <h:outputStylesheet library="css" name="temaPrimefaces.css" />
+        <h:outputStylesheet library="css" name="estiloLogin.css" />
+        <h:outputScript library="js" name="validar.js" />
+        <h:outputScript library="js" name="vanilla-masker.min.js" />
+    </h:head>
+    <h:body onload="removerClass3()" class="login-body">
+        <div id="scriptR" class="login-panel ui-fluid recuperar layout">
+            <div class="login-panel-header">
+                <h1><h:graphicImage library="imagens" name="logoIFBA150px.png"/></h1>
+            </div>
+            <div class="login-panel-content">
+                <h:form id="logi">
+                    <p:outputPanel id="recuperar">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="logoPaae.png"/></h2>
+                            </div>                        
+                            <p id="aviso">Um código de confimação foi enviado para </p>
+                            <div class="ui-g-12">
+                                <span class="md-inputfield">                                
+                                    <p:inputText value="#{loginBean.codConfirmacaoPagina}" id="codConfirmacao" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"/> 
+                                    <p:outputLabel>Código de Confirmação</p:outputLabel>
+                                </span>
+                            </div>                       
+                            <div class="ui-g-12">
+                                <p:commandButton icon="fa fa-check" action="#{loginBean.salvar()}" value="Confirmar cadastro" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                            </div>
+                        </div>                        
+                    </p:outputPanel>
+                    <p:outputLabel id=""
+                </h:form>
+
+                <div class="row clearfix" id="rodapeLogin">
+                    <div class="col-md-12 column">
+                        <p style="text-align: center;" id="aviso2"><strong><a href="#{request.contextPath}/paginas/publico/loginEntrar.jsf" class="acender">Voltar</a></strong><br/></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </h:body>
+</html>
+
+
+

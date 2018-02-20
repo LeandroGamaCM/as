@@ -19,6 +19,7 @@ public class TelaPrincipalBean implements Serializable{
     private PeriodoInscricao periodoInscricao;
     private Usuario usuario;
     private Integer alunosCadastrados = 0;
+    private Integer alunosPreCadastrados = 0;
     private Integer alunosInscritos = 0;
     private Integer entrevistas = 0;
     
@@ -39,6 +40,9 @@ public class TelaPrincipalBean implements Serializable{
         
         if(alunoRN.alunosAtuais(alunoRN.alunosEntrevistados()) != null){
             entrevistas = alunoRN.alunosAtuais(alunoRN.alunosEntrevistados()).size();
+        }
+        if(alunoRN.alunosAtuais(alunoRN.alunosPreCadastrados()) != null){
+            alunosPreCadastrados = alunoRN.alunosAtuais(alunoRN.alunosPreCadastrados()).size();
         }
         
         
@@ -118,7 +122,13 @@ public class TelaPrincipalBean implements Serializable{
     public void setEntrevistas(Integer entrevistas) {
         this.entrevistas = entrevistas;
     }
-    
-    
+
+    public Integer getAlunosPreCadastrados() {
+        return alunosPreCadastrados;
+    }
+
+    public void setAlunosPreCadastrados(Integer alunosPreCadastrados) {
+        this.alunosPreCadastrados = alunosPreCadastrados;
+    }
     
 }

@@ -18,46 +18,66 @@
             </div>
             <div class="login-panel-content" style="padding: 0 40px 0 40px">
                 <h:form id="formCadastro" prependId="false">
-                    <div class="ui-g">
-                        <div class="ui-g-12">
-                            <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="cadastroPaae.png"/></h2>
+                    <p:outputPanel id="cadastro" rendered="#{loginBean.cadastro}">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="cadastroPaae.png"/></h2>
+                            </div>
+                            <div class="ui-g-12">
+                                <span class="md-inputfield">
+                                    <p:inputText value="#{loginBean.nomePagina}" id="inputNome" onkeypress="return letras(event)" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                    <p:outputLabel>Nome Completo</p:outputLabel>
+                                </span>
+                            </div>
+                            <div class="ui-g-12">
+                                <span class="md-inputfield">
+                                    <p:inputText value="#{loginBean.cpfPagina}" id="inputCPF" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                    <p:outputLabel>CPF</p:outputLabel>
+                                </span>
+                            </div>
+                            <div class="ui-g-12">
+                                <span class="md-inputfield">
+                                    <p:inputText value="#{loginBean.emailPagina}" id="inputEmail" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                    <p:outputLabel>Email</p:outputLabel>
+                                </span>
+                            </div>
+                            <div class="ui-g-6">
+                                <span class="md-inputfield">
+                                    <p:password id="inputSenha" value="#{loginBean.senhaPagina}" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                    <p:outputLabel>Senha</p:outputLabel>
+                                </span>
+                            </div>
+                            <div class="ui-g-6">
+                                <span class="md-inputfield">
+                                    <p:password id="inputCsenha" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                    <p:outputLabel>Confirmar Senha</p:outputLabel>
+                                </span>
+                            </div>
+                            <div class="ui-g-12">
+                                <p:commandButton icon="fa fa-check" onclick="return validar();" action="#{loginBean.enviarCodConfirmacao()}" update="@form" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                            </div>
                         </div>
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
-                                <p:inputText value="#{loginBean.nomePagina}" id="inputNome" onkeypress="return letras(event)" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
-                                <p:outputLabel>Nome Completo</p:outputLabel>
-                            </span>
-                        </div>
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
-                                <p:inputText value="#{loginBean.cpfPagina}" id="inputCPF" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
-                                <p:outputLabel>CPF</p:outputLabel>
-                            </span>
-                        </div>
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
-                                <p:inputText value="#{loginBean.emailPagina}" id="inputEmail" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
-                                <p:outputLabel>Email</p:outputLabel>
-                            </span>
-                        </div>
-                        <div class="ui-g-6">
-                            <span class="md-inputfield">
-                                <p:password id="inputSenha" value="#{loginBean.senhaPagina}" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
-                                <p:outputLabel>Senha</p:outputLabel>
-                            </span>
-                        </div>
-                        <div class="ui-g-6">
-                            <span class="md-inputfield">
-                                <p:password id="inputCsenha" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
-                                <p:outputLabel>Confirmar Senha</p:outputLabel>
-                            </span>
-                        </div>
-                        <div class="ui-g-12">
-                            <p:commandButton icon="fa fa-check" onclick="return validar();" action="#{loginBean.salvar()}" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
-                        </div>
-                    </div>
+                        <p id="aviso">Informe uma senha segura de no mínino 6 caracteres.</p>
+                    </p:outputPanel>
+                
+                    <p:outputPanel id="confirmacao" rendered="#{loginBean.confirmacao}">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="logoPaae.png"/></h2>
+                            </div>                        
+                            <p id="aviso">Um código de confimação foi enviado para </p>
+                            <div class="ui-g-12">
+                                <span class="md-inputfield">                                
+                                    <p:inputText value="#{loginBean.codConfirmacaoPagina}" id="codConfirmacao" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"/> 
+                                    <p:outputLabel>Código de Confirmação</p:outputLabel>
+                                </span>
+                            </div>                       
+                            <div class="ui-g-12">
+                                <p:commandButton icon="fa fa-check" action="#{loginBean.salvar()}" value="Confirmar cadastro" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                            </div>
+                        </div>  
+                    </p:outputPanel>
                 </h:form>
-                <p id="aviso">Informe uma senha segura de no mínino 6 caracteres.</p>
             </div>
         </div>
         

@@ -116,13 +116,13 @@ function validar() {
         confirmar.focus();
         return false;
     }
-    else{
+    else{        
+        return true;
         nome.value = "";
         cpf.value = "";
         email.value = "";
         senha.value = "";
         confirmar.value = "";
-        return true;
     }
     
 }

@@ -55,11 +55,10 @@
                                 </span>
                             </div>
                             <div class="ui-g-12">
-                                <p:commandButton icon="fa fa-check" onclick="return validar();" action="#{loginBean.enviarCodConfirmacao()}" onsuccess="pre('1')" actionListener="#{CommandView.execute}" update="@form" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                                <p:commandButton icon="fa fa-check" onclick="return validar();" action="#{loginBean.enviarCodConfirmacao()}" onstart="pre('1')" update="@form" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
                             </div>
                         </div>
-                        <p id="aviso">Informe uma senha segura de no mínino 6 caracteres.</p>                        
-                         <p:growl showDetail="true" />                       
+                        <p id="aviso">Informe uma senha segura de no mínino 6 caracteres.</p>                                            
                     </p:outputPanel>
                 
                     <p:outputPanel id="confirmacao" style="margin-top: 35px;" rendered="#{loginBean.confirmacao}">
@@ -141,4 +140,4 @@
             instruções de como habilitar o JavaScript no seu navegador</a>.
         </noscript>
     </h:body>
-</html>
+</html>                 

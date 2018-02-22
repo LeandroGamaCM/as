@@ -127,12 +127,6 @@ function validar() {
     
 }
 
-//formulário confirma login
-function validarConfirma(){
-    var cod = document.getElementById('codConfirmacao');
-    cod.value = "";
-}
-
 //formulario de cadastro de administradores
 function validarAdm() {
     var nome = document.getElementById('nomeAdm');

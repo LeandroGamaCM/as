@@ -117,10 +117,20 @@ function validar() {
         return false;
     }
     else{
-        alert('Cadastro realizado com sucesso!');
+        nome.value = "";
+        cpf.value = "";
+        email.value = "";
+        senha.value = "";
+        confirmar.value = "";
         return true;
     }
     
+}
+
+//formulário confirma login
+function validarConfirma(){
+    var cod = document.getElementById('codConfirmacao');
+    cod.value = "";
 }
 
 //formulario de cadastro de administradores

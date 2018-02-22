@@ -185,11 +185,11 @@ public class LoginBean implements Serializable{
     }
 
     public String getSenhaPagina() {
-        return senhaPagina;
+        return senhaPagina;        
     }
 
-    public void setSenhaPagina(String senhaPagina) {
-        this.senhaPagina = senhaPagina;
+    public void setSenhaPagina(String senhaPagina) {        
+         this.senhaPagina = senhaPagina;   
     }
 
     public String getEmailPagina() {

@@ -10,6 +10,7 @@
         <h:outputStylesheet library="css" name="estiloLogin.css" />
         <h:outputScript library="js" name="validar.js" />
         <h:outputScript library="js" name="vanilla-masker.min.js" />
+        <h:outputScript library="js" name="preloader.js" />
     </h:head>
     <h:body onload="removerClass5()" class="login-body">
         <div id="scriptC" class="login-panel ui-fluid cadastro layout">
@@ -54,26 +55,27 @@
                                 </span>
                             </div>
                             <div class="ui-g-12">
-                                <p:commandButton icon="fa fa-check" onclick="return validar();" action="#{loginBean.enviarCodConfirmacao()}" update="@form" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                                <p:commandButton icon="fa fa-check" onclick="return validar();" action="#{loginBean.enviarCodConfirmacao()}" onsuccess="pre('1')" actionListener="#{CommandView.execute}" update="@form" value="Cadastrar" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
                             </div>
                         </div>
-                        <p id="aviso">Informe uma senha segura de no mínino 6 caracteres.</p>
+                        <p id="aviso">Informe uma senha segura de no mínino 6 caracteres.</p>                        
+                         <p:growl showDetail="true" />                       
                     </p:outputPanel>
                 
-                    <p:outputPanel id="confirmacao" rendered="#{loginBean.confirmacao}">
+                    <p:outputPanel id="confirmacao" style="margin-top: 35px;" rendered="#{loginBean.confirmacao}">
                         <div class="ui-g">
                             <div class="ui-g-12">
                                 <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="logoPaae.png"/></h2>
                             </div>                        
-                            <p id="aviso">Um código de confimação foi enviado para </p>
+                            <p id="aviso">Um código de confimação foi enviado para seu email</p>
                             <div class="ui-g-12">
                                 <span class="md-inputfield">                                
-                                    <p:inputText value="#{loginBean.codConfirmacaoPagina}" id="codConfirmacao" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"/> 
+                                    <p:inputText value="#{loginBean.codConfirmacaoPagina}" id="codConfirmacao" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                     <p:outputLabel>Código de Confirmação</p:outputLabel>
                                 </span>
                             </div>                       
                             <div class="ui-g-12">
-                                <p:commandButton icon="fa fa-check" action="#{loginBean.salvar()}" value="Confirmar cadastro" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                                <p:commandButton icon="fa fa-check" onclick="validarConfirma()" action="#{loginBean.salvar()}" value="Confirmar cadastro" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
                             </div>
                         </div>  
                     </p:outputPanel>
@@ -132,7 +134,7 @@
                });
             }
         </script>-->
-        
+       
         <noscript>
             Para completa funcionalidade deste site é necessário habilitar o JavaScript.<br/>
             Aqui estão as <a href="https://www.enable-javascript.com/pt/" target="_blank">

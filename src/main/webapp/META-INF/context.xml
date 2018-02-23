@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/as" reloadable="true">
+    <Resource auth="Container" 
+              driverClassName="com.mysql.jdbc.Driver" 
+              name="jdbc/asbd" 
+              password="banco" 
+              type="javax.sql.DataSource" 
+              url="jdbc:mysql://localhost/asbd?autoReconnect=true&amp;useSSL=false" 
+              username="root"
+    />
+              
+<!--    <Resource name="mail/Session" 
+              auth="Container" 
+              type="javax.mail.Session" 
+              mail.smtp.host="localhost" 
+              mail.smtp.port="25" 
+              mail.smtp.auth="true" 
+              mail.smtp.user="adm@localhost" 
+              mail.smtp.password="123"
+    />-->
+</Context>

@@ -1,0 +1,49 @@
+/*Código CSS para template*/
+.layout-wrapper .layout-main .layout-footer {
+    padding: 16px 24px;
+    border: 1px solid #dbdbdb;
+    background: #ffffff;
+    bottom: 0;
+    position: absolute;
+    width: 78.8vw;
+}
+.novoRodape{
+    width: 91.9vw !important;
+}
+
+/*Código CSS para componente*/
+body a {
+    color: #607D8B;
+    text-decoration: none;
+}
+.layout-wrapper .layout-main .layout-footer img {
+    margin-top: 5px;
+    width: 100px;
+}
+.layout-wrapper .layout-main .layout-footer .footer-text-right {
+    float: right;
+    margin-top: 10px;
+}
+.layout-wrapper .layout-main .layout-footer .footer-text-right {
+    vertical-align: middle;
+}
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+.layout-wrapper .layout-main .layout-footer .footer-text-right span {
+    vertical-align: middle;
+}
+.ui-icon-copyright:before {
+    content: "";
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+.commons{
+    font-size: 24px;
+}

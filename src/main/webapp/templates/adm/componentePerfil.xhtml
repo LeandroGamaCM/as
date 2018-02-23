@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:composition>
+        <h:form>
+            <p:outputPanel id="painel">
+                <p:panel header="Editar dados cadastrais">
+                    <p:messages autoUpdate="true"/>
+                    <h5>Login</h5>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Nome: " for="nome" indicateRequired="false" />
+                        <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="Nome: Campo Obrigatório!"/>
+
+                        <p:outputLabel value="CPF: " for="cpf" indicateRequired="false" />
+                        <p:inputText id="cpf" value="#{usuarioBean.usuario.login}" required="true" requiredMessage="CPF: Campo Obrigatório"/>                            
+
+                        <p:outputLabel value="Email: " for="email" indicateRequired="false" />
+                        <p:inputText id="email" value="#{usuarioBean.usuario.email}" required="true" requiredMessage="Email: Campo Obrigatório"/>                            
+                    </h:panelGrid>
+                        
+                    <h5>Senha</h5>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Senha antiga" for="senha" indicateRequired="false" />
+                        <p:password id="senha" value="#{usuarioBean.confirmacaoSenha}" required="true" requiredMessage="Senha antiga: Campo Obrigatório"/>
+                        <p:outputLabel value="Nova senha" for="novaSenha" indicateRequired="false" />
+                        <p:password id="novaSenha" value="#{usuarioBean.novaSenha}" required="true" requiredMessage="Nova senha: Campo Obrigatório"/>
+                    </h:panelGrid>
+                    <p:commandButton value="Salvar dados" update="@form" actionListener="#{usuarioBean.salvar()}"/> 
+                </p:panel>
+            </p:outputPanel>
+        </h:form>
+    </ui:composition>
+</html>

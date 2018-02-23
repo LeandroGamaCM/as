@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>        
+        <div class="ui-g dashboard">
+            <div class="ui-g-12 ui-lg-4">
+                <p:outputPanel id="periodoInscricao">
+                    <div class="task-box task-box-2">
+                        <div class="task-box-header">
+                            <i class="fa fa-calendar iconTam"></i>
+                        </div>
+                        <div class="task-box-content">
+                            <h3>Período de Inscrição</h3>
+                            <p:outputLabel class="estiloP" value="Ativado" rendered="#{telaPrincipalBean.periodoInscricao.ativado}"/>
+                            <p:outputLabel class="estiloP" value="Desativado" rendered="#{!telaPrincipalBean.periodoInscricao.ativado}"/>
+                        </div>
+                        <div class="task-box-footer" id="task01">
+                            <p:commandButton class="task-status estilo-task" id="ativa" value="Ativar/Desativar" actionListener="#{telaPrincipalBean.ativarDesativar()}" update="periodoInscricao" />
+                        </div>
+                    </div>                    
+                </p:outputPanel>
+            </div>
+            
+            <div class="ui-g-12 ui-lg-4">
+                <div class="task-box task-box-1">
+                    <div class="task-box-header">
+                        <i class="fa fa-pie-chart iconTam"></i>
+                    </div>
+                    <div class="task-box-content">
+                        <h3>Relatórios</h3>
+                        <p>Acesse os relatórios gerados</p>
+                    </div>
+                    <div class="task-box-footer" id="sp3">
+                        <a href="#{request.contextPath}/paginas/adm/relatorios.jsf"><span class="task-status" id="sp1">Acessar</span></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ui-g-12 ui-lg-4">
+                <div class="task-box task-box-3">
+                    <div class="task-box-header">
+                        <i class="fa fa-comments-o iconTam"></i>
+                    </div>
+                    <div class="task-box-content">
+                        <h3>Entrevistas</h3>
+                        <p>Realize um entrevista</p>
+                    </div>
+                    <div class="task-box-footer" id="sp4">
+                        <a href="#{request.contextPath}/paginas/adm/entrevistas.jsf"><span class="task-status" id="sp2">Realizar</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-3">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-tags" style="font-size: 24px"></i></div>
+                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/alunos.jsf">Alunos pré-cadastrados</a></div>
+                        <div class="overview-box-count">#{telaPrincipalBean.alunosPreCadastrados}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-1">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-user"></i></div>
+                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/alunos.jsf">Alunos Cadastrados</a></div>
+                        <div class="overview-box-count">#{telaPrincipalBean.alunosCadastrados}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-2">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-comments-o"></i></div>
+                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/entrevistas.jsf">Entrevistas Realizadas</a></div>
+                        <div class="overview-box-count">#{telaPrincipalBean.entrevistas}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-4">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-address-card" style="font-size: 22px"></i></div>
+                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/principal.jsf">Número de Inscrições</a></div>
+                        <div class="overview-box-count">#{telaPrincipalBean.alunosInscritos}</div>
+                    </div>
+                </div>
+            </div>
+        </div>           
+    </ui:composition>        
+</html>

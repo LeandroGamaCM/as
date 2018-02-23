@@ -1,0 +1,171 @@
+@media screen and (min-width: 768px){
+    .ui-lg-4 {
+        width: 33.3333% !important;
+    }
+}
+@media screen and (min-width: 40.063em){
+    .ui-md-3 {
+        width: 25% !important;
+    }
+}
+.dashboard .task-box {
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
+}
+.dashboard .task-box.task-box-1 .task-box-header {
+    background-color: #e91e63;
+}
+.dashboard .task-box.task-box-2 .task-box-header {
+    background-color: #ffc107;
+}
+.dashboard .task-box.task-box-3 .task-box-header {
+    background-color: #00bcd4;
+}
+.dashboard .task-box .task-box-header {
+    padding: 8px 14px;
+}
+.dashboard .task-box .task-box-header i {
+    color: #ffffff;
+}
+.dashboard .task-box .task-box-content {
+    background-color: #ffffff;
+    padding: 8px 14px;
+}
+.dashboard .task-box .task-box-content h3 {
+    font-weight: bold;
+    font-size: 14px;
+    margin: 14px 0 7px 0;
+    padding: 0;
+}
+.dashboard .task-box .task-box-content p {
+    color: #757575;
+    margin: 0 0 28px 0;
+    padding: 0;
+}
+.dashboard .task-box .task-box-footer {
+    background-color: #ffffff;
+    padding: 16px 14px;
+}
+.dashboard .task-box.task-box-1 .task-box-footer .task-status {
+    background-color: #e91e63;
+}
+.dashboard .task-box.task-box-2 .task-box-footer .task-status {
+    background-color: #ffc107;
+}
+.dashboard .task-box.task-box-3 .task-box-footer .task-status {
+    background-color: #00bcd4;
+}
+.dashboard .task-box .task-box-footer .task-status {
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    border-radius: 9px;
+    padding: 3px 17px;
+    color: #ffffff;
+}
+.dashboard .task-box .task-box-footer img {
+    width: 32px;
+    float: right;
+    margin-left: 4px;
+}
+.dashboard .overview-box {
+    text-align: center;
+    color: #ffffff;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
+}
+.dashboard .overview-box.overview-box-1 .overview-box-header {
+    background-color: #f06292;
+}
+.dashboard .overview-box .overview-box-header {
+    height: 24px;
+}
+.dashboard .overview-box.overview-box-1 .overview-box-content {
+    background-color: #e91e63;
+}
+.dashboard .overview-box .overview-box-content {
+    padding: 8px 14px 14px 14px;
+}
+.dashboard .overview-box.overview-box-1 .overview-box-content .overview-box-icon {
+    background-color: #e91e63;
+}
+.dashboard .overview-box.overview-box-2 .overview-box-content .overview-box-icon {
+    background-color: #00bcd4;
+}
+.dashboard .overview-box.overview-box-3 .overview-box-content .overview-box-icon {
+    background-color: #ffc107;
+}
+.dashboard .overview-box.overview-box-4 .overview-box-content .overview-box-icon {
+    background-color: #616161;
+}
+.dashboard .overview-box .overview-box-content .overview-box-icon {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    margin-top: -28px;
+}
+.dashboard .overview-box .overview-box-content .overview-box-icon i {
+    line-height: inherit;
+    font-size: 28px;
+}
+.dashboard .overview-box .overview-box-content .overview-box-title {
+    font-size: 16px;
+}
+.dashboard .overview-box .overview-box-content .overview-box-count {
+    font-size: 24px;
+}
+.dashboard .overview-box.overview-box-2 .overview-box-header {
+    background-color: #4dd0e1;
+}
+.dashboard .overview-box.overview-box-2 .overview-box-content {
+    background-color: #00bcd4;
+}
+.dashboard .overview-box.overview-box-3 .overview-box-header {
+    background-color: #ffd54f;
+}
+.dashboard .overview-box.overview-box-3 .overview-box-content {
+    background-color: #ffc107;
+}
+.dashboard .overview-box.overview-box-4 .overview-box-header {
+    background-color: #9e9e9e;
+}
+.dashboard .overview-box.overview-box-4 .overview-box-content {
+    background-color: #616161;
+}
+.overview-box-title a{
+    color: #ffffff;
+}
+.overview-box-title a:hover{
+    font-weight: bold;
+}
+.task-box-footer a:hover{
+    font-weight: bold;
+}
+#ativa:hover{
+    font-weight: bold;
+}
+#ativa{
+    padding: 1px 1px 1px 1px;
+    margin-top: 28px;
+    margin-bottom: 15px;
+}
+#task01{
+    padding: 14px 14px 1px 14px;
+}
+#sp1{
+    padding: 6.5px 43px;
+}
+#sp2{
+    padding: 6.5px 43px;
+}
+#sp3{
+    padding: 24px 14px;
+}
+#sp4{
+    padding: 24px 14px;
+}

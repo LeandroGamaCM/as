@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">  
+    <ui:composition>
+        <div class="nano-content sidebar-scroll-content" tabindex="0" style="margin-right: -17px;">
+            <div class="layout-menu-container">
+                <h:form id="menuform">
+                    <ul id="menuform:j_idt16" class="layout-menu">
+                        <li id="menuform:sr_dashboard" role="menuitem">
+                            <a class="ripplelink" href="#{request.contextPath}/paginas/adm/principal.jsf">
+                                <i class="fa fa-desktop" style="font-size: 18px; padding-top: 3px;"></i>
+                                <span class="menuitem-text">Menu Inicial</span>
+                            </a>
+                        </li>
+                        <li id="menuform:sr_dashboard" role="menuitem">
+                            <a class="ripplelink" href="#{request.contextPath}/paginas/adm/alunos.jsf">
+                                <i class="fa fa-address-book-o"></i>
+                                <span class="menuitem-text">Alunos</span>
+                            </a>
+                        </li>
+                        <li id="menuform:sr_dashboard" role="menuitem">
+                            <a class="ripplelink" href="#{request.contextPath}/paginas/adm/entrevistas.jsf">
+                                <i class="fa fa-comments-o"></i>
+                                <span class="menuitem-text">Entrevistas</span>
+                            </a>
+                        </li>
+                        <li id="menuform:sr_dashboard" role="menuitem">
+                            <a class="ripplelink" href="#{request.contextPath}/paginas/adm/barema.jsf">
+                                <i class="fa fa-sliders"></i>
+                                <span class="menuitem-text">Barema</span>
+                            </a>
+                        </li>
+                        <li id="menuform:sr_dashboard" role="menuitem">
+                            <a class="ripplelink" href="#{request.contextPath}/paginas/adm/relatorios.jsf">
+                                <i class="fa fa-pie-chart"></i>
+                                <span class="menuitem-text">Relatórios</span>
+                            </a>
+                        </li>                        
+                        <li id="menuform:sr_dashboard" role="menuitem">
+                            <a class="ripplelink" href="#{request.contextPath}/paginas/aluno/principal.jsf">
+                                <i class="fa fa-pie-chart"></i>
+                                <span class="menuitem-text">Pag Aluno</span>
+                            </a>
+                        </li>                        
+                    </ul>
+                </h:form>
+            </div>
+        </div>
+    </ui:composition>
+</html>

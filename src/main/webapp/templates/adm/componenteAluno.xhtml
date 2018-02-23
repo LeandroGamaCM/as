@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+        <h:form>
+            <p:outputPanel id="toolbar">
+                <p:toolbar>
+                    <p:toolbarGroup align="left">
+                        <p:commandButton value="Alunos" update="panel" action="#{telaAlunosBean.changeToTelaAluno()}"/>
+                        <p:commandButton value="Turmas" update="panel" action="#{telaAlunosBean.changeToTelaTurma()}"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </p:outputPanel>
+
+            <p:outputPanel id="panel">
+                <p:panel rendered="#{telaAlunosBean.telaAluno}">
+                    <p:toolbar>
+                        <p:toolbarGroup align="right">
+                            <p:inputText value="#{telaAlunosBean.pesquisa}" placeholder="Nome, CPF, RG"/>
+                            <p:commandButton value="Pesquisar" update="panel" action="#{telaAlunosBean.buscar()}"/>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+
+                    <p:messages autoUpdate="true"></p:messages>
+                    <p:panel style="margin-top: 10px" header="Pré-cadastro de alunos">  
+                        <h:panelGrid style="margin-top: 7px" columns="3">
+                            <p:outputLabel value="CPF do Aluno: "/>
+                            <p:inputText style="margin-left: 2px" value="#{telaAlunosBean.novoAluno.cpf}"/>
+                            <p:commandButton style="margin-left: 10px" update="panel" value="Salvar" action="#{telaAlunosBean.preCadastro()}"/>                           
+                        </h:panelGrid>
+                    </p:panel>
+                
+                    <p:panel style="margin-top: 17px" header="Fichas de inscrição #{telaAlunosBean.periodoInscricao.ano}">
+
+                        <h:panelGrid id="margem" columns="2" columnClasses="label, value" >
+                            <h5>Filtrar por modalidade:</h5>                   
+                            <p:selectOneRadio id="filtroModalidade" value="#{telaAlunosBean.filtroModalidade}">
+                                <f:selectItem itemLabel="Todos" itemValue="todos"/> 
+                                <f:selectItems value="#{telaAlunosBean.modalidades}"/>
+                                <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
+                            </p:selectOneRadio> 
+
+                            <h5>Filtrar por curso:</h5>
+                            <p:selectOneRadio id="filtroCurso" value="#{telaAlunosBean.filtroCurso}">
+                                <f:selectItem itemLabel="Todos" itemValue="todos" /> 
+                                <f:selectItems value="#{telaAlunosBean.cursos}"/>
+                                <p:ajax update="tabela" event="change" listener="#{telaAlunosBean.listarFichas()}"/>
+                                </p:selectOneRadio> 
+                        </h:panelGrid>
+
+                        <p:outputPanel id="tabela">
+                            <p:dataTable var="formularioAluno" value="#{telaAlunosBean.formularioAlunos}" sortBy="#{formularioAluno.turma.nome}" emptyMessage="Nada cadastrado">
+                                <f:facet name="header">
+                                        <h:outputText value="Alunos" />
+                                </f:facet>
+                                <p:headerRow>
+                                    <p:column colspan="3">
+                                        <h:outputText value="#{formularioAluno.turma.nome} #{formularioAluno.turma.curso}" />
+                                    </p:column>
+                                </p:headerRow>    
+                                <p:column headerText="Nome">
+                                    <h:outputText value="#{formularioAluno.aluno.nome}"/>
+                                </p:column>
+                                <p:column headerText="Cpf">
+                                    <h:outputText value="#{formularioAluno.aluno.cpf}"/>
+                                </p:column>
+                                <p:column headerText="Staus de inscrição">
+                                    <h:outputText value="#{formularioAluno.aluno.status}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                        </p:outputPanel>
+                    </p:panel>
+                </p:panel>
+
+                <p:panel rendered="#{telaAlunosBean.telaPesquisar}" header="Resultados da busca">
+                    <p:dataTable var="formularioAluno" value="#{telaAlunosBean.formularioAlunos}" sortBy="#{formularioAluno.periodoInscricao.ano}" emptyMessage="Nenhum resultado">
+                            <f:facet name="header">
+                                    <h:outputText value="Alunos" />
+                            </f:facet>  
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{formularioAluno.aluno.nome}"/>
+                            </p:column>
+                            <p:column headerText="Cpf">
+                                <h:outputText value="#{formularioAluno.aluno.cpf}"/>
+                            </p:column>
+                            <p:column headerText="Turma">
+                                <h:outputText value="#{formularioAluno.turma.nome} #{formularioAluno.turma.curso}" />
+                            </p:column>                        
+                            <p:column headerText="Staus de inscrição">
+                                <h:outputText value="#{formularioAluno.aluno.status}"/>
+                            </p:column>                        
+                            <p:column headerText="Ano de inscrição">
+                                <p:outputLabel value="#{formularioAluno.periodoInscricao.ano}"/>
+                            </p:column>
+                        </p:dataTable>
+                </p:panel>
+                
+                <p:panel rendered="#{telaAlunosBean.telaTurma}">
+                    <p:messages autoUpdate="true"></p:messages>
+                    <p:panel header="Cadastro de turmas">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Modalidade: " for="modalidade" />
+                            <p:inputText id="modalidade" placeholder="Ex: Integrado" value="#{telaAlunosBean.novaTurma.modalidade}"/>                       
+
+                            <p:outputLabel style="width: 100%; margin-right: 4px;"  value="Curso: " for="curso" />
+                            <p:inputText id="curso" placeholder="Ex: Informática" value="#{telaAlunosBean.novaTurma.curso}"/>
+
+                            <p:outputLabel style="" value="Turma:"/>
+                            <p:inputText placeholder="Ex: 1º ano" value="#{telaAlunosBean.novaTurma.nome}"/>
+
+                        </h:panelGrid>
+                        <p:commandButton style="margin-top: 10px" value="Salvar turma" update="panel" action="#{telaAlunosBean.cadastrarTurma()}"/>
+                        
+                    </p:panel>
+
+                    <p:panel style="margin-top: 20px" header="Turmas cadastradas">
+                        <p:dataTable style="margin-top: 9px" var="turma" value="#{telaAlunosBean.turmas}" editable="true" editMode="cell" id="dataTable" emptyMessage="Nada cadastrado">
+                            <p:ajax event="cellEdit" update="dataTable" listener="#{telaAlunosBean.editarTurma(turma)}"/>                        
+                            <p:column headerText="Modalidade" sortBy="#{turma.modalidade}">
+                                <p:cellEditor>
+                                    <f:facet name="output"><p:outputLabel value="#{turma.modalidade}"/></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{turma.modalidade}"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Curso" sortBy="#{turma.curso}">
+                                <p:cellEditor>
+                                    <f:facet name="output"><p:outputLabel value="#{turma.curso}"/></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{turma.curso}"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Turma" sortBy="#{turma.nome}">
+                                <p:cellEditor>
+                                    <f:facet name="output"><p:outputLabel value="#{turma.nome}"/></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{turma.nome}"/></f:facet>
+                                </p:cellEditor>                        
+                            </p:column>
+                            <p:column headerText="Deletar">
+                                <p:commandButton update="@form" value="icone" action="#{telaAlunosBean.excluirTurma(turma)}"/>
+                            </p:column>
+                        </p:dataTable>
+                        
+                    </p:panel>
+                </p:panel>
+
+            </p:outputPanel>
+
+        </h:form>
+    </ui:composition>
+</html>

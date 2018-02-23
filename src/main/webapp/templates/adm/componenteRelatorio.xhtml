@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+        <h:form>
+           <p:outputPanel id="toolbar">
+                  <p:toolbar>
+                    <p:toolbarGroup align="left">
+                        <p:commandButton value="Classificação dos alunos" update="panel" action="#{relatorioBean.changeToClassificacao()}"/>
+                        <p:commandButton value="Informações" update="panel" action="#{relatorioBean.changeToInformacoes()}"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </p:outputPanel>  
+
+            <p:outputPanel id="panel">
+                <p:panel header="Informações" rendered="#{relatorioBean.informacoes}">
+                    <p:chart type="pie" model="#{relatorioBean.graficoPreferenciaBolsa}" />
+                    <p:chart type="pie" model="#{relatorioBean.graficoAlunos}" />
+                </p:panel>
+
+                <p:panel header="Lista de alunos com inscrição efetuada" rendered="#{relatorioBean.classificacao}">
+                    <p:dataTable var="formulario" value="#{relatorioBean.formularioAlunos}">
+                        <p:column headerText="Aluno">
+                            <p:outputLabel value="#{formulario.aluno.nome}"/>
+                        </p:column>
+                        <p:column headerText="Turma">
+                            <p:outputLabel value="#{formulario.turma.nome} #{formulario.turma.curso}"/>
+                        </p:column>
+                        <p:column headerText="1ª Preferência de bolsa">
+                            <p:outputLabel value="#{formulario.formulario.primeiraPreferencia}"/>
+                        </p:column>
+                        <p:column headerText="2ª Preferência de bolsa">
+                            <p:outputLabel value="#{formulario.formulario.segundaPreferencia}"/>
+                        </p:column>
+                        <p:column headerText="Pontuação por Barema">
+                            <p:outputLabel value="#{formulario.entrevista.pontuacaoComposicaoFamiliar}"/>
+                        </p:column>
+
+                    </p:dataTable>                
+                </p:panel>
+            </p:outputPanel>            
+
+        </h:form>
+    </ui:composition>
+</html>
+

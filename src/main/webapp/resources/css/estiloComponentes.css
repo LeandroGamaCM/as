@@ -187,6 +187,11 @@ tr.ui-widget-content.ui-datatable-odd{
 #pg1{
     margin-top: 7px;
 }
+#pg01{
+    padding-right: 40px;
+    white-space: nowrap;
+    min-width: 349px;
+}
 #pg2{
     margin-top: 10px;
 }
@@ -236,6 +241,10 @@ tr.ui-widget-content.ui-datatable-odd{
     margin-top: 178px;
     position: absolute;
     margin-left: 145px;
+}
+#auxo9{
+    max-width: 642px;
+    min-width: 250px;
 }
 #pg18{
     white-space: nowrap;
@@ -385,9 +394,6 @@ tr.ui-widget-content.ui-datatable-odd{
 #outSexo{
     margin-left: 40px;
 }
-#outEtnia{
-    margin-left: 40px;
-}
 #outEC{
     margin-left: 40px;
 }
@@ -433,15 +439,31 @@ tr.ui-widget-content.ui-datatable-odd{
 #outTservico{
     margin-left: 40px;
 }
-#outDepen{
-    margin-left: 40px;
+#etnia12{
+    min-width: 212px;
+}
+#numcol{
+    padding-right: 40px;
+}
+#trabalhoAjax{
+    width: 100%;
 }
 .col1{
-    width: 1px;
-    white-space: nowrap;
+    width: 70%;
 }
-.col2{
-    width: 52%;
+.colk2{
+    white-space: nowrap;
+    padding-right: 20px;
+} 
+.colk3{
+    width: 30%;
+    white-space: nowrap;
+} 
+.colk4{
+    width: 70%;
+}
+.colk5{
+    width: 30%;
 }
 .col3{
     width: 1px;
@@ -469,13 +491,18 @@ tr.ui-widget-content.ui-datatable-odd{
     width: 25%;
 }
 .col11{
-    width: 1px;
+    white-space: nowrap;
+    padding-right: 37px;
 }
 .col12{
-    width: 25%;
+    width: 30%;
+    white-space: nowrap;
 }
-.col13{
-    width: 1px;
+.col011{
+    width: 70%;
+}
+.col012{
+    width: 30%;
 }
 .col14{
     width: 25%;
@@ -487,20 +514,24 @@ tr.ui-widget-content.ui-datatable-odd{
 .col16{
     width: 25%;
 }
-.col17{
-    width: 32%;
+.col0030{
+    width: 33%;
 }
-.col18{
-    width: 65%;
-}
-.col19{
-    width: 1px;
-}
-.col21{
+.col0032{
     width: 50%;
 }
-.col22{
-    width: 50%;
+.coll20{
+    width: 70%;
+    padding-right: 40px;
+}
+.coll21{
+    width: 30%;    
+}
+.coll23{
+    width: 70%;
+}
+.coll25{
+    width: 70%;
 }
 .col23{
     width: 1px;
@@ -672,6 +703,7 @@ tr.ui-widget-content.ui-datatable-odd{
 }
 .col84{
     width: 100%;
+    min-width: 50px;
 }
 .col85{
     width: 1px;
@@ -950,7 +982,9 @@ tr.ui-widget-content.ui-datatable-odd{
     white-space: nowrap;
 }
 .col177 {
-    width: 650px;
+    max-width: 650px;
+    min-width: 250px;
+    width: calc(100% - 707px);
     white-space: nowrap;
     margin-top: 75px;
     position: absolute;
@@ -1037,4 +1071,34 @@ tr.ui-widget-content.ui-datatable-odd{
     background: #ffffff;
     padding: 163px 105px 163px 105px;
     box-sizing: border-box;
+}
+.spanpo{
+   position: relative;
+}
+.aviso{
+   position: absolute;
+   margin-top: 10px;
+   display: block;
+   white-space: nowrap;
+   padding: 5px;
+   border-radius: 3px;
+   top: 50%;
+   left: 101%;
+   background: #f30;
+   color: #fff;
+   z-index: 9;
+   -webkit-transform: translateY(-50%);
+   -moz-transform: translateY(-50%);
+   transform: translateY(-50%);
+}
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent; 
+  border-right: 5px solid #f30;
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  margin-top: -5px;
 }

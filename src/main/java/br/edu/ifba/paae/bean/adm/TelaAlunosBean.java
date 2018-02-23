@@ -24,6 +24,8 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "telaAlunosBean")
 @ViewScoped
 public class TelaAlunosBean implements Serializable{
+    private static final long serialVersionUID = -8946003893183446495L;
+
     private Mensagem mensagem = new Mensagem();
     private Aluno aluno = new Aluno();
     private Aluno novoAluno = new Aluno();
@@ -65,7 +67,8 @@ public class TelaAlunosBean implements Serializable{
 
             usuario.setAtivo(Boolean.FALSE);
             usuario.setLogin(novoAluno.getCpf());
-//            usuario.getPermissao().add("ROLE_ADMINISTRADOR");
+            usuario.getPermissao().add("ROLE_USUARIO");
+
             usuarioRN.salvar(usuario);
  
             novoAluno.setUsuario(usuario);

@@ -7,6 +7,7 @@ import br.edu.ifba.paae.entidades.usuario.Usuario;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioRN {
@@ -16,13 +17,7 @@ public class UsuarioRN {
         this.usuarioDAO = DAOFactory.criarUsuarioDAO();
     }
     public void salvar(Usuario usuario){
-        Integer codigo = usuario.getUsuario();
-        if(codigo == null || codigo == 0){
-            usuario.getPermissao().add("ROLE_USUARIO");
-            this.usuarioDAO.salvar(usuario);
-        }else{
-            this.usuarioDAO.salvar(usuario);
-        }
+        this.usuarioDAO.salvar(usuario);
     }
     public void atualizar(Usuario usuario){
         this.usuarioDAO.atualizar(usuario);
@@ -46,10 +41,22 @@ public class UsuarioRN {
         return this.usuarioDAO.buscarPorLogin(login);
     }
     
+    public List<Usuario> listarADMs(){
+        List<Usuario> list = new ArrayList<>();
+        List<Usuario> todos = listar();
+        
+        if(todos != null && !todos.isEmpty()){
+            for(Usuario u:todos){
+                list.add(u);
+            }
+        }
+        return list;
+    }
+    
     public void criarADM(){
         Usuario usuario = new Usuario();
-        usuario.setLogin("admin");
-        usuario.setSenha("admin");
+        usuario.setLogin("000.000.000-00");
+        usuario.setSenha("000000");
         usuario.setNome("admin");
         usuario.setAtivo(Boolean.TRUE);
         usuario.getPermissao().add("ROLE_ADMINISTRADOR");

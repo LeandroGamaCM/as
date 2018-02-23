@@ -21,7 +21,6 @@ import org.primefaces.model.UploadedFile;
 @ManagedBean(name = "comprovanteBean")
 @ViewScoped
 public class ComprovanteBean implements Serializable{
-    
     private static final long serialVersionUID = -6068457508452314173L;
     
     private FormularioAluno formularioAluno;

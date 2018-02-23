@@ -1,7 +1,5 @@
 package br.edu.ifba.paae.emailService;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
@@ -28,7 +26,6 @@ public class EmailService {
             return true;
             
         } catch (EmailException ex) {
-            Logger.getLogger(EmailService.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
 

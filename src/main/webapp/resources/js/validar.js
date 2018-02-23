@@ -166,7 +166,7 @@ function validarAdm() {
         return false;
     }
     else{
-        alert('Cadastro realizado com sucesso!');
+//        alert('Cadastro realizado com sucesso!');
         return true;
     }
     

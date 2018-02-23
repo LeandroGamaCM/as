@@ -46,11 +46,6 @@ public class UsuarioDAO{
         sessao.save(usuario);
     }
     public void atualizar(Usuario usuario){
-        if(usuario.getPermissao() == null || usuario.getPermissao().isEmpty()){
-            Usuario usuarioPermissao = this.carregar(usuario.getUsuario());
-            usuario.setPermissao(usuarioPermissao.getPermissao());
-            this.sessao.evict(usuarioPermissao);
-        }
         if(usuario.getSenha() != null)
             usuario.setSenha(md5(usuario.getSenha()));
         this.sessao.update(usuario);

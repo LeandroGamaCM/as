@@ -9,40 +9,41 @@
             <h1>Cadastrar outro usuário administrador </h1>
             <div class="login-panel-content">
                 <h:form id="formCadastroAdm" prependId="false">
+                    <p:messages autoUpdate="true"/>
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <p:outputLabel id="admNome">Nome Completo:</p:outputLabel>
-                                <p:inputText id="nomeAdm" onkeypress="return letras(event)" autocomplete="off" class="tamInputAdm" /> 
+                                <p:inputText id="nomeAdm" value="#{usuarioBean.usuarioADM.nome}" onkeypress="return letras(event)" autocomplete="off" class="tamInputAdm" /> 
                             </span>
                         </div>
                         <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <p:outputLabel id="admCpf">CPF:</p:outputLabel>
-                                <p:inputText id="cpfAdm" autocomplete="off" class="tamInputAdm" /> 
+                                <p:inputText id="cpfAdm" value="#{usuarioBean.usuarioADM.login}" autocomplete="off" class="tamInputAdm" /> 
                             </span>
                         </div>
                         <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <p:outputLabel id="admEmail">Email:</p:outputLabel>
-                                <p:inputText id="emailAdm" autocomplete="off" class="tamInputAdm" /> 
+                                <p:inputText id="emailAdm" value="#{usuarioBean.usuarioADM.email}" autocomplete="off" class="tamInputAdm" /> 
                             </span>
                         </div>
                         <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <p:outputLabel id="admSenha">Senha:</p:outputLabel>                                
-                                <p:inputText type="password" id="senhaAdm" autocomplete="off" class="tamInputAdm" />                                
+                                <p:inputText type="password" value="#{usuarioBean.usuarioADM.senha}" id="senhaAdm" autocomplete="off" class="tamInputAdm" />                                
                             </span>
                         </div>
                         <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <p:outputLabel id="admConfirma">Confirmar Senha:</p:outputLabel>                                
-                                <p:inputText type="password" id="confirmaAdm" autocomplete="off" class="tamInputAdm" />                                
+                                <p:inputText type="password" value="#{usuarioBean.confirmacaoSenha}" id="confirmaAdm" autocomplete="off" class="tamInputAdm" />                                
                             </span>
                         </div>
                         <div id="botaoAdm" class="ui-g-4">
-                            <p:commandButton id="admBotao" onclick="return validarAdm();" action="#" value="Cadastrar" type="submit" styleClass="ui-priority-primary" />                            
-                        </div>
+                            <p:commandButton id="admBotao" update="@form" onclick="return validarAdm();" action="#{usuarioBean.cadastrarADM()}" value="Cadastrar" type="submit" styleClass="ui-priority-primary" />                            
+                        </div>                        
                     </div>
                 </h:form>
                 <div style="width: 38.93%">

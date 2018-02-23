@@ -7,7 +7,6 @@ import br.edu.ifba.paae.rn.analise.EntrevistaRN;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,6 +16,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "telaEntrevistaBean")
 @ViewScoped
 public class TelaEntrevistaBean implements Serializable{
+    private static final long serialVersionUID = 6180598576873456073L;
 
     private String estadoTela = "entrevistasFeitas";
     private String pesquisa = "";

@@ -15,6 +15,8 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "baremaBean")
 @ViewScoped
 public class BaremaBean implements Serializable{
+    private static final long serialVersionUID = 4526987363758143558L;
+
     private Barema barema = new Barema();
     private List<Parametro> parametros;
     private Double salario;

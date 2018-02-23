@@ -1,4 +1,8 @@
 Luan:
+
+    - Tirar caixa de mensagem do cadastro de adms
+
+
     - Colocar icone nos botões
         Tabela de turmas na pagina aluno
         Tabela de Entrevistas feitas e não feitas na tela de entrevistas
@@ -20,10 +24,6 @@ Luan:
         Com a redirada do input cpf desconfigurou a posicao dos itens da primeira linha
 
 Leandro:
-    - LoginCadastro:
-        O commandButton não está chamando a tela loginEntrar
-
-
     - Entrevistas:
         Puxar o ComponenteDadosInscricao da tela de dados do aluno depois de arrumado
         Colocar um botao pra fazer o download dos arquivos
@@ -31,6 +31,7 @@ Leandro:
     - Inscricao:
         Tirar aquelas os botoes que facilitam a navegação
         Fazer os botões chamarem as paginas especificas
+        Ver os valores que estão sumindo no condicaoManutencao na tela alunoInscricao
 
     - PrincipalAluno
         Colocar uma imagem explicando o passo a passo da inscricao pra encher a tela (Opcional)
@@ -39,6 +40,8 @@ Leandro:
 
     - Colocar o value em cadastroADM
 
-    - Tirar a tela dados cadastrais de aluno
-
     - Em "a família possui outros imóveis além do que habita" resolver a situação de "outros"
+
+    - Deixar a tela quieta por um tempo pra ver o que acontece com a sessão
+
+    - Aluno tem dois nomes

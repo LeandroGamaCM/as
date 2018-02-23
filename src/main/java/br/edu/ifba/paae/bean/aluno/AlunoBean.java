@@ -23,6 +23,8 @@ import org.primefaces.event.FlowEvent;
 @ManagedBean(name = "alunoBean")
 @ViewScoped
 public class AlunoBean implements Serializable{
+    private static final long serialVersionUID = -2663742583922640326L;
+    
     private String estadoTela = "telaFormulario";
     private PeriodoInscricao periodoInscricao;
     

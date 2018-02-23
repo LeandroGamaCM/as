@@ -17,11 +17,13 @@ import br.edu.ifba.paae.rn.analise.SaudeRN;
 import br.edu.ifba.paae.rn.analise.SituacaoOcupacionalRN;
 import br.edu.ifba.paae.rn.arquivo.ArquivoRN;
 import java.io.File;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "inicializadorBean")
-public class InicializadorBean {
+public class InicializadorBean implements Serializable{
+    private static final long serialVersionUID = 6877493015049244340L;
 
     public void verificarDadosEArquivos(){
         inicializar();

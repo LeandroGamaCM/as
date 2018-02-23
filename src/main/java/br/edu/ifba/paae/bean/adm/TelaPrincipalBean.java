@@ -16,6 +16,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "telaPrincipalBean")
 @ViewScoped
 public class TelaPrincipalBean implements Serializable{
+    private static final long serialVersionUID = -1388115246198669236L;
+
     private PeriodoInscricao periodoInscricao;
     private Usuario usuario;
     private Integer alunosCadastrados = 0;

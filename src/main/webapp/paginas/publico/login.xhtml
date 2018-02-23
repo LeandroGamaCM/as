@@ -16,25 +16,39 @@
             <div class="login-panel-header">
                 <h1><h:graphicImage library="imagens" name="logoIFBA150px.png"/></h1>
             </div>
+
             <div class="login-panel-content">
                 <form id="login" method="post" action="#{request.contextPath}/j_spring_security_check">
                     <p:outputLabel rendered="true" value="#{inicializadorBean.verificarDadosEArquivos()}"/>
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="logoPaae.png"/></h2>
-                        </div>                        
+                        </div>   
+                        
                         <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <input type="text" id="cpfLogin" name="j_username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/>
                                 <p:outputLabel>CPF</p:outputLabel>
                             </span>
                         </div>
+                        
                         <div class="ui-g-12">
                             <span class="md-inputfield">
                                 <input type="password" id="senhaLogin" name="j_password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/>
                                 <p:outputLabel>Senha</p:outputLabel>
-                            </span>
-                        </div>                        
+                            </span>                            
+                        </div>     
+                        
+                        <h:panelGroup rendered="#{param.error}">
+                            <span style="color: red; text-align: center">CPF ou senha incorretos!</span><br />
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{param.registered}">
+                            <span style="color: blue; text-align: center">Cadastrado com sucesso!</span><br />
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{param.redefined}">
+                            <span style="color: blue; text-align: center">Um email de redefinição de senha lhe foi enviado</span><br />
+                        </h:panelGroup>
+                        
                         <div class="ui-g-12">
                             <input type="submit" value="Acessar" onclick="return validarLogin();" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />     
                         </div>
@@ -44,7 +58,7 @@
 
                 <div class="row clearfix" id="rodapeLogin">
                     <div class="col-md-12 column">
-                        <p style="text-align: center;" id="aviso2"><strong><a href="#{request.contextPath}/paginas/publico/loginCadastro.jsf" class="acender">Primeiro acesso?</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="#{request.contextPath}/paginas/publico/loginRecuperar.jsf" class="acender">Esqueceu a senha?</a></strong><br/></p>
+                        <p style="text-align: center;" id="aviso2"><strong><a href="#{request.contextPath}/paginas/publico/cadastro.jsf" class="acender">Primeiro acesso?</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="#{request.contextPath}/paginas/publico/recuperar.jsf" class="acender">Esqueceu a senha?</a></strong><br/></p>
                     </div>
                 </div>
             </div>

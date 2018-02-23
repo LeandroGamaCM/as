@@ -39,6 +39,10 @@
         <error-code>403</error-code>
         <location>/paginas/erro/403.jsf</location>
     </error-page>    
+    <error-page>
+        <error-code>500</error-code>
+        <location>/paginas/erro/500.jsf</location>
+    </error-page>    
     
     <!-- Spring Security -->
     <context-param>

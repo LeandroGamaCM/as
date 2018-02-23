@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>PAAE - Logar</title>
         <h:outputStylesheet library="css" name="estiloCadastroUser.css" />
@@ -17,19 +18,36 @@
                 <h1><h:graphicImage library="imagens" name="logoIFBA150px.png"/></h1>
             </div>
             <div class="login-panel-content">
-                <h:form id="logi">
+                <h:form id="logi" prependId="false">
                     <div class="ui-g">
                         <div class="ui-g-12" style="margin-top: 20px; padding: unset;">
                             <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="logoPaae.png"/></h2>
-                        </div>                        
+                        </div>     
+                        
                         <div class="ui-g-12">
                             <span class="md-inputfield">                                
-                                <p:inputText value="#{loginBean.cpfRedefinirSenha}" id="cpfRecuperar" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                <p:inputText value="#{recuperacaoBean.cpfRedefinirSenha}" id="cpfRecuperar" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>CPF</p:outputLabel>
                             </span>
-                        </div>                       
+                        </div> 
+                        
+                        <h:panelGroup rendered="#{recuperacaoBean.mensagemCPFNulo}">
+                            <span style="color: red; text-align:">Informe um CPF válido!</span><br />
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{recuperacaoBean.mensagemUsuarioNulo}">
+                            <span style="color: red; text-align:">Não existe nenhum usuário cadastrado com esse CPF!</span><br />
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{recuperacaoBean.mensagemSemInternet}">
+                            <span style="color: red; text-align:">Não há conectividade à internet pelo servidor. Tente mais tarde</span><br />
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{recuperacaoBean.mensagemEmailNaoEnviado}">
+                            <span style="color: red; text-align:">Não foi possível enviar um email de redefinição para #{recuperacaoBean.emailDestino}</span><br />
+                        </h:panelGroup>
+                        
                         <div class="ui-g-12">
-                            <p:commandButton icon="fa fa-check" action="#{loginBean.redefinirSenha()}" onclick="return validarRecu();" value="Recuperar Senha" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)" />                            
+                            <p:commandButton ajax="false" update="@form" icon="fa fa-check" action="#{recuperacaoBean.redefinirSenha}" onclick="return validarRecu();" value="Recuperar Senha" type="submit" styleClass="ui-priority-primary" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" style="background: #607D8B; font-weight: normal; text-shadow: 0 0 0 rgba(255,255,255,0.7)">
+                                <f:param name="redefined" value="true"/>
+                            </p:commandButton>                                
                         </div>
                     </div>
                 </h:form>
@@ -37,7 +55,7 @@
 
                 <div class="row clearfix" id="rodapeLogin">
                     <div class="col-md-12 column">
-                        <p style="text-align: center;" id="aviso2"><strong><a href="#{request.contextPath}/paginas/publico/loginEntrar.jsf" class="acender">Voltar</a></strong><br/></p>
+                        <p style="text-align: center;" id="aviso2"><strong><a href="#{request.contextPath}/paginas/publico/login.jsf" class="acender">Voltar</a></strong><br/></p>
                     </div>
                 </div>
             </div>

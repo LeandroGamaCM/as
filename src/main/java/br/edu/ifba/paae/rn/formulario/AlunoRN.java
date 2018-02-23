@@ -5,7 +5,6 @@ import br.edu.ifba.paae.dao.formulario.AlunoDAO;
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

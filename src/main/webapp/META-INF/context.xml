@@ -3,7 +3,7 @@
     <Resource auth="Container" 
               driverClassName="com.mysql.jdbc.Driver" 
               name="jdbc/asbd" 
-              password="banco" 
+              password="root" 
               type="javax.sql.DataSource" 
               url="jdbc:mysql://localhost/asbd?autoReconnect=true&amp;useSSL=false" 
               username="root"

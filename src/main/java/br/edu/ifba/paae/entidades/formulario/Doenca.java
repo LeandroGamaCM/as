@@ -1,6 +1,7 @@
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -19,8 +20,11 @@ public class Doenca implements Serializable {
     @OneToOne(mappedBy = "doenca")
     private Familia familia;
     
-    @Column(name = "arquivo_doenca")
-    private String arquivoDoenca;
+    @Column(name = "arquivo_doenca", length = 1048576)
+    private byte[] arquivoDoenca;
+    
+    @Column(name = "arquivo_doenca_nome")
+    private String arquivoDoencaNome;
     
     @Column(name = "possui_doenca")
     private Boolean possuiDoenca;
@@ -48,12 +52,20 @@ public class Doenca implements Serializable {
         this.familia = familia;
     }
 
-    public String getArquivoDoenca() {
+    public byte[] getArquivoDoenca() {
         return arquivoDoenca;
     }
 
-    public void setArquivoDoenca(String arquivoDoenca) {
+    public void setArquivoDoenca(byte[] arquivoDoenca) {
         this.arquivoDoenca = arquivoDoenca;
+    }
+
+    public String getArquivoDoencaNome() {
+        return arquivoDoencaNome;
+    }
+
+    public void setArquivoDoencaNome(String arquivoDoencaNome) {
+        this.arquivoDoencaNome = arquivoDoencaNome;
     }
 
     public Boolean getPossuiDoenca() {
@@ -91,13 +103,14 @@ public class Doenca implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 17 * hash + Objects.hashCode(this.doenca);
-        hash = 17 * hash + Objects.hashCode(this.familia);
-        hash = 17 * hash + Objects.hashCode(this.arquivoDoenca);
-        hash = 17 * hash + Objects.hashCode(this.possuiDoenca);
-        hash = 17 * hash + Objects.hashCode(this.doente);
-        hash = 17 * hash + Objects.hashCode(this.doencas);
-        hash = 17 * hash + Objects.hashCode(this.tratamento);
+        hash = 79 * hash + Objects.hashCode(this.doenca);
+        hash = 79 * hash + Objects.hashCode(this.familia);
+        hash = 79 * hash + Arrays.hashCode(this.arquivoDoenca);
+        hash = 79 * hash + Objects.hashCode(this.arquivoDoencaNome);
+        hash = 79 * hash + Objects.hashCode(this.possuiDoenca);
+        hash = 79 * hash + Objects.hashCode(this.doente);
+        hash = 79 * hash + Objects.hashCode(this.doencas);
+        hash = 79 * hash + Objects.hashCode(this.tratamento);
         return hash;
     }
 
@@ -113,7 +126,7 @@ public class Doenca implements Serializable {
             return false;
         }
         final Doenca other = (Doenca) obj;
-        if (!Objects.equals(this.arquivoDoenca, other.arquivoDoenca)) {
+        if (!Objects.equals(this.arquivoDoencaNome, other.arquivoDoencaNome)) {
             return false;
         }
         if (!Objects.equals(this.doente, other.doente)) {
@@ -129,6 +142,9 @@ public class Doenca implements Serializable {
             return false;
         }
         if (!Objects.equals(this.familia, other.familia)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoDoenca, other.arquivoDoenca)) {
             return false;
         }
         if (!Objects.equals(this.possuiDoenca, other.possuiDoenca)) {

@@ -13,745 +13,1123 @@
         </p:outputPanel>        
         <p:outputPanel rendered="#{comprovanteBean.periodoInscricao.ativado}">
             <h:form>
-                <p:panel header="Documentos Anexos de comprovação dos dados">
-                    <p:growl showDetail="true" autoUpdate="true" />
+                <p:panel>
                     <h2>Anexo de comprovantes</h2>
                     <h5>Excanei e anexe os comprovantes referentes à sua inscrição. Você pode deixar essa etapa para depois, mas sua inscrição ficará pendente!</h5>
                     <h5>Atenção: o não envio dos comprovantes ou envio de documentos indevidos acarretará na perda direta das bolsas</h5>
+                    <p:growl showDetail="true" autoUpdate="true" />
 
                     <h:panelGrid columns="1" rendered="#{comprovanteBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}">
                         <p:outputLabel value="Comprovante ou declaração de vínculo de trabalho (informando o salário):"/>
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoOcupacao}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.ocupacao.arquivoOcupacaoNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.ocupacao.arquivoOcupacaoNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoOcupacao()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.ocupacao.arquivoOcupacao == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoOcupacao}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>
+                            ></p:fileUpload>                        
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.ambosPais or comprovanteBean.formularioAluno.condicaoManutencao.apenasPai}">
                         <p:outputLabel value="Comprovante ou declaração de renda do PAI:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoRendaPai}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaPaiNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaPaiNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaPai()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaPaiNome == null}">
+                            <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoRendaPai}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.ambosPais or comprovanteBean.formularioAluno.condicaoManutencao.apenasMae}">
                         <p:outputLabel value="Comprovante ou declaração de renda da MÂE:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoRendaMae}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaMaeNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaMaeNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaMae()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaMaeNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoRendaMae}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.avos}">
                         <p:outputLabel value="Comprovante ou declaração de renda dos avós:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoRendaAvos}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaAvosNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaAvosNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaAvos()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaAvosNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoRendaAvos}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.outrosParentes}">
                         <p:outputLabel value="Comprovante ou declaração de renda do(s) parente(s) (#{comprovanteBean.formularioAluno.condicaoManutencao.parentesco}):"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoRendaParentes}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaParentesNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaParentesNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaParentes()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaParentesNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoRendaParentes}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.outrosMeios}">
                         <p:outputLabel value="Comprovante ou declaração de renda proveniente de outros meios (#{comprovanteBean.formularioAluno.condicaoManutencao.nomeOutrosMeios}):"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoRendaOutrosMeios}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeiosNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeiosNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaOutrosMeios()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeiosNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoRendaOutrosMeios}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.situacaoResidencial.despesasExtra > 0}">
                         <p:outputLabel value="Comprovante de despesas extras com moradia:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesasExtra}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.situacaoResidencial.arquivoDespesasExtrasNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.situacaoResidencial.arquivoDespesasExtrasNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesasExtra()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.situacaoResidencial.arquivoDespesasExtrasNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesasExtra}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.doenca.possuiDoenca}">
                         <p:outputLabel value="Comprovante de doença grave e/ou uso de medicação contínua por membro(s) familiar(es):"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDoenca}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.doenca.arquivoDoencaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.doenca.arquivoDoencaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDoenca()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.doenca.arquivoDoencaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDoenca}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.familia.possuiProgramaSocial}">
                         <p:outputLabel value="Comprovante de recebimento de programa social:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoProgramaSocial}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.familia.arquivoProgramaSocialNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.familia.arquivoProgramaSocialNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoProgramaSocial()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.familia.arquivoProgramaSocialNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoProgramaSocial}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar1.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar1.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar1}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar1.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar1.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar1()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar1.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar1}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>           
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar2.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar2.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar2}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar2.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar2.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar2()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar2.arquivoRendaNome == null}">
+                           <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar2}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>           
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar3.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar3.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar3}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar3.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar3.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar3()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar3.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar3}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>           
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar4.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar4.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar4}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar4.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar4.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar4()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar4.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar4}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>           
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar5.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar5.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar5}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar5.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar5.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar5()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar5.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar5}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>           
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar6.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar6.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar6}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar6.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar6.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar6()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar6.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar6}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar7.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar7.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar7}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar7.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar7.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar7()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar7.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar7}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar8.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar8.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar8}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar8.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar8.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar8()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar8.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar8}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar9.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar9.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar9}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar9.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar9.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar9()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar9.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar9}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar10.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar10.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar10}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar10.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar10.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar10()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar10.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar10}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar11.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar11.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar11}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar11.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar11.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar11()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar11.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar11}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar12.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar12.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar12}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar12.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar12.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar12()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar12.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar12}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar13.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar13.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar13}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar13.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar13.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar13()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar13.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar13}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar14.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar14.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar14}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar14.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar14.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar14()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar14.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar14}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar15.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar15.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar15}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar15.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar15.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar15()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar15.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar15}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar16.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar16.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar16}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar16.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar16.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar16()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar16.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar16}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar17.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar17.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar17}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar17.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar17.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar17()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar17.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar17}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar18.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar18.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar18}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar18.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar18.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar18()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar18.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar18}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar19.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar19.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar19}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar19.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar19.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar19()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar19.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar19}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar20.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar20.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar20}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar20.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar20.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar20()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar20.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar20}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar21.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar21.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar21}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar21.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar21.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar21()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar21.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar21}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar22.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar22.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar22}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar22.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar22.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar22()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar22.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar22}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar23.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar23.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar23}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar23.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar23.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar23()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar23.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar23}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar24.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar24.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar24}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar24.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar24.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar24()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar24.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar24}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar25.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar25.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar25}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar25.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar25.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar25()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar25.arquivoRendaNome == null}">
+                            <p:fileUpload
+                               fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar25}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar26.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar26.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar26}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar26.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar26.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar26()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar26.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar26}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar27.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar27.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar27}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar27.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar27.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar27()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar27.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar27}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar28.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar28.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar28}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar28.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar28.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar28()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar28.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar28}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar29.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar29.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar29}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar29.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar29.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar29()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar29.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar29}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar30.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar30.nome}"/>
-
-                        <p:fileUpload
-                            fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar30}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar30.arquivoRendaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar30.arquivoRendaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar30()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar30.arquivoRendaNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoMembroFamiliar30}" update="@form" 
                                  label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                  allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                  invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                  sizeLimit="1048576"
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
-                         ></p:fileUpload>           
+                            ></p:fileUpload>                                   </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.imovel.possuiImovel}">
                         <p:outputLabel value="Comprovante de posse de imóvel(is):"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoImovel}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.imovel.arquivoImovelNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.imovel.arquivoImovelNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoImovel()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.imovel.arquivoImovelNome == null}">
+                           <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoImovel}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                                   </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.residenciaFamilia.qtdeAutomoveis > 0}">
                         <p:outputLabel value="Comprovante de posse de imóvel(is):"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoAutomovel}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.residenciaFamilia.arquivoAutomovelNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.residenciaFamilia.arquivoAutomovelNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoAutomovel()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.residenciaFamilia.arquivoAutomovelNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoAutomovel}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>                            
+                        </h:panelGrid>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.agua}">
                         <p:outputLabel value="Comprovante de despesa com água:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaAgua}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaAguaNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaAguaNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaAgua()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaAguaNome == null}">
+                           <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaAgua}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>  
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.aluguel}">
                         <p:outputLabel value="Comprovante de despesa com aluguel:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaAluguel}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaAluguelNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaAluguelNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaAluguel()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaAluguelNome == null}">
+                           <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaAluguel}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload> 
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.endividamento}">
                         <p:outputLabel value="Comprovante de despesa com endividamento:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaEndividamento}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaEndividamentoNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaEndividamentoNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaEndividamento()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaEndividamentoNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaEndividamento}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload> 
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.financiamentos}">
                         <p:outputLabel value="Comprovante de despesa com financiamentos:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaFinanciamentos}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaFinanciamentosNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaFinanciamentosNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaFinanciamentos()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaFinanciamentosNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaFinanciamentos}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.internet}">
                         <p:outputLabel value="Comprovante de despesa com internet:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaInternet}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaInternetNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaInternetNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaInternet()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaInternetNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaInternet}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>  
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.investimentosEducacao}">
                         <p:outputLabel value="Comprovante de despesa com investimentos em educação:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaInvestimentosEducacao}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaInvestimentosEducacaoNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaInvestimentosEducacaoNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaInvestimentosEducacao()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaInvestimentosEducacaoNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaInvestimentosEducacao}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.luz}">
                         <p:outputLabel value="Comprovante de despesa com luz:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaLuz}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaLuzNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaLuzNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaLuz()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaLuzNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaLuz}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload> 
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.medicamentos}">
                         <p:outputLabel value="Comprovante de despesa com medicamentos:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaMedicamentos}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaMedicamentosNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaMedicamentosNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaMedicamentos()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaMedicamentosNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaMedicamentos}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.mensalidadeEscolar}">
                         <p:outputLabel value="Comprovante de despesa com mensalidade escolar:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaMensalidadeEscolar}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaMensalidadeEscolarNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaMensalidadeEscolarNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaMensalidadeEscolar()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaMensalidadeEscolarNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaMensalidadeEscolar}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.planoSaude}">
                         <p:outputLabel value="Comprovante de despesa com plano de saúde:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaPlanoSaude}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaPlanoSaudeNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaPlanoSaudeNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaPlanoSaude()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaPlanoSaudeNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaPlanoSaude}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.telefone}">
                         <p:outputLabel value="Comprovante de despesa com telefone:"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaTelefone}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaTelefoneNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaTelefoneNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaTelefone()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaTelefoneNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaTelefone}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.transporte}">
                         <p:outputLabel value="Comprovante de despesa com transporte"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaTransporte}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaTransporteNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaTransporteNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaTransporte()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaTransporteNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaTransporte}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload>
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.outros}">
                         <p:outputLabel value="Comprovante de outras despesas (#{comprovanteBean.formularioAluno.despesa.nomeOutros}):"/>
-                       <p:fileUpload
-                           fileUploadListener="#{comprovanteBean.uploadArquivoDespesaOutros(event)}" update="@form" 
+                        
+                        <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaOutrosNome != null}">
+                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaOutrosNome}"/>
+                            <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaOutros()}" update="@form"/>
+                        </h:panelGrid>
+                        
+                        <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaOutrosNome == null}">
+                            <p:fileUpload
+                                fileUploadListener="#{comprovanteBean.uploadArquivoDespesaOutros(event)}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
                                 invalidFileMessage="São permitidos apenas arquivos do tipo: jpeg, jpg, png, pdf)"
                                 sizeLimit="1048576"
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
-                        ></p:fileUpload>                            
+                            ></p:fileUpload> 
+                        </h:panelGrid>                 
                     </h:panelGrid>
 
-
+                    <h:panelGrid>
+                        <p:commandButton value="Enviar comprovantes" update="@form" actionListener="#{comprovanteBean.finalizarInscricao()}"/>
+                    </h:panelGrid>
                 </p:panel>
             </h:form>
         </p:outputPanel>

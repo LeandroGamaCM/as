@@ -1,6 +1,7 @@
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -17,9 +18,11 @@ public class MembroFamiliar implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cod_familia")
     private Familia familia;
-
-    @Column(name = "arquivo_renda")
-    private String arquivoRenda;
+    
+    @Column(name = "arquivo_renda", length = 1048576)
+    private byte[] arquivoRenda;
+    @Column(name = "arquivo_renda_nome")
+    private String arquivoRendaNome;
     
     private String nome;
     private String parentesco;
@@ -48,12 +51,20 @@ public class MembroFamiliar implements Serializable {
         this.familia = familia;
     }
 
-    public String getArquivoRenda() {
+    public byte[] getArquivoRenda() {
         return arquivoRenda;
     }
 
-    public void setArquivoRenda(String arquivoRenda) {
+    public void setArquivoRenda(byte[] arquivoRenda) {
         this.arquivoRenda = arquivoRenda;
+    }
+
+    public String getArquivoRendaNome() {
+        return arquivoRendaNome;
+    }
+
+    public void setArquivoRendaNome(String arquivoRendaNome) {
+        this.arquivoRendaNome = arquivoRendaNome;
     }
 
     public String getNome() {
@@ -114,17 +125,18 @@ public class MembroFamiliar implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.membroFamiliar);
-        hash = 97 * hash + Objects.hashCode(this.familia);
-        hash = 97 * hash + Objects.hashCode(this.arquivoRenda);
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.parentesco);
-        hash = 97 * hash + Objects.hashCode(this.escolaridade);
-        hash = 97 * hash + Objects.hashCode(this.salario);
-        hash = 97 * hash + Objects.hashCode(this.idade);
-        hash = 97 * hash + Objects.hashCode(this.sexo);
-        hash = 97 * hash + Objects.hashCode(this.situacaoOcupacional);
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.membroFamiliar);
+        hash = 53 * hash + Objects.hashCode(this.familia);
+        hash = 53 * hash + Arrays.hashCode(this.arquivoRenda);
+        hash = 53 * hash + Objects.hashCode(this.arquivoRendaNome);
+        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + Objects.hashCode(this.parentesco);
+        hash = 53 * hash + Objects.hashCode(this.escolaridade);
+        hash = 53 * hash + Objects.hashCode(this.salario);
+        hash = 53 * hash + Objects.hashCode(this.idade);
+        hash = 53 * hash + Objects.hashCode(this.sexo);
+        hash = 53 * hash + Objects.hashCode(this.situacaoOcupacional);
         return hash;
     }
 
@@ -140,7 +152,7 @@ public class MembroFamiliar implements Serializable {
             return false;
         }
         final MembroFamiliar other = (MembroFamiliar) obj;
-        if (!Objects.equals(this.arquivoRenda, other.arquivoRenda)) {
+        if (!Objects.equals(this.arquivoRendaNome, other.arquivoRendaNome)) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
@@ -162,6 +174,9 @@ public class MembroFamiliar implements Serializable {
             return false;
         }
         if (!Objects.equals(this.familia, other.familia)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoRenda, other.arquivoRenda)) {
             return false;
         }
         if (!Objects.equals(this.salario, other.salario)) {

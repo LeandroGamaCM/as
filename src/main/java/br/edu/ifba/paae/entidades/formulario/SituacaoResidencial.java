@@ -1,6 +1,7 @@
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -19,8 +20,11 @@ public class SituacaoResidencial implements Serializable {
     @OneToOne(mappedBy = "situacao_residencial")
     private Aluno aluno;    
 
-    @Column(name = "arquivo_despesas_extras")
-    private String arquivoDespesasExtras;    
+    @Column(name = "arquivo_despesas_extras", length = 1048576)
+    private byte[] arquivoDespesasExtras;    
+    
+    @Column(name = "arquivo_despesas_extras_nome")
+    private String arquivoDespesasExtrasNome;    
     
     @Column(name = "mora_com_quem_outro")
     private String moraComQuemOutro;
@@ -70,12 +74,20 @@ public class SituacaoResidencial implements Serializable {
         this.aluno = aluno;
     }
 
-    public String getArquivoDespesasExtras() {
+    public byte[] getArquivoDespesasExtras() {
         return arquivoDespesasExtras;
     }
 
-    public void setArquivoDespesasExtras(String arquivoDespesasExtras) {
+    public void setArquivoDespesasExtras(byte[] arquivoDespesasExtras) {
         this.arquivoDespesasExtras = arquivoDespesasExtras;
+    }
+
+    public String getArquivoDespesasExtrasNome() {
+        return arquivoDespesasExtrasNome;
+    }
+
+    public void setArquivoDespesasExtrasNome(String arquivoDespesasExtrasNome) {
+        this.arquivoDespesasExtrasNome = arquivoDespesasExtrasNome;
     }
 
     public String getMoraComQuemOutro() {
@@ -161,19 +173,20 @@ public class SituacaoResidencial implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 61 * hash + Objects.hashCode(this.situacaoResidencial);
-        hash = 61 * hash + Objects.hashCode(this.aluno);
-        hash = 61 * hash + Objects.hashCode(this.arquivoDespesasExtras);
-        hash = 61 * hash + Objects.hashCode(this.moraComQuemOutro);
-        hash = 61 * hash + Objects.hashCode(this.casaQuemEmprestou);
-        hash = 61 * hash + Objects.hashCode(this.casaSituacaoOutro);
-        hash = 61 * hash + Objects.hashCode(this.acessoInternetOutro);
-        hash = 61 * hash + Objects.hashCode(this.gastoMoradia);
-        hash = 61 * hash + Objects.hashCode(this.valorAluguel);
-        hash = 61 * hash + Objects.hashCode(this.despesasExtra);
-        hash = 61 * hash + Objects.hashCode(this.comQuemMora);
-        hash = 61 * hash + Objects.hashCode(this.situacaoCasa);
-        hash = 61 * hash + Objects.hashCode(this.acessoInternet);
+        hash = 47 * hash + Objects.hashCode(this.situacaoResidencial);
+        hash = 47 * hash + Objects.hashCode(this.aluno);
+        hash = 47 * hash + Arrays.hashCode(this.arquivoDespesasExtras);
+        hash = 47 * hash + Objects.hashCode(this.arquivoDespesasExtrasNome);
+        hash = 47 * hash + Objects.hashCode(this.moraComQuemOutro);
+        hash = 47 * hash + Objects.hashCode(this.casaQuemEmprestou);
+        hash = 47 * hash + Objects.hashCode(this.casaSituacaoOutro);
+        hash = 47 * hash + Objects.hashCode(this.acessoInternetOutro);
+        hash = 47 * hash + Objects.hashCode(this.gastoMoradia);
+        hash = 47 * hash + Objects.hashCode(this.valorAluguel);
+        hash = 47 * hash + Objects.hashCode(this.despesasExtra);
+        hash = 47 * hash + Objects.hashCode(this.comQuemMora);
+        hash = 47 * hash + Objects.hashCode(this.situacaoCasa);
+        hash = 47 * hash + Objects.hashCode(this.acessoInternet);
         return hash;
     }
 
@@ -189,7 +202,7 @@ public class SituacaoResidencial implements Serializable {
             return false;
         }
         final SituacaoResidencial other = (SituacaoResidencial) obj;
-        if (!Objects.equals(this.arquivoDespesasExtras, other.arquivoDespesasExtras)) {
+        if (!Objects.equals(this.arquivoDespesasExtrasNome, other.arquivoDespesasExtrasNome)) {
             return false;
         }
         if (!Objects.equals(this.moraComQuemOutro, other.moraComQuemOutro)) {
@@ -219,6 +232,9 @@ public class SituacaoResidencial implements Serializable {
         if (!Objects.equals(this.aluno, other.aluno)) {
             return false;
         }
+        if (!Arrays.equals(this.arquivoDespesasExtras, other.arquivoDespesasExtras)) {
+            return false;
+        }
         if (!Objects.equals(this.gastoMoradia, other.gastoMoradia)) {
             return false;
         }
@@ -231,4 +247,6 @@ public class SituacaoResidencial implements Serializable {
         return true;
     }
 
+
+    
 }

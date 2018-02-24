@@ -1,6 +1,7 @@
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -19,8 +20,11 @@ public class ResidenciaFamilia implements Serializable {
     @OneToOne(mappedBy = "residencia_familia")
     private Familia familia;  
     
-    @Column(name = "arquivo_automovel")
-    private String arquivoAutomovel;
+    @Column(name = "arquivo_automovel", length = 1048576)
+    private byte[] arquivoAutomovel;
+
+    @Column(name = "arquivo_automovel_nome")
+    private String arquivoAutomovelNome;
     
     @Column(name = "qtde_quartos")
     private Integer qtdeQuartos;
@@ -69,12 +73,20 @@ public class ResidenciaFamilia implements Serializable {
         this.familia = familia;
     }
 
-    public String getArquivoAutomovel() {
+    public byte[] getArquivoAutomovel() {
         return arquivoAutomovel;
     }
 
-    public void setArquivoAutomovel(String arquivoAutomovel) {
+    public void setArquivoAutomovel(byte[] arquivoAutomovel) {
         this.arquivoAutomovel = arquivoAutomovel;
+    }
+
+    public String getArquivoAutomovelNome() {
+        return arquivoAutomovelNome;
+    }
+
+    public void setArquivoAutomovelNome(String arquivoAutomovelNome) {
+        this.arquivoAutomovelNome = arquivoAutomovelNome;
     }
 
     public Integer getQtdeQuartos() {
@@ -159,20 +171,21 @@ public class ResidenciaFamilia implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.residenciaFamilia);
-        hash = 97 * hash + Objects.hashCode(this.familia);
-        hash = 97 * hash + Objects.hashCode(this.arquivoAutomovel);
-        hash = 97 * hash + Objects.hashCode(this.qtdeQuartos);
-        hash = 97 * hash + Objects.hashCode(this.qtdeBanheiros);
-        hash = 97 * hash + Objects.hashCode(this.qtdeTelevisores);
-        hash = 97 * hash + Objects.hashCode(this.qtdeGeladeiras);
-        hash = 97 * hash + Objects.hashCode(this.qtdeComputadores);
-        hash = 97 * hash + Objects.hashCode(this.qtdeMaquinaLavar);
-        hash = 97 * hash + Objects.hashCode(this.qtdeAutomoveis);
-        hash = 97 * hash + Objects.hashCode(this.distanciaCampus);
-        hash = 97 * hash + Objects.hashCode(this.situacaoCasa);
-        hash = 97 * hash + Objects.hashCode(this.zona);
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.residenciaFamilia);
+        hash = 19 * hash + Objects.hashCode(this.familia);
+        hash = 19 * hash + Arrays.hashCode(this.arquivoAutomovel);
+        hash = 19 * hash + Objects.hashCode(this.arquivoAutomovelNome);
+        hash = 19 * hash + Objects.hashCode(this.qtdeQuartos);
+        hash = 19 * hash + Objects.hashCode(this.qtdeBanheiros);
+        hash = 19 * hash + Objects.hashCode(this.qtdeTelevisores);
+        hash = 19 * hash + Objects.hashCode(this.qtdeGeladeiras);
+        hash = 19 * hash + Objects.hashCode(this.qtdeComputadores);
+        hash = 19 * hash + Objects.hashCode(this.qtdeMaquinaLavar);
+        hash = 19 * hash + Objects.hashCode(this.qtdeAutomoveis);
+        hash = 19 * hash + Objects.hashCode(this.distanciaCampus);
+        hash = 19 * hash + Objects.hashCode(this.situacaoCasa);
+        hash = 19 * hash + Objects.hashCode(this.zona);
         return hash;
     }
 
@@ -188,7 +201,7 @@ public class ResidenciaFamilia implements Serializable {
             return false;
         }
         final ResidenciaFamilia other = (ResidenciaFamilia) obj;
-        if (!Objects.equals(this.arquivoAutomovel, other.arquivoAutomovel)) {
+        if (!Objects.equals(this.arquivoAutomovelNome, other.arquivoAutomovelNome)) {
             return false;
         }
         if (!Objects.equals(this.situacaoCasa, other.situacaoCasa)) {
@@ -201,6 +214,9 @@ public class ResidenciaFamilia implements Serializable {
             return false;
         }
         if (!Objects.equals(this.familia, other.familia)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoAutomovel, other.arquivoAutomovel)) {
             return false;
         }
         if (!Objects.equals(this.qtdeQuartos, other.qtdeQuartos)) {

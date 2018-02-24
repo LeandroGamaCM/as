@@ -526,7 +526,7 @@ public class EntrevistaRN {
         List<Double> limites = rendaPerCapitaRN.listarLimites();
                 
         Collections.sort(limites);
-        Double limite = 0.0;
+        Double limite = limites.get(0);
         
         if(membroFamiliars != null && !membroFamiliars.isEmpty()){
             for(i=0; i<membroFamiliars.size(); i++){

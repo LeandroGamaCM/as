@@ -1,6 +1,7 @@
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
@@ -22,9 +23,12 @@ public class Familia implements Serializable {
     
     @OneToOne(mappedBy = "familia")
     private Aluno aluno;
+
+    @Column(name = "arquivo_programa_social", length = 1048576)
+    private byte[] arquivoProgramaSocial;
     
-    @Column(name = "arquivo_programa_social")
-    private String arquivoProgramaSocial;
+    @Column(name = "arquivo_programa_social_nome")
+    private String arquivoProgramaSocialNome;
     
     @Column(name = "possui_programa_social")
     private Boolean possuiProgramaSocial;
@@ -90,12 +94,20 @@ public class Familia implements Serializable {
         this.aluno = aluno;
     }
 
-    public String getArquivoProgramaSocial() {
+    public byte[] getArquivoProgramaSocial() {
         return arquivoProgramaSocial;
     }
 
-    public void setArquivoProgramaSocial(String arquivoProgramaSocial) {
+    public void setArquivoProgramaSocial(byte[] arquivoProgramaSocial) {
         this.arquivoProgramaSocial = arquivoProgramaSocial;
+    }
+
+    public String getArquivoProgramaSocialNome() {
+        return arquivoProgramaSocialNome;
+    }
+
+    public void setArquivoProgramaSocialNome(String arquivoProgramaSocialNome) {
+        this.arquivoProgramaSocialNome = arquivoProgramaSocialNome;
     }
 
     public Boolean getPossuiProgramaSocial() {
@@ -189,21 +201,22 @@ public class Familia implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 13 * hash + (int) (Double.doubleToLongBits(this.rendaFamiliarTotal) ^ (Double.doubleToLongBits(this.rendaFamiliarTotal) >>> 32));
-        hash = 13 * hash + Objects.hashCode(this.familia);
-        hash = 13 * hash + Objects.hashCode(this.aluno);
-        hash = 13 * hash + Objects.hashCode(this.arquivoProgramaSocial);
-        hash = 13 * hash + Objects.hashCode(this.possuiProgramaSocial);
-        hash = 13 * hash + Objects.hashCode(this.possuiGestante);
-        hash = 13 * hash + Objects.hashCode(this.outroProgramaSocial);
-        hash = 13 * hash + Objects.hashCode(this.imovel);
-        hash = 13 * hash + Objects.hashCode(this.membrosFamiliares);
-        hash = 13 * hash + Objects.hashCode(this.residencia_familia);
-        hash = 13 * hash + Objects.hashCode(this.renda);
-        hash = 13 * hash + Objects.hashCode(this.doenca);
-        hash = 13 * hash + Objects.hashCode(this.despesa);
-        hash = 13 * hash + Objects.hashCode(this.servicoSaude);
-        hash = 13 * hash + Objects.hashCode(this.programaSocial);
+        hash = 23 * hash + (int) (Double.doubleToLongBits(this.rendaFamiliarTotal) ^ (Double.doubleToLongBits(this.rendaFamiliarTotal) >>> 32));
+        hash = 23 * hash + Objects.hashCode(this.familia);
+        hash = 23 * hash + Objects.hashCode(this.aluno);
+        hash = 23 * hash + Arrays.hashCode(this.arquivoProgramaSocial);
+        hash = 23 * hash + Objects.hashCode(this.arquivoProgramaSocialNome);
+        hash = 23 * hash + Objects.hashCode(this.possuiProgramaSocial);
+        hash = 23 * hash + Objects.hashCode(this.possuiGestante);
+        hash = 23 * hash + Objects.hashCode(this.outroProgramaSocial);
+        hash = 23 * hash + Objects.hashCode(this.imovel);
+        hash = 23 * hash + Objects.hashCode(this.membrosFamiliares);
+        hash = 23 * hash + Objects.hashCode(this.residencia_familia);
+        hash = 23 * hash + Objects.hashCode(this.renda);
+        hash = 23 * hash + Objects.hashCode(this.doenca);
+        hash = 23 * hash + Objects.hashCode(this.despesa);
+        hash = 23 * hash + Objects.hashCode(this.servicoSaude);
+        hash = 23 * hash + Objects.hashCode(this.programaSocial);
         return hash;
     }
 
@@ -222,7 +235,7 @@ public class Familia implements Serializable {
         if (Double.doubleToLongBits(this.rendaFamiliarTotal) != Double.doubleToLongBits(other.rendaFamiliarTotal)) {
             return false;
         }
-        if (!Objects.equals(this.arquivoProgramaSocial, other.arquivoProgramaSocial)) {
+        if (!Objects.equals(this.arquivoProgramaSocialNome, other.arquivoProgramaSocialNome)) {
             return false;
         }
         if (!Objects.equals(this.outroProgramaSocial, other.outroProgramaSocial)) {
@@ -238,6 +251,9 @@ public class Familia implements Serializable {
             return false;
         }
         if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoProgramaSocial, other.arquivoProgramaSocial)) {
             return false;
         }
         if (!Objects.equals(this.possuiProgramaSocial, other.possuiProgramaSocial)) {

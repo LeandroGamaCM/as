@@ -24,29 +24,39 @@ public class CondicaoManutencao implements Serializable {
     
     @Column(name = "apenas_mae")
     private Boolean apenasMae;
-    @Column(name = "arquivo_renda_mae")
-    private String arquivoRendaMae;
+    @Column(name = "arquivo_renda_mae", length = 1048576)
+    private byte[] arquivoRendaMae;
+    @Column(name = "arquivo_renda_mae_nome")
+    private String arquivoRendaMaeNome;
     
     @Column(name = "apenas_pai")
     private Boolean apenasPai;
-    @Column(name = "arquivo_renda_pai")
-    private String arquivoRendaPai;
+    @Column(name = "arquivo_renda_pai", length = 1048576)
+    private byte[] arquivoRendaPai;    
+    @Column(name = "arquivo_renda_pai_nome")
+    private String arquivoRendaPaiNome;
     
     private Boolean avos;
-    @Column(name = "arquivo_Renda_avos")
-    private String arquivoRendaAvos;    
+    @Column(name = "arquivo_Renda_avos", length = 1048576)
+    private byte[] arquivoRendaAvos;      
+    @Column(name = "arquivo_Renda_avos_nome")
+    private String arquivoRendaAvosNome;    
     
     @Column(name = "outros_parentes")
     private Boolean outrosParentes;
-    @Column(name = "arquivo_renda_parentes")
-    private String arquivoRendaParentes;
+    @Column(name = "arquivo_renda_parentes", length = 1048576)
+    private byte[] arquivoRendaParentes;     
+    @Column(name = "arquivo_renda_parentes_nome")
+    private String arquivoRendaParentesNome;
     
     private String parentesco;
     
     @Column(name = "outros_meios")
     private Boolean outrosMeios;
-    @Column(name = "arquivo_renda_outros_meios")
-    private String arquivoRendaOutrosMeios;    
+    @Column(name = "arquivo_renda_outros_meios", length = 1048576)
+    private byte[] arquivoRendaOutrosMeios;     
+    @Column(name = "arquivo_renda_outros_meios_nome")
+    private String arquivoRendaOutrosMeiosNome;    
     
     @Column(name = "nome_outros_meios")
     private String nomeOutrosMeios;
@@ -88,12 +98,20 @@ public class CondicaoManutencao implements Serializable {
         this.apenasMae = apenasMae;
     }
 
-    public String getArquivoRendaMae() {
+    public byte[] getArquivoRendaMae() {
         return arquivoRendaMae;
     }
 
-    public void setArquivoRendaMae(String arquivoRendaMae) {
+    public void setArquivoRendaMae(byte[] arquivoRendaMae) {
         this.arquivoRendaMae = arquivoRendaMae;
+    }
+
+    public String getArquivoRendaMaeNome() {
+        return arquivoRendaMaeNome;
+    }
+
+    public void setArquivoRendaMaeNome(String arquivoRendaMaeNome) {
+        this.arquivoRendaMaeNome = arquivoRendaMaeNome;
     }
 
     public Boolean getApenasPai() {
@@ -104,12 +122,20 @@ public class CondicaoManutencao implements Serializable {
         this.apenasPai = apenasPai;
     }
 
-    public String getArquivoRendaPai() {
+    public byte[] getArquivoRendaPai() {
         return arquivoRendaPai;
     }
 
-    public void setArquivoRendaPai(String arquivoRendaPai) {
+    public void setArquivoRendaPai(byte[] arquivoRendaPai) {
         this.arquivoRendaPai = arquivoRendaPai;
+    }
+
+    public String getArquivoRendaPaiNome() {
+        return arquivoRendaPaiNome;
+    }
+
+    public void setArquivoRendaPaiNome(String arquivoRendaPaiNome) {
+        this.arquivoRendaPaiNome = arquivoRendaPaiNome;
     }
 
     public Boolean getAvos() {
@@ -120,12 +146,20 @@ public class CondicaoManutencao implements Serializable {
         this.avos = avos;
     }
 
-    public String getArquivoRendaAvos() {
+    public byte[] getArquivoRendaAvos() {
         return arquivoRendaAvos;
     }
 
-    public void setArquivoRendaAvos(String arquivoRendaAvos) {
+    public void setArquivoRendaAvos(byte[] arquivoRendaAvos) {
         this.arquivoRendaAvos = arquivoRendaAvos;
+    }
+
+    public String getArquivoRendaAvosNome() {
+        return arquivoRendaAvosNome;
+    }
+
+    public void setArquivoRendaAvosNome(String arquivoRendaAvosNome) {
+        this.arquivoRendaAvosNome = arquivoRendaAvosNome;
     }
 
     public Boolean getOutrosParentes() {
@@ -136,12 +170,20 @@ public class CondicaoManutencao implements Serializable {
         this.outrosParentes = outrosParentes;
     }
 
-    public String getArquivoRendaParentes() {
+    public byte[] getArquivoRendaParentes() {
         return arquivoRendaParentes;
     }
 
-    public void setArquivoRendaParentes(String arquivoRendaParentes) {
+    public void setArquivoRendaParentes(byte[] arquivoRendaParentes) {
         this.arquivoRendaParentes = arquivoRendaParentes;
+    }
+
+    public String getArquivoRendaParentesNome() {
+        return arquivoRendaParentesNome;
+    }
+
+    public void setArquivoRendaParentesNome(String arquivoRendaParentesNome) {
+        this.arquivoRendaParentesNome = arquivoRendaParentesNome;
     }
 
     public String getParentesco() {
@@ -160,12 +202,20 @@ public class CondicaoManutencao implements Serializable {
         this.outrosMeios = outrosMeios;
     }
 
-    public String getArquivoRendaOutrosMeios() {
+    public byte[] getArquivoRendaOutrosMeios() {
         return arquivoRendaOutrosMeios;
     }
 
-    public void setArquivoRendaOutrosMeios(String arquivoRendaOutrosMeios) {
+    public void setArquivoRendaOutrosMeios(byte[] arquivoRendaOutrosMeios) {
         this.arquivoRendaOutrosMeios = arquivoRendaOutrosMeios;
+    }
+
+    public String getArquivoRendaOutrosMeiosNome() {
+        return arquivoRendaOutrosMeiosNome;
+    }
+
+    public void setArquivoRendaOutrosMeiosNome(String arquivoRendaOutrosMeiosNome) {
+        this.arquivoRendaOutrosMeiosNome = arquivoRendaOutrosMeiosNome;
     }
 
     public String getNomeOutrosMeios() {
@@ -183,92 +233,6 @@ public class CondicaoManutencao implements Serializable {
     public void setSustentadoPorNinguem(Boolean sustentadoPorNinguem) {
         this.sustentadoPorNinguem = sustentadoPorNinguem;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.condicaoManutencao);
-        hash = 17 * hash + Objects.hashCode(this.aluno);
-        hash = 17 * hash + Objects.hashCode(this.ambosPais);
-        hash = 17 * hash + Objects.hashCode(this.apenasMae);
-        hash = 17 * hash + Objects.hashCode(this.arquivoRendaMae);
-        hash = 17 * hash + Objects.hashCode(this.apenasPai);
-        hash = 17 * hash + Objects.hashCode(this.arquivoRendaPai);
-        hash = 17 * hash + Objects.hashCode(this.avos);
-        hash = 17 * hash + Objects.hashCode(this.arquivoRendaAvos);
-        hash = 17 * hash + Objects.hashCode(this.outrosParentes);
-        hash = 17 * hash + Objects.hashCode(this.arquivoRendaParentes);
-        hash = 17 * hash + Objects.hashCode(this.parentesco);
-        hash = 17 * hash + Objects.hashCode(this.outrosMeios);
-        hash = 17 * hash + Objects.hashCode(this.arquivoRendaOutrosMeios);
-        hash = 17 * hash + Objects.hashCode(this.nomeOutrosMeios);
-        hash = 17 * hash + Objects.hashCode(this.sustentadoPorNinguem);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final CondicaoManutencao other = (CondicaoManutencao) obj;
-        if (!Objects.equals(this.arquivoRendaMae, other.arquivoRendaMae)) {
-            return false;
-        }
-        if (!Objects.equals(this.arquivoRendaPai, other.arquivoRendaPai)) {
-            return false;
-        }
-        if (!Objects.equals(this.arquivoRendaAvos, other.arquivoRendaAvos)) {
-            return false;
-        }
-        if (!Objects.equals(this.arquivoRendaParentes, other.arquivoRendaParentes)) {
-            return false;
-        }
-        if (!Objects.equals(this.parentesco, other.parentesco)) {
-            return false;
-        }
-        if (!Objects.equals(this.arquivoRendaOutrosMeios, other.arquivoRendaOutrosMeios)) {
-            return false;
-        }
-        if (!Objects.equals(this.nomeOutrosMeios, other.nomeOutrosMeios)) {
-            return false;
-        }
-        if (!Objects.equals(this.condicaoManutencao, other.condicaoManutencao)) {
-            return false;
-        }
-        if (!Objects.equals(this.aluno, other.aluno)) {
-            return false;
-        }
-        if (!Objects.equals(this.ambosPais, other.ambosPais)) {
-            return false;
-        }
-        if (!Objects.equals(this.apenasMae, other.apenasMae)) {
-            return false;
-        }
-        if (!Objects.equals(this.apenasPai, other.apenasPai)) {
-            return false;
-        }
-        if (!Objects.equals(this.avos, other.avos)) {
-            return false;
-        }
-        if (!Objects.equals(this.outrosParentes, other.outrosParentes)) {
-            return false;
-        }
-        if (!Objects.equals(this.outrosMeios, other.outrosMeios)) {
-            return false;
-        }
-        if (!Objects.equals(this.sustentadoPorNinguem, other.sustentadoPorNinguem)) {
-            return false;
-        }
-        return true;
-    }
-
 
     
 }

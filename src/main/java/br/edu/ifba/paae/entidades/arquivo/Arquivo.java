@@ -21,7 +21,7 @@ public class Arquivo implements Serializable {
 
     @Column(length = 1048576)
     private byte[] contents;
-    @Column(unique = true)
+
     private String nome;
 
     

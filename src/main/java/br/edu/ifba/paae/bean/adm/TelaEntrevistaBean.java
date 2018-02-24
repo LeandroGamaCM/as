@@ -6,12 +6,19 @@ import br.edu.ifba.paae.logica.FormularioAluno;
 import br.edu.ifba.paae.rn.analise.EntrevistaRN;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @ManagedBean(name = "telaEntrevistaBean")
 @ViewScoped
@@ -25,6 +32,7 @@ public class TelaEntrevistaBean implements Serializable{
     private List<FormularioAluno> formularioAlunos = new ArrayList<>();
     private FormularioAluno formularioAluno;
 
+    private StreamedContent streamedContent;    
     private Aluno aluno;
     
     @PostConstruct
@@ -93,6 +101,16 @@ public class TelaEntrevistaBean implements Serializable{
         changeToEntrevistasNaoFeitas();
     }
 
+    public void downloadArquivo(String nomeArquivo){
+       
+    }
+    public void descarregar(File file) throws IOException {
+        InputStream inputStream = new FileInputStream(file);
+        
+        streamedContent = new DefaultStreamedContent(inputStream, 
+                Files.probeContentType(file.toPath()), file.getName());
+    } 
+    
 // Controle de Tela    
     public boolean isEntrevistasFeitas(){
         return "entrevistasFeitas".equals(this.estadoTela);

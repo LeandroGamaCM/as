@@ -1,6 +1,7 @@
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -19,8 +20,11 @@ public class Imovel implements Serializable {
     @OneToOne(mappedBy = "imovel")
     private Familia familia;
     
-    @Column(name = "arquivo_imovel")
-    private String arquivoImovel;
+    @Column(name = "arquivo_imovel", length = 1048576)
+    private byte[] arquivoImovel;
+    
+    @Column(name = "arquivo_imovel_nome")
+    private String arquivoImovelNome;
     
     private Float hectares;
     
@@ -60,12 +64,20 @@ public class Imovel implements Serializable {
         this.familia = familia;
     }
 
-    public String getArquivoImovel() {
+    public byte[] getArquivoImovel() {
         return arquivoImovel;
     }
 
-    public void setArquivoImovel(String arquivoImovel) {
+    public void setArquivoImovel(byte[] arquivoImovel) {
         this.arquivoImovel = arquivoImovel;
+    }
+
+    public String getArquivoImovelNome() {
+        return arquivoImovelNome;
+    }
+
+    public void setArquivoImovelNome(String arquivoImovelNome) {
+        this.arquivoImovelNome = arquivoImovelNome;
     }
 
     public Float getHectares() {
@@ -158,21 +170,22 @@ public class Imovel implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.imovel);
-        hash = 71 * hash + Objects.hashCode(this.familia);
-        hash = 71 * hash + Objects.hashCode(this.arquivoImovel);
-        hash = 71 * hash + Objects.hashCode(this.hectares);
-        hash = 71 * hash + Objects.hashCode(this.nomeOutroImovel);
-        hash = 71 * hash + Objects.hashCode(this.possuiImovel);
-        hash = 71 * hash + Objects.hashCode(this.terras);
-        hash = 71 * hash + Objects.hashCode(this.lotes);
-        hash = 71 * hash + Objects.hashCode(this.fazendas);
-        hash = 71 * hash + Objects.hashCode(this.sitios);
-        hash = 71 * hash + Objects.hashCode(this.apartamentos);
-        hash = 71 * hash + Objects.hashCode(this.outroImovel);
-        hash = 71 * hash + Objects.hashCode(this.casaPraia);
-        hash = 71 * hash + Objects.hashCode(this.salasComerciais);
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.imovel);
+        hash = 53 * hash + Objects.hashCode(this.familia);
+        hash = 53 * hash + Arrays.hashCode(this.arquivoImovel);
+        hash = 53 * hash + Objects.hashCode(this.arquivoImovelNome);
+        hash = 53 * hash + Objects.hashCode(this.hectares);
+        hash = 53 * hash + Objects.hashCode(this.nomeOutroImovel);
+        hash = 53 * hash + Objects.hashCode(this.possuiImovel);
+        hash = 53 * hash + Objects.hashCode(this.terras);
+        hash = 53 * hash + Objects.hashCode(this.lotes);
+        hash = 53 * hash + Objects.hashCode(this.fazendas);
+        hash = 53 * hash + Objects.hashCode(this.sitios);
+        hash = 53 * hash + Objects.hashCode(this.apartamentos);
+        hash = 53 * hash + Objects.hashCode(this.outroImovel);
+        hash = 53 * hash + Objects.hashCode(this.casaPraia);
+        hash = 53 * hash + Objects.hashCode(this.salasComerciais);
         return hash;
     }
 
@@ -188,7 +201,7 @@ public class Imovel implements Serializable {
             return false;
         }
         final Imovel other = (Imovel) obj;
-        if (!Objects.equals(this.arquivoImovel, other.arquivoImovel)) {
+        if (!Objects.equals(this.arquivoImovelNome, other.arquivoImovelNome)) {
             return false;
         }
         if (!Objects.equals(this.nomeOutroImovel, other.nomeOutroImovel)) {
@@ -198,6 +211,9 @@ public class Imovel implements Serializable {
             return false;
         }
         if (!Objects.equals(this.familia, other.familia)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoImovel, other.arquivoImovel)) {
             return false;
         }
         if (!Objects.equals(this.hectares, other.hectares)) {

@@ -1,24 +1,3 @@
-Luan:
-    - Colocar icone nos botões
-        Tabela de turmas na pagina aluno
-        Tabela de Entrevistas feitas e não feitas na tela de entrevistas
-        Tabela de MembrosFamiliares na tela inscricao
-
-    - Perfil ADM
-        Colocar a validação pra senha e CPF
-
-    - Perfil Aluno
-        Colocar a validação pra senha
-
-    - ComponenteDadosInscricao
-        Ajeitar a posicao dos itens (Apenas veja se dá pra melhorar pra não ficar essa tripinha)
-
-    - LoginCadastro:
-        Tirar aquelas mensagens que aparecem e colocar mensagem de outra forma menos irritante (opcional)
-
-    - Inscricao
-        Com a redirada do input cpf desconfigurou a posicao dos itens da primeira linha
-
 Leandro:
     - LoginCadastro:
         O commandButton não está chamando a tela loginEntrar

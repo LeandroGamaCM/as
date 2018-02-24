@@ -17,6 +17,7 @@
         <h:outputStylesheet library="css" name="temaPrimefaces.css" />
         <h:outputScript library="js" name="responsivo.js"/>
         <h:outputScript library="js" name="submenus.js"/>
+        <h:outputScript library="js" name="preloader.js"/>
         <h:outputScript library="js" name="validar.js" />
         <h:outputScript library="js" name="vanilla-masker.min.js" />
         <title><ui:insert name="titulo">Título</ui:insert></title>  
@@ -129,6 +130,16 @@
             obj2 = new resp2();
             obj3 = new submenu();
             obj4 = new submenu2();
+        </script>
+        <script>
+            $(".progressbar li").click(function(){
+            $(".progressbar li")
+            .not($(this))
+            .removeClass("active");
+
+            $(this)
+            .addClass("active");
+         });
         </script>
         
         <noscript>

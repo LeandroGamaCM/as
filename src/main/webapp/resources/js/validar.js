@@ -37,6 +37,36 @@ function validarLogin() {
     }
 }﻿
 
+//formulário de perfil adm
+function validaPerfil(){
+    var senha1 = document.getElementById('senha');    
+    
+    if (senha1.value.length < 6){
+        senha1.focus();
+        alert('Informe uma senha com no mínimo 6 caracteres.');
+        return false; 
+        
+    }
+    else{
+        return true;
+    }
+}
+
+//formulário de perfil aluno
+function validaPerfilAluno(){
+    var senha = document.getElementById('senha');    
+    
+    if (senha.value.length < 6){
+        senha.focus();
+        alert('Informe uma senha com no mínimo 6 caracteres.');
+        return false; 
+        
+    }
+    else{
+        return true;
+    }
+}
+
 //formulario de recuperacao de senha
 function validarRecu() {
     var cpf = document.getElementById('cpfRecuperar');
@@ -66,7 +96,7 @@ function letras(e){
 //permite apenas numeros no campo rg
 function numeros(e){
     var expressao;
-    expressao = /[a-z]/;
+    expressao = /[a-z,]/;
 
     if(expressao.test(String.fromCharCode(e.keyCode)))
     {

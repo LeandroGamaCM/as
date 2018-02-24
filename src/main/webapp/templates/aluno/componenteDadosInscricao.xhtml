@@ -6,10 +6,11 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
-        <div class="ui-fluid">            
-            <h:form>
+        <div class="ui-fluid">   
+            <h1>Dados Cadastrados</h1>
+            <h:form prependId="false" id="formenxuto">
                 <p:panel header="Dados Pessoais">
-                    <h:panelGrid columns="2">
+                    <h:panelGrid class="pgTam" columns="3">
                         <p:outputLabel value="Nome Completo: #{alunoBean.aluno.nome}"/>
                         <p:outputLabel value="CPF: #{alunoBean.aluno.cpf}"/>
                         <p:outputLabel value="Apelido: #{alunoBean.aluno.apelido}"/>
@@ -17,14 +18,19 @@
                         <p:outputLabel value="Data de Nascimento: #{alunoBean.aluno.dataNascimento}"/>                        
                         <p:outputLabel value="RG: #{alunoBean.aluno.rg}"/>
                         <p:outputLabel value="Estado civil: #{alunoBean.aluno.estadoCivil}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Matrícula">
+                    <h:panelGrid class="pgTam" columns="3">                        
                         <p:outputLabel value="Modalidade: #{alunoBean.turma.modalidade}"/>
                         <p:outputLabel value="Curso: #{alunoBean.turma.curso}"/>
                         <p:outputLabel value="Turma: #{alunoBean.turma.nome}"/>
                     </h:panelGrid>
-                </p:panel>
-
+                </p:panel> 
+                
                 <p:panel header="Contato">
-                    <h:panelGrid columns="1">                        
+                    <h:panelGrid class="pgTam" columns="3">                        
                         <p:outputLabel value="Telefone: #{alunoBean.aluno.telefone}"/>
                         <p:outputLabel value="Celular: #{alunoBean.aluno.celular}"/>
                         <p:outputLabel value="Email: #{alunoBean.aluno.email}"/>
@@ -32,7 +38,7 @@
                 </p:panel>            
 
                 <p:panel header="Endereco">
-                    <h:panelGrid columns="1">                        
+                    <h:panelGrid class="pgTam" columns="3">                        
                         <p:outputLabel value="Endereco: #{alunoBean.endereco.rua}"/>
                         <p:outputLabel value="Nº: #{alunoBean.endereco.numero}"/>
                         <p:outputLabel value="Bairro: #{alunoBean.endereco.bairro}"/>
@@ -49,32 +55,32 @@
                 </p:panel>            
 
                 <p:panel header="Dados Bancários">
-                    <h:panelGrid columns="1">                        
-                        <p:outputLabel value="Não possui conta bancária" rendered="#{!alunoBean.conta.possuiConta}"/> 
+                    <h:panelGrid class="pgTam" columns="2">                        
+                        <p:outputLabel value="Não possui conta bancária!" rendered="#{!alunoBean.conta.possuiConta}"/> 
                         <p:outputLabel value="Banco: #{alunoBean.conta.nomeBanco}" rendered="#{alunoBean.conta.possuiConta}" />
-                        <p:outputLabel value="Agência: #{alunoBean.conta.agencia}" rendered="#{alunoBean.conta.possuiConta}"/>
                         <p:outputLabel value="Tipo de conta: #{alunoBean.conta.tipo}" rendered="#{alunoBean.conta.possuiConta}"/>
+                        <p:outputLabel value="Agência: #{alunoBean.conta.agencia}" rendered="#{alunoBean.conta.possuiConta}"/>
                         <p:outputLabel value="Número da conta: #{alunoBean.conta.numero}" rendered="#{alunoBean.conta.possuiConta}"/>
                         <p:outputLabel value="Operação: #{alunoBean.conta.operacao}" rendered="#{alunoBean.conta.possuiConta}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Curso preparatório">
-                    <h:panelGrid columns="1">                        
-                        <p:outputLabel value="Não possui curso preparatório" rendered="#{!alunoBean.informacoesCurriculares.cursoPreparatorio}" />
+                    <h:panelGrid class="pgTam" columns="1">                        
+                        <p:outputLabel value="Não possui curso preparatório!" rendered="#{!alunoBean.informacoesCurriculares.cursoPreparatorio}" />
                         <p:outputLabel value="Curso: #{alunoBean.informacoesCurriculares.nomeCursoPreparatorio}" rendered="#{alunoBean.informacoesCurriculares.cursoPreparatorio}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Escola de origem">
-                    <h:panelGrid columns="1">                        
+                    <h:panelGrid class="pgTam" columns="1">                        
                         <p:outputLabel value="#{alunoBean.informacoesCurriculares.ondeEstudou}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Interrupção dos estudos">
-                    <h:panelGrid columns="1">                        
-                        <p:outputLabel value="Não houve interrupção" rendered="#{!alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
+                    <h:panelGrid class="pgTam" columns="1">                        
+                        <p:outputLabel value="Não houve interrupção!" rendered="#{!alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
                         <p:outputLabel value="Motivo interrupção: #{alunoBean.informacoesCurriculares.motivoInterrupcao}" rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
                         <p:outputLabel value="Data da interrupção: #{alunoBean.informacoesCurriculares.dataInterrupcao}" rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
                         <p:outputLabel value="Tempo de interrupção: #{alunoBean.informacoesCurriculares.tempoInterrupcao}" rendered="#{alunoBean.informacoesCurriculares.interrupcaoEstudos}"/>
@@ -82,8 +88,8 @@
                 </p:panel>
 
                 <p:panel header="Bolsas: ">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Nenhuma bolsa" rendered="#{!alunoBean.bolsasAuxilio.programaExtensao and !alunoBean.bolsasAuxilio.pibicjr and !alunoBean.bolsasAuxilio.pibid and !alunoBean.bolsasAuxilio.pibic and !alunoBean.bolsasAuxilio.monitoria}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Não possui bolsa!" rendered="#{!alunoBean.bolsasAuxilio.programaExtensao and !alunoBean.bolsasAuxilio.pibicjr and !alunoBean.bolsasAuxilio.pibid and !alunoBean.bolsasAuxilio.pibic and !alunoBean.bolsasAuxilio.monitoria}"/>
                         <p:outputLabel value="Bolsa de Programa de Extensão" rendered="#{alunoBean.bolsasAuxilio.programaExtensao}"/>
                         <p:outputLabel value="Bolsa PIBIC/Jr." rendered="#{alunoBean.bolsasAuxilio.pibicjr}"/>
                         <p:outputLabel value="Bolsa PIBID" rendered="#{alunoBean.bolsasAuxilio.pibid}"/>
@@ -93,14 +99,14 @@
                 </p:panel>
 
                 <p:panel header="Estágio remunerado">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui estágio remunerado" rendered="#{!alunoBean.ocupacao.possuiEstagio}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Não possui estágio remunerado!" rendered="#{!alunoBean.ocupacao.possuiEstagio}"/>
                         <p:outputLabel value="Instituição do estágio: #{alunoBean.ocupacao.instiruicaoEstagio}" rendered="#{alunoBean.ocupacao.possuiEstagio}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Condição de manutenção">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="1">
                         <p:outputLabel value="Sustentado por ambos os pais" rendered="#{alunoBean.condicaoManutencao.ambosPais}"/>
                         <p:outputLabel value="Sustentado apenas pelo pai"  rendered="#{alunoBean.condicaoManutencao.apenasPai}"/>
                         <p:outputLabel value="Sustentado apenas pela mãe"  rendered="#{alunoBean.condicaoManutencao.apenasMae}"/>
@@ -117,21 +123,21 @@
                 </p:panel>
 
                 <p:panel header="Situação ocupacional">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="2">
                         <p:outputLabel value="#{alunoBean.ocupacao.situacaoOcupacional}"/>
                         
                         <p:outputLabel value="Profissão: #{alunoBean.ocupacao.profissao}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                         <p:outputLabel value="Tipo de profissão: #{alunoBean.ocupacao.trabalho}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                         <p:outputLabel value="Nome do empregador e/ou da empresa: #{alunoBean.ocupacao.nomeEmpregador}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
-                        <p:outputLabel value="Tempo de serviço: #{alunoBean.ocupacao.tempoServico} anos" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                         <p:outputLabel value="Telefone do empregador ou da empresa: #{alunoBean.ocupacao.telefoneEmpregador}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Tempo de serviço: #{alunoBean.ocupacao.tempoServico}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                         <p:outputLabel value="Salário Mensal: R$ #{alunoBean.ocupacao.salarioMensal}" rendered="#{alunoBean.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Dependentes">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui dependentes" rendered="#{!alunoBean.dependentes.possuiDependente}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Não possui dependentes!" rendered="#{!alunoBean.dependentes.possuiDependente}"/>
                         <p:outputLabel value="Quantidade de dependentes: #{alunoBean.dependentes.quantos}" rendered="#{alunoBean.dependentes.possuiDependente}"/>
                         <p:outputLabel value="Tipo de dependentes: " rendered="#{alunoBean.dependentes.possuiDependente}"/>
                         <p:outputLabel value="Companheiro" rendered="#{alunoBean.dependentes.companheiro}"/>
@@ -143,8 +149,8 @@
                 </p:panel>
 
                 <p:panel header="Despesas no campus">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui" rendered="#{!(alunoBean.despesasCampus.alimentacao > 0) and !(alunoBean.despesasCampus.materiaisEscolares > 0) and !(alunoBean.despesasCampus.trabalhos > 0)}"/>
+                    <h:panelGrid class="pgTam" columns="3">
+                        <p:outputLabel value="Não possui!" rendered="#{!(alunoBean.despesasCampus.alimentacao > 0) and !(alunoBean.despesasCampus.materiaisEscolares > 0) and !(alunoBean.despesasCampus.trabalhos > 0)}"/>
                         <p:outputLabel value="Alimentação: #{alunoBean.despesasCampus.alimentacao}" rendered="#{alunoBean.despesasCampus.alimentacao > 0}"/>
                         <p:outputLabel value="Materiais escolares: #{alunoBean.despesasCampus.materiaisEscolares}" rendered="#{alunoBean.despesasCampus.materiaisEscolares > 0}"/>
                         <p:outputLabel value="Trabalhos: #{alunoBean.despesasCampus.trabalhos}" rendered="#{alunoBean.despesasCampus.trabalhos > 0}"/>
@@ -152,7 +158,7 @@
                 </p:panel>
 
                 <p:panel header="Com quem você mora">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="1">
                         <p:outputLabel value="#{alunoBean.situacaoResidencial.comQuemMora}" rendered="#{alunoBean.situacaoResidencial.comQuemMora != 'Outra Situação'}"/>
                         <p:outputLabel value="#{alunoBean.situacaoResidencial.moraComQuemOutro}" rendered="#{alunoBean.situacaoResidencial.comQuemMora == 'Outra Situação'}"/>
                         <p:outputLabel value="Despesas extras com moradia: #{alunoBean.situacaoResidencial.despesasExtra}" rendered="#{alunoBean.situacaoResidencial.despesasExtra > 0}"/>
@@ -189,7 +195,7 @@
                 </p:panel>
 
                 <p:panel header="Acesso a internet">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="2">
                         <p:outputLabel value="Acessa #{alunoBean.situacaoResidencial.acessoInternet}" rendered="#{alunoBean.situacaoResidencial.acessoInternet != 'Não Acessa a Internet'}"/>
                         <p:outputLabel value="#{alunoBean.situacaoResidencial.acessoInternet}" rendered="#{alunoBean.situacaoResidencial.acessoInternet == 'Não Acessa a Internet'}"/>
                     </h:panelGrid>
@@ -225,24 +231,24 @@
                 </p:panel>
 
                 <p:panel header="Doenças graves">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui nenhum membro familiar com doenças graves e/ou que faz uso de medicação contínua" rendered="#{!alunoBean.doenca.possuiDoenca}"/>
+                    <h:panelGrid class="pgTam" columns="2">
+                        <p:outputLabel value="Não possui nenhum membro familiar com doenças graves e/ou que faz uso de medicação contínua!" rendered="#{!alunoBean.doenca.possuiDoenca}"/>
                         <p:outputLabel value="Doente(s): #{alunoBean.doenca.doente}" rendered="#{alunoBean.doenca.possuiDoenca}"/>
-                        <p:outputLabel value="Doente(s): #{alunoBean.doenca.doencas}" rendered="#{alunoBean.doenca.possuiDoenca}"/>
+                        <p:outputLabel value="Doenças(s): #{alunoBean.doenca.doencas}" rendered="#{alunoBean.doenca.possuiDoenca}"/>
                         <p:outputLabel value="Local de tratamento: #{alunoBean.doenca.tratamento}" rendered="#{alunoBean.doenca.possuiDoenca}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Gestante">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Possui membro familiar gestante" rendered="#{alunoBean.familia.possuiGestante}"/>
-                        <p:outputLabel value="Não possui membro familiar gestante" rendered="#{!alunoBean.familia.possuiGestante}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Possui membro familiar gestante!" rendered="#{alunoBean.familia.possuiGestante}"/>
+                        <p:outputLabel value="Não possui membro familiar gestante!" rendered="#{!alunoBean.familia.possuiGestante}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Rendas">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui nenhuma renda" rendered="#{!alunoBean.renda.aluguel and !alunoBean.renda.ajuda and !alunoBean.renda.outros and !alunoBean.renda.pensaoAlimenticia and !alunoBean.renda.pensaoMorte}"/>
+                    <h:panelGrid class="pgTam" columns="2">
+                        <p:outputLabel value="Não possui nenhuma renda!" rendered="#{!alunoBean.renda.aluguel and !alunoBean.renda.ajuda and !alunoBean.renda.outros and !alunoBean.renda.pensaoAlimenticia and !alunoBean.renda.pensaoMorte}"/>
                         <p:outputLabel value="Aluguel: R$ #{alunoBean.renda.valorAluguel}" rendered="#{alunoBean.renda.aluguel}"/>
                         <p:outputLabel value="Ajuda de terceiros: R$ #{alunoBean.renda.valorAjuda}" rendered="#{alunoBean.renda.ajuda}"/>
                         <p:outputLabel value="Pensão alímentícia: R$ #{alunoBean.renda.valorPensaoAlimenticia}" rendered="#{alunoBean.renda.pensaoAlimenticia}"/>
@@ -252,8 +258,8 @@
                 </p:panel>
 
                 <p:panel header="Despesas">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui nenhuma despesa" rendered="#{!alunoBean.despesa.aluguel and !alunoBean.despesa.agua and !alunoBean.despesa.endividamento and !alunoBean.despesa.financiamentos and !alunoBean.despesa.internet
+                    <h:panelGrid class="pgTam" columns="3">
+                        <p:outputLabel value="Não possui nenhuma despesa!" rendered="#{!alunoBean.despesa.aluguel and !alunoBean.despesa.agua and !alunoBean.despesa.endividamento and !alunoBean.despesa.financiamentos and !alunoBean.despesa.internet
                                                                                       and !alunoBean.despesa.investimentosEducacao and !alunoBean.despesa.luz and !alunoBean.despesa.medicamentos and !alunoBean.despesa.mensalidadeEscolar and !alunoBean.despesa.outros
                                                                                       and !alunoBean.despesa.planoSaude and !alunoBean.despesa.telefone and !alunoBean.despesa.transporte}"/>
                         <p:outputLabel value="Aluguel: R$ #{alunoBean.despesa.valorAluguel}" rendered="#{alunoBean.despesa.aluguel}"/>
@@ -273,10 +279,10 @@
                 </p:panel>
 
                 <p:panel header="Residência familiar">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="1">
                         <p:outputLabel value="#{alunoBean.residenciaFamilia.zona}" />
                         <p:outputLabel value="Distância do campus: #{alunoBean.residenciaFamilia.distanciaCampus} Km" rendered="#{alunoBean.residenciaFamilia.zona == 'Zona rural'}"/>
-                        <p:outputLabel value="Situaçao residenial: #{alunoBean.residenciaFamilia.situacaoCasa}"/>
+                        <p:outputLabel value="Situaçao residencial: #{alunoBean.residenciaFamilia.situacaoCasa}"/>
                         <br/>
                         <p:outputLabel value="Quantidade de automóveis: #{alunoBean.residenciaFamilia.qtdeAutomoveis}"/>
                         <p:outputLabel value="Quantidade de computadores: #{alunoBean.residenciaFamilia.qtdeComputadores}"/>
@@ -289,8 +295,8 @@
                 </p:panel>
 
                 <p:panel header="Imóveis">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui outros imóveis alem do que habita" rendered="#{!alunoBean.imovel.possuiImovel}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Não possui outros imóveis alem do que habita!" rendered="#{!alunoBean.imovel.possuiImovel}"/>
                         <p:outputLabel value="Possui:" rendered="#{alunoBean.imovel.possuiImovel}"/>
                         <p:outputLabel value="Apartamento(s)" rendered="#{alunoBean.imovel.apartamentos}"/>
                         <p:outputLabel value="Casa(s) de praia" rendered="#{alunoBean.imovel.casaPraia}"/>
@@ -300,20 +306,20 @@
                         <p:outputLabel value="Sítio(s)" rendered="#{alunoBean.imovel.sitios}"/>
                         <p:outputLabel value="Terras" rendered="#{alunoBean.imovel.terras}"/>
                         <p:outputLabel value="#{alunoBean.imovel.nomeOutroImovel}" rendered="#{alunoBean.imovel.outroImovel}"/>
-                        <p:outputLabel value="Quantidade de Hectáres: #{alunoBean.imovel.hectares}" rendered="#{alunoBean.imovel.possuiImovel}"/>
+                        <p:outputLabel value="Quantidade de Hectares: #{alunoBean.imovel.hectares}" rendered="#{alunoBean.imovel.possuiImovel}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Programas Sociais">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui programas sociais" rendered="#{!alunoBean.familia.possuiProgramaSocial}"/>
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Não possui programas sociais!" rendered="#{!alunoBean.familia.possuiProgramaSocial}"/>
                         <p:outputLabel value="#{alunoBean.familia.programaSocial}" rendered="#{alunoBean.familia.programaSocial != 'Outro'}"/>
                         <p:outputLabel value="#{alunoBean.familia.outroProgramaSocial}" rendered="#{alunoBean.familia.programaSocial == 'Outro'}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Serviço de saúde">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="1">
                         <p:outputLabel value="#{alunoBean.familia.servicoSaude}" />
                     </h:panelGrid>
                 </p:panel>

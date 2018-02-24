@@ -14,7 +14,7 @@
             </p:outputPanel>
             <p:outputPanel rendered="#{alunoBean.periodoInscricao.ativado}">
                 <p:growl id="growl" sticky="true" showDetail="true"/>               
-                <div class="card card-w-title">
+                <div class="card card-w-title"> <!-- Nao apaga isso nao! é padrao pra todas as paginas-->
                     <p:panel header="Provisório, apenas pra facilitar a alternancia das telas">
                         <p:toolbar>
                             <p:toolbarGroup>
@@ -156,7 +156,7 @@
                                                 <h:panelGrid class="pgTam spanpo" columns="1">
                                                     <p:outputLabel for="tele" value="Telefone: "/>
                                                     <span>
-                                                        <p:inputText id="tele" alt="Campo não obrigatório." class="validar" label="telefone" value="#{alunoBean.aluno.telefone}"/>
+                                                        <p:inputText id="tele" alt="Campo opcional." class="validar" label="telefone" value="#{alunoBean.aluno.telefone}"/>
                                                     </span>
                                                 </h:panelGrid>
 
@@ -277,7 +277,7 @@
                                                             <f:selectItem itemLabel="Poupança" itemValue="Poupança"/>
                                                         </p:selectOneMenu>  
                                                     </h:panelGrid>
-                                                    
+
                                                     <h:panelGrid class="pgTam spanpo" columns="1">
                                                         <p:outputLabel id="OutOP" value="Operação: " for="operacao" />                                                        
                                                         <span>
@@ -400,34 +400,32 @@
                                     <p:messages /> 
                                     <p:panel header="Qual a sua condição de manutenção?">
                                         <div id="uiFluid" class="ui-g ui-fluid"> 
-                                <p:outputPanel id="manutAjax">
-                                    <p:messages /> 
-                                    <h:panelGrid width="100%" columns="2" columnClasses="label25, value25" >                              
-                                        <p:selectManyCheckbox value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
-                                            <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
-                                            <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Sustentado por outros parentes" itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Outros Meios" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Nenhuma das opções" itemValue="n" />
-                                            <p:ajax update="manutAjax" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
-                                        </p:selectManyCheckbox>  
+                                            <p:outputPanel id="manutAjax">
 
-                                        <h:panelGrid width="100%" style="margin-top: 104px" columns="2" columnClasses="label27, value27, label28, value28" >       
-                                            <p:panelGrid rendered="#{alunoBean.verificaSelectedSustentadoresOP() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}">
-                                                <p:outputLabel style="width: 100%" value="Qual o parentesco? " for="par" />
-                                                <p:inputText style="width: 100%" id="par" value="#{alunoBean.condicaoManutencao.parentesco}" label="Parentesco"/>
-                                            </p:panelGrid>
-                                            <p:panelGrid rendered="#{alunoBean.verificaSelectedSustentadoresOM() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}">
-                                                <p:outputLabel style="width: 100%; margin-top: 7px" value="Quais são eles? " for="om" />
-                                                <p:inputText style="width: 100%" id="om" value="#{alunoBean.condicaoManutencao.nomeOutrosMeios}" label="Outros Meios"/>
-                                            </p:panelGrid>
-                                        </h:panelGrid>
-                                    </h:panelGrid>
-                                </p:outputPanel>
+                                                <p:selectManyCheckbox id="respMC" required="true" requiredMessage="Condição de Manutenção: Menu Obrigatório" value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
+                                                    <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
+                                                    <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Sustentado por outros parentes" itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Outros Meios" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Nenhuma das opções" itemValue="n" />
+                                                    <p:ajax update="manutAjax" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
+                                                </p:selectManyCheckbox>                                                  
+
+                                                <h:panelGrid id="pg16" rendered="#{alunoBean.verificaSelectedSustentadoresOP() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}" columns="2" columnClasses="col64, col65">
+                                                    <p:outputLabel value="Qual o parentesco? " for="par" indicateRequired="false" />
+                                                    <p:inputText id="par" required="true" requiredMessage="Parentesco: Campo Obrigatório" value="#{alunoBean.condicaoManutencao.parentesco}" label="Parentesco"/>
+                                                </h:panelGrid>
+
+                                                <h:panelGrid id="pg17" rendered="#{alunoBean.verificaSelectedSustentadoresOM() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}" columns="2" columnClasses="col66, col67">
+                                                    <p:outputLabel value="Quais são eles? " for="om" indicateRequired="false" />
+                                                    <p:inputText id="om" required="true" requiredMessage="Outros Meios: Campo Obrigatório" value="#{alunoBean.condicaoManutencao.nomeOutrosMeios}" label="Outros Meios"/>
+                                                </h:panelGrid>
+
+                                            </p:outputPanel>
                                         </div>
-                                    </p:panel>
+                                    </p:panel>                                      
 
                                     <p:panel header="Situação ocupacional">
                                         <div class="ui-g ui-fluid">                              
@@ -483,7 +481,7 @@
                                                     <h5>Informe o ganho mensal através desta situação</h5>
                                                     <h:panelGrid class="pgTam" columns="2" columnClasses="col79, col80">
                                                         <p:outputLabel indicateRequired="false" value="Salário Mensal: R$ " for="sal" />
-                                                        <p:inputText id="sal" required="true" requiredMessage="Salário Mensal: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.ocupacao.salarioMensal}" label="Salário"/>
+                                                        <p:inputText id="sal" required="true" placeholder="Exemplo: 934.00" requiredMessage="Salário Mensal: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.ocupacao.salarioMensal}" label="Salário"/>
                                                     </h:panelGrid>    
                                                 </h:panelGrid>
                                             </p:outputPanel>
@@ -527,17 +525,17 @@
                                         <div class="ui-g ui-fluid"> 
                                             <h:panelGrid id="pg26" class="pgTam" columns="2" columnClasses="col89, col90">                              
                                                 <p:outputLabel value="Alimentação: R$ " for="ali" />
-                                                <p:inputText id="ali" placeholder="Exemplo: 215,00" onkeypress="return numeros(event)" value="#{alunoBean.despesasCampus.alimentacao}" label="Alimentação"/>
+                                                <p:inputText id="ali" placeholder="Exemplo: 215.00" onkeypress="return numeros(event)" value="#{alunoBean.despesasCampus.alimentacao}" label="Alimentação"/>
                                             </h:panelGrid>
 
                                             <h:panelGrid id="pg27" class="pgTam" columns="2" columnClasses="col91, col92"> 
                                                 <p:outputLabel value="Trabalhos/Xerox: R$ " for="tra" />
-                                                <p:inputText placeholder="Exemplo: 46,00" onkeypress="return numeros(event)" id="tra" value="#{alunoBean.despesasCampus.trabalhos}" label="Trabalhos"/>
+                                                <p:inputText placeholder="Exemplo: 46.00" onkeypress="return numeros(event)" id="tra" value="#{alunoBean.despesasCampus.trabalhos}" label="Trabalhos"/>
                                             </h:panelGrid>
 
                                             <h:panelGrid id="pg28" class="pgTam" columns="2" columnClasses="col93, col94"> 
                                                 <p:outputLabel value="Materiais Escolares: R$ " for="mat" />
-                                                <p:inputText placeholder="Exemplo: 149,00" onkeypress="return numeros(event)" id="mat" value="#{alunoBean.despesasCampus.materiaisEscolares}" label="Materiais escolares"/>
+                                                <p:inputText placeholder="Exemplo: 149.00" onkeypress="return numeros(event)" id="mat" value="#{alunoBean.despesasCampus.materiaisEscolares}" label="Materiais escolares"/>
                                             </h:panelGrid>
                                         </div>
                                     </p:panel>
@@ -570,7 +568,7 @@
                                             <h5>No caso de NÃO residir com a família e possuir despesas extras com moradia, favor revelar o valor gasto:</h5>
                                             <h:panelGrid id="pg32" class="pgTam" columns="2" columnClasses="col100, col101">
                                                 <p:outputLabel value="Valor: R$ " for="despesasExtra" />
-                                                <p:inputText id="despesasExtra" onkeypress="return numeros(event)" placeholder="Exemplo: 464,00" value="#{alunoBean.situacaoResidencial.despesasExtra}" label="Despesas Extra"/>
+                                                <p:inputText id="despesasExtra" onkeypress="return numeros(event)" placeholder="Exemplo: 464.00" value="#{alunoBean.situacaoResidencial.despesasExtra}" label="Despesas Extra"/>
                                             </h:panelGrid>                            
 
                                             <h5 id="bordah4">Reside em:</h5>
@@ -745,12 +743,12 @@
                                                     <p:column width="12%" headerText="Salário">
                                                         <p:cellEditor>
                                                             <f:facet name="output"><p:outputLabel value="#{membroFamiliar.salario}" /></f:facet>
-                                                            <f:facet name="input"><p:inputText onkeypress="return numeros(event)" value="#{membroFamiliar.salario}"/></f:facet>
+                                                            <f:facet name="input"><p:inputText placeholder="Ex: 1345.00" onkeypress="return numeros(event)" value="#{membroFamiliar.salario}"/></f:facet>
                                                         </p:cellEditor>
                                                     </p:column>
 
-                                                    <p:column width="5%" headerText="Del">
-                                                        <p:commandButton immediate="true" update="tabelaMembro" value="" actionListener="#{alunoBean.excluirMembroFamiliar(membroFamiliar)}"/>
+                                                    <p:column width="5%" style="text-align: center">
+                                                        <p:commandButton immediate="true" title="Deletar" icon="fa fa-trash" update="tabelaMembro" actionListener="#{alunoBean.excluirMembroFamiliar(membroFamiliar)}"/>
                                                     </p:column>
 
                                                     <f:facet name="footer">
@@ -820,7 +818,7 @@
                                                     <p:outputPanel id="possuiRendaAluguel">
                                                         <h:panelGrid id="pg46" class="pgTam" rendered="#{alunoBean.renda.aluguel}" columns="2" columnClasses="col129, col130">
                                                             <p:outputLabel indicateRequired="false" value="Valor da renda: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorAluguel}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 135.00" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorAluguel}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -837,7 +835,7 @@
                                                     <p:outputPanel id="possuiRendaPensaoMorte">
                                                         <h:panelGrid id="pg47" class="pgTam" rendered="#{alunoBean.renda.pensaoMorte}" columns="2" columnClasses="col131, col132">
                                                             <p:outputLabel indicateRequired="false" value="Valor da renda: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorPensaoMorte}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 935.00" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorPensaoMorte}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>  
                                                 </h:panelGrid>
@@ -854,7 +852,7 @@
                                                     <p:outputPanel id="possuiRendaPensaoAlimenticia">
                                                         <h:panelGrid id="pg48" class="pgTam" rendered="#{alunoBean.renda.pensaoAlimenticia}" columns="2" columnClasses="col133, col134">
                                                             <p:outputLabel indicateRequired="false" value="Valor da renda: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorPensaoAlimenticia}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 235.00" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorPensaoAlimenticia}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -871,7 +869,7 @@
                                                     <p:outputPanel id="possuiRendaAjuda">
                                                         <h:panelGrid id="pg49" class="pgTam" rendered="#{alunoBean.renda.ajuda}" columns="2" columnClasses="col135, col136">
                                                             <p:outputLabel indicateRequired="false" value="Valor da renda: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorAjuda}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 335.00" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorAjuda}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -890,7 +888,7 @@
                                                             <p:outputLabel indicateRequired="false" value="Qual(is): "/>
                                                             <p:inputText required="true" requiredMessage="Qual Renda: Campo Obrigatório" value="#{alunoBean.renda.nomeOutros}"/>
                                                             <p:outputLabel indicateRequired="false" id="outRenda" value="Valor da renda: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorOutros}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 335.00" requiredMessage="Valor da Renda: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.renda.valorOutros}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -913,7 +911,7 @@
                                                     <p:outputPanel id="possuiAluguel">
                                                         <h:panelGrid id="pg51" class="pgTam" rendered="#{alunoBean.despesa.aluguel}" columns="2" columnClasses="col141, col142">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorAluguel}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 735.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorAluguel}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -930,7 +928,7 @@
                                                     <p:outputPanel id="possuiAgua">
                                                         <h:panelGrid id="pg52" class="pgTam" rendered="#{alunoBean.despesa.agua}" columns="2" columnClasses="col143, col144">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorAgua}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 35.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorAgua}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -947,7 +945,7 @@
                                                     <p:outputPanel id="possuiLuz">
                                                         <h:panelGrid id="pg53" class="pgTam" rendered="#{alunoBean.despesa.luz}" columns="2" columnClasses="col145, col146">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorLuz}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 95.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorLuz}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -964,7 +962,7 @@
                                                     <p:outputPanel id="possuiMedicamentos">
                                                         <h:panelGrid id="pg54" class="pgTam" rendered="#{alunoBean.despesa.medicamentos}" columns="2" columnClasses="col147, col148">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorMedicamentos}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 55.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorMedicamentos}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -981,7 +979,7 @@
                                                     <p:outputPanel id="possuiMensalidadeEscolar">
                                                         <h:panelGrid id="pg55" class="pgTam" rendered="#{alunoBean.despesa.mensalidadeEscolar}" columns="2" columnClasses="col149, col150">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorMensalidadeEscolar}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 525.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorMensalidadeEscolar}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -998,7 +996,7 @@
                                                     <p:outputPanel id="possuiFinanciamentos">
                                                         <h:panelGrid id="pg56" class="pgTam" rendered="#{alunoBean.despesa.financiamentos}" columns="2" columnClasses="col151, col152">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorFinanciamentos}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 500.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorFinanciamentos}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -1015,7 +1013,7 @@
                                                     <p:outputPanel id="possuiInternet">
                                                         <h:panelGrid id="pg57" class="pgTam" rendered="#{alunoBean.despesa.internet}" columns="2" columnClasses="col153, col154">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorInternet}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 75.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorInternet}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -1032,7 +1030,7 @@
                                                     <p:outputPanel id="possuiInvestimentos">
                                                         <h:panelGrid id="pg58" class="pgTam" rendered="#{alunoBean.despesa.investimentosEducacao}" columns="2" columnClasses="col155, col156">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorInvestimentosEducacao}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 745.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorInvestimentosEducacao}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -1049,7 +1047,7 @@
                                                     <p:outputPanel id="possuiPlanoSaude">
                                                         <h:panelGrid id="pg59" class="pgTam" rendered="#{alunoBean.despesa.planoSaude}" columns="2" columnClasses="col157, col158">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorPlanoSaude}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 45.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorPlanoSaude}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -1066,7 +1064,7 @@
                                                     <p:outputPanel id="possuiEndividamento">
                                                         <h:panelGrid id="pg60" class="pgTam" rendered="#{alunoBean.despesa.endividamento}" columns="2" columnClasses="col159, col160">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorEndividamento}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 9904.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorEndividamento}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -1083,7 +1081,7 @@
                                                     <p:outputPanel id="possuiTelefone">
                                                         <h:panelGrid id="pg61" class="pgTam" rendered="#{alunoBean.despesa.telefone}" columns="2" columnClasses="col161, col162">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorTelefone}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 48.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorTelefone}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -1100,7 +1098,7 @@
                                                     <p:outputPanel id="possuiTransporte">
                                                         <h:panelGrid id="pg62" class="pgTam" rendered="#{alunoBean.despesa.transporte}" columns="2" columnClasses="col163, col164">
                                                             <p:outputLabel indicateRequired="false" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorTransporte}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 70.00" requiredMessage="Valor da Despesa: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorTransporte}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -1119,7 +1117,7 @@
                                                             <p:outputLabel indicateRequired="false" value="Qual(is): "/>
                                                             <p:inputText required="true" requiredMessage="Qual Despesa: Item Obrigatório" value="#{alunoBean.despesa.nomeOutros}"/>                                
                                                             <p:outputLabel indicateRequired="false" id="outDespesa" value="Valor da despesa: "/>
-                                                            <p:inputText required="true" requiredMessage="Valor da Despesa: Item Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorOutros}"/>                                
+                                                            <p:inputText required="true" placeholder="Exemplo: 68.00" requiredMessage="Valor da Despesa: Item Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.despesa.valorOutros}"/>                                
                                                         </h:panelGrid>
                                                     </p:outputPanel>
                                                 </h:panelGrid>
@@ -1140,7 +1138,7 @@
                                                 <p:outputPanel id="zonaAjax">
                                                     <h:panelGrid id="pg65" class="pgTam" rendered="#{alunoBean.residenciaFamilia.zona == 'Zona rural'}" columns="2" columnClasses="col171, col172"> 
                                                         <p:outputLabel indicateRequired="false" value="A quantos quilômetros do campus do IFBA? " for="km" />
-                                                        <p:inputText required="true" requiredMessage="Distância do Campus: Campo Obrigatório" id="km" onkeypress="return numeros(event)"  value="#{alunoBean.residenciaFamilia.distanciaCampus}" label="Lastname"/>
+                                                        <p:inputText required="true" placeholder="Exemplo: 45" requiredMessage="Distância do Campus: Campo Obrigatório" id="km" onkeypress="return numeros(event)"  value="#{alunoBean.residenciaFamilia.distanciaCampus}" label="Lastname"/>
                                                     </h:panelGrid>                                    
                                                 </p:outputPanel>
                                             </h:panelGrid>

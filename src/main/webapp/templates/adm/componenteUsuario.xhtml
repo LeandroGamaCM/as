@@ -4,51 +4,51 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <ui:composition>
+    <ui:composition>           
         <div class="card card-w-title">
-            <h1>Cadastrar outro usuário administrador </h1>
-            <div class="login-panel-content">
-                <h:form id="formCadastroAdm" prependId="false">
-                    <div class="ui-g">
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
+            <h:form id="formCadastroAdm" prependId="false">
+                <p:outputPanel id="paineladm">
+                    <p:panel header="Cadastrar administrador">
+                        <p:messages autoUpdate="true"/>
+                        <h5>Login</h5>
+                        <h:panelGrid columns="3">
+                            <h:panelGrid columns="1">
                                 <p:outputLabel id="admNome">Nome Completo:</p:outputLabel>
-                                <p:inputText id="nomeAdm" onkeypress="return letras(event)" autocomplete="off" class="tamInputAdm" /> 
-                            </span>
-                        </div>
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
+                                <p:inputText id="nomeAdm" required="true" requiredMessage="Nome: Campo Obrigatório" onkeypress="return letras(event)" autocomplete="off" class="tamInputAdm pgUser" /> 
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1">
                                 <p:outputLabel id="admCpf">CPF:</p:outputLabel>
-                                <p:inputText id="cpfAdm" autocomplete="off" class="tamInputAdm" /> 
-                            </span>
-                        </div>
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
+                                <p:inputText id="cpfAdm" required="true" requiredMessage="CPF: Campo Obrigatório" autocomplete="off" class="tamInputAdm pgUser" /> 
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1">
                                 <p:outputLabel id="admEmail">Email:</p:outputLabel>
-                                <p:inputText id="emailAdm" autocomplete="off" class="tamInputAdm" /> 
-                            </span>
-                        </div>
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
-                                <p:outputLabel id="admSenha">Senha:</p:outputLabel>                                
-                                <p:inputText type="password" id="senhaAdm" autocomplete="off" class="tamInputAdm" />                                
-                            </span>
-                        </div>
-                        <div class="ui-g-12">
-                            <span class="md-inputfield">
+                                <p:inputText id="emailAdm" required="true" requiredMessage="Email: Campo Obrigatório" autocomplete="off" class="tamInputAdm pgUser" /> 
+                            </h:panelGrid>
+                        </h:panelGrid>
+
+                        <h5>Login</h5>
+                        <h:panelGrid columns="3">                        
+                            <h:panelGrid class="spanpo" columns="1">
+                                <span>
+                                    <p:outputLabel id="admSenha">Senha:</p:outputLabel>                                
+                                    <p:inputText type="password" alt="Insira uma senha com no mínimo 6 dígitos" required="true" requiredMessage="Senha: Campo Obrigatório" id="senhaAdm" autocomplete="off" class="tamInputAdm pgUser validar" />                                
+                                </span>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1">
                                 <p:outputLabel id="admConfirma">Confirmar Senha:</p:outputLabel>                                
-                                <p:inputText type="password" id="confirmaAdm" autocomplete="off" class="tamInputAdm" />                                
-                            </span>
-                        </div>
-                        <div id="botaoAdm" class="ui-g-4">
-                            <p:commandButton id="admBotao" onclick="return validarAdm();" action="#" value="Cadastrar" type="submit" styleClass="ui-priority-primary" />                            
-                        </div>
-                    </div>
-                </h:form>
-                <div style="width: 38.93%">
-                    <p id="aviso2">Informe uma senha segura de no mínino 6 caracteres.</p>
-                </div>
-            </div>
+                                <p:inputText type="password" required="true" requiredMessage="Confirmar Senha: Campo Obrigatório" id="confirmaAdm" autocomplete="off" class="tamInputAdm pgUser" />                                
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1" style="padding-top: 20px">
+                                <p:commandButton class="pgUser" onclick="return validarAdm();" action="#" value="Cadastrar" type="submit" style="width: 276px"/>                            
+                            </h:panelGrid>   
+                        </h:panelGrid>
+                    </p:panel>
+                </p:outputPanel>
+            </h:form>
         </div>
     </ui:composition>
 </html>

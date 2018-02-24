@@ -10,6 +10,11 @@ function removerClass2() {
 function removerClass3() {
     var element = document.getElementById("scriptR");
     element.classList.remove("layout");
+    
+    var element1 = document.getElementById("cpfRecuperar");
+    if(element1.value !== ''){
+        element1.classList.add("ui-state-filled");
+    }
 }
 function removerClass4() {
     var element = document.getElementById("scriptE");
@@ -60,21 +65,20 @@ function validarLogin() {
         return true;
     }
 }
-﻿
 
 //formulário de perfil adm
-        function validaPerfil() {
-            var senha1 = document.getElementById('senha');
+function validaPerfil() {
+    var senha1 = document.getElementById('senha');
 
-            if (senha1.value.length < 6) {
-                senha1.focus();
-                alert('Informe uma senha com no mínimo 6 caracteres.');
-                return false;
+    if (senha1.value.length < 6) {
+        senha1.focus();
+        alert('Informe uma senha com no mínimo 6 caracteres.');
+        return false;
 
-            } else {
-                return true;
-            }
-        }
+    } else {
+        return true;
+    }
+}
 
 //formulário de perfil aluno
 function validaPerfilAluno() {
@@ -116,6 +120,7 @@ function validarRecu() {
                 return true;
             }
         }
+        
 //permite apenas numeros no campo rg
 function numeros(e) {
     var expressao;
@@ -239,26 +244,6 @@ function onnext() {
     //função chamar o topo da tela
     $('html, body').animate({scrollTop: 0}, 'medium');
 
-    //validar formulário
-//  if ($(".tab1").hasClass("ui-state-highlight")) {
-//      var nome = document.getElementById('nome');
-//      var cpf = document.getElementById('cpf');
-//      
-//      if(nome.value === ''){
-//        alert('Por favor, preencha o campo Nome!');
-//        nome.focus;
-//        return false;
-//    }
-//    else if(cpf.value === ''){
-//        alert('Por favor, preencha o campo CPF!');
-//        cpf.focus;
-//        return false;
-//    }
-//    else{       
-//        return true;
-//    }
-// 
-//    }
 }
 
 //botao voltar do wizard

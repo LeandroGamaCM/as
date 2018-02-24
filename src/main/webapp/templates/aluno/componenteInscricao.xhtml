@@ -26,7 +26,7 @@
                     <p:outputPanel id="chefao">
                         <p:panel rendered="#{alunoBean.telaFormulario}">
                             <h1>Formulário de Inscrição</h1>
-                            <p:commandButton immediate="true" value="(Provisorio) Salvar" actionListener="#alunoBean.salvar()}"/>
+                            <p:commandButton immediate="true" value="(Provisorio) Salvar" update="@form" actionListener="#{alunoBean.salvar()}"/>
                             <p:wizard nextLabel="Próximo" onnext="return onnext();" onback="return onback();" backLabel="Voltar" flowListener="#{alunoBean.onFlowProcess}">
                                 <p:tab id="parte1" titleStyleClass="tab1" title="Dados Pessoais">
                                     <p:messages /> 
@@ -55,8 +55,8 @@
 
                                                 <p:outputLabel indicateRequired="false" id="outDN" value="Data de Nascimento: " for="date" />                                    
                                                 <p:inputMask id="date" required="false" requiredMessage="Data de Nascimento: Campo Obrigatório" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
-                                                    <f:convertDateTime dateStyle="medium"/>
-                                                </p:inputMask>                               
+                                                    <f:convertDateTime pattern="dd/mm/yyyy" timeZone="GMT-3"/>                                           
+                                                </p:inputMask>                             
                                             </h:panelGrid>
 
                                             <h:panelGrid id="pg3" class="pgTam" columns="6" columnClasses="col11, col12, col13, col14, col15, col16">
@@ -347,23 +347,22 @@
                                 <p:outputPanel id="manutAjax">
                                     <p:messages /> 
                                     <h:panelGrid width="100%" columns="2" columnClasses="label25, value25" >                              
-                                        <p:selectManyCheckbox value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
-                                            <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
-                                            <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Sustentado por outros parentes" itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Outros Meios" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
-                                            <f:selectItem itemLabel="Nenhuma das opções" itemValue="n" />
+                                        <p:selectManyCheckbox id="respMC" value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
+                                            <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.condicaoManutencao.sustentadoPorNinguem or alunoBean.condicaoManutencao.apenasMae or alunoBean.condicaoManutencao.apenasPai}"/>
+                                            <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.condicaoManutencao.sustentadoPorNinguem or alunoBean.condicaoManutencao.apenasMae or alunoBean.condicaoManutencao.ambosPais}"/>
+                                            <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.condicaoManutencao.sustentadoPorNinguem or alunoBean.condicaoManutencao.apenasPai or alunoBean.condicaoManutencao.ambosPais}"/>                                      
+                                            <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.condicaoManutencao.sustentadoPorNinguem}"/>
+                                            <f:selectItem itemLabel="Sustentado por outros parentes:" itemValue="op" itemDisabled="#{alunoBean.condicaoManutencao.sustentadoPorNinguem}"/>
+                                            <f:selectItem itemLabel="Outros Meios:" itemValue="om" itemDisabled="#{alunoBean.condicaoManutencao.sustentadoPorNinguem}"/>
+                                            <f:selectItem itemLabel="Nenhuma das opções" itemValue="n"/>                                            
                                             <p:ajax update="manutAjax" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
                                         </p:selectManyCheckbox>  
-
                                         <h:panelGrid width="100%" style="margin-top: 104px" columns="2" columnClasses="label27, value27, label28, value28" >       
-                                            <p:panelGrid rendered="#{alunoBean.verificaSelectedSustentadoresOP() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}">
+                                            <p:panelGrid id="pg16" rendered="#{alunoBean.condicaoManutencao.outrosParentes}">
                                                 <p:outputLabel style="width: 100%" value="Qual o parentesco? " for="par" />
                                                 <p:inputText style="width: 100%" id="par" value="#{alunoBean.condicaoManutencao.parentesco}" label="Parentesco"/>
                                             </p:panelGrid>
-                                            <p:panelGrid rendered="#{alunoBean.verificaSelectedSustentadoresOM() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}">
+                                            <p:panelGrid id="pg17" rendered="#{alunoBean.condicaoManutencao.outrosMeios}">
                                                 <p:outputLabel style="width: 100%; margin-top: 7px" value="Quais são eles? " for="om" />
                                                 <p:inputText style="width: 100%" id="om" value="#{alunoBean.condicaoManutencao.nomeOutrosMeios}" label="Outros Meios"/>
                                             </p:panelGrid>
@@ -1230,29 +1229,24 @@
                                     </p:panel> 
 
                                     <h:panelGrid id="pg75" columns="2" columnClasses="col192, col193">
-                                        <p:commandButton value="Salvar" actionListener="#{alunoBean.salvar()}"/>
-                                        <p:commandButton value="Enviar Inscrição" update="chefao" actionListener="#{alunoBean.changeToTelaDados()}"/>
+                                        <p:commandButton value="Enviar Inscrição" update="chefao" actionListener="#{alunoBean.enviarInscricao()}"/>
                                     </h:panelGrid>
                                 </p:tab>
                             </p:wizard>
                         </p:panel>
 
                         <p:panel rendered="#{alunoBean.telaDados}">
-                            Comfirme os dados
+                            <h1>Comfirmação dos dados</h1>
                             <ui:include src="componenteDadosInscricao.xhtml"/>
+                            <h:panelGrid columns="2">                                
+                                <p:commandButton value="Voltar ao Formulário de Inscrição" update="chefao" actionListener="#{alunoBean.changeToFormulario()}"/>
+                                <p:commandButton value="Confirmar dados" ajax="false" action="/paginas/aluno/comprovantes.jsf"/>
+                            </h:panelGrid>
                         </p:panel>
                     </p:outputPanel>
                 </div>
             </p:outputPanel>
         </h:form>    
     </ui:composition>
-    <!--                    <p:tab id="confirmar" title="Confirmar">
-                            <p:panel>
-     Tirar esses botoes
-                                <p:commandButton value="Deletar" actionListener="#{alunoBean.excluir()}"/>
-                            </p:panel>
-                        </p:tab>-->
-
-
 </html>
 

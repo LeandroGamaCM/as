@@ -43,6 +43,7 @@ public class Entrevista implements Serializable{
     private Float pontuacaoRendaPrincipalOrigem;
     private Float pontuacaoSaude;
     private Float pontuacaoSituacaoOcupacional;
+    private Float pontuacaoTotal;
     
 // Mudar pra aquele tipo de variavel no banco que supeorta muita coisa    
     private String observacoes;
@@ -193,6 +194,14 @@ public class Entrevista implements Serializable{
         this.pontuacaoSituacaoOcupacional = pontuacaoSituacaoOcupacional;
     }
 
+    public Float getPontuacaoTotal() {
+        return pontuacaoTotal;
+    }
+
+    public void setPontuacaoTotal(Float pontuacaoTotal) {
+        this.pontuacaoTotal = pontuacaoTotal;
+    }
+
     public String getObservacoes() {
         return observacoes;
     }
@@ -203,26 +212,27 @@ public class Entrevista implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.entrevista);
-        hash = 37 * hash + Objects.hashCode(this.aluno);
-        hash = 37 * hash + Objects.hashCode(this.status);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoComposicaoFamiliar);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoCondicaoEconomicaEstudante);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoDespesaAnalise);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoEntrevista);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoEscolaOrigem);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoEtnia);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoGenero);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoLocalResidenciaFamilia);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoMoradiaEstudante);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoMoradiaFamilia);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoProgramaSocial);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoRendaPerCapita);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoRendaPrincipalOrigem);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoSaude);
-        hash = 37 * hash + Objects.hashCode(this.pontuacaoSituacaoOcupacional);
-        hash = 37 * hash + Objects.hashCode(this.observacoes);
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.entrevista);
+        hash = 43 * hash + Objects.hashCode(this.aluno);
+        hash = 43 * hash + Objects.hashCode(this.status);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoComposicaoFamiliar);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoCondicaoEconomicaEstudante);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoDespesaAnalise);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoEntrevista);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoEscolaOrigem);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoEtnia);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoGenero);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoLocalResidenciaFamilia);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoMoradiaEstudante);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoMoradiaFamilia);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoProgramaSocial);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoRendaPerCapita);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoRendaPrincipalOrigem);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoSaude);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoSituacaoOcupacional);
+        hash = 43 * hash + Objects.hashCode(this.pontuacaoTotal);
+        hash = 43 * hash + Objects.hashCode(this.observacoes);
         return hash;
     }
 
@@ -293,6 +303,9 @@ public class Entrevista implements Serializable{
             return false;
         }
         if (!Objects.equals(this.pontuacaoSituacaoOcupacional, other.pontuacaoSituacaoOcupacional)) {
+            return false;
+        }
+        if (!Objects.equals(this.pontuacaoTotal, other.pontuacaoTotal)) {
             return false;
         }
         return true;

@@ -51,9 +51,25 @@ public class EntrevistaRN {
             entrevista.setPontuacaoRendaPrincipalOrigem(calcularPontuacaoRendaPrincipalOrigem(aluno));
             entrevista.setPontuacaoSaude(calcularPontuacaoSaude(aluno));
             entrevista.setPontuacaoSituacaoOcupacional(calcularPontuacaoSituacaoOcupacional(aluno));
-      
-            salvar(entrevista);
-           
+
+            pontuacao += entrevista.getPontuacaoComposicaoFamiliar();
+            pontuacao += entrevista.getPontuacaoCondicaoEconomicaEstudante();
+            pontuacao += entrevista.getPontuacaoDespesaAnalise();
+            pontuacao += entrevista.getPontuacaoEscolaOrigem();
+            pontuacao += entrevista.getPontuacaoEtnia();
+            pontuacao += entrevista.getPontuacaoGenero();
+            pontuacao += entrevista.getPontuacaoLocalResidenciaFamilia();
+            pontuacao += entrevista.getPontuacaoMoradiaEstudante();
+            pontuacao += entrevista.getPontuacaoMoradiaFamilia();
+            pontuacao += entrevista.getPontuacaoProgramaSocial();
+            pontuacao += entrevista.getPontuacaoRendaPerCapita();
+            pontuacao += entrevista.getPontuacaoRendaPrincipalOrigem();
+            pontuacao += entrevista.getPontuacaoSaude();
+            pontuacao += entrevista.getPontuacaoSituacaoOcupacional();
+            
+            entrevista.setPontuacaoTotal(getPontuacao(aluno));
+            
+            salvar(entrevista);           
        }
      
     }

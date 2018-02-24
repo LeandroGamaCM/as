@@ -2,10 +2,12 @@ package br.edu.ifba.paae.bean.aluno;
 
 import br.edu.ifba.paae.entidades.arquivo.Arquivo;
 import br.edu.ifba.paae.entidades.formulario.MembroFamiliar;
+import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.logica.FormularioAluno;
 import br.edu.ifba.paae.rn.arquivo.ArquivoRN;
 import br.edu.ifba.paae.rn.formulario.*;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,15 +30,20 @@ public class ComprovanteBean implements Serializable{
     private UploadedFile arquivoMembroFamilar;
     private MembrosFamiliares membrosFamiliares;
     
+    private PeriodoInscricao periodoInscricao;
+    
     @PostConstruct
     public void init() {
         UsuarioRN usuarioRN = new UsuarioRN();
         AlunoRN alunoRN = new AlunoRN();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();
         String cpf = external.getRemoteUser();
         Usuario usuario = usuarioRN.buscarPorLogin(cpf);
+        
+        periodoInscricao = periodoInscricaoRN.last();
         
         if(usuario != null){
             System.out.println("\tNome usuario: " + usuario.getNome());
@@ -752,8 +759,15 @@ public class ComprovanteBean implements Serializable{
     public void setMembrosFamiliares(MembrosFamiliares membrosFamiliares) {
         this.membrosFamiliares = membrosFamiliares;
     }
-    
 
+    public PeriodoInscricao getPeriodoInscricao() {
+        return periodoInscricao;
+    }
+
+    public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
+        this.periodoInscricao = periodoInscricao;
+    }
+    
 }
 
 

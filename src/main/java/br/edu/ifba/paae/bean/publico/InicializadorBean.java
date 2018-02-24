@@ -16,6 +16,7 @@ import br.edu.ifba.paae.rn.analise.RendaPrincipalOrigemRN;
 import br.edu.ifba.paae.rn.analise.SaudeRN;
 import br.edu.ifba.paae.rn.analise.SituacaoOcupacionalRN;
 import br.edu.ifba.paae.rn.arquivo.ArquivoRN;
+import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import java.io.File;
 import java.io.Serializable;
 import java.util.List;
@@ -45,9 +46,11 @@ public class InicializadorBean implements Serializable{
         SaudeRN saudeRN = new SaudeRN();
         SituacaoOcupacionalRN situacaoOcupacionalRN = new SituacaoOcupacionalRN();
         UsuarioRN usuarioRN = new UsuarioRN();
+        PeriodoInscricaoRN periodoInscricaoRN = new PeriodoInscricaoRN();
         
-        System.out.println("\tDefinindo padrões");
-
+        if(periodoInscricaoRN.listar() == null || periodoInscricaoRN.listar().isEmpty()){
+            periodoInscricaoRN.criarPrimeiro();
+        }
         if(usuarioRN.listar() == null || usuarioRN.listar().isEmpty()){
             usuarioRN.criarADM();
         }

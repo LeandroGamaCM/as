@@ -26,7 +26,7 @@ public class TelaRelatoriosBean implements Serializable{
     private PieChartModel graficoPreferenciaBolsa;
     private PieChartModel graficoAlunos;
     
-    private String estadoTela = "informacoes";
+    private String estadoTela = "classificacao";
 
     @PostConstruct
     public void init() {        

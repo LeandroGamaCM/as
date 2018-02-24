@@ -3,6 +3,7 @@ package br.edu.ifba.paae.rn.inscricao;
 import br.edu.ifba.paae.dao.DAOFactory;
 import br.edu.ifba.paae.dao.inscricao.PeriodoInscricaoDAO;
 import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PeriodoInscricaoRN {
@@ -46,5 +47,15 @@ public class PeriodoInscricaoRN {
         }
         
         return null;
+    }
+    
+    public void criarPrimeiro(){
+        PeriodoInscricao periodoInscricao = new PeriodoInscricao();
+        LocalDateTime now = LocalDateTime.now();
+        
+        periodoInscricao.setAno(now.getYear());
+        periodoInscricao.setAtivado(Boolean.FALSE);
+        
+        salvar(periodoInscricao);
     }
 }

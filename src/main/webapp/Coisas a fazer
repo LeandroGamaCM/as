@@ -30,18 +30,3 @@ Leandro:
 
     - Inscricao:
         Tirar aquelas os botoes que facilitam a navegação
-        Fazer os botões chamarem as paginas especificas
-        Ver os valores que estão sumindo no condicaoManutencao na tela alunoInscricao
-
-    - PrincipalAluno
-        Colocar uma imagem explicando o passo a passo da inscricao pra encher a tela (Opcional)
-    
-    - Travar a pagina comprovantes pra quando o periodo de inscricao estiver desativado
-
-    - Colocar o value em cadastroADM
-
-    - Em "a família possui outros imóveis além do que habita" resolver a situação de "outros"
-
-    - Deixar a tela quieta por um tempo pra ver o que acontece com a sessão
-
-    - Aluno tem dois nomes

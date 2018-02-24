@@ -49,6 +49,7 @@ public class AlunoBean implements Serializable{
     private SituacaoResidencial situacaoResidencial = new SituacaoResidencial();
     private Turma turma = new Turma();
     private Entrevista entrevista = new Entrevista();
+    private Usuario usuario = new Usuario();
     
     private List<String> listaBolsas = new ArrayList<>();
     
@@ -85,7 +86,7 @@ public class AlunoBean implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext external = context.getExternalContext();
         String cpf = external.getRemoteUser();
-        Usuario usuario = usuarioRN.buscarPorLogin(cpf);
+        usuario = usuarioRN.buscarPorLogin(cpf);
         
         if(usuario != null){
             if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
@@ -168,8 +169,6 @@ public class AlunoBean implements Serializable{
             dependentes.setAluno(aluno);
         }else{
             getDependentesProperties(dependentes);
-            if(dependentes.getFilho()!= null)
-                System.out.println("Tem filho = "+dependentes.getFilho());
         }
                 
         despesasCampus = despesasCampusRN.buscarPorAluno(aluno.getAluno());
@@ -281,6 +280,10 @@ public class AlunoBean implements Serializable{
         this.estadoTela = "telaDados";
     }    
     
+    public void enviarInscricao(){
+        salvar();
+        changeToTelaDados();
+    }
     
     public void salvar(){
         AlunoRN alunoRN = new AlunoRN();
@@ -288,9 +291,14 @@ public class AlunoBean implements Serializable{
         EntrevistaRN entrevistaRN = new EntrevistaRN();
         
         aluno.setTurma(turmaRN.buscarTurma(turma.getModalidade(), turma.getCurso(), turma.getNome()));
-        aluno.setStatus("Inscrição realizada");
         aluno.setPeriodoInscricao(periodoInscricao);
+//        aluno.setStatus("Inscrição realizada");
         
+//        if(usuario != null){
+//            UsuarioRN usuarioRN = new UsuarioRN();
+//            usuario.setNome(aluno.getNome());
+//            usuarioRN.atualizar(usuario);
+//        }
         alunoRN.salvar(aluno);
 
         salvarDependenciasAluno(aluno);
@@ -301,7 +309,6 @@ public class AlunoBean implements Serializable{
     }
     
     public void salvarDependenciasAluno(Aluno aluno){
-        // ATENÇÂO: A ordem dessas operações deve ser realizada exatamente do jeito que está! 
         EntrevistaRN entrevistaRN = new EntrevistaRN();
         BolsasAuxilioRN bolsasAuxilioRN = new BolsasAuxilioRN();
         CondicaoManutencaoRN condicaoManutencaoRN = new CondicaoManutencaoRN();
@@ -366,10 +373,8 @@ public class AlunoBean implements Serializable{
     }
     
     public void excluirMembroFamiliar(MembroFamiliar membroFamiliar){
-        System.out.println("\tsize: " + membrosFamiliares.size());
         if(membroFamiliar != null) {
             membrosFamiliares.remove(membroFamiliar);
-            System.out.println("\tsize: " + membrosFamiliares.size());
         }
         
     }    
@@ -438,7 +443,6 @@ public class AlunoBean implements Serializable{
     }
     
     public void setCondicaoManutencaoProperties(){
-        int i;
         condicaoManutencao.setAmbosPais(Boolean.FALSE);
         condicaoManutencao.setApenasPai(Boolean.FALSE);
         condicaoManutencao.setApenasMae(Boolean.FALSE);
@@ -483,6 +487,9 @@ public class AlunoBean implements Serializable{
             }
             if(condicaoManutencao.getAvos() != null && condicaoManutencao.getAvos()){
                 selectedSustentadores.add("v");
+            }
+            if(condicaoManutencao.getSustentadoPorNinguem()!= null && condicaoManutencao.getSustentadoPorNinguem()){
+                selectedSustentadores.add("n");
             }
         }
     }
@@ -680,72 +687,6 @@ public class AlunoBean implements Serializable{
         return false;
     }
         
-    public boolean verificaSelectedSustentadoresPM(){
-        int i;
-        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
-            for(i=0;i<selectedSustentadores.size();i++){
-                if("pm".equals(selectedSustentadores.get(i)))
-                    return true;
-            }
-        }
-            return false;
-    }
-    
-    public boolean verificaSelectedSustentadoresP(){
-        int i;
-        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
-            for(i=0;i<selectedSustentadores.size();i++){
-                if("p".equals(selectedSustentadores.get(i)))
-                    return true;
-            }
-        }
-        return false;
-    }
-    public boolean verificaSelectedSustentadoresM(){
-        int i;
-        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
-            for(i=0;i<selectedSustentadores.size();i++){
-                if("m".equals(selectedSustentadores.get(i)))
-                    return true;
-            }
-        }
-        return false;
-    }
-    public boolean verificaSelectedSustentadoresN(){
-        int i;
-        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
-            for(i=0;i<selectedSustentadores.size();i++){
-                if("n".equals(selectedSustentadores.get(i))){
-                    System.out.println("Nenhuma das opções = Ativado");
-                    return true;                    
-                }
-            }
-        }
-                    System.out.println("Nenhuma das opções = Desativado");
-        return false;        
-    }
-
-    public boolean verificaSelectedSustentadoresOP(){
-        int i;
-        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
-            for(i=0;i<selectedSustentadores.size();i++){
-                if("op".equals(selectedSustentadores.get(i)))
-                    return true;
-            }
-        }
-        return false;        
-    }
-
-    public boolean verificaSelectedSustentadoresOM(){
-        int i;
-        if(selectedSustentadores != null && !selectedSustentadores.isEmpty()){
-            for(i=0;i<selectedSustentadores.size();i++){
-                if("om".equals(selectedSustentadores.get(i)))
-                    return true;
-            }
-        }
-        return false;        
-    }
     public boolean verificaMoraComOutro(){
         if(situacaoResidencial.getComQuemMora() == null){
             return false;

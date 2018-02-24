@@ -46,7 +46,7 @@ public class Ocupacao implements Serializable {
     
 
     @Column(name = "tempo_servico")
-    private Float tempoServico;
+    private String tempoServico;
 
 // Getters e Setters
 
@@ -138,29 +138,29 @@ public class Ocupacao implements Serializable {
         this.salarioMensal = salarioMensal;
     }
 
-    public Float getTempoServico() {
+    public String getTempoServico() {
         return tempoServico;
     }
 
-    public void setTempoServico(Float tempoServico) {
+    public void setTempoServico(String tempoServico) {
         this.tempoServico = tempoServico;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.ocupacao);
-        hash = 71 * hash + Objects.hashCode(this.aluno);
-        hash = 71 * hash + Objects.hashCode(this.arquivoOcupacao);
-        hash = 71 * hash + Objects.hashCode(this.trabalho);
-        hash = 71 * hash + Objects.hashCode(this.situacaoOcupacional);
-        hash = 71 * hash + Objects.hashCode(this.telefoneEmpregador);
-        hash = 71 * hash + Objects.hashCode(this.profissao);
-        hash = 71 * hash + Objects.hashCode(this.nomeEmpregador);
-        hash = 71 * hash + Objects.hashCode(this.possuiEstagio);
-        hash = 71 * hash + Objects.hashCode(this.instiruicaoEstagio);
-        hash = 71 * hash + Objects.hashCode(this.salarioMensal);
-        hash = 71 * hash + Objects.hashCode(this.tempoServico);
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.ocupacao);
+        hash = 67 * hash + Objects.hashCode(this.aluno);
+        hash = 67 * hash + Objects.hashCode(this.arquivoOcupacao);
+        hash = 67 * hash + Objects.hashCode(this.trabalho);
+        hash = 67 * hash + Objects.hashCode(this.situacaoOcupacional);
+        hash = 67 * hash + Objects.hashCode(this.telefoneEmpregador);
+        hash = 67 * hash + Objects.hashCode(this.profissao);
+        hash = 67 * hash + Objects.hashCode(this.nomeEmpregador);
+        hash = 67 * hash + Objects.hashCode(this.possuiEstagio);
+        hash = 67 * hash + Objects.hashCode(this.instiruicaoEstagio);
+        hash = 67 * hash + Objects.hashCode(this.salarioMensal);
+        hash = 67 * hash + Objects.hashCode(this.tempoServico);
         return hash;
     }
 
@@ -194,6 +194,9 @@ public class Ocupacao implements Serializable {
         if (!Objects.equals(this.instiruicaoEstagio, other.instiruicaoEstagio)) {
             return false;
         }
+        if (!Objects.equals(this.tempoServico, other.tempoServico)) {
+            return false;
+        }
         if (!Objects.equals(this.ocupacao, other.ocupacao)) {
             return false;
         }
@@ -207,9 +210,6 @@ public class Ocupacao implements Serializable {
             return false;
         }
         if (!Objects.equals(this.salarioMensal, other.salarioMensal)) {
-            return false;
-        }
-        if (!Objects.equals(this.tempoServico, other.tempoServico)) {
             return false;
         }
         return true;

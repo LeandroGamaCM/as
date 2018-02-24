@@ -14,10 +14,34 @@ function removerClass3() {
 function removerClass4() {
     var element = document.getElementById("scriptE");
     element.classList.remove("layout");
+    
+    var element1 = document.getElementById("cpfLogin");
+    var element2 = document.getElementById("senhaLogin");
+    
+    if(element1.value !== ''){
+        element1.classList.add("ui-state-filled");
+    }
+    if(element2.value !== ''){
+        element2.classList.add("ui-state-filled");
+    }
 }
 function removerClass5() {
     var element = document.getElementById("scriptC");
     element.classList.remove("layout");
+    
+    var element1 = document.getElementById("inputNome");
+    var element2 = document.getElementById("inputCPF");
+    var element3 = document.getElementById("inputEmail");
+
+    if(element1.value !== ''){
+        element1.classList.add("ui-state-filled");
+    }
+    if(element2.value !== ''){
+        element2.classList.add("ui-state-filled");
+    }
+    if(element3.value !== ''){
+        element3.classList.add("ui-state-filled");
+    }
 }
 
 //formulario de login

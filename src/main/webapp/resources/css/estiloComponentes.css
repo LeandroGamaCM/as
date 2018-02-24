@@ -1072,10 +1072,18 @@ tr.ui-widget-content.ui-datatable-odd{
     color: #ffffff;    
 }
 #con1{
-    padding: 12px 340px 12px 340px;
+    padding: 12px 190px 12px 190px;
 }
 #con2{
-    padding: 12px 330px 12px 330px;
+    padding: 12px 190px 12px 190px;
+}
+@media screen and (max-width: 768px) {
+    #con1{
+        padding: 12px 10px 12px 10px !important;
+    }
+    #con2{
+        padding: 12px 1px 12px 1px !important;
+    }
 }
 #conlle{
     margin-top: 5px;    
@@ -1144,7 +1152,7 @@ tr.ui-widget-content.ui-datatable-odd{
     width: 30px;
     height: 30px;
     line-height: 30px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     display: block;
     text-align: center;
     margin: 0 auto 10px auto;

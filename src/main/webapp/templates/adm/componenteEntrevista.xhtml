@@ -49,17 +49,17 @@
                                 <f:facet name="header">
                                     <h:outputText value="Entrevistas Não Feitas - #{telaEntrevistaBean.periodoInscricao.ano}" />
                                 </f:facet>
-                                <p:column headerText="Aluno">
+                                <p:column width="40%" headerText="Aluno">
                                     <h:outputText value="#{formularioAluno.aluno.nome}"/>
                                 </p:column>
-                                <p:column headerText="CPF">
+                                <p:column width="25%" headerText="CPF">
                                     <h:outputText value="#{formularioAluno.aluno.cpf}"/>
                                 </p:column>
-                                <p:column headerText="Turma">
+                                <p:column width="25%" headerText="Turma">
                                     <h:outputText value="#{formularioAluno.turma.nome} #{formularioAluno.turma.curso}" />
                                 </p:column>
-                                <p:column headerText="Entrevistar">
-                                    <p:commandButton value="icone" update="@form" actionListener="#{telaEntrevistaBean.changeToEntrevistarAluno(formularioAluno.aluno)}"/>
+                                <p:column style="text-align: center" headerText="Entrevistar">
+                                    <p:commandButton icon="fa fa-comments" update="@form" actionListener="#{telaEntrevistaBean.changeToEntrevistarAluno(formularioAluno.aluno)}"/>
                                 </p:column>
                             </p:dataTable>
                         </p:outputPanel>                    
@@ -116,8 +116,6 @@
                             <p:commandButton value="Fechar" update="@form" actionListener="#{telaEntrevistaBean.changeToEntrevistasFeitas()}"/>
                         </p:panel>
                     </h:panelGrid>
-
-
                 </p:outputPanel>
             </h:form>
         </div>

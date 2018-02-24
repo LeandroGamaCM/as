@@ -6,15 +6,15 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
-        <h:form prependId="false">
-            <p:outputPanel rendered="#{!alunoBean.periodoInscricao.ativado}">
-                <p:panel>
-                    <h5>O período de inscrição acabou!</h5>
-                </p:panel>
-            </p:outputPanel>
-            <p:outputPanel rendered="#{alunoBean.periodoInscricao.ativado}">
-                <p:growl id="growl" sticky="true" showDetail="true"/>               
-                <div class="card card-w-title"> <!-- Nao apaga isso nao! é padrao pra todas as paginas-->
+        <div class="card card-w-title">
+            <h:form prependId="false">
+                <p:outputPanel rendered="#{!alunoBean.periodoInscricao.ativado}">
+                    <p:panel>
+                        <h5>O período de inscrição acabou!</h5>
+                    </p:panel>
+                </p:outputPanel>
+                <p:outputPanel rendered="#{alunoBean.periodoInscricao.ativado}">
+                    <p:growl id="growl" sticky="true" showDetail="true"/>               
                     <p:panel header="Provisório, apenas pra facilitar a alternancia das telas">
                         <p:toolbar>
                             <p:toolbarGroup>
@@ -1297,9 +1297,10 @@
                             <ui:include src="componenteDadosInscricao.xhtml"/>
                         </p:panel>
                     </p:outputPanel>
-                </div>
-            </p:outputPanel>
-        </h:form>    
+
+                </p:outputPanel>
+            </h:form>    
+        </div>
     </ui:composition>
     <!--                    <p:tab id="confirmar" title="Confirmar">
                             <p:panel>

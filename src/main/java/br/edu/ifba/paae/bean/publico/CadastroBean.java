@@ -52,7 +52,7 @@ public class CadastroBean implements Serializable{
             }
         }
     }
-    
+        
     public String salvar(){
             if(validarUsuario()){
                 atribuirProperties();

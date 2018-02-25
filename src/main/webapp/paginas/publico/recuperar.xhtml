@@ -20,7 +20,7 @@
             <div class="login-panel-content">
                 <h:form id="logi" prependId="false">
                     <div class="ui-g">
-                        <div class="ui-g-12" style="margin-top: 20px; padding: unset;">
+                        <div class="ui-g-12" style="margin-top: 20px; padding: inherit;">
                             <h2 class="form-signin-heading"><h:graphicImage library="imagens" name="logoPaae.png"/></h2>
                         </div>     
                         
@@ -32,16 +32,19 @@
                         </div> 
                         
                         <h:panelGroup rendered="#{recuperacaoBean.mensagemCPFNulo}">
-                            <span style="color: red; text-align:">Informe um CPF válido!</span><br />
+                            <span class="spanrecupera">Informe um CPF válido!</span><br />
                         </h:panelGroup>
                         <h:panelGroup rendered="#{recuperacaoBean.mensagemUsuarioNulo}">
-                            <span style="color: red; text-align:">Não existe nenhum usuário cadastrado com esse CPF!</span><br />
+                            <span class="spanrecupera">Não existe nenhum usuário cadastrado com esse CPF!</span><br />
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{recuperacaoBean.mensagemEmailNulo}">
+                            <span class="spanrecupera">Não existe um email cadastrado para esse usuário!</span><br />
                         </h:panelGroup>
                         <h:panelGroup rendered="#{recuperacaoBean.mensagemSemInternet}">
-                            <span style="color: red; text-align:">Não há conectividade à internet pelo servidor. Tente mais tarde</span><br />
+                            <span class="spanrecupera">Não há conectividade com o servidor. Tente mais tarde</span><br />
                         </h:panelGroup>
                         <h:panelGroup rendered="#{recuperacaoBean.mensagemEmailNaoEnviado}">
-                            <span style="color: red; text-align:">Não foi possível enviar um email de redefinição para #{recuperacaoBean.emailDestino}</span><br />
+                            <span class="spanrecupera2">Não foi possível enviar um email de redefinição para #{recuperacaoBean.emailDestino}</span><br />
                         </h:panelGroup>
                         
                         <div class="ui-g-12">

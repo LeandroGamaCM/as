@@ -4,7 +4,7 @@
   position: fixed;
   z-index: 999;
   top: 50%;
-  margin-top: -31px;
+  margin-top: -54px;
   left: 50%;
   margin-left: 100px;
 }
@@ -324,4 +324,39 @@ body .ui-button:hover {
 }
 body .ui-button:focus {
     background-color: #607D8B !important;
+}
+.spanerro{
+    padding: 1px !important;
+    position: absolute !important;
+    margin-top: 283px !important;
+    color: red !important;
+}
+.spanh1{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.spanrodape{
+    margin-top: 2px !important;
+}
+.spanlogin{
+    color: red;
+    position: absolute !important;
+    margin-top: 189px !important;
+    margin-left: 92px;
+}
+.cor{
+    color: blue !important;
+    margin-left: 31px;
+}
+.cor1{
+    color: blue !important;
+    margin-left: 95px !important;
+}
+.spanrecupera{
+    position: absolute;
+    margin-top: 133px !important;
+    color: red !important;
+}
+.spanrecupera2{
+    color: red !important;
 }

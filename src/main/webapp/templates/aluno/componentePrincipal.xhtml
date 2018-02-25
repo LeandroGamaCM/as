@@ -4,13 +4,28 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <div class="card-todo">
-            <div class="controller">
-                <a href="#{request.contextPath}/paginas/aluno/inscricao.jsf">Realizar Inscrição</a>
+        <div>
+            <h1 style="text-align: center; margin-top: 34px;">SISTEMA PAAE</h1>
+            <h5 style="text-align: center">Siga as etapas abaixo para se inscrever no Programa de Assistência e Apoio Estudantil do IFBA - Campus Irecê</h5>
+            
+            <div class="container">
+                <ul class="progressbar">
+                    <li class="active">Iniciar Sessão</li>
+                    <li>Realizar Inscrição</li>
+                    <li>Anexar Comprovantes</li>
+                </ul>
             </div>
-            <div class="controller" id="conlle">
-                <a href="#{request.contextPath}/paginas/aluno/comprovantes.jsf">Anexar Comprovantes</a>
+            <div class="todocontrol">
+                <div class="controller">
+                    <a id="con1" href="#{request.contextPath}/paginas/aluno/inscricao.jsf">Realizar Inscrição</a>
+                </div>
+                <div class="controller" id="conlle">
+                    <a id="con2" href="#{request.contextPath}/paginas/aluno/comprovantes.jsf">Anexar Comprovantes</a>
+                </div>
             </div>
         </div>
+        <p:focus/>
     </ui:composition>        
 </html>
+
+

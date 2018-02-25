@@ -5,10 +5,15 @@
     background: #ffffff;
     bottom: 0;
     position: absolute;
-    width: 78.8vw;
+    width: calc(100% - 290px);
 }
 .novoRodape{
-    width: 91.9vw !important;
+    width: calc(100% - 110px) !important;
+}
+@media screen and (max-width: 768px) {
+    .layout-wrapper .layout-main .layout-footer{
+        width: calc(100% - 50px) !important;
+    }
 }
 
 /*Código CSS para componente*/
@@ -46,4 +51,16 @@ body a {
 }
 .commons{
     font-size: 24px;
+}
+#dialog{
+    top: 70px !important;
+    left: 248px !important;
+}
+#dialog2{
+    top: 70px !important;
+    left: 248px !important;
+}
+.h5av{
+    margin-top: 13px;
+    margin-bottom: 7px;
 }

@@ -2,6 +2,9 @@
 .layout{
   display: none;
 }
+#del:hover{
+    
+}
 .layout-wrapper-static .layout-main {
     margin-left: 240px;
 }

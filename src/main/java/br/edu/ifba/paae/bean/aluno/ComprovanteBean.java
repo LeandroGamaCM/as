@@ -1,18 +1,12 @@
 package br.edu.ifba.paae.bean.aluno;
 
-import br.edu.ifba.paae.entidades.arquivo.Arquivo;
-import br.edu.ifba.paae.entidades.formulario.MembroFamiliar;
-import br.edu.ifba.paae.entidades.formulario.Ocupacao;
 import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
 import br.edu.ifba.paae.entidades.usuario.Usuario;
 import br.edu.ifba.paae.logica.FormularioAluno;
-import br.edu.ifba.paae.rn.arquivo.ArquivoRN;
 import br.edu.ifba.paae.rn.formulario.*;
 import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
 import br.edu.ifba.paae.rn.usuario.UsuarioRN;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -514,7 +508,7 @@ public class ComprovanteBean implements Serializable{
         UploadedFile uploadedFile = event.getFile();
         
         membrosFamiliares.getMembroFamiliar2().setArquivoRenda(uploadedFile.getContents());
-        membrosFamiliares.getMembroFamiliar2().setArquivoRenda(uploadedFile.getContents());
+        membrosFamiliares.getMembroFamiliar2().setArquivoRendaNome(uploadedFile.getFileName());
 
         membroFamiliarRN.salvar(membrosFamiliares.getMembroFamiliar2());                
     }

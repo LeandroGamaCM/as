@@ -2,13 +2,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">    
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">    
     <ui:composition>
         <a href="#{request.contextPath}/#{request.contextPath}/paginas/aluno/principal.jsf"><h:graphicImage library="imagens" name="logoRodape.png" /></a>
         <span class="footer-text-right">
-            <span class="fa fa-creative-commons commons"></span> 
-            <span><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons</a></span>
+            <span class="fa fa-bookmark-o" style="font-size: 24px"></span> 
+            <span><a onclick="PF('dlg2').show();" href="#">Manual</a></span>
         </span>
+
+        <p:dialog id="dialog" header="Manual de Instruções" widgetVar="dlg2" modal="true" minHeight="900">
+            <h5>Do Acesso ao Sistema</h5>
+            01. O Sistema PAAE, atento a questões de segurança, só permite o cadastro de usuários que possuem o CPF na base de dados.<br/>
+            02. Todos os usuários devem possuir um email válido para realizar o cadastro.<br/>
+            03. O usuário que esquece a sua credencial de acesso deve utilizar a função Recuperar Senha, presente na tela de acesso.<br/>
+            04. Recuperar a senha só é possível se o email cadastrado é válido e pertence ao próprio usuário.<br/>
+            05. Se acontecer a perda da conta de email, o usuário deve atualizar imediatamente seus dados cadastrais.<br/>
+            06. O sistema não permite a exclusão de usuários. Dados não válidos inseridos poderá comprometer o acesso ao sistema.
+            <h5>Da Inscrição no PAAE</h5>
+            07. O período de inscrição abre e fecha por única e exclusiva determinação da Assistência Social.<br/>
+            08. Cabe ao usuário se informar das datas que marcará o início e o término do período.<br/>
+            09. Fora do período de inscrição, o formulário para estudo socioeconômico fica indisponível.<br/>
+            10. Por se tratar de um processo de concessão de auxílios, o formulário é extenso.<br/>
+            11. Os dados fornecidos devem possuir veracidade. Dúvidas no preenchimeto dos campos devem ser levadas a Assistência Social.<br/>
+            12. Preenchido o formulário, terá o usuário duas opções: Salvar os dados preenchidos; Enviar Inscrição.<br/>
+            13. O usuário que ainda não possui os documentos para serem anexados devem optar por Salvar Dados.<br/>
+            <h5>Do Anexo de Comprovantes</h5>
+            14. Alguns campos do formulário necessita de documentos comprobatórios da informação fornecida.<br/>
+            15. Quando o usuário envia a inscrição, é chamada a tela de anexar comprovantes.<br/>
+            16. É preciso que os documentos estejam digitalizados para serem anexados. Cada um deve possuir no máximo 1,4mb.<br/>
+            17. Depois de anexar o documento, é necessário clicar em Enviar.
+        </p:dialog> 
     </ui:composition>
 </html>
 

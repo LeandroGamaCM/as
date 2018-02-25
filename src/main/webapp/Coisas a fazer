@@ -1,32 +1,11 @@
-Luan:
+- ver a data em data de nascimento e data do formulario
 
-    - Tirar caixa de mensagem do cadastro de adms
+- o botao do comprovantes tem que chamar a pagina inicial ou mostrar uma mensagem
 
+- colocar um negrito na mensagem que mostra o comprovante enviado
 
-    - Colocar icone nos botões
-        Tabela de turmas na pagina aluno
-        Tabela de Entrevistas feitas e não feitas na tela de entrevistas
-        Tabela de MembrosFamiliares na tela inscricao
+- ver o requireTrue do membroFamiliar em inscricao
 
-    - Perfil ADM
-        Colocar a validação pra senha e CPF
+- zerar os dados do aluno se o periodo de inscricao dele for diferente do periodo de inscricao atual
 
-    - Perfil Aluno
-        Colocar a validação pra senha
-
-    - ComponenteDadosInscricao
-        Ajeitar a posicao dos itens (Apenas veja se dá pra melhorar pra não ficar essa tripinha)
-
-    - LoginCadastro:
-        Tirar aquelas mensagens que aparecem e colocar mensagem de outra forma menos irritante (opcional)
-
-    - Inscricao
-        Com a redirada do input cpf desconfigurou a posicao dos itens da primeira linha
-
-Leandro:
-    - Entrevistas:
-        Puxar o ComponenteDadosInscricao da tela de dados do aluno depois de arrumado
-        Colocar um botao pra fazer o download dos arquivos
-
-    - Inscricao:
-        Tirar aquelas os botoes que facilitam a navegação
+- colocar require true em comprovantes. E travar o botao de finalizar quando alguma coisa faltar

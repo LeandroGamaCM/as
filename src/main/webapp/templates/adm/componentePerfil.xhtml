@@ -5,32 +5,50 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <ui:composition>
-        <h:form>
-            <p:outputPanel id="painel">
-                <p:panel header="Editar dados cadastrais">
-                    <p:messages autoUpdate="true"/>
-                    <h5>Login</h5>
-                    <h:panelGrid columns="2">
-                        <p:outputLabel value="Nome: " for="nome" indicateRequired="false" />
-                        <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="Nome: Campo Obrigatório!"/>
+        <div class="card card-w-title">
+            <h:form prependId="false">
+                <p:outputPanel id="painel">
+                    <p:panel header="Editar dados cadastrais">
+                        <p:messages autoUpdate="true"/>
+                        <h5>Login</h5>
+                        <h:panelGrid columns="3">
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Nome: " for="nome" indicateRequired="false" />
+                                <p:inputText id="nome" class="pgUser" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="Nome: Campo Obrigatório!"/>
+                            </h:panelGrid>
 
-                        <p:outputLabel value="CPF: " for="cpf" indicateRequired="false" />
-                        <p:inputText id="cpf" value="#{usuarioBean.usuario.login}" required="true" requiredMessage="CPF: Campo Obrigatório"/>                            
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="CPF: " for="cpf" indicateRequired="false" />
+                                <p:inputText id="cpf" class="pgUser" value="#{usuarioBean.usuario.login}" required="true" requiredMessage="CPF: Campo Obrigatório"/>                            
+                            </h:panelGrid>
 
-                        <p:outputLabel value="Email: " for="email" indicateRequired="false" />
-                        <p:inputText id="email" value="#{usuarioBean.usuario.email}" required="true" requiredMessage="Email: Campo Obrigatório"/>                            
-                    </h:panelGrid>
-                        
-                    <h5>Senha</h5>
-                    <h:panelGrid columns="2">
-                        <p:outputLabel value="Senha antiga" for="senha" indicateRequired="false" />
-                        <p:password id="senha" value="#{usuarioBean.confirmacaoSenha}" required="true" requiredMessage="Senha antiga: Campo Obrigatório"/>
-                        <p:outputLabel value="Nova senha" for="novaSenha" indicateRequired="false" />
-                        <p:password id="novaSenha" value="#{usuarioBean.novaSenha}" required="true" requiredMessage="Nova senha: Campo Obrigatório"/>
-                    </h:panelGrid>
-                    <p:commandButton value="Salvar dados" update="@form" actionListener="#{usuarioBean.salvar()}"/> 
-                </p:panel>
-            </p:outputPanel>
-        </h:form>
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Email: " for="email" indicateRequired="false" />
+                                <p:inputText id="email" class="pgUser" value="#{usuarioBean.usuario.email}" required="true" requiredMessage="Email: Campo Obrigatório"/>                            
+                            </h:panelGrid>
+                        </h:panelGrid>
+
+                        <h5>Senha</h5>
+                        <h:panelGrid columns="3">
+                            <h:panelGrid class="spanpo" columns="1">
+                                <span>
+                                    <p:outputLabel value="Senha antiga" for="senha" indicateRequired="false" />
+                                    <p:password id="senha" alt="Insira uma senha de no mínimo 6 dígitos." class="pgUser validar" value="#{usuarioBean.confirmacaoSenha}" required="true" requiredMessage="Senha antiga: Campo Obrigatório"/>
+                                </span>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Nova senha" for="novaSenha" indicateRequired="false" />
+                                <p:password id="novaSenha" class="pgUser" value="#{usuarioBean.novaSenha}" required="true" requiredMessage="Nova senha: Campo Obrigatório"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1" style="padding-top: 20px">
+                                <p:commandButton value="Salvar dados" class="pgUser" onclick="return validaPerfil();" update="@form" actionListener="#{usuarioBean.salvar()}" style="width: 260px"/> 
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:outputPanel>
+            </h:form>
+        </div>
     </ui:composition>
 </html>

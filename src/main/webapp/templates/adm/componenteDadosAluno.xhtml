@@ -6,24 +6,34 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
-            <h:form>
+        <div class="ui-fluid">   
+            <h:form prependId="false">
+                <p:messages autoUpdate="true"/>           
+                
                 <p:panel header="Dados Pessoais">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="3">
                         <p:outputLabel value="Nome Completo: #{telaEntrevistaBean.formularioAluno.aluno.nome}"/>
                         <p:outputLabel value="CPF: #{telaEntrevistaBean.formularioAluno.aluno.cpf}"/>
                         <p:outputLabel value="Apelido: #{telaEntrevistaBean.formularioAluno.aluno.apelido}"/>
                         <p:outputLabel value="Sexo: #{telaEntrevistaBean.formularioAluno.aluno.sexo}"/>
-                        <p:outputLabel value="Data de Nascimento: #{telaEntrevistaBean.formularioAluno.aluno.dataNascimento}"/>
+                        <p:outputLabel value="Data de Nascimento: #{telaEntrevistaBean.formularioAluno.aluno.dataNascimento}">
+                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                        </p:outputLabel>
                         <p:outputLabel value="RG: #{telaEntrevistaBean.formularioAluno.aluno.rg}"/>
                         <p:outputLabel value="Estado civil: #{telaEntrevistaBean.formularioAluno.aluno.estadoCivil}"/>
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:panel header="Matrícula">
+                    <h:panelGrid class="pgTam" columns="3">                        
                         <p:outputLabel value="Modalidade: #{telaEntrevistaBean.formularioAluno.turma.modalidade}"/>
                         <p:outputLabel value="Curso: #{telaEntrevistaBean.formularioAluno.turma.curso}"/>
                         <p:outputLabel value="Turma: #{telaEntrevistaBean.formularioAluno.turma.nome}"/>
                     </h:panelGrid>
-                </p:panel>
-
+                </p:panel> 
+                
                 <p:panel header="Contato">
-                    <h:panelGrid columns="1">                        
+                    <h:panelGrid class="pgTam" columns="3">                        
                         <p:outputLabel value="Telefone: #{telaEntrevistaBean.formularioAluno.aluno.telefone}"/>
                         <p:outputLabel value="Celular: #{telaEntrevistaBean.formularioAluno.aluno.celular}"/>
                         <p:outputLabel value="Email: #{telaEntrevistaBean.formularioAluno.aluno.email}"/>
@@ -31,12 +41,12 @@
                 </p:panel>            
 
                 <p:panel header="Endereco">
-                    <h:panelGrid columns="1">                        
+                    <h:panelGrid class="pgTam" columns="3">                        
                         <p:outputLabel value="Endereco: #{telaEntrevistaBean.formularioAluno.endereco.rua}"/>
                         <p:outputLabel value="Nº: #{telaEntrevistaBean.formularioAluno.endereco.numero}"/>
                         <p:outputLabel value="Bairro: #{telaEntrevistaBean.formularioAluno.endereco.bairro}"/>
                         <p:outputLabel value="Cidade: #{telaEntrevistaBean.formularioAluno.endereco.cidade}"/>
-                        <p:outputLabel value="UF: #{telaEntrevistaBean.formularioAluno.endereco.estado}"/>
+                        <p:outputLabel value="UF #{telaEntrevistaBean.formularioAluno.endereco.estado}"/>
                     </h:panelGrid>
                 </p:panel>            
 
@@ -48,32 +58,32 @@
                 </p:panel>            
 
                 <p:panel header="Dados Bancários">
-                    <h:panelGrid columns="1">                        
-                        <p:outputLabel value="Não possui conta bancária" rendered="#{!telaEntrevistaBean.formularioAluno.conta.possuiConta}"/> 
+                    <h:panelGrid class="pgTam" columns="2">                        
+                        <p:outputLabel value="Não possui conta bancária!" rendered="#{!telaEntrevistaBean.formularioAluno.conta.possuiConta}"/> 
                         <p:outputLabel value="Banco: #{telaEntrevistaBean.formularioAluno.conta.nomeBanco}" rendered="#{telaEntrevistaBean.formularioAluno.conta.possuiConta}" />
-                        <p:outputLabel value="Agência: #{telaEntrevistaBean.formularioAluno.conta.agencia}" rendered="#{telaEntrevistaBean.formularioAluno.conta.possuiConta}"/>
                         <p:outputLabel value="Tipo de conta: #{telaEntrevistaBean.formularioAluno.conta.tipo}" rendered="#{telaEntrevistaBean.formularioAluno.conta.possuiConta}"/>
+                        <p:outputLabel value="Agência: #{telaEntrevistaBean.formularioAluno.conta.agencia}" rendered="#{telaEntrevistaBean.formularioAluno.conta.possuiConta}"/>
                         <p:outputLabel value="Número da conta: #{telaEntrevistaBean.formularioAluno.conta.numero}" rendered="#{telaEntrevistaBean.formularioAluno.conta.possuiConta}"/>
                         <p:outputLabel value="Operação: #{telaEntrevistaBean.formularioAluno.conta.operacao}" rendered="#{telaEntrevistaBean.formularioAluno.conta.possuiConta}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Curso preparatório">
-                    <h:panelGrid columns="1">                        
-                        <p:outputLabel value="Não possui curso preparatório" rendered="#{!telaEntrevistaBean.formularioAluno.informacoesCurriculares.cursoPreparatorio}" />
+                    <h:panelGrid class="pgTam" columns="1">                        
+                        <p:outputLabel value="Não possui curso preparatório!" rendered="#{!telaEntrevistaBean.formularioAluno.informacoesCurriculares.cursoPreparatorio}" />
                         <p:outputLabel value="Curso: #{telaEntrevistaBean.formularioAluno.informacoesCurriculares.nomeCursoPreparatorio}" rendered="#{telaEntrevistaBean.formularioAluno.informacoesCurriculares.cursoPreparatorio}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Escola de origem">
-                    <h:panelGrid columns="1">                        
+                    <h:panelGrid class="pgTam" columns="1">                        
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.informacoesCurriculares.ondeEstudou}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Interrupção dos estudos">
-                    <h:panelGrid columns="1">                        
-                        <p:outputLabel value="Não houve interrupção" rendered="#{!telaEntrevistaBean.formularioAluno.informacoesCurriculares.interrupcaoEstudos}"/>
+                    <h:panelGrid class="pgTam" columns="1">                        
+                        <p:outputLabel value="Não houve interrupção!" rendered="#{!telaEntrevistaBean.formularioAluno.informacoesCurriculares.interrupcaoEstudos}"/>
                         <p:outputLabel value="Motivo interrupção: #{telaEntrevistaBean.formularioAluno.informacoesCurriculares.motivoInterrupcao}" rendered="#{telaEntrevistaBean.formularioAluno.informacoesCurriculares.interrupcaoEstudos}"/>
                         <p:outputLabel value="Data da interrupção: #{telaEntrevistaBean.formularioAluno.informacoesCurriculares.dataInterrupcao}" rendered="#{telaEntrevistaBean.formularioAluno.informacoesCurriculares.interrupcaoEstudos}"/>
                         <p:outputLabel value="Tempo de interrupção: #{telaEntrevistaBean.formularioAluno.informacoesCurriculares.tempoInterrupcao}" rendered="#{telaEntrevistaBean.formularioAluno.informacoesCurriculares.interrupcaoEstudos}"/>
@@ -81,8 +91,8 @@
                 </p:panel>
 
                 <p:panel header="Bolsas: ">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Nenhuma bolsa" rendered="#{!telaEntrevistaBean.formularioAluno.bolsasAuxilio.programaExtensao and !telaEntrevistaBean.formularioAluno.bolsasAuxilio.pibicjr and !telaEntrevistaBean.formularioAluno.bolsasAuxilio.pibid and !telaEntrevistaBean.formularioAluno.bolsasAuxilio.pibic and !telaEntrevistaBean.formularioAluno.bolsasAuxilio.monitoria}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Não possui bolsa!" rendered="#{!telaEntrevistaBean.formularioAluno.bolsasAuxilio.programaExtensao and !telaEntrevistaBean.formularioAluno.bolsasAuxilio.pibicjr and !telaEntrevistaBean.formularioAluno.bolsasAuxilio.pibid and !telaEntrevistaBean.formularioAluno.bolsasAuxilio.pibic and !telaEntrevistaBean.formularioAluno.bolsasAuxilio.monitoria}"/>
                         <p:outputLabel value="Bolsa de Programa de Extensão" rendered="#{telaEntrevistaBean.formularioAluno.bolsasAuxilio.programaExtensao}"/>
                         <p:outputLabel value="Bolsa PIBIC/Jr." rendered="#{telaEntrevistaBean.formularioAluno.bolsasAuxilio.pibicjr}"/>
                         <p:outputLabel value="Bolsa PIBID" rendered="#{telaEntrevistaBean.formularioAluno.bolsasAuxilio.pibid}"/>
@@ -92,14 +102,14 @@
                 </p:panel>
 
                 <p:panel header="Estágio remunerado">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui estágio remunerado" rendered="#{!telaEntrevistaBean.formularioAluno.ocupacao.possuiEstagio}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Não possui estágio remunerado!" rendered="#{!telaEntrevistaBean.formularioAluno.ocupacao.possuiEstagio}"/>
                         <p:outputLabel value="Instituição do estágio: #{telaEntrevistaBean.formularioAluno.ocupacao.instiruicaoEstagio}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.possuiEstagio}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Condição de manutenção">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="1">
                         <p:outputLabel value="Sustentado por ambos os pais" rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.ambosPais}"/>
                         <p:outputLabel value="Sustentado apenas pelo pai"  rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.apenasPai}"/>
                         <p:outputLabel value="Sustentado apenas pela mãe"  rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.apenasMae}"/>
@@ -113,25 +123,80 @@
                                                                               !telaEntrevistaBean.formularioAluno.condicaoManutencao.parentesco and 
                                                                               !telaEntrevistaBean.formularioAluno.condicaoManutencao.nomeOutrosMeios}"/>
                     </h:panelGrid>
+                    <br/>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.ambosPais or telaEntrevistaBean.formularioAluno.condicaoManutencao.apenasPai}">
+                        <p:outputLabel value="Comprovante ou declaração de renda do PAI:"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaPaiNome, telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaPai)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.ambosPais or telaEntrevistaBean.formularioAluno.condicaoManutencao.apenasMae}">
+                        <p:outputLabel value="Comprovante ou declaração de renda da MÃE:"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaMaeNome, telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaMae)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.avos}">
+                        <p:outputLabel value="Comprovante ou declaração de renda dos AVÓS:"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaAvosNome, telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaAvos)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                    
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.outrosParentes}">
+                        <p:outputLabel value="Comprovante ou declaração de renda do(s) parente(s) (#{comprovanteBean.formularioAluno.condicaoManutencao.parentesco}):"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaParentesNome, telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaParentes)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                    
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.outrosMeios}">
+                        <p:outputLabel value="Comprovante ou declaração de renda proveniente de outros meios (#{comprovanteBean.formularioAluno.condicaoManutencao.nomeOutrosMeios}):"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeiosNome, telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeios)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                    
                 </p:panel>
 
                 <p:panel header="Situação ocupacional">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="2">
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional}"/>
                         
                         <p:outputLabel value="Profissão: #{telaEntrevistaBean.formularioAluno.ocupacao.profissao}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                         <p:outputLabel value="Tipo de profissão: #{telaEntrevistaBean.formularioAluno.ocupacao.trabalho}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                         <p:outputLabel value="Nome do empregador e/ou da empresa: #{telaEntrevistaBean.formularioAluno.ocupacao.nomeEmpregador}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
-                        <p:outputLabel value="Tempo de serviço: #{telaEntrevistaBean.formularioAluno.ocupacao.tempoServico} anos" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                         <p:outputLabel value="Telefone do empregador ou da empresa: #{telaEntrevistaBean.formularioAluno.ocupacao.telefoneEmpregador}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
+                        <p:outputLabel value="Tempo de serviço: #{telaEntrevistaBean.formularioAluno.ocupacao.tempoServico}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
                         <p:outputLabel value="Salário Mensal: R$ #{telaEntrevistaBean.formularioAluno.ocupacao.salarioMensal}" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional == 'Trabalhador(a)'}"/>
-                        
+                        <br/>
+                        <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional != 'Desempregado(a)' and telaEntrevistaBean.formularioAluno.ocupacao.situacaoOcupacional != 'Apenas estudando'}">
+                            <p:outputLabel value="Comprovante de vínculo de trabalho: "/>
+                            <p:commandButton value="Baixar" ajax="false"
+                                             actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.ocupacao.arquivoOcupacaoNome, telaEntrevistaBean.formularioAluno.ocupacao.arquivoOcupacao)}"
+                                            icon="ui-icon-arrowthick-1-s"
+                                            update="@form">
+                                    <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                            </p:commandButton>                            
+                        </h:panelGrid>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Dependentes">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui dependentes" rendered="#{!telaEntrevistaBean.formularioAluno.dependentes.possuiDependente}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Não possui dependentes!" rendered="#{!telaEntrevistaBean.formularioAluno.dependentes.possuiDependente}"/>
                         <p:outputLabel value="Quantidade de dependentes: #{telaEntrevistaBean.formularioAluno.dependentes.quantos}" rendered="#{telaEntrevistaBean.formularioAluno.dependentes.possuiDependente}"/>
                         <p:outputLabel value="Tipo de dependentes: " rendered="#{telaEntrevistaBean.formularioAluno.dependentes.possuiDependente}"/>
                         <p:outputLabel value="Companheiro" rendered="#{telaEntrevistaBean.formularioAluno.dependentes.companheiro}"/>
@@ -143,8 +208,8 @@
                 </p:panel>
 
                 <p:panel header="Despesas no campus">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui" rendered="#{!(telaEntrevistaBean.formularioAluno.despesasCampus.alimentacao > 0) and !(telaEntrevistaBean.formularioAluno.despesasCampus.materiaisEscolares > 0) and !(telaEntrevistaBean.formularioAluno.despesasCampus.trabalhos > 0)}"/>
+                    <h:panelGrid class="pgTam" columns="3">
+                        <p:outputLabel value="Não possui!" rendered="#{!(telaEntrevistaBean.formularioAluno.despesasCampus.alimentacao > 0) and !(telaEntrevistaBean.formularioAluno.despesasCampus.materiaisEscolares > 0) and !(telaEntrevistaBean.formularioAluno.despesasCampus.trabalhos > 0)}"/>
                         <p:outputLabel value="Alimentação: #{telaEntrevistaBean.formularioAluno.despesasCampus.alimentacao}" rendered="#{telaEntrevistaBean.formularioAluno.despesasCampus.alimentacao > 0}"/>
                         <p:outputLabel value="Materiais escolares: #{telaEntrevistaBean.formularioAluno.despesasCampus.materiaisEscolares}" rendered="#{telaEntrevistaBean.formularioAluno.despesasCampus.materiaisEscolares > 0}"/>
                         <p:outputLabel value="Trabalhos: #{telaEntrevistaBean.formularioAluno.despesasCampus.trabalhos}" rendered="#{telaEntrevistaBean.formularioAluno.despesasCampus.trabalhos > 0}"/>
@@ -152,14 +217,24 @@
                 </p:panel>
 
                 <p:panel header="Com quem você mora">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="1">
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.comQuemMora}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.comQuemMora != 'Outra Situação'}"/>
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.moraComQuemOutro}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.comQuemMora == 'Outra Situação'}"/>
                         <p:outputLabel value="Despesas extras com moradia: #{telaEntrevistaBean.formularioAluno.situacaoResidencial.despesasExtra}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.despesasExtra > 0}"/>
                         <p:outputLabel value="Situação da casa: #{telaEntrevistaBean.formularioAluno.situacaoResidencial.situacaoCasa}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.situacaoCasa != 'Outro'}"/>
                         <p:outputLabel value="Valor aluguel: #{telaEntrevistaBean.formularioAluno.situacaoResidencial.valorAluguel}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.situacaoCasa == 'Casa alugada'}"/>
                         <p:outputLabel value="Quem emprestou : #{telaEntrevistaBean.formularioAluno.situacaoResidencial.casaQuemEmprestou}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.situacaoCasa == 'Casa cedida'}"/>
-                        <p:outputLabel value=" : #{telaEntrevistaBean.formularioAluno.situacaoResidencial.casaQuemEmprestou}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.situacaoCasa == 'Outro'}"/>
+                        <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.casaQuemEmprestou}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.situacaoCasa == 'Outro'}"/>
+                    </h:panelGrid>
+                    <br/>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.despesasExtra > 0}">
+                        <p:outputLabel value="Comprovante de despesas extras com moradia:"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.situacaoResidencial.arquivoDespesasExtrasNome, telaEntrevistaBean.formularioAluno.situacaoResidencial.arquivoDespesasExtras)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
                     </h:panelGrid>
                 </p:panel>
 
@@ -189,7 +264,7 @@
                 </p:panel>
 
                 <p:panel header="Acesso a internet">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="2">
                         <p:outputLabel value="Acessa #{telaEntrevistaBean.formularioAluno.situacaoResidencial.acessoInternet}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.acessoInternet != 'Não Acessa a Internet'}"/>
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.acessoInternet}" rendered="#{telaEntrevistaBean.formularioAluno.situacaoResidencial.acessoInternet == 'Não Acessa a Internet'}"/>
                     </h:panelGrid>
@@ -207,14 +282,25 @@
                             <p:column headerText="Idade">
                                 <p:outputLabel value="#{membroFamiliar.idade}"/>
                             </p:column>
+                            <p:column headerText="Sexo">
+                                <p:outputLabel value="#{membroFamiliar.sexo}"/>
+                            </p:column>
                             <p:column headerText="Escolaridade">
                                 <p:outputLabel value="#{membroFamiliar.escolaridade}"/>
                             </p:column>
                             <p:column headerText="Situação Ocupacional">
                                 <p:outputLabel value="#{membroFamiliar.situacaoOcupacional}"/>
-                            </p:column>                            
+                            </p:column>
                             <p:column headerText="Salário">
                                 <p:outputLabel value="#{membroFamiliar.salario}"/>
+                            </p:column>
+                            <p:column headerText="Comprovante de renda">
+                                <p:commandButton  ajax="false"
+                                                  actionListener="#{telaEntrevistaBean.downloadArquivo(membroFamiliar.arquivoRendaNome, membroFamiliar.arquivoRenda)}"
+                                                icon="ui-icon-arrowthick-1-s"
+                                                update="@form">
+                                        <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                                </p:commandButton>
                             </p:column>
                         
                         </p:dataTable>
@@ -222,24 +308,34 @@
                 </p:panel>
 
                 <p:panel header="Doenças graves">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui nenhum membro familiar com doenças graves e/ou que faz uso de medicação contínua" rendered="#{!telaEntrevistaBean.formularioAluno.doenca.possuiDoenca}"/>
+                    <h:panelGrid class="pgTam" columns="2">
+                        <p:outputLabel value="Não possui nenhum membro familiar com doenças graves e/ou que faz uso de medicação contínua!" rendered="#{!telaEntrevistaBean.formularioAluno.doenca.possuiDoenca}"/>
                         <p:outputLabel value="Doente(s): #{telaEntrevistaBean.formularioAluno.doenca.doente}" rendered="#{telaEntrevistaBean.formularioAluno.doenca.possuiDoenca}"/>
-                        <p:outputLabel value="Doente(s): #{telaEntrevistaBean.formularioAluno.doenca.doencas}" rendered="#{telaEntrevistaBean.formularioAluno.doenca.possuiDoenca}"/>
+                        <p:outputLabel value="Doenças(s): #{telaEntrevistaBean.formularioAluno.doenca.doencas}" rendered="#{telaEntrevistaBean.formularioAluno.doenca.possuiDoenca}"/>
                         <p:outputLabel value="Local de tratamento: #{telaEntrevistaBean.formularioAluno.doenca.tratamento}" rendered="#{telaEntrevistaBean.formularioAluno.doenca.possuiDoenca}"/>
                     </h:panelGrid>
+                    <br/>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.doenca.possuiDoenca}">
+                        <p:outputLabel value="Comprovante de doença:"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.doenca.arquivoDoencaNome, telaEntrevistaBean.formularioAluno.doenca.arquivoDoenca)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                    
                 </p:panel>
 
                 <p:panel header="Gestante">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Possui membro familiar gestante" rendered="#{telaEntrevistaBean.formularioAluno.familia.possuiGestante}"/>
-                        <p:outputLabel value="Não possui membro familiar gestante" rendered="#{!telaEntrevistaBean.formularioAluno.familia.possuiGestante}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Possui membro familiar gestante!" rendered="#{telaEntrevistaBean.formularioAluno.familia.possuiGestante}"/>
+                        <p:outputLabel value="Não possui membro familiar gestante!" rendered="#{!telaEntrevistaBean.formularioAluno.familia.possuiGestante}"/>
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Rendas">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui nenhuma renda" rendered="#{!telaEntrevistaBean.formularioAluno.renda.aluguel and !telaEntrevistaBean.formularioAluno.renda.ajuda and !telaEntrevistaBean.formularioAluno.renda.outros and !telaEntrevistaBean.formularioAluno.renda.pensaoAlimenticia and !telaEntrevistaBean.formularioAluno.renda.pensaoMorte}"/>
+                    <h:panelGrid class="pgTam" columns="2">
+                        <p:outputLabel value="Não possui nenhuma renda!" rendered="#{!telaEntrevistaBean.formularioAluno.renda.aluguel and !telaEntrevistaBean.formularioAluno.renda.ajuda and !telaEntrevistaBean.formularioAluno.renda.outros and !telaEntrevistaBean.formularioAluno.renda.pensaoAlimenticia and !telaEntrevistaBean.formularioAluno.renda.pensaoMorte}"/>
                         <p:outputLabel value="Aluguel: R$ #{telaEntrevistaBean.formularioAluno.renda.valorAluguel}" rendered="#{telaEntrevistaBean.formularioAluno.renda.aluguel}"/>
                         <p:outputLabel value="Ajuda de terceiros: R$ #{telaEntrevistaBean.formularioAluno.renda.valorAjuda}" rendered="#{telaEntrevistaBean.formularioAluno.renda.ajuda}"/>
                         <p:outputLabel value="Pensão alímentícia: R$ #{telaEntrevistaBean.formularioAluno.renda.valorPensaoAlimenticia}" rendered="#{telaEntrevistaBean.formularioAluno.renda.pensaoAlimenticia}"/>
@@ -249,8 +345,8 @@
                 </p:panel>
 
                 <p:panel header="Despesas">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui nenhuma despesa" rendered="#{!telaEntrevistaBean.formularioAluno.despesa.aluguel and !telaEntrevistaBean.formularioAluno.despesa.agua and !telaEntrevistaBean.formularioAluno.despesa.endividamento and !telaEntrevistaBean.formularioAluno.despesa.financiamentos and !telaEntrevistaBean.formularioAluno.despesa.internet
+                    <h:panelGrid class="pgTam" columns="3">
+                        <p:outputLabel value="Não possui nenhuma despesa!" rendered="#{!telaEntrevistaBean.formularioAluno.despesa.aluguel and !telaEntrevistaBean.formularioAluno.despesa.agua and !telaEntrevistaBean.formularioAluno.despesa.endividamento and !telaEntrevistaBean.formularioAluno.despesa.financiamentos and !telaEntrevistaBean.formularioAluno.despesa.internet
                                                                                       and !telaEntrevistaBean.formularioAluno.despesa.investimentosEducacao and !telaEntrevistaBean.formularioAluno.despesa.luz and !telaEntrevistaBean.formularioAluno.despesa.medicamentos and !telaEntrevistaBean.formularioAluno.despesa.mensalidadeEscolar and !telaEntrevistaBean.formularioAluno.despesa.outros
                                                                                       and !telaEntrevistaBean.formularioAluno.despesa.planoSaude and !telaEntrevistaBean.formularioAluno.despesa.telefone and !telaEntrevistaBean.formularioAluno.despesa.transporte}"/>
                         <p:outputLabel value="Aluguel: R$ #{telaEntrevistaBean.formularioAluno.despesa.valorAluguel}" rendered="#{telaEntrevistaBean.formularioAluno.despesa.aluguel}"/>
@@ -267,13 +363,132 @@
                         <p:outputLabel value="Transporte: R$ #{telaEntrevistaBean.formularioAluno.despesa.valorTransporte}" rendered="#{telaEntrevistaBean.formularioAluno.despesa.transporte}"/>
                         <p:outputLabel value="Outros: R$ #{telaEntrevistaBean.formularioAluno.despesa.valorOutros}" rendered="#{telaEntrevistaBean.formularioAluno.despesa.outros}"/>
                     </h:panelGrid>
+                    <br/>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.agua}">
+                        <p:outputLabel value="Comprovante de despesa com água: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaAguaNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaAgua)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                    
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.aluguel}">
+                        <p:outputLabel value="Comprovante de despesa com aluguel: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaAluguelNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaAluguel)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                    
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.endividamento}">
+                        <p:outputLabel value="Comprovante de despesa com endividamento: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaEndividamentoNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaEndividamento)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                     
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.financiamentos}">
+                        <p:outputLabel value="Comprovante de despesa com financiamentos: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaFinanciamentosNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaFinanciamentos)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.internet}">
+                        <p:outputLabel value="Comprovante de despesa com internet: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaInternetNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaInternet)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.investimentosEducacao}">
+                        <p:outputLabel value="Comprovante de despesa com investimentos em educação: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaInvestimentosEducacaoNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaInvestimentosEducacao)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.luz}">
+                        <p:outputLabel value="Comprovante de despesa com luz: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaLuzNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaLuz)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.medicamentos}">
+                        <p:outputLabel value="Comprovante de despesa com medicamentos: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaMedicamentosNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaMedicamentos)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.mensalidadeEscolar}">
+                        <p:outputLabel value="Comprovante de despesa com mensalidades escolares: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaMensalidadeEscolarNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaMensalidadeEscolar)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.planoSaude}">
+                        <p:outputLabel value="Comprovante de despesa com plano saúde: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaPlanoSaudeNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaPlanoSaude)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.telefone}">
+                        <p:outputLabel value="Comprovante de despesa com telefone: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaTelefoneNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaTelefone)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.transporte}">
+                        <p:outputLabel value="Comprovante de despesa com transporte: "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaTransporteNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaTransporte)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.outros}">
+                        <p:outputLabel value="Comprovante de outras despesas (#{comprovanteBean.formularioAluno.despesa.nomeOutros}): "/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaOutrosNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaOutros)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid> 
+                    
                 </p:panel>
 
                 <p:panel header="Residência familiar">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="1">
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.residenciaFamilia.zona}" />
                         <p:outputLabel value="Distância do campus: #{telaEntrevistaBean.formularioAluno.residenciaFamilia.distanciaCampus} Km" rendered="#{telaEntrevistaBean.formularioAluno.residenciaFamilia.zona == 'Zona rural'}"/>
-                        <p:outputLabel value="Situaçao residenial: #{telaEntrevistaBean.formularioAluno.residenciaFamilia.situacaoCasa}"/>
+                        <p:outputLabel value="Situaçao residencial: #{telaEntrevistaBean.formularioAluno.residenciaFamilia.situacaoCasa}"/>
                         <br/>
                         <p:outputLabel value="Quantidade de automóveis: #{telaEntrevistaBean.formularioAluno.residenciaFamilia.qtdeAutomoveis}"/>
                         <p:outputLabel value="Quantidade de computadores: #{telaEntrevistaBean.formularioAluno.residenciaFamilia.qtdeComputadores}"/>
@@ -283,11 +498,21 @@
                         <p:outputLabel value="Quantidade de quartos: #{telaEntrevistaBean.formularioAluno.residenciaFamilia.qtdeQuartos}"/>
                         <p:outputLabel value="Quantidade de banheiros: #{telaEntrevistaBean.formularioAluno.residenciaFamilia.qtdeBanheiros}"/>
                     </h:panelGrid>
+                    <br/>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.residenciaFamilia.qtdeAutomoveis > 0}">
+                        <p:outputLabel value="Comprovante de posse de automóvel(is):"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.residenciaFamilia.arquivoAutomovelNome, telaEntrevistaBean.formularioAluno.residenciaFamilia.arquivoAutomovel)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                    
                 </p:panel>
 
                 <p:panel header="Imóveis">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui outros imóveis alem do que habita" rendered="#{!telaEntrevistaBean.formularioAluno.imovel.possuiImovel}"/>
+                    <h:panelGrid class="pgTam" columns="1">
+                        <p:outputLabel value="Não possui outros imóveis alem do que habita!" rendered="#{!telaEntrevistaBean.formularioAluno.imovel.possuiImovel}"/>
                         <p:outputLabel value="Possui:" rendered="#{telaEntrevistaBean.formularioAluno.imovel.possuiImovel}"/>
                         <p:outputLabel value="Apartamento(s)" rendered="#{telaEntrevistaBean.formularioAluno.imovel.apartamentos}"/>
                         <p:outputLabel value="Casa(s) de praia" rendered="#{telaEntrevistaBean.formularioAluno.imovel.casaPraia}"/>
@@ -297,20 +522,40 @@
                         <p:outputLabel value="Sítio(s)" rendered="#{telaEntrevistaBean.formularioAluno.imovel.sitios}"/>
                         <p:outputLabel value="Terras" rendered="#{telaEntrevistaBean.formularioAluno.imovel.terras}"/>
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.imovel.nomeOutroImovel}" rendered="#{telaEntrevistaBean.formularioAluno.imovel.outroImovel}"/>
-                        <p:outputLabel value="Quantidade de Hectáres: #{telaEntrevistaBean.formularioAluno.imovel.hectares}" rendered="#{telaEntrevistaBean.formularioAluno.imovel.possuiImovel}"/>
+                        <p:outputLabel value="Quantidade de Hectares: #{telaEntrevistaBean.formularioAluno.imovel.hectares}" rendered="#{telaEntrevistaBean.formularioAluno.imovel.possuiImovel}"/>
+                    </h:panelGrid>
+                    <br/>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.imovel.possuiImovel}">
+                        <p:outputLabel value="Comprovante de posse de imóvel(is):"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.imovel.arquivoImovelNome, telaEntrevistaBean.formularioAluno.imovel.arquivoImovel)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
                     </h:panelGrid>
                 </p:panel>
 
                 <p:panel header="Programas Sociais">
-                    <h:panelGrid columns="1">
-                        <p:outputLabel value="Não possui programas sociais" rendered="#{!telaEntrevistaBean.formularioAluno.familia.possuiProgramaSocial}"/>
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Não possui programas sociais!" rendered="#{!telaEntrevistaBean.formularioAluno.familia.possuiProgramaSocial}"/>
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.familia.programaSocial}" rendered="#{telaEntrevistaBean.formularioAluno.familia.programaSocial != 'Outro'}"/>
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.familia.outroProgramaSocial}" rendered="#{telaEntrevistaBean.formularioAluno.familia.programaSocial == 'Outro'}"/>
                     </h:panelGrid>
+                    <br/>
+                    <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.familia.possuiProgramaSocial}">
+                        <p:outputLabel value="Comprovante de recebimento de programa social:"/>
+                        <p:commandButton value="Baixar" ajax="false"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.familia.possuiProgramaSocial, telaEntrevistaBean.formularioAluno.familia.possuiProgramaSocial)}"
+                                        icon="ui-icon-arrowthick-1-s"
+                                        update="@form">
+                                <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />
+                        </p:commandButton>                            
+                    </h:panelGrid>                                        
                 </p:panel>
 
                 <p:panel header="Serviço de saúde">
-                    <h:panelGrid columns="1">
+                    <h:panelGrid class="pgTam" columns="1">
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.familia.servicoSaude}" />
                     </h:panelGrid>
                 </p:panel>
@@ -321,8 +566,7 @@
                         <p:outputLabel value="#{telaEntrevistaBean.formularioAluno.formulario.esclarecimentos}" rendered="#{telaEntrevistaBean.formularioAluno.formulario.esclarecimentos != null}"/>
                     </h:panelGrid>
                 </p:panel>
-
             </h:form>
-
+        </div>
     </ui:composition>
 </html>

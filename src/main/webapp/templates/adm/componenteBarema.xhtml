@@ -6,45 +6,45 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
-            
-        <h:form>  
-            <p:messages autoUpdate="true"/>
-            <h:panelGrid columns="3">
-                <p:outputLabel value="Salário base de cálculo: R$ "/>
-                <p:inputText value="#{baremaBean.salario}" required="true" requiredMessage="Este valor não pode ficar em branco!"/>
-                <p:commandButton value="Alterar" actionListener="#{baremaBean.editarSalario()}" update="@form"/>
-            </h:panelGrid>
-            <br/><br/>
+        <div class="card card-w-title">
+            <h:form>  
+                <p:messages autoUpdate="true"/>
+                <h:panelGrid columns="3">
+                    <p:outputLabel value="Salário base de cálculo: R$ "/>
+                    <p:inputText value="#{baremaBean.salario}" required="true" requiredMessage="Este valor não pode ficar em branco!"/>
+                    <p:commandButton value="Alterar" actionListener="#{baremaBean.editarSalario()}" update="@form"/>
+                </h:panelGrid>
+                <br/><br/>
 
-        <div class="ui-fluid">
-            <p:outputPanel id="tabelaBarema">
-                <p:dataTable var="parametro" value="#{baremaBean.parametros}" sortBy="#{parametro.categoria}" editable="true" editMode="cell">
-                    <p:ajax event="cellEdit" update="@this" listener="#{baremaBean.editarBarema(parametro)}"/>  
-                    <f:facet name="header">
-                            <h:outputText value="Barema" />
-                    </f:facet>
-                    <p:headerRow>
-                        <p:column colspan="3">
-                            <h:outputText value="#{parametro.categoria}" />
-                        </p:column>
-                    </p:headerRow>   
-                    <p:column width="45%" headerText="Aspectos em Avalição">
-                        <h:outputLabel value="#{parametro.aspectoAvaliacao}" />                        
-                    </p:column>
-                    <p:column style="text-align: center" headerText="Pontuação">
-                        <p:cellEditor>
-                            <f:facet name="output"><p:outputLabel value="#{parametro.pontuacao}"/></f:facet>
-                            <f:facet name="input"><p:inputText value="#{parametro.pontuacao}"/></f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <p:column style="text-align: center" headerText="Peso" groupRow="true">
-                        <p:outputLabel value="#{parametro.peso}"/>
-                    </p:column>
-                </p:dataTable>                
-            </p:outputPanel>
+                <div class="ui-fluid">
+                    <p:outputPanel id="tabelaBarema">
+                        <p:dataTable var="parametro" value="#{baremaBean.parametros}" sortBy="#{parametro.categoria}" editable="true" editMode="cell">
+                            <p:ajax event="cellEdit" update="@this" listener="#{baremaBean.editarBarema(parametro)}"/>  
+                            <f:facet name="header">
+                                <h:outputText value="Barema" />
+                            </f:facet>
+                            <p:headerRow>
+                                <p:column colspan="3">
+                                    <h:outputText value="#{parametro.categoria}" />
+                                </p:column>
+                            </p:headerRow>   
+                            <p:column width="45%" headerText="Aspectos em Avalição">
+                                <h:outputLabel value="#{parametro.aspectoAvaliacao}" />                        
+                            </p:column>
+                            <p:column style="text-align: center" headerText="Pontuação">
+                                <p:cellEditor>
+                                    <f:facet name="output"><p:outputLabel value="#{parametro.pontuacao}"/></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{parametro.pontuacao}"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column style="text-align: center" headerText="Peso" groupRow="true">
+                                <p:outputLabel value="#{parametro.peso}"/>
+                            </p:column>
+                        </p:dataTable>                
+                    </p:outputPanel>
+                </div>
+
+            </h:form>
         </div>
-            
-    </h:form>
-    </ui:composition>
-    
+    </ui:composition>    
 </html>

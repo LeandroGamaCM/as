@@ -61,8 +61,6 @@ public class UsuarioBean implements Serializable{
         UsuarioRN usuarioRN = new UsuarioRN();
         
         if(usuarioRN.buscarPorLogin(usuarioADM.getLogin()) == null){
-            System.out.println("CPF = "+usuarioADM.getLogin());
-            System.out.println("Senha = "+usuarioADM.getSenha());
             usuarioADM.getPermissao().add("ROLE_ADMINISTRADOR");
             usuarioADM.setAtivo(Boolean.TRUE);            
             usuarioRN.salvar(usuarioADM);

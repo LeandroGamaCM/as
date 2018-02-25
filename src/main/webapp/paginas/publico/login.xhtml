@@ -34,19 +34,19 @@
                         
                         <div class="ui-g-12">
                             <span class="md-inputfield">
-                                <input type="password" id="senhaLogin" name="j_password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/>
+                                <input type="password" autocomplete="new-password" id="senhaLogin" name="j_password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onblur="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/>
                                 <p:outputLabel>Senha</p:outputLabel>
                             </span>                            
                         </div>     
                         
                         <h:panelGroup rendered="#{param.error}">
-                            <span style="color: red; text-align: center">CPF ou senha incorretos!</span><br />
+                            <span class="spanlogin">CPF ou senha incorretos!</span><br />
                         </h:panelGroup>
                         <h:panelGroup rendered="#{param.registered}">
-                            <span style="color: blue; text-align: center">Cadastrado com sucesso!</span><br />
+                            <span class="spanlogin cor1">Cadastrado com sucesso!</span><br />
                         </h:panelGroup>
                         <h:panelGroup rendered="#{param.redefined}">
-                            <span style="color: blue; text-align: center">Um email de redefinição de senha lhe foi enviado</span><br />
+                            <span class="spanlogin cor">Um email para redefinir senha lhe foi enviado!</span><br />
                         </h:panelGroup>
                         
                         <div class="ui-g-12">

@@ -1,0 +1,80 @@
+                                           <p:outputPanel id="manutAjax">
+
+                                                <p:selectManyCheckbox id="respMC" required="true" requiredMessage="Condição de Manutenção: Menu Obrigatório" value="#{alunoBean.selectedSustentadores}" layout="responsive" columns="1" >
+                                                    <f:selectItem itemLabel="Sustentado pelos meus pais" itemValue="pm" itemDisabled="#{alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Sustentado somente pelo meu PAI" itemValue="p" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresM() || alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Sustentado somente pela minha MÃE" itemValue="m" itemDisabled="#{alunoBean.verificaSelectedSustentadoresPM() || alunoBean.verificaSelectedSustentadoresP() || alunoBean.verificaSelectedSustentadoresN()}"/>                                      
+                                                    <f:selectItem itemLabel="Sustentado por AVÓS" itemValue="v" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Sustentado por outros parentes" itemValue="op" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Outros Meios" itemValue="om" itemDisabled="#{alunoBean.verificaSelectedSustentadoresN()}"/>
+                                                    <f:selectItem itemLabel="Nenhuma das opções" itemValue="n" />
+                                                    <p:ajax update="manutAjax" event="change" listener="#{alunoBean.setCondicaoManutencaoProperties()}"/>
+                                                </p:selectManyCheckbox>                                                  
+
+                                                <h:panelGrid id="pg16" rendered="#{alunoBean.verificaSelectedSustentadoresOP() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}" columns="2" columnClasses="col64, col65">
+                                                    <p:outputLabel value="Qual o parentesco? " for="par" indicateRequired="false" />
+                                                    <p:inputText id="par" required="true" requiredMessage="Parentesco: Campo Obrigatório" value="#{alunoBean.condicaoManutencao.parentesco}" label="Parentesco"/>
+                                                </h:panelGrid>
+
+                                                <h:panelGrid id="pg17" rendered="#{alunoBean.verificaSelectedSustentadoresOM() &amp;&amp; !alunoBean.verificaSelectedSustentadoresN()}" columns="2" columnClasses="col66, col67">
+                                                    <p:outputLabel value="Quais são eles? " for="om" indicateRequired="false" />
+                                                    <p:inputText id="om" required="true" requiredMessage="Outros Meios: Campo Obrigatório" value="#{alunoBean.condicaoManutencao.nomeOutrosMeios}" label="Outros Meios"/>
+                                                </h:panelGrid>
+
+                                            </p:outputPanel>
+
+
+
+Usuario
+       <div class="card card-w-title">
+            <h1>Cadastrar outro usuário administrador </h1>
+            <div class="login-panel-content">
+                <h:form id="formCadastroAdm" prependId="false">
+                    <p:messages autoUpdate="true"/>
+                    <div class="ui-g">
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admNome">Nome Completo:</p:outputLabel>
+                                <p:inputText id="nomeAdm" value="#{usuarioBean.usuarioADM.nome}" onkeypress="return letras(event)" autocomplete="off" class="tamInputAdm" /> 
+                            </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admCpf">CPF:</p:outputLabel>
+                                <p:inputText id="cpfAdm" value="#{usuarioBean.usuarioADM.login}" autocomplete="off" class="tamInputAdm" /> 
+                            </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admEmail">Email:</p:outputLabel>
+                                <p:inputText id="emailAdm" value="#{usuarioBean.usuarioADM.email}" autocomplete="off" class="tamInputAdm" /> 
+                            </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+                                <p:outputLabel id="admSenha">Senha:</p:outputLabel>                                
+                                <p:inputText type="password" value="#{usuarioBean.usuarioADM.senha}" id="senhaAdm" autocomplete="off" class="tamInputAdm" />                                
+                            </span>
+                        </div>
+                        <div class="ui-g-12">
+                            <span class="md-inputfield">
+
+
+
+                                <p:outputLabel id="admConfirma">Confirmar Senha:</p:outputLabel>                                
+                                <p:inputText type="password" value="#{usuarioBean.confirmacaoSenha}" id="confirmaAdm" autocomplete="off" class="tamInputAdm" />                                
+                            </span>
+                        </div>
+                        <div id="botaoAdm" class="ui-g-4">
+                            <p:commandButton id="admBotao" update="@form" onclick="return validarAdm();" action="#{usuarioBean.cadastrarADM()}" value="Cadastrar" type="submit" styleClass="ui-priority-primary" />                            
+                        </div>                        
+                    </div>
+                </h:form>
+                <div style="width: 38.93%">
+                    <p id="aviso2">Informe uma senha segura de no mínino 6 caracteres.</p>
+                </div>
+            </div>
+        </div>
+    </ui:composition>
+</html>
+

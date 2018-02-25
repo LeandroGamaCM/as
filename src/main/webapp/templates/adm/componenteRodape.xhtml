@@ -2,13 +2,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">    
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">    
     <ui:composition>
         <a href="#{request.contextPath}/#{request.contextPath}/paginas/adm/principal.jsf"><h:graphicImage library="imagens" name="logoRodape.png" /></a>
         <span class="footer-text-right">
-            <span class="fa fa-creative-commons commons"></span> 
-            <span><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons</a></span>
+            <span class="fa fa-bookmark-o" style="font-size: 24px"></span> 
+            <span><a onclick="PF('dlg3').show();" href="#">Manual</a></span>
         </span>
+        
+        <p:dialog id="dialog2" header="Manual de Instruções" widgetVar="dlg3" modal="true" minHeight="900">
+            <h5 class="h5av">Do Acesso ao Sistema</h5>
+            01. O usuário administrador deve logar e atualizar as credenciais do usuário padrão criado pelo sistema. Além disso deve fornecer um email válido.<br/>
+            02. Não há limite para o cadastro de usuários administradores. O cadastro deve ser feito por outro usuário adm, na página Usuários.<br/>
+            <h5 class="h5av">Dos Alunos</h5>
+            02. Para que um estudante consiga se cadastrar no Sistema PAAE é necessário que ele seja pré-cadastrado pela Assistência Social.<br/>
+            03. Por questões de integridade das informações, o sistema não permite a exclusão de estudantes cadastrados.<br/>
+            04. Cada estudante recebe um status conforme as fases concluídas. Pré-Cadastrado; Com Inscrição Pendente; Com Inscrição Realizada.<br/>
+            05. Os estudantes podem ser listados de acordo com alguns filtros. Esses filtros permitem mostrar apenas as turmas desejadas.<br/>
+            <h5 class="h5av">Das Turmas</h5>
+            06. Por conta das turmas serem volatéis, a Assistência Social deve, sempre antes do período de inscrição, atualizar as turmas cadastradas.<br/>
+            07. Não ocorrendo isso, o formulário socioeconômico fica sem opção de turma para os estudantes selecionarem.<br/>
+            <h5 class="h5av">Das Entrevistas</h5>
+            08. Os estudantes com inscrição realizada são listados na tabela de entrevistas. Nessa tabela, os formulários podem ser expandidos.<br/>
+            09. Os estudantes que ainda não foram entrevistados aparecem numa outra tabela, onde é possível entrevistá-los.<br/>
+            <h5 class="h5av">Do Barema</h5>
+            10. O sistema permite alterar o peso dos critérios socioeconômicos adotados para pontuar a situação social dos estudantes.<br/>
+            11. Cabe a Assistência Social atualizar o valor do salário mínimo para manter o barema atual.<br/>
+            <h5 class="h5av">Dos Relatórios</h5>
+            12. Os estudantes com inscrição efetuada são classificados em ordem decrescente de acordo com a pontuação do barema.<br/>
+            13. O sistema permite visualizar as preferências de bolsas e o status de inscrição dos estudantes.<br/>
+        </p:dialog> 
     </ui:composition>
 </html>
 

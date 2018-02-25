@@ -2,7 +2,9 @@ package br.edu.ifba.paae.bean.adm;
 
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.inscricao.PeriodoInscricao;
+import br.edu.ifba.paae.logica.ArquivoUtil;
 import br.edu.ifba.paae.logica.FormularioAluno;
+import br.edu.ifba.paae.logica.Mensagem;
 import br.edu.ifba.paae.rn.analise.EntrevistaRN;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.inscricao.PeriodoInscricaoRN;
@@ -14,7 +16,10 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.model.DefaultStreamedContent;
@@ -31,7 +36,7 @@ public class TelaEntrevistaBean implements Serializable{
     
     private List<FormularioAluno> formularioAlunos = new ArrayList<>();
     private FormularioAluno formularioAluno;
-
+    private Mensagem mensagem = new Mensagem();
     private StreamedContent streamedContent;    
     private Aluno aluno;
     
@@ -101,16 +106,24 @@ public class TelaEntrevistaBean implements Serializable{
         changeToEntrevistasNaoFeitas();
     }
 
-    public void downloadArquivo(String nomeArquivo){
-       
-    }
-    public void descarregar(File file) throws IOException {
-        InputStream inputStream = new FileInputStream(file);
+    public void downloadArquivo(String nome,  byte[] contents){
+        System.out.println("Nome arquivo: " + nome);
+        try {
+            File file = ArquivoUtil.escrever(nome, contents);
+            InputStream inputStream = new FileInputStream(file);
         
-        streamedContent = new DefaultStreamedContent(inputStream, 
-                Files.probeContentType(file.toPath()), file.getName());
-    } 
+            streamedContent = new DefaultStreamedContent(inputStream, Files.probeContentType(file.toPath()), file.getName());        
+        } catch (IOException ex) {
+            mensagem.addMensagem("Erro. Este arquivo está corrompido!", FacesMessage.SEVERITY_ERROR);
+            System.out.println("Mensagem: erro no Download");
+        }
+        
+    }
     
+    public void deleteFiles(){
+        // deletar os temporarios quando clicar no botao finalizar
+    }
+        
 // Controle de Tela    
     public boolean isEntrevistasFeitas(){
         return "entrevistasFeitas".equals(this.estadoTela);
@@ -199,6 +212,14 @@ public class TelaEntrevistaBean implements Serializable{
 
     public void setPeriodoInscricao(PeriodoInscricao periodoInscricao) {
         this.periodoInscricao = periodoInscricao;
+    }
+
+    public StreamedContent getStreamedContent() {
+        return streamedContent;
+    }
+
+    public void setStreamedContent(StreamedContent streamedContent) {
+        this.streamedContent = streamedContent;
     }
 
 

@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition>
         <div class="ui-fluid">   
-            <h1>Dados Cadastrados</h1>
+            <h1>Comfirmação dos dados</h1>
             <h:form prependId="false" id="formenxuto">
                 <p:panel header="Dados Pessoais">
                     <h:panelGrid class="pgTam" columns="3">
@@ -173,23 +173,20 @@
 
                 <p:panel header="Características da sua casa">
                     <h:panelGrid columns="1">
-                        <p:outputLabel value="Possui: "/>
-                        <p:outputLabel value="Acabamento" rendered="#{alunoBean.residencia.acabamento}"/>
-                        <p:outputLabel value="Rede de esgoto" rendered="#{alunoBean.residencia.redeEsgoto}"/>
-                        <p:outputLabel value="Água" rendered="#{alunoBean.residencia.agua}"/>
-                        <p:outputLabel value="Luz" rendered="#{alunoBean.residencia.luz}"/>
-                        <p:outputLabel value="Fossa" rendered="#{alunoBean.residencia.fossa}"/>
-                        <p:outputLabel value="Banheiro" rendered="#{alunoBean.residencia.banheiro}"/>
-                        <p:outputLabel value="Chuveiro" rendered="#{alunoBean.residencia.chuveiro}"/>
-                        <br/>
-                        <p:outputLabel value="Não possui: " rendered="#{!alunoBean.residencia.acabamento and !alunoBean.residencia.redeEsgoto and !alunoBean.residencia.agua and !alunoBean.residencia.luz and !alunoBean.residencia.fossa and !alunoBean.residencia.banheiro and !alunoBean.residencia.chuveiro}"/>
-                        <p:outputLabel value="Acabamento" rendered="#{!alunoBean.residencia.acabamento}"/>
-                        <p:outputLabel value="Rede de esgoto" rendered="#{!alunoBean.residencia.redeEsgoto}"/>
-                        <p:outputLabel value="Água" rendered="#{!alunoBean.residencia.agua}"/>
-                        <p:outputLabel value="Luz" rendered="#{!alunoBean.residencia.luz}"/>
-                        <p:outputLabel value="Fossa" rendered="#{!alunoBean.residencia.fossa}"/>
-                        <p:outputLabel value="Banheiro" rendered="#{!alunoBean.residencia.banheiro}"/>
-                        <p:outputLabel value="Chuveiro" rendered="#{!alunoBean.residencia.chuveiro}"/>
+                        <p:outputLabel value="Acabamento - Possui" rendered="#{alunoBean.residencia.acabamento}"/>
+                        <p:outputLabel value="Acabamento - Não possui" rendered="#{!alunoBean.residencia.acabamento}"/>
+                        <p:outputLabel value="Rede de esgoto - Possui" rendered="#{alunoBean.residencia.redeEsgoto}"/>
+                        <p:outputLabel value="Rede de esgoto - Não possui" rendered="#{!alunoBean.residencia.redeEsgoto}"/>
+                        <p:outputLabel value="Água - Possui" rendered="#{alunoBean.residencia.agua}"/>
+                        <p:outputLabel value="Água - Não possui" rendered="#{!alunoBean.residencia.agua}"/>
+                        <p:outputLabel value="Luz - Possui" rendered="#{alunoBean.residencia.luz}"/>
+                        <p:outputLabel value="Luz - Não possui" rendered="#{!alunoBean.residencia.luz}"/>
+                        <p:outputLabel value="Fossa - Possui" rendered="#{alunoBean.residencia.fossa}"/>
+                        <p:outputLabel value="Fossa - Não possui" rendered="#{!alunoBean.residencia.fossa}"/>
+                        <p:outputLabel value="Banheiro - Possui" rendered="#{alunoBean.residencia.banheiro}"/>
+                        <p:outputLabel value="Banheiro - Não possui" rendered="#{!alunoBean.residencia.banheiro}"/>
+                        <p:outputLabel value="Chuveiro - Possui" rendered="#{alunoBean.residencia.chuveiro}"/>
+                        <p:outputLabel value="Chuveiro - Não possui" rendered="#{!alunoBean.residencia.chuveiro}"/>
                         <br/>
                         <p:outputLabel value="Tipo de cobertura: #{alunoBean.residencia.cobertura}"/>
                         <p:outputLabel value="Tipo de piso: #{alunoBean.residencia.piso}"/>

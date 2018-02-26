@@ -11,33 +11,34 @@
                 <p:outputPanel id="toolbar">
                     <p:toolbar>
                         <p:toolbarGroup align="left">
-                            <p:commandButton value="Classificação dos alunos" update="panel" action="#{relatorioBean.changeToClassificacao()}"/>
-                            <p:commandButton value="Informações" update="panel" action="#{relatorioBean.changeToInformacoes()}"/>
+                            <p:commandButton value="Classificação dos alunos" update="panel" action="#{telaRelatoriosBean.changeToClassificacao()}"/>
+                            <p:commandButton value="Informações" update="panel" action="#{telaRelatoriosBean.changeToInformacoes()}"/>
                         </p:toolbarGroup>
                     </p:toolbar>
                 </p:outputPanel>  
 
                 <p:outputPanel id="panel">
-                    <p:panel header="Informações" rendered="#{relatorioBean.informacoes}">
-                        <p:chart type="pie" model="#{relatorioBean.graficoPreferenciaBolsa}" />
-                        <p:chart type="pie" model="#{relatorioBean.graficoAlunos}" />
+                    <p:panel header="Informações" rendered="#{telaRelatoriosBean.informacoes}">
+                        <p:chart type="pie" model="#{telaRelatoriosBean.graficoPreferenciaBolsa}" />
+                        <p:chart type="pie" model="#{telaRelatoriosBean.graficoAlunos}" />
+                        <p:chart type="pie" model="#{telaRelatoriosBean.graficoRenda}" />
                     </p:panel>
 
-                <p:panel header="Lista de alunos com inscrição efetuada" rendered="#{relatorioBean.classificacao}">
-                    <p:dataTable var="formulario" value="#{relatorioBean.formularioAlunos}">
-                        <p:column headerText="Aluno">
-                            <p:outputLabel value="#{formulario.aluno.nome}"/>
+                <p:panel header="Lista de alunos com inscrição efetuada" rendered="#{telaRelatoriosBean.classificacao}">
+                    <p:dataTable var="formulario" value="#{telaRelatoriosBean.formularioAlunos}">
+                        <p:column headerText="Aluno" sortBy="#{formulario.aluno.nome}">
+                            <p:outputLabel value="#{formulario.aluno.nome}" />
                         </p:column>
-                        <p:column headerText="Turma">
+                        <p:column headerText="Turma" sortBy="#{formulario.turma.nome} #{formulario.turma.curso}">
                             <p:outputLabel value="#{formulario.turma.nome} #{formulario.turma.curso}"/>
                         </p:column>
-                        <p:column headerText="1ª Preferência de bolsa">
+                        <p:column headerText="1ª Preferência de bolsa" sortBy="#{formulario.formulario.primeiraPreferencia}">
                             <p:outputLabel value="#{formulario.formulario.primeiraPreferencia}"/>
                         </p:column>
-                        <p:column headerText="2ª Preferência de bolsa">
+                        <p:column headerText="2ª Preferência de bolsa" sortBy="#{formulario.formulario.segundaPreferencia}">
                             <p:outputLabel value="#{formulario.formulario.segundaPreferencia}"/>
                         </p:column>
-                        <p:column headerText="Pontuação por Barema">
+                        <p:column headerText="Pontuação por Barema" sortBy="#{formulario.entrevista.pontuacaoTotal}">
                             <p:outputLabel value="#{formulario.entrevista.pontuacaoTotal}"/>
                         </p:column>
 

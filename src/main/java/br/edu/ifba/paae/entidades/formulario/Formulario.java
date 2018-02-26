@@ -20,6 +20,7 @@ public class Formulario implements Serializable {
     @OneToOne(mappedBy = "formulario")
     private Aluno aluno;
     
+    @Column(length = 1000)
     private String esclarecimentos;
 
     @Column(name = "primeira_preferencia")
@@ -27,11 +28,6 @@ public class Formulario implements Serializable {
 
     @Column(name = "segunda_preferencia")
     private String segundaPreferencia;
-    
-    @Temporal(TemporalType.DATE)
-    @Column(name = "data_inscricao", updatable = false)
-    private Date dataInscricao;
-    
     
 // Getters e Setters
 
@@ -75,23 +71,14 @@ public class Formulario implements Serializable {
         this.segundaPreferencia = segundaPreferencia;
     }
 
-    public Date getDataInscricao() {
-        return dataInscricao;
-    }
-
-    public void setDataInscricao(Date dataInscricao) {
-        this.dataInscricao = dataInscricao;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.formulario);
-        hash = 83 * hash + Objects.hashCode(this.aluno);
-        hash = 83 * hash + Objects.hashCode(this.esclarecimentos);
-        hash = 83 * hash + Objects.hashCode(this.primeiraPreferencia);
-        hash = 83 * hash + Objects.hashCode(this.segundaPreferencia);
-        hash = 83 * hash + Objects.hashCode(this.dataInscricao);
+        hash = 67 * hash + Objects.hashCode(this.formulario);
+        hash = 67 * hash + Objects.hashCode(this.aluno);
+        hash = 67 * hash + Objects.hashCode(this.esclarecimentos);
+        hash = 67 * hash + Objects.hashCode(this.primeiraPreferencia);
+        hash = 67 * hash + Objects.hashCode(this.segundaPreferencia);
         return hash;
     }
 
@@ -120,9 +107,6 @@ public class Formulario implements Serializable {
             return false;
         }
         if (!Objects.equals(this.aluno, other.aluno)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataInscricao, other.dataInscricao)) {
             return false;
         }
         return true;

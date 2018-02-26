@@ -23,12 +23,14 @@
                         <p:outputLabel value="Comprovante ou declaração de vínculo de trabalho (informando o salário):"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.ocupacao.arquivoOcupacaoNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.ocupacao.arquivoOcupacaoNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.ocupacao.arquivoOcupacaoNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoOcupacao()}" update="@form"/>
                         </h:panelGrid>
                         
                         <h:panelGrid rendered="#{comprovanteBean.formularioAluno.ocupacao.arquivoOcupacao == null}">
                             <p:fileUpload
+                                required="true"
+                                requiredMessage="Comprovante ou declaração de vínculo de trabalho: item obrigatório"
                                 fileUploadListener="#{comprovanteBean.uploadArquivoOcupacao}" update="@form" 
                                 label="Arquivo" uploadLabel="Enviar" cancelLabel="Cancelar" 
                                 allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"
@@ -38,13 +40,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                        
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
-
+                    
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.ambosPais or comprovanteBean.formularioAluno.condicaoManutencao.apenasPai}">
                         <p:outputLabel value="Comprovante ou declaração de renda do PAI:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaPaiNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaPaiNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaPaiNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaPai()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -59,13 +62,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.ambosPais or comprovanteBean.formularioAluno.condicaoManutencao.apenasMae}">
-                        <p:outputLabel value="Comprovante ou declaração de renda da MÂE:"/>
+                        <p:outputLabel value="Comprovante ou declaração de renda da MÃE:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaMaeNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaMaeNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaMaeNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaMae()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -80,13 +84,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.avos}">
                         <p:outputLabel value="Comprovante ou declaração de renda dos avós:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaAvosNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaAvosNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaAvosNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaAvos()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -101,13 +106,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.outrosParentes}">
                         <p:outputLabel value="Comprovante ou declaração de renda do(s) parente(s) (#{comprovanteBean.formularioAluno.condicaoManutencao.parentesco}):"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaParentesNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaParentesNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaParentesNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaParentes()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -122,13 +128,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.outrosMeios}">
                         <p:outputLabel value="Comprovante ou declaração de renda proveniente de outros meios (#{comprovanteBean.formularioAluno.condicaoManutencao.nomeOutrosMeios}):"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeiosNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeiosNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeiosNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoRendaOutrosMeios()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -143,13 +150,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.situacaoResidencial.despesasExtra > 0}">
                         <p:outputLabel value="Comprovante de despesas extras com moradia:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.situacaoResidencial.arquivoDespesasExtrasNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.situacaoResidencial.arquivoDespesasExtrasNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.situacaoResidencial.arquivoDespesasExtrasNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesasExtra()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -164,13 +172,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.doenca.possuiDoenca}">
                         <p:outputLabel value="Comprovante de doença grave e/ou uso de medicação contínua por membro(s) familiar(es):"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.doenca.arquivoDoencaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.doenca.arquivoDoencaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.doenca.arquivoDoencaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDoenca()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -185,13 +194,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.familia.possuiProgramaSocial}">
                         <p:outputLabel value="Comprovante de recebimento de programa social:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.familia.arquivoProgramaSocialNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.familia.arquivoProgramaSocialNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.familia.arquivoProgramaSocialNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoProgramaSocial()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -206,13 +216,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar1.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar1.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar1.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar1.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar1.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar1()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -227,13 +238,14 @@
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>           
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar2.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar2.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar2.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar2.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar2.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar2()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -248,13 +260,14 @@
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>           
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar3.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar3.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar3.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar3.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar3.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar3()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -269,13 +282,14 @@
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>           
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar4.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar4.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar4.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar4.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar4.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar4()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -290,13 +304,14 @@
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>           
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar5.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar5.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar5.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar5.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar5.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar5()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -311,13 +326,14 @@
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>           
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar6.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar6.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar6.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar6.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar6.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar6()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -331,13 +347,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar7.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar7.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar7.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar7.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar7.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar7()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -351,13 +368,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar8.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar8.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar8.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar8.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar8.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar8()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -371,13 +389,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar9.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar9.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar9.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar9.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar9.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar9()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -391,13 +410,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar10.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar10.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar10.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar10.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar10.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar10()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -411,13 +431,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar11.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar11.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar11.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar11.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar11.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar11()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -431,13 +452,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar12.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar12.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar12.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar12.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar12.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar12()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -451,13 +473,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar13.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar13.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar13.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar13.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar13.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar13()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -471,13 +494,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar14.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar14.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar14.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar14.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar14.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar14()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -491,13 +515,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar15.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar15.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar15.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar15.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar15.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar15()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -511,13 +536,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar16.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar16.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar16.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar16.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar16.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar16()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -531,13 +557,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar17.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar17.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar17.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar17.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar17.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar17()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -551,13 +578,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar18.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar18.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar18.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar18.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar18.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar18()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -571,13 +599,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar19.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar19.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar19.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar19.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar19.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar19()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -591,13 +620,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar20.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar20.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar20.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar20.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar20.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar20()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -611,13 +641,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar21.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar21.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar21.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar21.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar21.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar21()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -631,13 +662,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar22.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar22.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar22.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar22.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar22.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar22()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -651,13 +683,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar23.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar23.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar23.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar23.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar23.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar23()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -671,13 +704,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar24.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar24.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar24.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar24.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar24.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar24()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -691,13 +725,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar25.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar25.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar25.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar25.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar25.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar25()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -711,13 +746,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar26.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar26.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar26.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar26.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar26.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar26()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -731,13 +767,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar27.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar27.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar27.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar27.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar27.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar27()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -751,13 +788,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar28.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar28.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar28.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar28.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar28.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar28()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -771,13 +809,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar29.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar29.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar29.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar29.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar29.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar29()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -791,13 +830,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar30.salario > 0}">
                         <p:outputLabel value="Comprovante ou declaração de renda do membro familiar: #{comprovanteBean.membrosFamiliares.membroFamiliar30.nome}"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.membrosFamiliares.membroFamiliar30.arquivoRendaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar30.arquivoRendaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.membrosFamiliares.membroFamiliar30.arquivoRendaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoMembroFamiliar30()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -811,13 +851,14 @@
                                  fileLimit="1"
                                  invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                             ></p:fileUpload>                                   </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.imovel.possuiImovel}">
                         <p:outputLabel value="Comprovante de posse de imóvel(is):"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.imovel.arquivoImovelNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.imovel.arquivoImovelNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.imovel.arquivoImovelNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoImovel()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -831,13 +872,14 @@
                                 invalidSizeMessage="O tamanho máximo permitido é de 1 MB."
                                 fileLimit="1"
                             ></p:fileUpload>                                   </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.residenciaFamilia.qtdeAutomoveis > 0}">
                         <p:outputLabel value="Comprovante de posse de automóvel(is):"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.residenciaFamilia.arquivoAutomovelNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.residenciaFamilia.arquivoAutomovelNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.residenciaFamilia.arquivoAutomovelNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoAutomovel()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -852,13 +894,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>                            
                         </h:panelGrid>
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.agua}">
                         <p:outputLabel value="Comprovante de despesa com água:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaAguaNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaAguaNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaAguaNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaAgua()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -873,13 +916,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>  
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.aluguel}">
                         <p:outputLabel value="Comprovante de despesa com aluguel:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaAluguelNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaAluguelNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaAluguelNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaAluguel()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -894,13 +938,14 @@
                                 fileLimit="1"
                             ></p:fileUpload> 
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.endividamento}">
                         <p:outputLabel value="Comprovante de despesa com endividamento:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaEndividamentoNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaEndividamentoNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaEndividamentoNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaEndividamento()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -915,13 +960,14 @@
                                 fileLimit="1"
                             ></p:fileUpload> 
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.financiamentos}">
                         <p:outputLabel value="Comprovante de despesa com financiamentos:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaFinanciamentosNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaFinanciamentosNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaFinanciamentosNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaFinanciamentos()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -936,13 +982,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.internet}">
                         <p:outputLabel value="Comprovante de despesa com internet:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaInternetNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaInternetNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaInternetNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaInternet()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -957,13 +1004,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>  
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.investimentosEducacao}">
                         <p:outputLabel value="Comprovante de despesa com investimentos em educação:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaInvestimentosEducacaoNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaInvestimentosEducacaoNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaInvestimentosEducacaoNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaInvestimentosEducacao()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -978,13 +1026,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.luz}">
                         <p:outputLabel value="Comprovante de despesa com luz:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaLuzNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaLuzNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaLuzNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaLuz()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -999,13 +1048,14 @@
                                 fileLimit="1"
                             ></p:fileUpload> 
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.medicamentos}">
                         <p:outputLabel value="Comprovante de despesa com medicamentos:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaMedicamentosNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaMedicamentosNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaMedicamentosNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaMedicamentos()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -1020,13 +1070,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.mensalidadeEscolar}">
                         <p:outputLabel value="Comprovante de despesa com mensalidade escolar:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaMensalidadeEscolarNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaMensalidadeEscolarNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaMensalidadeEscolarNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaMensalidadeEscolar()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -1041,13 +1092,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.planoSaude}">
                         <p:outputLabel value="Comprovante de despesa com plano de saúde:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaPlanoSaudeNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaPlanoSaudeNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaPlanoSaudeNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaPlanoSaude()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -1062,13 +1114,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.telefone}">
                         <p:outputLabel value="Comprovante de despesa com telefone:"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaTelefoneNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaTelefoneNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaTelefoneNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaTelefone()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -1083,13 +1136,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.transporte}">
                         <p:outputLabel value="Comprovante de despesa com transporte"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaTransporteNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaTransporteNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaTransporteNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaTransporte()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -1104,13 +1158,14 @@
                                 fileLimit="1"
                             ></p:fileUpload>
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid rendered="#{comprovanteBean.formularioAluno.despesa.outros}">
                         <p:outputLabel value="Comprovante de outras despesas (#{comprovanteBean.formularioAluno.despesa.nomeOutros}):"/>
                         
                         <h:panelGrid columns="2" rendered="#{comprovanteBean.formularioAluno.despesa.arquivoDespesaOutrosNome != null}">
-                            <p:outputLabel value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaOutrosNome}"/>
+                            <p:outputLabel style="font-weight:bold;margin-left: 30px;" value="Arquivo enviado: #{comprovanteBean.formularioAluno.despesa.arquivoDespesaOutrosNome}"/>
                             <p:commandButton value="remover" actionListener="#{comprovanteBean.removerArquivoDespesaOutros()}" update="@form"/>
                         </h:panelGrid>
                         
@@ -1125,10 +1180,13 @@
                                 fileLimit="1"
                             ></p:fileUpload> 
                         </h:panelGrid>                 
+                        <br/>
                     </h:panelGrid>
 
                     <h:panelGrid>
-                        <p:commandButton value="Enviar comprovantes" update="@form" actionListener="#{comprovanteBean.finalizarInscricao()}"/>
+                        <p:commandButton value="Enviar comprovantes" update="@form" ajax="false" action="#{comprovanteBean.finalizarInscricao()}">
+                            <f:param name="inscricaoFinalizada" value="true"/>
+                        </p:commandButton> 
                     </h:panelGrid>
                 </p:panel>
             </h:form>

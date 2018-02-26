@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
         <div class="card card-w-title">
-            <h:form>
+            <h:form prependId="false">
                 <p:outputPanel id="toolbar">
                     <p:toolbar>
                         <p:toolbarGroup align="left">
@@ -30,7 +30,7 @@
                         <p:panel style="margin-top: 10px" header="Pré-cadastro de alunos">  
                             <h:panelGrid style="margin-top: 7px" columns="3">
                                 <p:outputLabel value="CPF do Aluno: "/>
-                                <p:inputText style="margin-left: 2px" value="#{telaAlunosBean.novoAluno.cpf}"/>
+                                <p:inputText id="cpfPre" style="margin-left: 2px" value="#{telaAlunosBean.novoAluno.cpf}"/>
                                 <p:commandButton style="margin-left: 10px" update="panel" value="Salvar" action="#{telaAlunosBean.preCadastro()}"/>                           
                             </h:panelGrid>
                         </p:panel>

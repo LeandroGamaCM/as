@@ -39,11 +39,10 @@ public class InformacoesCurriculares implements Serializable {
     private String motivoInterrupcao;
 
     @Column(name = "data_interrupcao")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataInterrupcao;
+    private String dataInterrupcao;
     
     @Column(name = "tempo_interrupcao")
-    private float tempoInterrupcao;
+    private String tempoInterrupcao;
 
 // Getters e Setters
 
@@ -103,34 +102,34 @@ public class InformacoesCurriculares implements Serializable {
         this.motivoInterrupcao = motivoInterrupcao;
     }
 
-    public Date getDataInterrupcao() {
+    public String getDataInterrupcao() {
         return dataInterrupcao;
     }
 
-    public void setDataInterrupcao(Date dataInterrupcao) {
+    public void setDataInterrupcao(String dataInterrupcao) {
         this.dataInterrupcao = dataInterrupcao;
     }
 
-    public float getTempoInterrupcao() {
+    public String getTempoInterrupcao() {
         return tempoInterrupcao;
     }
 
-    public void setTempoInterrupcao(float tempoInterrupcao) {
+    public void setTempoInterrupcao(String tempoInterrupcao) {
         this.tempoInterrupcao = tempoInterrupcao;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.informacoesCurriculares);
-        hash = 71 * hash + Objects.hashCode(this.aluno);
-        hash = 71 * hash + Objects.hashCode(this.ondeEstudou);
-        hash = 71 * hash + Objects.hashCode(this.cursoPreparatorio);
-        hash = 71 * hash + Objects.hashCode(this.interrupcaoEstudos);
-        hash = 71 * hash + Objects.hashCode(this.nomeCursoPreparatorio);
-        hash = 71 * hash + Objects.hashCode(this.motivoInterrupcao);
-        hash = 71 * hash + Objects.hashCode(this.dataInterrupcao);
-        hash = 71 * hash + Float.floatToIntBits(this.tempoInterrupcao);
+        hash = 29 * hash + Objects.hashCode(this.informacoesCurriculares);
+        hash = 29 * hash + Objects.hashCode(this.aluno);
+        hash = 29 * hash + Objects.hashCode(this.ondeEstudou);
+        hash = 29 * hash + Objects.hashCode(this.cursoPreparatorio);
+        hash = 29 * hash + Objects.hashCode(this.interrupcaoEstudos);
+        hash = 29 * hash + Objects.hashCode(this.nomeCursoPreparatorio);
+        hash = 29 * hash + Objects.hashCode(this.motivoInterrupcao);
+        hash = 29 * hash + Objects.hashCode(this.dataInterrupcao);
+        hash = 29 * hash + Objects.hashCode(this.tempoInterrupcao);
         return hash;
     }
 
@@ -146,9 +145,6 @@ public class InformacoesCurriculares implements Serializable {
             return false;
         }
         final InformacoesCurriculares other = (InformacoesCurriculares) obj;
-        if (Float.floatToIntBits(this.tempoInterrupcao) != Float.floatToIntBits(other.tempoInterrupcao)) {
-            return false;
-        }
         if (!Objects.equals(this.ondeEstudou, other.ondeEstudou)) {
             return false;
         }
@@ -156,6 +152,12 @@ public class InformacoesCurriculares implements Serializable {
             return false;
         }
         if (!Objects.equals(this.motivoInterrupcao, other.motivoInterrupcao)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInterrupcao, other.dataInterrupcao)) {
+            return false;
+        }
+        if (!Objects.equals(this.tempoInterrupcao, other.tempoInterrupcao)) {
             return false;
         }
         if (!Objects.equals(this.informacoesCurriculares, other.informacoesCurriculares)) {
@@ -170,11 +172,9 @@ public class InformacoesCurriculares implements Serializable {
         if (!Objects.equals(this.interrupcaoEstudos, other.interrupcaoEstudos)) {
             return false;
         }
-        if (!Objects.equals(this.dataInterrupcao, other.dataInterrupcao)) {
-            return false;
-        }
         return true;
     }
+
 
 
 }

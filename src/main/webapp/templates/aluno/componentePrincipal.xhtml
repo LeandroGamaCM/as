@@ -4,10 +4,15 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
+
+        <h:panelGroup rendered="#{param.inscricaoFinalizada}">
+            <h2 style="color: blue; text-align: center">Inscrição concluída!</h2>
+        </h:panelGroup>
+        
         <div>
             <h1 style="text-align: center; margin-top: 34px;">SISTEMA PAAE</h1>
             <h5 style="text-align: center">Siga as etapas abaixo para se inscrever no Programa de Assistência e Apoio Estudantil do IFBA - Campus Irecê</h5>
-            
+                        
             <div class="container">
                 <ul class="progressbar">
                     <li class="active">Iniciar Sessão</li>

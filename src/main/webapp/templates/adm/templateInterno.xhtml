@@ -94,6 +94,35 @@
             doc.addEventListener('input', inputHandler.bind(undefined, docMask, 15), false);
             
             doc.addEventListener('blur', limpaCampo);
+        </script>
+        <script type="text/javascript">            
+            function inputHandler(masks, max, event) {
+              var c = event.target;
+              var v = c.value.replace(/\D/g, '');
+              var m = c.value.length > max ? 1 : 0;
+              VMasker(c).unMask();
+              VMasker(c).maskPattern(masks[m]);
+              c.value = VMasker.toPattern(v, masks[m]);
+            }
+            
+            function limpaCampo(event) {
+                var value = event.target.value;                
+                //<![CDATA[
+                    if (value.length < 14) {
+                        event.target.value = '';
+                        this.classList.remove('ui-state-filled');
+                    }
+                //]]>
+            }
+                      
+            var docMask = ['999.999.999-99'];
+            var cpf = document.querySelector('#cpfPre');
+            
+            VMasker(cpf).maskPattern(docMask[0]);
+                        
+            cpf.addEventListener('input', inputHandler.bind(undefined, docMask, 15), false);
+            
+            cpf.addEventListener('blur', limpaCampo);
         </script> 
         <script type="text/javascript">            
             function inputHandler(masks, max, event) {

@@ -59,7 +59,6 @@
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" value="Data de Nascimento: " for="date" />                                    
                                                     <p:inputMask id="date" required="false" requiredMessage="Data de Nascimento: Campo Obrigatório" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
-                                                        <f:convertDateTime dateStyle="medium"/>
                                                     </p:inputMask> 
                                                 </h:panelGrid>
                                             </h:panelGrid>
@@ -337,9 +336,7 @@
 
                                                     <h:panelGrid id="pg13" class="pgTam" columns="4" columnClasses="col55, col56, col57, col58">                              
                                                         <p:outputLabel indicateRequired="false" for="IntAconteceu" value="Quando aconteceu? " />
-                                                        <p:inputMask id="IntAconteceu" required="true" requiredMessage="Data da Interrupção: Campo Obrigatório" value="#{alunoBean.informacoesCurriculares.dataInterrupcao}" mask="99/99/9999">
-                                                            <f:convertDateTime dateStyle="medium"/>
-                                                        </p:inputMask>
+                                                        <p:inputMask id="IntAconteceu" required="true" requiredMessage="Data da Interrupção: Campo Obrigatório" value="#{alunoBean.informacoesCurriculares.dataInterrupcao}" mask="99/99/9999"></p:inputMask>
 
                                                         <p:outputLabel indicateRequired="false" id="outPQT" value="Por quanto tempo? " for="tempoInter" />
                                                         <p:inputText id="tempoInter" required="true" requiredMessage="Duração da Interrupção: Campo Obrigatório" placeholder="Exemplo: 1 ano e 2 meses" value="#{alunoBean.informacoesCurriculares.tempoInterrupcao}" label="Tempo"/>
@@ -461,7 +458,7 @@
 
                                                     <h:panelGrid id="pg22" class="pgTam" columns="2" columnClasses="col77, col78">                                
                                                         <p:outputLabel indicateRequired="false" value="Telefone do empregador ou da empresa: "  for="tel"/>
-                                                        <p:inputText id="tel" required="true" requiredMessage="Telefone do Empregador: Campo Obrigatório" value="#{alunoBean.ocupacao.telefoneEmpregador}" label="Telefone"/>
+                                                        <p:inputMask mask="(99)99999-9999" id="tel" required="true" requiredMessage="Telefone do Empregador: Campo Obrigatório" value="#{alunoBean.ocupacao.telefoneEmpregador}" label="Telefone"/>
                                                     </h:panelGrid>                             
                                                 </p:panelGrid>
 
@@ -1281,7 +1278,6 @@
                         </p:panel>
 
                         <p:panel rendered="#{alunoBean.telaDados}">
-                            <h1>Comfirmação dos dados</h1>
                             <ui:include src="componenteDadosInscricao.xhtml"/>
                             <h:panelGrid columns="2">                                
                                 <p:commandButton value="Voltar ao Formulário de Inscrição" update="chefao" actionListener="#{alunoBean.changeToFormulario()}"/>

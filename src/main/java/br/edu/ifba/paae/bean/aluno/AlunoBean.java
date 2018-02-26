@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.*;
@@ -91,8 +92,12 @@ public class AlunoBean implements Serializable{
         if(usuario != null){
             if(!usuario.getPermissao().contains("ROLE_ADMINISTRADOR")){
                 aluno = usuarioRN.buscarAluno(usuario.getUsuario());
-                
-                inicializar();
+                PeriodoInscricao periodoInscricaoAluno = periodoInscricaoRN.buscarPorAluno(aluno.getAluno());
+                if(Objects.equals(periodoInscricaoAluno.getAno(), periodoInscricao.getAno())){
+                    inicializarFormularioAntigo();
+                }else{
+                    inicializarFormularioNovo();
+                }
             }else
                 System.out.println("\n\tADM!\n");            
         }
@@ -103,7 +108,7 @@ public class AlunoBean implements Serializable{
         }
     }
     
-    public void inicializar(){
+    public void inicializarFormularioAntigo(){
        EntrevistaRN entrevistaRN = new EntrevistaRN();
         BolsasAuxilioRN bolsasAuxilioRN = new BolsasAuxilioRN();
         CondicaoManutencaoRN condicaoManutencaoRN = new CondicaoManutencaoRN();
@@ -227,9 +232,6 @@ public class AlunoBean implements Serializable{
         formulario = formularioRN.buscarPorAluno(aluno.getAluno());
         if(formulario == null){
             formulario = new Formulario();
-            Calendar cal = Calendar.getInstance();
-            System.out.println("\tCal.getTime: " + cal.getTime());
-            formulario.setDataInscricao(cal.getTime());
             formulario.setAluno(aluno);
         }
                 
@@ -263,8 +265,67 @@ public class AlunoBean implements Serializable{
         if(membrosFamiliares == null){
             membrosFamiliares = new ArrayList<>();
         }
+    }
+    public void inicializarFormularioNovo(){
+        FamiliaRN familiaRN = new FamiliaRN();
         
+        entrevista = new Entrevista();
+        entrevista.setStatus("Não feita");
+        entrevista.setAluno(aluno);
 
+        bolsasAuxilio = new BolsasAuxilio();
+        bolsasAuxilio.setAluno(aluno);
+
+        condicaoManutencao = new CondicaoManutencao();
+        condicaoManutencao.setAluno(aluno);
+
+        conta = new Conta();
+        conta.setAluno(aluno);
+
+        dependentes = new Dependentes();
+        dependentes.setAluno(aluno);
+
+        despesasCampus = new DespesasCampus();
+        despesasCampus.setAluno(aluno);
+
+        endereco = new Endereco();
+        endereco.setAluno(aluno);
+
+        familia = new Familia();
+        familia.setAluno(aluno);
+        familiaRN.salvar(familia);
+
+        imovel = new Imovel();
+        imovel.setFamilia(familia);
+
+        despesa = new Despesa();
+        despesa.setFamilia(familia);
+
+        doenca = new Doenca();
+        doenca.setFamilia(familia);
+
+        renda = new Renda();
+        renda.setFamilia(familia);
+
+        residenciaFamilia = new ResidenciaFamilia();
+        residenciaFamilia.setFamilia(familia);
+
+        formulario = new Formulario();
+        formulario.setAluno(aluno);
+
+        informacoesCurriculares = new InformacoesCurriculares();
+        informacoesCurriculares.setAluno(aluno);
+
+        ocupacao = new Ocupacao();
+        ocupacao.setAluno(aluno);
+
+        residencia = new Residencia();
+        residencia.setAluno(aluno);
+
+        situacaoResidencial = new SituacaoResidencial();
+        situacaoResidencial.setAluno(aluno);
+
+        membrosFamiliares = new ArrayList<>();
     }
     
     public boolean isTelaFormulario(){

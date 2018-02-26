@@ -102,26 +102,32 @@ public class TelaEntrevistaBean implements Serializable{
             formularioAluno.getEntrevista().setStatus("Feita");
             entrevistaRN.salvar(formularioAluno.getEntrevista());
         }
-
+        deleteFiles();
         changeToEntrevistasNaoFeitas();
     }
 
     public void downloadArquivo(String nome,  byte[] contents){
         System.out.println("Nome arquivo: " + nome);
-        try {
-            File file = ArquivoUtil.escrever(nome, contents);
-            InputStream inputStream = new FileInputStream(file);
-        
-            streamedContent = new DefaultStreamedContent(inputStream, Files.probeContentType(file.toPath()), file.getName());        
-        } catch (IOException ex) {
-            mensagem.addMensagem("Erro. Este arquivo está corrompido!", FacesMessage.SEVERITY_ERROR);
-            System.out.println("Mensagem: erro no Download");
+        if(nome != null && contents != null){
+            try {
+                File file = ArquivoUtil.escrever(nome, contents);
+                InputStream inputStream = new FileInputStream(file);
+
+                streamedContent = new DefaultStreamedContent(inputStream, Files.probeContentType(file.toPath()), file.getName());        
+            } catch (IOException ex) {
+                mensagem.addMensagem("Erro. Este arquivo está corrompido!", FacesMessage.SEVERITY_ERROR);
+                System.out.println("Mensagem: erro no Download");
+            }            
+        }else{
+            mensagem.addMensagem("Erro. Este não existe!", FacesMessage.SEVERITY_ERROR);
+            System.out.println("Arquivo Nulo");
         }
         
     }
     
     public void deleteFiles(){
-        // deletar os temporarios quando clicar no botao finalizar
+        ArquivoUtil arquivoUtil = new ArquivoUtil();
+        arquivoUtil.deletarFiles();
     }
         
 // Controle de Tela    

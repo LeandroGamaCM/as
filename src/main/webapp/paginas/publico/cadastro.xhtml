@@ -44,7 +44,7 @@
                         </div>
                         <div class="ui-g-6">
                             <span class="md-inputfield">
-                                <p:password id="inputSenha" value="#{cadastroBean.usuarioPagina.senha}" autocomplete="off" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
+                                <p:password id="inputSenha" value="#{cadastroBean.usuarioPagina.senha}" autocomplete="new-password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" onchange="this.value ? this.classList.add('ui-state-filled') : this.classList.remove('ui-state-filled')"/> 
                                 <p:outputLabel>Senha</p:outputLabel>
                             </span>
                         </div>
@@ -88,7 +88,7 @@
             </div>
         </div>
 
-        <!--        <script type="text/javascript">            
+                <script type="text/javascript">            
                     function inputHandler(masks, max, event) {
                       var c = event.target;
                       var v = c.value.replace(/\D/g, '');
@@ -116,7 +116,7 @@
                     doc.addEventListener('input', inputHandler.bind(undefined, docMask, 15), false);
                     
                     doc.addEventListener('blur', limpaCampo);
-                </script> -->
+                </script> 
 
         <noscript>
             Para completa funcionalidade deste site é necessário habilitar o JavaScript.<br/>

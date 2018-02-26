@@ -54,11 +54,12 @@ public class ComprovanteBean implements Serializable{
         
     }
     
-    public void finalizarInscricao(){
+    public String finalizarInscricao(){
         AlunoRN alunoRN = new AlunoRN();
         formularioAluno.getAluno().setStatus("Inscrição realizada");
         
         alunoRN.salvar(formularioAluno.getAluno());
+        return "principal.jsf";
     }
     
 // Upload de Arquivos ----------------------------------------------------------

@@ -152,7 +152,7 @@
                         </p:commandButton>                            
                     </h:panelGrid>                    
                     <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.outrosParentes}">
-                        <p:outputLabel value="Comprovante ou declaração de renda do(s) parente(s) (#{comprovanteBean.formularioAluno.condicaoManutencao.parentesco}):"/>
+                        <p:outputLabel value="Comprovante ou declaração de renda do(s) parente(s) (#{telaEntrevistaBean.formularioAluno.condicaoManutencao.parentesco}):"/>
                         <p:commandButton value="Baixar" ajax="false"
                                          actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaParentesNome, telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaParentes)}"
                                         icon="ui-icon-arrowthick-1-s"
@@ -161,7 +161,7 @@
                         </p:commandButton>                            
                     </h:panelGrid>                    
                     <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.condicaoManutencao.outrosMeios}">
-                        <p:outputLabel value="Comprovante ou declaração de renda proveniente de outros meios (#{comprovanteBean.formularioAluno.condicaoManutencao.nomeOutrosMeios}):"/>
+                        <p:outputLabel value="Comprovante ou declaração de renda proveniente de outros meios (#{telaEntrevistaBean.formularioAluno.condicaoManutencao.nomeOutrosMeios}):"/>
                         <p:commandButton value="Baixar" ajax="false"
                                          actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeiosNome, telaEntrevistaBean.formularioAluno.condicaoManutencao.arquivoRendaOutrosMeios)}"
                                         icon="ui-icon-arrowthick-1-s"
@@ -473,7 +473,7 @@
                         </p:commandButton>                            
                     </h:panelGrid> 
                     <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.despesa.outros}">
-                        <p:outputLabel value="Comprovante de outras despesas (#{comprovanteBean.formularioAluno.despesa.nomeOutros}): "/>
+                        <p:outputLabel value="Comprovante de outras despesas (#{telaEntrevistaBean.formularioAluno.despesa.nomeOutros}): "/>
                         <p:commandButton value="Baixar" ajax="false"
                                          actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaOutrosNome, telaEntrevistaBean.formularioAluno.despesa.arquivoDespesaOutros)}"
                                         icon="ui-icon-arrowthick-1-s"
@@ -546,7 +546,7 @@
                     <h:panelGrid columns="2" rendered="#{telaEntrevistaBean.formularioAluno.familia.possuiProgramaSocial}">
                         <p:outputLabel value="Comprovante de recebimento de programa social:"/>
                         <p:commandButton value="Baixar" ajax="false"
-                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.familia.possuiProgramaSocial, telaEntrevistaBean.formularioAluno.familia.possuiProgramaSocial)}"
+                                         actionListener="#{telaEntrevistaBean.downloadArquivo(telaEntrevistaBean.formularioAluno.familia.arquivoProgramaSocialNome, telaEntrevistaBean.formularioAluno.familia.arquivoProgramaSocial)}"
                                         icon="ui-icon-arrowthick-1-s"
                                         update="@form">
                                 <p:fileDownload value="#{telaEntrevistaBean.streamedContent}" />

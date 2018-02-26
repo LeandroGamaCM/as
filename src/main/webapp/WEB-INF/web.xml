@@ -27,7 +27,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>paginas/publico/login.jsf</welcome-file>
     </welcome-file-list>
     
     <!-- Erros -->
@@ -39,10 +39,10 @@
         <error-code>403</error-code>
         <location>/paginas/erro/403.jsf</location>
     </error-page>    
-<!--    <error-page>
+    <error-page>
         <error-code>500</error-code>
         <location>/paginas/erro/500.jsf</location>
-    </error-page>    -->
+    </error-page>    
     
     <!-- Spring Security -->
     <context-param>

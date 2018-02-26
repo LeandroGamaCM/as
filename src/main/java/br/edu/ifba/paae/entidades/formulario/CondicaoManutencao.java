@@ -1,11 +1,12 @@
 package br.edu.ifba.paae.entidades.formulario;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "codicao_manutencao")
+@Table(name = "condicao_manutencao")
 public class CondicaoManutencao implements Serializable {
     private static final long serialVersionUID = 9132389850800664138L;
     
@@ -233,6 +234,112 @@ public class CondicaoManutencao implements Serializable {
     public void setSustentadoPorNinguem(Boolean sustentadoPorNinguem) {
         this.sustentadoPorNinguem = sustentadoPorNinguem;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.condicaoManutencao);
+        hash = 29 * hash + Objects.hashCode(this.aluno);
+        hash = 29 * hash + Objects.hashCode(this.ambosPais);
+        hash = 29 * hash + Objects.hashCode(this.apenasMae);
+        hash = 29 * hash + Arrays.hashCode(this.arquivoRendaMae);
+        hash = 29 * hash + Objects.hashCode(this.arquivoRendaMaeNome);
+        hash = 29 * hash + Objects.hashCode(this.apenasPai);
+        hash = 29 * hash + Arrays.hashCode(this.arquivoRendaPai);
+        hash = 29 * hash + Objects.hashCode(this.arquivoRendaPaiNome);
+        hash = 29 * hash + Objects.hashCode(this.avos);
+        hash = 29 * hash + Arrays.hashCode(this.arquivoRendaAvos);
+        hash = 29 * hash + Objects.hashCode(this.arquivoRendaAvosNome);
+        hash = 29 * hash + Objects.hashCode(this.outrosParentes);
+        hash = 29 * hash + Arrays.hashCode(this.arquivoRendaParentes);
+        hash = 29 * hash + Objects.hashCode(this.arquivoRendaParentesNome);
+        hash = 29 * hash + Objects.hashCode(this.parentesco);
+        hash = 29 * hash + Objects.hashCode(this.outrosMeios);
+        hash = 29 * hash + Arrays.hashCode(this.arquivoRendaOutrosMeios);
+        hash = 29 * hash + Objects.hashCode(this.arquivoRendaOutrosMeiosNome);
+        hash = 29 * hash + Objects.hashCode(this.nomeOutrosMeios);
+        hash = 29 * hash + Objects.hashCode(this.sustentadoPorNinguem);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CondicaoManutencao other = (CondicaoManutencao) obj;
+        if (!Objects.equals(this.arquivoRendaMaeNome, other.arquivoRendaMaeNome)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoRendaPaiNome, other.arquivoRendaPaiNome)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoRendaAvosNome, other.arquivoRendaAvosNome)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoRendaParentesNome, other.arquivoRendaParentesNome)) {
+            return false;
+        }
+        if (!Objects.equals(this.parentesco, other.parentesco)) {
+            return false;
+        }
+        if (!Objects.equals(this.arquivoRendaOutrosMeiosNome, other.arquivoRendaOutrosMeiosNome)) {
+            return false;
+        }
+        if (!Objects.equals(this.nomeOutrosMeios, other.nomeOutrosMeios)) {
+            return false;
+        }
+        if (!Objects.equals(this.condicaoManutencao, other.condicaoManutencao)) {
+            return false;
+        }
+        if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        if (!Objects.equals(this.ambosPais, other.ambosPais)) {
+            return false;
+        }
+        if (!Objects.equals(this.apenasMae, other.apenasMae)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoRendaMae, other.arquivoRendaMae)) {
+            return false;
+        }
+        if (!Objects.equals(this.apenasPai, other.apenasPai)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoRendaPai, other.arquivoRendaPai)) {
+            return false;
+        }
+        if (!Objects.equals(this.avos, other.avos)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoRendaAvos, other.arquivoRendaAvos)) {
+            return false;
+        }
+        if (!Objects.equals(this.outrosParentes, other.outrosParentes)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoRendaParentes, other.arquivoRendaParentes)) {
+            return false;
+        }
+        if (!Objects.equals(this.outrosMeios, other.outrosMeios)) {
+            return false;
+        }
+        if (!Arrays.equals(this.arquivoRendaOutrosMeios, other.arquivoRendaOutrosMeios)) {
+            return false;
+        }
+        if (!Objects.equals(this.sustentadoPorNinguem, other.sustentadoPorNinguem)) {
+            return false;
+        }
+        return true;
+    }
+
 
     
 }

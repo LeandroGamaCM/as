@@ -39,16 +39,17 @@ public class CadastroBean implements Serializable{
                 mensagemUsuarioCadastrado = true;
                 return false;
             }else{
-                if(!TesteConexao.testar()){
-                    mensagemSemInternet = true;
-                    return false;
-                }else{
-                    if(!EmailValidator.validar(usuarioPagina.getEmail())){
-                        mensagemEmailInvalido = true;
-                        return false;
-                    }
-                    return true;                    
-                }
+//                if(!TesteConexao.testar()){
+//                    mensagemSemInternet = true;
+//                    return false;
+//                }else{
+//                    if(!EmailValidator.validar(usuarioPagina.getEmail())){
+//                        mensagemEmailInvalido = true;
+//                        return false;
+//                    }
+//                    return true;                    
+//                }
+                return true;
             }
         }
     }

@@ -1,13 +1,15 @@
 package br.edu.ifba.paae.bean.adm;
 
+import br.edu.ifba.paae.entidades.analise.Entrevista;
 import br.edu.ifba.paae.entidades.formulario.Aluno;
 import br.edu.ifba.paae.entidades.formulario.Formulario;
 import br.edu.ifba.paae.logica.FormularioAluno;
+import br.edu.ifba.paae.rn.analise.EntrevistaRN;
+import br.edu.ifba.paae.rn.analise.RendaPerCapitaRN;
 import br.edu.ifba.paae.rn.formulario.AlunoRN;
 import br.edu.ifba.paae.rn.formulario.FormularioRN;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
 
@@ -15,7 +17,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.model.chart.PieChartModel;
 
-@ManagedBean(name = "relatorioBean")
+@ManagedBean(name = "telaRelatoriosBean")
 @ViewScoped
 public class TelaRelatoriosBean implements Serializable{
     private static final long serialVersionUID = -4266294973616109853L;
@@ -25,7 +27,8 @@ public class TelaRelatoriosBean implements Serializable{
 
     private PieChartModel graficoPreferenciaBolsa;
     private PieChartModel graficoAlunos;
-    
+    private PieChartModel graficoRenda;
+
     private String estadoTela = "classificacao";
 
     @PostConstruct
@@ -49,6 +52,7 @@ public class TelaRelatoriosBean implements Serializable{
         System.out.println("\tCriando graficos...");
         createGraficoPreferenciaBolsa();
         createGraficoAlunos();
+        createGraficoRenda();
     }
     
     private void createGraficoAlunos(){
@@ -90,10 +94,10 @@ public class TelaRelatoriosBean implements Serializable{
     
     private void createGraficoPreferenciaBolsa(){
         graficoPreferenciaBolsa = new PieChartModel();
+        AlunoRN alunoRN = new AlunoRN();
         FormularioRN formularioRN = new FormularioRN();
-        List<Formulario> formularios = formularioRN.listar();
-        int i;
-        List<Formulario> formulariosDoAno = new ArrayList<>();
+        Formulario formulario;
+        List<Aluno> listAlunos = alunoRN.alunosAtuais(alunoRN.listar()); 
         
         int bolsaEstudo = 0;
         int auxilioMoradia = 0;
@@ -103,30 +107,23 @@ public class TelaRelatoriosBean implements Serializable{
         int auxilioAquisicoes = 0;
         int pina = 0;
         
-        if(formularios != null){
-            Calendar cal = Calendar.getInstance();
-            for(i=0; i<formularios.size(); i++){
-                if(formularios.get(i).getDataInscricao().getYear() == cal.getTime().getYear()){
-                    formulariosDoAno.add(formularios.get(i));
-                }
-            }
-        }
-        if(formulariosDoAno != null || !formulariosDoAno.isEmpty()){
-            for(i=0; i<formulariosDoAno.size(); i++){
-                if(formulariosDoAno.get(i).getPrimeiraPreferencia() != null){
-                    if(formulariosDoAno.get(i).getPrimeiraPreferencia().equals("Bolsa de estudos"))
+        if(listAlunos != null && !listAlunos.isEmpty()){
+            for(Aluno aluno: listAlunos){
+                formulario = formularioRN.buscarPorAluno(aluno.getAluno());
+                if(formulario != null && formulario.getPrimeiraPreferencia() != null){
+                    if(formulario.getPrimeiraPreferencia().equals("Bolsa de estudos"))
                         bolsaEstudo++;
-                    if(formulariosDoAno.get(i).getPrimeiraPreferencia().equals("Auxílio moradia"))
+                    if(formulario.getPrimeiraPreferencia().equals("Auxílio moradia"))
                         auxilioMoradia++;
-                    if(formulariosDoAno.get(i).getPrimeiraPreferencia().equals("Auxílio transporte"))
+                    if(formulario.getPrimeiraPreferencia().equals("Auxílio transporte"))
                         auxilioTransporte++;
-                    if(formulariosDoAno.get(i).getPrimeiraPreferencia().equals("Auxílio alimentação"))
+                    if(formulario.getPrimeiraPreferencia().equals("Auxílio alimentação"))
                         auxilioAlimentacao++;
-                    if(formulariosDoAno.get(i).getPrimeiraPreferencia().equals("Auxílio cópia e impressao"))
+                    if(formulario.getPrimeiraPreferencia().equals("Auxílio cópia e impressao"))
                         auxilioCopia++;
-                    if(formulariosDoAno.get(i).getPrimeiraPreferencia().equals("Auxílio para aquisições e viagens"))
+                    if(formulario.getPrimeiraPreferencia().equals("Auxílio para aquisições e viagens"))
                         auxilioAquisicoes++;
-                    if(formulariosDoAno.get(i).getPrimeiraPreferencia().equals("Bolsa de projeto de incentivo a aprendizagem - PINA"))
+                    if(formulario.getPrimeiraPreferencia().equals("Bolsa de projeto de incentivo a aprendizagem - PINA"))
                         pina++;
                 }
             }
@@ -143,6 +140,56 @@ public class TelaRelatoriosBean implements Serializable{
         
         graficoPreferenciaBolsa.setTitle("Preferência de Bolsas");
         graficoPreferenciaBolsa.setLegendPosition("w");
+    }
+    
+    private void createGraficoRenda(){
+        graficoRenda = new PieChartModel();
+        RendaPerCapitaRN rendaPerCapitaRN = new RendaPerCapitaRN();
+        AlunoRN alunoRN = new AlunoRN();
+        EntrevistaRN entrevistaRN = new EntrevistaRN();
+        List<Aluno> listAlunos = alunoRN.alunosAtuais(alunoRN.listar());
+        Entrevista entrevista;
+        
+        Double salarioMinimo = rendaPerCapitaRN.buscarSalario();
+        
+        int umQuarto = 0;
+        int metade = 0;
+        int um = 0;
+        int dois = 0;
+        int maisQueDois = 0;
+        
+        if(listAlunos != null && !listAlunos.isEmpty()){
+            for(Aluno aluno : listAlunos){
+                entrevista = entrevistaRN.buscarPorAluno(aluno.getAluno());
+                if(entrevista != null && entrevista.getPontuacaoRendaPerCapita()!=null){
+                    if(entrevista.getPontuacaoRendaPerCapita() < (salarioMinimo/4)){
+                        umQuarto++;
+                    }
+                    if((entrevista.getPontuacaoRendaPerCapita() > (salarioMinimo/4)) && (entrevista.getPontuacaoRendaPerCapita() < (salarioMinimo/2))){
+                        metade++;
+                    }
+                    if((entrevista.getPontuacaoRendaPerCapita() > (salarioMinimo/2)) && (entrevista.getPontuacaoRendaPerCapita() < (salarioMinimo))){
+                        um++;
+                    }
+                    if((entrevista.getPontuacaoRendaPerCapita() > (salarioMinimo)) && (entrevista.getPontuacaoRendaPerCapita() < (salarioMinimo*2))){
+                        dois++;
+                    }
+                    if((entrevista.getPontuacaoRendaPerCapita() > (salarioMinimo*2))){
+                        maisQueDois++;
+                    }                    
+                }
+            }
+        }
+        
+        graficoRenda.set("Menos de 1/4 salário mínimo", umQuarto);
+        graficoRenda.set("Entre 1/4 e 1/2 salário mínimo", metade);
+        graficoRenda.set("Entre 1/2 e 1 salário mínimo", um);
+        graficoRenda.set("Entre 1 e 2 salários mínimos", dois);
+        graficoRenda.set("Mais de 2 salários mínimos", maisQueDois);
+        
+        graficoRenda.setTitle("Renda Per Capita dos discentes em quantidade de salários mínimos");
+        graficoRenda.setLegendPosition("w");        
+        
     }
     
 // Controle de Tela
@@ -197,6 +244,14 @@ public class TelaRelatoriosBean implements Serializable{
 
     public void setEstadoTela(String estadoTela) {
         this.estadoTela = estadoTela;
+    }
+
+    public PieChartModel getGraficoRenda() {
+        return graficoRenda;
+    }
+
+    public void setGraficoRenda(PieChartModel graficoRenda) {
+        this.graficoRenda = graficoRenda;
     }
     
 }

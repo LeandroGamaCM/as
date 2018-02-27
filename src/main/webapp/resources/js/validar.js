@@ -68,7 +68,7 @@ function validarLogin() {
 
 //formulário de perfil adm
 function validaPerfil() {
-    var senha1 = document.getElementById('senha');
+    var senha1 = document.getElementById('novaSenha');
 
     if (senha1.value.length < 6) {
         senha1.focus();

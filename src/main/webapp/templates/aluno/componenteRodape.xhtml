@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">    
     <ui:composition>
-        <a href="#{request.contextPath}/#{request.contextPath}/paginas/aluno/principal.jsf"><h:graphicImage library="imagens" name="logoRodape.png" /></a>
+        <a href="#{request.contextPath}/paginas/aluno/principal.jsf"><h:graphicImage library="imagens" name="logoRodape.png" /></a>
         <span class="footer-text-right">
             <span class="fa fa-bookmark-o" style="font-size: 24px"></span> 
             <span><a onclick="PF('dlg2').show();" href="#">Manual</a></span>
@@ -25,13 +25,13 @@
             09. Fora do período de inscrição, o formulário para estudo socioeconômico fica indisponível.<br/>
             10. Por se tratar de um processo de concessão de auxílios, o formulário é extenso.<br/>
             11. Os dados fornecidos devem possuir veracidade. Dúvidas no preenchimeto dos campos devem ser levadas a Assistência Social.<br/>
-            12. Preenchido o formulário, terá o usuário duas opções: Salvar os dados preenchidos; Enviar Inscrição.<br/>
-            13. O usuário que ainda não possui os documentos para serem anexados devem optar por Salvar Dados.<br/>
+            12. Preenchido o formulário, o usuário deverá enviar a inscrição e confirmar os dados. Feito isso, poderá anexar os comprovantes<br/>
+            13. O usuário que ainda não possui os documentos para serem anexados podem adiar esta etapa, mas sua inscrição ficará pendente. <br/>
             <h5>Do Anexo de Comprovantes</h5>
             14. Alguns campos do formulário necessita de documentos comprobatórios da informação fornecida.<br/>
-            15. Quando o usuário envia a inscrição, é chamada a tela de anexar comprovantes.<br/>
-            16. É preciso que os documentos estejam digitalizados para serem anexados. Cada um deve possuir no máximo 1,4mb.<br/>
-            17. Depois de anexar o documento, é necessário clicar em Enviar.
+            15. Quando o usuário confirma a inscrição, é chamada a tela de anexar comprovantes.<br/>
+            16. É preciso que os documentos estejam digitalizados para serem anexados. Cada um deve possuir no máximo 1 MB.<br/>
+            17. Depois de anexar o documento, é necessário clicar em Enviar. Feito isso com todos os documentos, clique em Enviar comprovantes.
         </p:dialog> 
     </ui:composition>
 </html>

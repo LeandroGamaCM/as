@@ -146,7 +146,7 @@
                                                 <h:panelGrid class="pgTam spanpo" columns="1">
                                                     <p:outputLabel for="tele" value="Telefone: "/>
                                                     <span>
-                                                        <p:inputText id="tele" alt="Campo opcional." class="validar" label="telefone" value="#{alunoBean.aluno.telefone}"/>
+                                                        <p:inputText id="tele" onclick="celpad()" alt="Campo opcional." class="validar" label="telefone" value="#{alunoBean.aluno.telefone}"/>
                                                     </span>
                                                 </h:panelGrid>
 
@@ -271,7 +271,7 @@
                                                     <h:panelGrid class="pgTam spanpo" columns="1">
                                                         <p:outputLabel id="OutOP" value="Operação: " for="operacao" />                                                        
                                                         <span>
-                                                            <p:inputText id="operacao" class="validar" alt="Campo obrigatório apenas para contas da Caixa Econômica Federal" value="#{alunoBean.conta.operacao}" label="Operação"/>
+                                                            <p:inputText id="operacao"  onclick="alertas(this)" class="validar_click" alt="Campo obrigatório apenas para contas da Caixa Econômica Federal" value="#{alunoBean.conta.operacao}" label="Operação"/>
                                                         </span>
                                                     </h:panelGrid>
                                                 </h:panelGrid>   

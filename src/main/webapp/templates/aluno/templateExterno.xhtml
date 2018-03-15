@@ -19,6 +19,7 @@
         <h:outputScript library="js" name="submenus.js"/>
         <h:outputScript library="js" name="validar.js" />
         <h:outputScript library="js" name="vanilla-masker.min.js" />
+        <h:outputScript library="js" name="vanillaCpf.js" />
         <title><ui:insert name="titulo">Título</ui:insert></title>  
     </h:head>
     <h:body onload="removerClass1()" class="hidden-overflow">        
@@ -122,6 +123,27 @@
                els[x].addEventListener("blur", function(){
                   this.nextSibling.outerHTML = '';
                });
+            }
+        </script>
+        <script type="text/javascript">
+            function alertas(i){
+               if(i.value === ''){
+                  var alerta = document.createElement("span");
+                  alerta.setAttribute("class", "aviso");
+                  var t = document.createTextNode(i.getAttribute("alt"));
+                  alerta.appendChild(t);
+                  var seta = document.createElement("em");
+                  seta.setAttribute("class", "arrow-left");
+                  alerta.appendChild(seta);
+                  i.parentNode.insertBefore(alerta, this.nextSibling);
+               }
+              document.querySelector(".validar_click").addEventListener("blur", function(){
+               try{
+                  this.parentNode.children[1].outerHTML = '';
+
+               }catch(err){}
+            });
+
             }
         </script>
         <script type="text/javascript">

@@ -1,6 +1,10 @@
-- ver o requireTrue do membroFamiliar em inscricao
+- ver o requireTrue do membroFamiliar em inscricao //não vai pq o required true só funciona se existir o campo. No nosso
+caso o botão só passa a existir quando o usuário clica em adicionar outro. Antes quando já vinha um campo pra escrever
+funcionava, mas agr msm se clicar em adicionar outro e deixar vazio não funciona...
 
-- colocar require true em comprovantes. E travar o botao de finalizar quando alguma coisa faltar
+
+- colocar require true em comprovantes. E travar o botao de finalizar quando alguma coisa faltar. Aparentemente só 
+funciona no modo "simple" e precisa fazer a validação no bean. pelas minhas pesquisas em inglês
 
 - Mostrar os alunos que não foram entrevistados nos relatorios porque os antigos talvez não precisem de entrevista
 - Ativar a verificacao de email no cadastroBean

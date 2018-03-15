@@ -30,16 +30,16 @@
 
                         <h5>Senha</h5>
                         <h:panelGrid columns="3">
-                            <h:panelGrid class="spanpo" columns="1">
-                                <span>
-                                    <p:outputLabel value="Senha antiga" for="senha" indicateRequired="false" />
-                                    <p:password id="senha" alt="Insira uma senha de no mínimo 6 dígitos." class="pgUser validar" value="#{usuarioBean.confirmacaoSenha}" required="true" requiredMessage="Senha antiga: Campo Obrigatório"/>
-                                </span>
+                            <h:panelGrid columns="1">
+                                <p:outputLabel value="Senha antiga" for="senha" indicateRequired="false" />
+                                <p:password id="senha" class="pgUser" value="#{usuarioBean.confirmacaoSenha}" required="true" requiredMessage="Senha antiga: Campo Obrigatório"/>
                             </h:panelGrid>
 
-                            <h:panelGrid columns="1">
-                                <p:outputLabel value="Nova senha" for="novaSenha" indicateRequired="false" />
-                                <p:password id="novaSenha" class="pgUser" value="#{usuarioBean.novaSenha}" required="true" requiredMessage="Nova senha: Campo Obrigatório"/>
+                            <h:panelGrid class="spanpo" columns="1">
+                                <span>
+                                    <p:outputLabel value="Nova senha" for="novaSenha" indicateRequired="false" />
+                                    <p:password id="novaSenha" class="pgUser validar" alt="Insira uma senha de no mínimo 6 dígitos." value="#{usuarioBean.novaSenha}" required="true" requiredMessage="Nova senha: Campo Obrigatório"/>
+                                </span>
                             </h:panelGrid>
 
                             <h:panelGrid columns="1" style="padding-top: 20px">

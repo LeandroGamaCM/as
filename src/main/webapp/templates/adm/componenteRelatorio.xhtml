@@ -25,7 +25,7 @@
                     </p:panel>
 
                 <p:panel header="Lista de alunos com inscrição efetuada" rendered="#{telaRelatoriosBean.classificacao}">
-                    <p:dataTable var="formulario" value="#{telaRelatoriosBean.formularioAlunos}">
+                    <p:dataTable var="formulario" value="#{telaRelatoriosBean.formularioAlunos}" emptyMessage="Nada cadastrado">
                         <p:column headerText="Aluno" sortBy="#{formulario.aluno.nome}">
                             <p:outputLabel value="#{formulario.aluno.nome}" />
                         </p:column>

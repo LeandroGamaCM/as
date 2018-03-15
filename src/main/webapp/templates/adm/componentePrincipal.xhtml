@@ -9,7 +9,7 @@
         <div class="ui-g dashboard">
             <div class="ui-g-12 ui-lg-4">
                 <p:outputPanel id="periodoInscricao">
-                    <div class="task-box task-box-2">
+                    <div class="task-box task-box-3">
                         <div class="task-box-header">
                             <i class="fa fa-calendar iconTam"></i>
                         </div>
@@ -25,6 +25,21 @@
                 </p:outputPanel>
             </div>
             
+            
+            <div class="ui-g-12 ui-lg-4">
+                <div class="task-box task-box-2">
+                    <div class="task-box-header">
+                        <i class="fa fa-comments-o iconTam"></i>
+                    </div>
+                    <div class="task-box-content">
+                        <h3>Entrevistas</h3>
+                        <p>Realize um entrevista</p>
+                    </div>
+                    <div class="task-box-footer" id="sp4">
+                        <a href="#{request.contextPath}/paginas/adm/entrevistas.jsf"><span class="task-status" id="sp2">Realizar</span></a>
+                    </div>
+                </div>
+            </div>
             <div class="ui-g-12 ui-lg-4">
                 <div class="task-box task-box-1">
                     <div class="task-box-header">
@@ -36,21 +51,6 @@
                     </div>
                     <div class="task-box-footer" id="sp3">
                         <a href="#{request.contextPath}/paginas/adm/relatorios.jsf"><span class="task-status" id="sp1">Acessar</span></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="ui-g-12 ui-lg-4">
-                <div class="task-box task-box-3">
-                    <div class="task-box-header">
-                        <i class="fa fa-comments-o iconTam"></i>
-                    </div>
-                    <div class="task-box-content">
-                        <h3>Entrevistas</h3>
-                        <p>Realize um entrevista</p>
-                    </div>
-                    <div class="task-box-footer" id="sp4">
-                        <a href="#{request.contextPath}/paginas/adm/entrevistas.jsf"><span class="task-status" id="sp2">Realizar</span></a>
                     </div>
                 </div>
             </div>
@@ -75,22 +75,22 @@
                 </div>
             </div>
             <div class="ui-g-12 ui-md-3">
-                <div class="overview-box overview-box-2">
-                    <div class="overview-box-header"></div>
-                    <div class="overview-box-content">
-                        <div class="overview-box-icon"><i class="fa fa-comments-o"></i></div>
-                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/entrevistas.jsf">Entrevistas Realizadas</a></div>
-                        <div class="overview-box-count">#{telaPrincipalBean.entrevistas}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="ui-g-12 ui-md-3">
                 <div class="overview-box overview-box-4">
                     <div class="overview-box-header"></div>
                     <div class="overview-box-content">
                         <div class="overview-box-icon"><i class="fa fa-address-card" style="font-size: 22px"></i></div>
                         <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/principal.jsf">Número de Inscrições</a></div>
                         <div class="overview-box-count">#{telaPrincipalBean.alunosInscritos}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-2">
+                    <div class="overview-box-header"></div>
+                    <div class="overview-box-content">
+                        <div class="overview-box-icon"><i class="fa fa-comments-o"></i></div>
+                        <div class="overview-box-title"><a href="#{request.contextPath}/paginas/adm/entrevistas.jsf">Entrevistas Realizadas</a></div>
+                        <div class="overview-box-count">#{telaPrincipalBean.entrevistas}</div>
                     </div>
                 </div>
             </div>

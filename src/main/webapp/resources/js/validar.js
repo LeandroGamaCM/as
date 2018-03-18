@@ -121,10 +121,24 @@ function validarRecu() {
             }
         }
         
-//permite apenas numeros no campo rg
+//permite apenas numeros com .
 function numeros(e) {
     var expressao;
     expressao = /[a-zA-z;´~^~+*,]/;
+
+    if (expressao.test(String.fromCharCode(e.keyCode)))
+    {
+        return false;
+    } else
+    {
+        return true;
+    }
+}
+
+//permite apenas numeros no campo rg
+function numerosRG(e) {
+    var expressao;
+    expressao = /[a-zA-z;/\´~^~+*,.]/;
 
     if (expressao.test(String.fromCharCode(e.keyCode)))
     {

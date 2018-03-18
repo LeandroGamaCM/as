@@ -1,11 +1,22 @@
 1. Salvar as fichas de inscricao em pdf
 2. O único banco que pode ser conta poupanca é banco da caixa
-3. Em situação ocupacional tem que retirar o BPC. Colocar em Programas Sociais
-4. Colocar despesas no campus como semanal
-5. Retirar Projovem do Programas Sociais 
-6. Mudar o nome de BCP para BPC - LOAS em Programas Sociais
-7. Em programas sociais mudar o checkbox para menucheckbox
 8. Aumentar o tamanho da string no banco (anotações entrevista)
 9. Colocar em ordem decrescente de pontução o relatorio
 10. Colocar função de apagar usuario adm
-11. Mudar o nome Assistência Social para o Serviço Social
+15. Colocar função editar entrevista. Mirella falou que iria ficar atualizando o que ela escrevesse em entrevista. Então
+tem que ter essa função.
+
+OBS:
+12. O OUTRO em programas sociais (última tab) não está funcionando aqui, verica aí!
+13. Aparentemente não há problemas em copiar e colar um cpf que já estejam com uma máscara. Se ela estiver correta
+não há problema algum (testei) e mesmo em casos que não está, o script conserta (não todos). Considerando que ninguém 
+ta aí pra quebrar programa, acho que rola ficar assim. Se eu colocar o script pra negar o ctrl c ctrl v, pega em todas as 
+páginas.
+16. O não possui em Caracterísitcas da casa não parece aqui, no formulário de entrevistas. Verifica aí.
+
+3. Em situação ocupacional tem que retirar o BPC. Colocar em Programas Sociais - FEITO
+4. Colocar despesas no campus como semanal - FEITO
+5. Retirar Projovem do Programas Sociais - FEITO
+6. Mudar o nome de BCP para BPC - LOAS em Programas Sociais - FEITO
+7. Em programas sociais mudar o checkbox para menucheckbox - FEITO
+11. Mudar o nome Assistência Social para o Serviço Social - FEITO

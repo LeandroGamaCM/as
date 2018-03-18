@@ -27,7 +27,7 @@
                                                 <h:panelGrid id="pg01" class="pgTam spanpo" columns="1">
                                                     <p:outputLabel indicateRequired="false" value="Nome Completo: " for="nome" />
                                                     <span>
-                                                        <p:inputText id="nome" value="#{alunoBean.aluno.nome}" class="validar" alt="Utilize iniciais maiúsculas." required="false" requiredMessage="Nome Completo: Campo Obrigatório" validatorMessage="Informe seu nome completo!" onkeypress="return letras(event)" label="name">
+                                                        <p:inputText id="nome" value="#{alunoBean.aluno.nome}" class="validar" alt="Utilize iniciais maiúsculas." required="true" requiredMessage="Nome Completo: Campo Obrigatório" validatorMessage="Informe seu nome completo!" onkeypress="return letras(event)" label="name">
                                                             <f:validateLength  minimum="6" />
                                                         </p:inputText>
                                                     </span>
@@ -49,7 +49,7 @@
 
                                                     <h:panelGrid class="pgTam" columns="1">
                                                         <p:outputLabel indicateRequired="false" value="Sexo:" />
-                                                        <p:selectOneRadio required="false" requiredMessage="Sexo: Item Obrigatório" value="#{alunoBean.aluno.sexo}">
+                                                        <p:selectOneRadio required="true" requiredMessage="Sexo: Item Obrigatório" value="#{alunoBean.aluno.sexo}">
                                                             <f:selectItem itemLabel="Feminino" itemValue="Feminino" />                                   
                                                             <f:selectItem itemLabel="Masculino" itemValue="Masculino" />                                   
                                                         </p:selectOneRadio>   
@@ -58,7 +58,7 @@
 
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" value="Data de Nascimento: " for="date" />                                    
-                                                    <p:inputMask id="date" required="false" requiredMessage="Data de Nascimento: Campo Obrigatório" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
+                                                    <p:inputMask id="date" required="true" requiredMessage="Data de Nascimento: Campo Obrigatório" value="#{alunoBean.aluno.dataNascimento}" mask="99/99/9999">
                                                     </p:inputMask> 
                                                 </h:panelGrid>
                                             </h:panelGrid>
@@ -68,13 +68,13 @@
                                                     <h:panelGrid class="pgTam spanpo" columns="1">
                                                         <p:outputLabel indicateRequired="false" for="rg" value="RG: "/>
                                                         <span>
-                                                            <p:inputText id="rg" required="false" alt="Insira apenas números! Não utilize pontuação." class="validar" requiredMessage="RG: Campo Obrigatório" onkeypress="return numeros(event)" value="#{alunoBean.aluno.rg}" label="RG"/>
+                                                            <p:inputText id="rg" required="true" alt="Insira apenas números! Não utilize pontuação." class="validar" requiredMessage="RG: Campo Obrigatório" onkeypress="return numerosRG(event)" value="#{alunoBean.aluno.rg}" label="RG"/>
                                                         </span>
                                                     </h:panelGrid>
 
                                                     <h:panelGrid class="pgTam" id="etnia12" columns="1">
                                                         <p:outputLabel indicateRequired="false" id="outEtnia" value="Etnia: "/>
-                                                        <p:selectOneMenu required="false" requiredMessage="Etnia: Menu Obrigatório" value="#{alunoBean.aluno.etnia}">
+                                                        <p:selectOneMenu required="true" requiredMessage="Etnia: Menu Obrigatório" value="#{alunoBean.aluno.etnia}">
                                                             <f:selectItem itemLabel="Selecione..."/>
                                                             <f:selectItem itemLabel="Negro(a)" itemValue="Negro(a)" />                                   
                                                             <f:selectItem itemLabel="Indigena(a)" itemValue="Indigena(a)" />                                   
@@ -88,7 +88,7 @@
 
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" value="Estado Civil: "/>
-                                                    <p:selectOneMenu required="false" requiredMessage="Estado Civil: Menu Obrigatório" value="#{alunoBean.aluno.estadoCivil}">
+                                                    <p:selectOneMenu required="true" requiredMessage="Estado Civil: Menu Obrigatório" value="#{alunoBean.aluno.estadoCivil}">
                                                         <f:selectItem itemLabel="Selecione..."/>
                                                         <f:selectItem itemLabel="Solteiro(a)" itemValue="Solteiro(a)" />                                   
                                                         <f:selectItem itemLabel="Casado(a)" itemValue="Casado(a)" />                                   
@@ -107,7 +107,7 @@
                                             <h:panelGrid id="pg4" class="pgTam" columns="2" columnClasses="col0030, 0031">
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" value="Modalidade: " for="modalidade" />
-                                                    <p:selectOneMenu required="false" requiredMessage="Modalidade: Item Obrigatório" id="modalidade" value="#{alunoBean.turma.modalidade}">
+                                                    <p:selectOneMenu required="true" requiredMessage="Modalidade: Item Obrigatório" id="modalidade" value="#{alunoBean.turma.modalidade}">
                                                         <f:selectItem itemLabel="Selecione..." itemValue="Selecione..."/>
                                                         <f:selectItems value="#{alunoBean.modalidades}"/>                                  
                                                         <p:ajax update="curAjax" event="change" listener="#{alunoBean.changeModalidade()}"/>
@@ -118,7 +118,7 @@
                                                     <h:panelGrid class="pgTam" columns="2" columnClasses="col0032, col0033">
                                                         <h:panelGrid class="pgTam" columns="1">
                                                             <p:outputLabel indicateRequired="false" value="Curso: " for="curso" />
-                                                            <p:selectOneMenu required="false" requiredMessage="Curso: Item Obrigatório" id="curso" value="#{alunoBean.turma.curso}" disabled="#{!alunoBean.selectedModalidade}">
+                                                            <p:selectOneMenu required="true" requiredMessage="Curso: Item Obrigatório" id="curso" value="#{alunoBean.turma.curso}" disabled="#{!alunoBean.selectedModalidade}">
                                                                 <f:selectItem itemLabel="Selecione..." itemValue="Selecione..."/>
                                                                 <f:selectItems value="#{alunoBean.cursos}"/>                                  
                                                                 <p:ajax update="turAjax" event="change" listener="#{alunoBean.changeCurso()}"/>
@@ -128,7 +128,7 @@
                                                         <p:outputPanel id="turAjax">
                                                             <h:panelGrid class="pgTam" columns="1">
                                                                 <p:outputLabel indicateRequired="false" value="Turma: " for="turma" />
-                                                                <p:selectOneMenu required="false" requiredMessage="Turma: Item Obrigatório" id="turma" value="#{alunoBean.turma.nome}" disabled="#{!alunoBean.selectedCurso}">
+                                                                <p:selectOneMenu required="true" requiredMessage="Turma: Item Obrigatório" id="turma" value="#{alunoBean.turma.nome}" disabled="#{!alunoBean.selectedCurso}">
                                                                     <f:selectItem itemLabel="Selecione..."/>
                                                                     <f:selectItems value="#{alunoBean.turmas}"/>                                   
                                                                 </p:selectOneMenu>  
@@ -146,18 +146,18 @@
                                                 <h:panelGrid class="pgTam spanpo" columns="1">
                                                     <p:outputLabel for="tele" value="Telefone: "/>
                                                     <span>
-                                                        <p:inputText id="tele" onclick="celpad()" alt="Campo opcional." class="validar" label="telefone" value="#{alunoBean.aluno.telefone}"/>
+                                                        <p:inputText id="tele" onclick="celpad()" alt="Campo opcional!" class="validar" label="telefone" value="#{alunoBean.aluno.telefone}"/>
                                                     </span>
                                                 </h:panelGrid>
 
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" for="celular" value="Celular: "/>
-                                                    <p:inputText id="celular" required="false" requiredMessage="Celular: Campo Obrigatório" label="celular" value="#{alunoBean.aluno.celular}"/>
+                                                    <p:inputText id="celular" onclick="celpad2()" required="true" requiredMessage="Celular: Campo Obrigatório" label="celular" value="#{alunoBean.aluno.celular}"/>
                                                 </h:panelGrid>
 
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" for="Lemail" value="Email: "/>
-                                                    <p:inputText id="Lemail" required="false" requiredMessage="Email: Campo Obrigatório" label="email" value="#{alunoBean.aluno.email}"/>
+                                                    <p:inputText id="Lemail" required="true" requiredMessage="Email: Campo Obrigatório" label="email" value="#{alunoBean.aluno.email}"/>
                                                 </h:panelGrid>
                                             </h:panelGrid>
                                         </div>
@@ -168,12 +168,12 @@
                                             <h:panelGrid id="pg6" class="pgTam" columns="2" columnClasses="coll20, coll21">
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" for="cidad" value="Cidade: "/>
-                                                    <p:inputText value="#{alunoBean.endereco.cidade}" required="false" requiredMessage="Cidade: Campo Obrigatório" onkeypress="return letras(event)" id="cidad" label="Cidade"/>   
+                                                    <p:inputText value="#{alunoBean.endereco.cidade}" required="true" requiredMessage="Cidade: Campo Obrigatório" onkeypress="return letras(event)" id="cidad" label="Cidade"/>   
                                                 </h:panelGrid>
 
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" value="Estado: " for="uf"/>
-                                                    <p:inputText id="uf" value="#{alunoBean.endereco.estado}" required="false" requiredMessage="Estado: Campo Obrigatório" onkeypress="return letras(event)" />                                                
+                                                    <p:inputText id="uf" value="#{alunoBean.endereco.estado}" required="true" requiredMessage="Estado: Campo Obrigatório" onkeypress="return letras(event)" />                                                
                                                 </h:panelGrid>
                                             </h:panelGrid>
 
@@ -181,18 +181,18 @@
                                                 <h:panelGrid class="pgTam" columns="2" columnClasses="coll25, coll26">
                                                     <h:panelGrid class="pgTam" columns="1">
                                                         <p:outputLabel indicateRequired="false"  for="rua" value="Rua: "/>
-                                                        <p:inputText value="#{alunoBean.endereco.rua}" required="false" requiredMessage="Rua: Campo Obrigatório" id="rua" onkeypress="return letras(event)" label="Rua"/>
+                                                        <p:inputText value="#{alunoBean.endereco.rua}" required="true" requiredMessage="Rua: Campo Obrigatório" id="rua" onkeypress="return letras(event)" label="Rua"/>
                                                     </h:panelGrid>
 
                                                     <h:panelGrid class="pgTam" id="numcol" columns="1">
                                                         <p:outputLabel indicateRequired="false" for="numb" value="Número: "/>
-                                                        <p:inputText value="#{alunoBean.endereco.numero}" required="false" requiredMessage="Número: Campo Obrigatório" id="numb" onkeypress="return numeros(event)" label="Numero"/>                                   
+                                                        <p:inputText value="#{alunoBean.endereco.numero}" required="true" requiredMessage="Número: Campo Obrigatório" id="numb" onkeypress="return numeros(event)" label="Numero"/>                                   
                                                     </h:panelGrid>
                                                 </h:panelGrid>
 
                                                 <h:panelGrid class="pgTam" columns="1">
                                                     <p:outputLabel indicateRequired="false" for="bairro" value="Bairro: "/>
-                                                    <p:inputText value="#{alunoBean.endereco.bairro}" required="false" requiredMessage="Bairro: Campo Obrigatório" id="bairro" onkeypress="return letras(event)" label="Bairro"/>
+                                                    <p:inputText value="#{alunoBean.endereco.bairro}" required="true" requiredMessage="Bairro: Campo Obrigatório" id="bairro" onkeypress="return letras(event)" label="Bairro"/>
                                                 </h:panelGrid>
                                             </h:panelGrid>
                                         </div>
@@ -203,7 +203,7 @@
                                             <h5>Informe as suas preferências dentre as bolsas oferecidas:</h5>
                                             <h:panelGrid id="pg7" class="pgTam" columns="2" columnClasses="col43, col44">                                                
                                                 <p:outputLabel indicateRequired="false" value="Primeira opção:"/>
-                                                <p:selectOneMenu required="false" requiredMessage="Primeira Opção de Bolsa: Item Obrigatório" value="#{alunoBean.formulario.primeiraPreferencia}">
+                                                <p:selectOneMenu required="true" requiredMessage="Primeira Opção de Bolsa: Item Obrigatório" value="#{alunoBean.formulario.primeiraPreferencia}">
                                                     <f:selectItem itemLabel="Selecione..."/>
                                                     <f:selectItem itemLabel="Bolsa de Estudos" itemValue="Bolsa de estudos"/>
                                                     <f:selectItem itemLabel="Auxílio Moradia" itemValue="Auxílio moradia"/>
@@ -215,7 +215,7 @@
                                                 </p:selectOneMenu>
 
                                                 <p:outputLabel indicateRequired="false" value="Segunda opção:"/>
-                                                <p:selectOneMenu required="false" requiredMessage="Segunda Opção de Bolsa: Item Obrigatório" value="#{alunoBean.formulario.segundaPreferencia}">
+                                                <p:selectOneMenu required="true" requiredMessage="Segunda Opção de Bolsa: Item Obrigatório" value="#{alunoBean.formulario.segundaPreferencia}">
                                                     <f:selectItem itemLabel="Selecione..."/>
                                                     <f:selectItem itemLabel="Bolsa de Estudos" itemValue="Bolsa de estudos"/>
                                                     <f:selectItem itemLabel="Auxílio Moradia" itemValue="Auxílio moradia"/>
@@ -235,7 +235,7 @@
 
                                             <h:panelGrid id="pg8" class="pgTam" columns="2" columnClasses="col45, col46"> 
                                                 <h5 id="contaB">Você possui conta bancária?</h5>
-                                                <p:selectOneRadio required="false" requiredMessage="Conta Bancária: Item Obrigatório" id="conta" value="#{alunoBean.conta.possuiConta}" columns="2">
+                                                <p:selectOneRadio required="true" requiredMessage="Conta Bancária: Item Obrigatório" id="conta" value="#{alunoBean.conta.possuiConta}" columns="2">
                                                     <f:selectItem itemLabel="Não" itemValue="false"/>  
                                                     <f:selectItem itemLabel="Sim" itemValue="true" />  
                                                     <p:ajax update="contaAjax" event="change"/>
@@ -245,34 +245,32 @@
                                             <p:outputPanel id="contaAjax">  
                                                 <h:panelGrid id="pg9" class="pgTam" rendered="#{alunoBean.conta.possuiConta}" columns="2" columnClasses="col47, col48">
                                                     <h:panelGrid class="pgTam" columns="1">
-                                                        <p:outputLabel indicateRequired="false" value="Banco: " for="banco" />
-                                                        <p:inputText required="false" requiredMessage="Banco: Campo Obrigatório" id="banco" value="#{alunoBean.conta.nomeBanco}" label="Banco"/>
+                                                        <p:outputLabel indicateRequired="false" value="Nome do Banco: " for="banco" />
+                                                        <p:inputText required="true" requiredMessage="Banco: Campo Obrigatório" id="banco" value="#{alunoBean.conta.nomeBanco}" label="Banco"/>
                                                     </h:panelGrid>
 
                                                     <h:panelGrid class="pgTam" columns="1">
                                                         <p:outputLabel indicateRequired="false" id="outAgencia" value="Agência: " for="agencia" />
-                                                        <p:inputText id="agencia" required="false" requiredMessage="Agência: Campo Obrigatório" value="#{alunoBean.conta.agencia}" label="Agência"/>
+                                                        <p:inputText id="agencia" required="true" requiredMessage="Agência: Campo Obrigatório" value="#{alunoBean.conta.agencia}" label="Agência"/>
                                                     </h:panelGrid>
 
                                                     <h:panelGrid class="pgTam" columns="1">
                                                         <p:outputLabel indicateRequired="false" id="NumConta" value="Número da conta: " for="numeroConta" />
-                                                        <p:inputText id="numeroConta" required="false" requiredMessage="Número da conta: Campo Obrigatório" value="#{alunoBean.conta.numero}" label="Numero"/>
+                                                        <p:inputText id="numeroConta" required="true" requiredMessage="Número da conta: Campo Obrigatório" value="#{alunoBean.conta.numero}" label="Numero"/>
                                                     </h:panelGrid>
 
                                                     <h:panelGrid class="pgTam" columns="1">
                                                         <p:outputLabel indicateRequired="false" id="outConta" value="Tipo de conta"/>
-                                                        <p:selectOneMenu required="false" requiredMessage="Tipo de conta: Item Obrigatório" value="#{alunoBean.conta.tipo}">
+                                                        <p:selectOneMenu required="true" requiredMessage="Tipo de conta: Item Obrigatório" value="#{alunoBean.conta.tipo}">
                                                             <f:selectItem itemLabel="Selecione..." itemValue="selecione"/>
                                                             <f:selectItem itemLabel="Conta corrente" itemValue="Conta corrente"/>
                                                             <f:selectItem itemLabel="Poupança" itemValue="Poupança"/>
-                                                        </p:selectOneMenu>  
+                                                        </p:selectOneMenu>    
                                                     </h:panelGrid>
 
-                                                    <h:panelGrid class="pgTam spanpo" columns="1">
-                                                        <p:outputLabel id="OutOP" value="Operação: " for="operacao" />                                                        
-                                                        <span>
-                                                            <p:inputText id="operacao"  onclick="alertas(this)" class="validar_click" alt="Campo obrigatório apenas para contas da Caixa Econômica Federal" value="#{alunoBean.conta.operacao}" label="Operação"/>
-                                                        </span>
+                                                    <h:panelGrid class="pgTam" columns="1">
+                                                        <p:outputLabel id="OutOP" value="Operação: " for="operacao" />                                                      
+                                                            <p:inputText id="operacao" value="#{alunoBean.conta.operacao}" label="Operação"/>
                                                     </h:panelGrid>
                                                 </h:panelGrid>   
                                             </p:outputPanel>
@@ -421,7 +419,6 @@
                                                     <f:selectItem itemLabel="Trabalhando" itemValue="Trabalhador(a)" />  
                                                     <f:selectItem itemLabel="Desempregado(a)" itemValue="Desempregado(a)" />  
                                                     <f:selectItem itemLabel="Aviso Prévio/Seguro desemprego" itemValue="Aviso Prévio/Seguro desemprego" />
-                                                    <f:selectItem itemLabel="Beneficiário do BPC - Benefício de Prestação Continuada de Assistência Social" itemValue="Beneficiário do BPC" />  
                                                     <f:selectItem itemLabel="Aposentado(a)/Pensionista" itemValue="Aposentado(a)/Pensionista" />  
 
                                                     <p:ajax update="trabalhoAjax" event="change"/>
@@ -436,7 +433,7 @@
                                                         <p:inputText id="prof" required="true" requiredMessage="Profissão: Campo Obrigatório" value="#{alunoBean.ocupacao.profissao}" label="Profissão"/>
                                                     </h:panelGrid>
 
-                                                    <h:panelGrid id="pg20" class="pgTam" columns="2" columnClasses="col71, col72">
+                                                    <h:panelGrid id="pg20" class="pgTam" columns="1" columnClasses="col71, col72">
                                                         <p:outputLabel indicateRequired="false" value="Tipo de Profissão: "/>
                                                         <p:selectOneRadio value="#{alunoBean.ocupacao.trabalho}" required="true" requiredMessage="Tipo Profissão: Item Obrigatório" layout="responsive" columns="5">
                                                             <f:selectItem itemLabel="Carteira Assinada" itemValue="Carteira Assinada"/>
@@ -507,7 +504,7 @@
                                         </div>
                                     </p:panel>  
 
-                                    <p:panel header="Caso tenha despesas no campus, indica o valor">
+                                    <p:panel header="Caso tenha despesas no campus, indique o valor semanal">
                                         <div class="ui-g ui-fluid"> 
                                             <h:panelGrid id="pg26" class="pgTam" columns="2" columnClasses="col89, col90">                              
                                                 <p:outputLabel value="Alimentação: R$ " for="ali" />
@@ -1228,20 +1225,19 @@
                                                 <p:outputPanel id="progAjax">
                                                     <h:panelGrid id="pg74" class="pgTam" rendered="#{alunoBean.familia.possuiProgramaSocial}" columns="2" columnClasses="col187, col188">
                                                         <h:panelGrid class="pgTam" columns="1" columnClasses="col189">
-                                                            <p:selectOneRadio required="true" requiredMessage="Programa Social: Item Obrigatório" value="#{alunoBean.familia.programaSocial}" layout="responsive" columns="5" >
+                                                            <p:selectManyCheckbox required="true" requiredMessage="Programa Social: Item Obrigatório" value="#{alunoBean.familia.programaSocial}" layout="responsive" columns="4" >
                                                                 <f:selectItem itemLabel="Bolsa Família" itemValue="Bolsa Família"/>
-                                                                <f:selectItem itemLabel="BCP" itemValue="BCP"/>
+                                                                <f:selectItem itemLabel="BPC - LOAS" itemValue="BPC - LOAS"/>
                                                                 <f:selectItem itemLabel="Jovem Aprendiz" itemValue="Jovem Aprendiz"/>
-                                                                <f:selectItem itemLabel="Projovem" itemValue="Projovem"/>
                                                                 <f:selectItem itemLabel="Atendimento no CRAS" itemValue="Atendimento no CRAS"/>
                                                                 <f:selectItem itemLabel="Atendimento no CAPS" itemValue="Atendimento no CAPS"/>
                                                                 <f:selectItem itemLabel="Prouni" itemValue="Prouni"/>
                                                                 <f:selectItem itemLabel="Fies" itemValue="Fies"/>
                                                                 <f:selectItem itemLabel="Outro" itemValue="Outro"/>
                                                                 <p:ajax event="change" update="progAjax"/>
-                                                            </p:selectOneRadio>
+                                                            </p:selectManyCheckbox>
                                                         </h:panelGrid>
-
+                                                        
                                                         <h:panelGrid class="pgTam"  columns="2" columnClasses="col190, col191" rendered="#{alunoBean.familia.programaSocial == 'Outro'}">
                                                             <p:outputLabel  indicateRequired="false" value="Qual? " for="ProgramaSocial" />
                                                             <p:inputText id="ProgramaSocial" required="true" requiredMessage="Outro Programa Social: Campo Obrigatório"  value="#{alunoBean.familia.outroProgramaSocial}" label="Programa Social"/>
